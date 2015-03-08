@@ -284,6 +284,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		backBCS.setOnMouseClicked(e -> primaryStage.setScene(startMScene));
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
+		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
+		
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
 		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
 		
