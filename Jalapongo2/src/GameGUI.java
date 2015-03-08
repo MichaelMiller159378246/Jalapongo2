@@ -147,7 +147,7 @@ public class GameGUI extends Application {
 		Text AIText = new Text("# of AI: ");
 		Text portText = new Text("Port #: ");
 		TextField nameTF = new TextField("Joey");
-		TextField portTF = new TextField(" ");
+		TextField portTFHS = new TextField(" ");
 	// Make Buttons	
 		ComboBox AICB = new ComboBox(AIoptions);
 		Button backHO = new Button("Back");
@@ -157,12 +157,13 @@ public class GameGUI extends Application {
 		Button startHostingHO = new Button("Start Hosting");
 			startHostingHO.setFont(new Font(24));
 			startHostingHO.setMaxWidth(300);
-		
+		Button randomBHS = new Button ("Randomize");
+			
 		hbName.getChildren().addAll(nameText, nameTF);
 		hbName.setAlignment(Pos.CENTER);
 		hbName.setSpacing(75);
 		
-		hbPort.getChildren().addAll(portText, portTF);
+		hbPort.getChildren().addAll(portText, portTFHS,randomBHS);
 		hbPort.setAlignment(Pos.CENTER);
 		hbPort.setSpacing(75);
 		
@@ -245,7 +246,6 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				
 			// Make Buttons	
 				Button backJS = new Button("Back");
-				Button randomJS = new Button ("Randomize");
 				Button joinGameJS = new Button("Join Game");
 					joinGameJS.setFont(new Font(24));
 					joinGameJS.setMaxWidth(300);
@@ -254,7 +254,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				hbNameJS.setAlignment(Pos.CENTER);
 				hbNameJS.setSpacing(75);
 				
-				hbPortJS.getChildren().addAll(portTextJS, portTFJS, randomJS);
+				hbPortJS.getChildren().addAll(portTextJS, portTFJS);
 				hbPortJS.setAlignment(Pos.CENTER);
 				hbPortJS.setSpacing(10);
 				
@@ -291,10 +291,10 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS));
 		
-		randomJS.setOnMouseClicked( e -> {
+		randomBHS.setOnMouseClicked( e -> {
 			int portGen = (int)(Math.random()*8847);
 			String parsePortGen = Integer.toString(portGen);
-			portTFJS.setText(parsePortGen);
+			portTFHS.setText(parsePortGen);
 		});
 
 		primaryStage.setScene(startMScene);
