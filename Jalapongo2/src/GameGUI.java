@@ -228,7 +228,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 //*******************************************************************************		
 		//Join Screen GUI
 		//create GUI objects
-				BorderPane bpJS = new BorderPane();
+				BorderPane jsBP = new BorderPane();
 				VBox vbJS = new VBox();
 				HBox hbNameJS = new HBox();
 				HBox hbPortJS = new HBox();
@@ -239,7 +239,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				Text portTextJS = new Text("Port #:");
 				Text ipText = new Text("IP address:");
 				
-				TextField nameTFJS = new TextField("Joey");
+				TextField nameTFJS = new TextField(" ");
 				TextField portTFJS= new TextField(" ");
 				TextField ipTF = new TextField("");
 				
@@ -266,11 +266,11 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				vbJS.setAlignment(Pos.CENTER);
 				vbJS.setSpacing(50);
 				
-				bpJS.setCenter(vbJS);
-				bpJS.setBottom(backJS);
+				jsBP.setCenter(vbJS);
+				jsBP.setBottom(backJS);
 			
 			
-				Scene sceneJS = new Scene(bpJS, 700,700);
+				Scene jsScene = new Scene(JSbp, 700,700);
 //*******************************************************************************			
 		
 		
@@ -282,7 +282,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS));
 		backBCS.setOnMouseClicked(e -> primaryStage.setScene(startMScene));
-		playBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneJS));
+		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
 		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
