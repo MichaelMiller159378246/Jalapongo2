@@ -1,3 +1,4 @@
+import java.net.Socket;
 /**
  * @author Mike
  * @version 1.0
@@ -8,7 +9,10 @@ public class Player{
 	private int lives;
 	private String name;
 	private Paddle player;
-
+	private String serverAddress;
+	private static int port;
+	private Socket socket;
+	
 	public Player(int pos){
 		player = new Paddle(pos);
 	}
@@ -30,7 +34,16 @@ public class Player{
 	}
 	
 	public void scoredOn(){
-		lives -= 1;
+		lives =- 1;
+	}
+	
+	public Player(String serverAddress) throws Exception{
+		
+		//setup networking
+		socket = new Socket(serverAddress,port);
+		
+		
+		
 	}
 
 }//end Player
