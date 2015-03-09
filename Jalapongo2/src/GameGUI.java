@@ -270,7 +270,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				jsBP.setBottom(backJS);
 			
 			
-				Scene jsScene = new Scene(JSbp, 700,700);
+				Scene jsScene = new Scene(jsBP, 700,700);
 //*******************************************************************************			
 		
 		
