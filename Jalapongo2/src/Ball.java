@@ -1,3 +1,4 @@
+//Jon changed this on march 9 before class
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
