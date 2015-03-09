@@ -1,4 +1,4 @@
-//Jon changed this on march 9 before class
+//Jon changed this for the class quiz on March 9
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
