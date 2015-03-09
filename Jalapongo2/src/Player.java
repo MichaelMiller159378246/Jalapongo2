@@ -31,6 +31,9 @@ public class Player{
 	
 	public void scoredOn(){
 		lives -= 1;
+		if(lives < 0){
+			// Terminate Player
+		}
 	}
 
 }//end Player
