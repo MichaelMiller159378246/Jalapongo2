@@ -135,7 +135,7 @@ public class GameGUI extends Application {
 //*******************************************************************************		
 	
 		//Host Menu GUI
-		ObservableList AIoptions = FXCollections.observableArrayList("0", "1", "2", "3");
+		ObservableList AIoptions = FXCollections.observableArrayList("1", "2", "3"); // TODO add a 0 option in second sprint
 		
 		BorderPane bpHOS = new BorderPane();
 		VBox vbHOS = new VBox();
@@ -150,6 +150,7 @@ public class GameGUI extends Application {
 		TextField portTFHS = new TextField(" ");
 	// Make Buttons	
 		ComboBox AICB = new ComboBox(AIoptions);
+		AICB.setValue("1");
 		Button backHO = new Button("Back");
 		Button optionsHO = new Button("Options");
 			optionsHO.setFont(new Font(24));
@@ -202,6 +203,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		Text livesText = new Text("# of Lives:        ");
 			livesText.setFont(new Font(20));
 		ComboBox livesCB = new ComboBox(livesoptions);
+		livesCB.setValue("5");
 		
 		Button okaybt = new Button("Okay");
 			okaybt.setFont(new Font(24));
