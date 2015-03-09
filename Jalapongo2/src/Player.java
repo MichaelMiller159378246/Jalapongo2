@@ -30,7 +30,7 @@ public class Player{
 	}
 	
 	public void scoredOn(){
-		lives =- 1;
+		lives -= 1;
 	}
 
 }//end Player
