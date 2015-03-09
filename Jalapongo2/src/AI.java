@@ -1,3 +1,5 @@
+//This Class is for the computer player
+
 
 public class AI extends Player{
 
