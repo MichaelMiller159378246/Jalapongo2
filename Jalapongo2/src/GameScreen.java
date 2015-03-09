@@ -2,6 +2,8 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -12,6 +14,7 @@ import javafx.stage.Stage;
 
 public class GameScreen extends Application{
 
+	
 	public void start(Stage primaryStage) throws Exception {
 		
 		// Start Screen GUI Menu
@@ -49,11 +52,10 @@ public class GameScreen extends Application{
 		//-----------------------------
 		//Paddles
 		Paddle testPaddle = new Paddle(1);
-		Rectangle paddle = new Rectangle(rectH, 80, Color.BLUE);
-		
+
+		Rectangle paddle = new Rectangle(30, 80, Color.BLUE);
 		gamePane.getChildren().add(paddle);
-		paddle.relocate(0, paneWH/2-40);
-		
+		paddle.relocate(0, paneWH/2-40);		
 		
 		primaryStage.setScene(gameScene);
 		//primaryStage.setWidth(700);
@@ -65,6 +67,6 @@ public class GameScreen extends Application{
 
 	public static void main(String[] args) {
 		GameScreen.launch(args);
-	}
+	} 
 	
 }
