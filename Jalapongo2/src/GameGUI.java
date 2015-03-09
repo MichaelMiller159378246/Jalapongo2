@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -66,7 +65,8 @@ public class GameGUI extends Application {
 	*/
 	
 	private int sceneWH = 700;
-	 private static HashSet<String> names = new HashSet<String>();
+	private static HashSet<String> names = new HashSet<String>();
+	private static Label nameLRQ;
 	
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -286,7 +286,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				BorderPane readyQBP = new BorderPane();
 				BorderPane lowerRQBP = new BorderPane();
 				
-				
+				nameLRQ = new Label();
 				
 				Button startRQB = new Button("Start");
 				Button disconnectRQB = new Button("Disconnect");
@@ -296,6 +296,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				lowerRQBP.setPadding(new Insets(10));
 				
 				readyQBP.setBottom(lowerRQBP);
+				readyQBP.setRight(nameLRQ);
 				
 				Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH);
 				
@@ -320,6 +321,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS));
 		
+		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
+		
 		randomBHS.setOnMouseClicked( e -> {
 			int portGen = (int)(Math.random()*9000)+1000;
 			String parsePortGen = Integer.toString(portGen);
@@ -335,6 +338,9 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 	
 	public void readyScreen(Stage primaryStage, Scene scene, String hostName){ //TODO improve this method for multiplayer
 		names.add(hostName);
+		String hostN = names.toString();
+		nameLRQ.setText(hostN);
+		primaryStage.setScene(scene);
 	}
 	
 	
