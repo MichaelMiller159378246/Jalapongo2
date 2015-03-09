@@ -1,8 +1,11 @@
 //Nick Added This for the quiz
 //Changed the package
+import java.util.HashSet;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -62,13 +65,16 @@ public class GameGUI extends Application {
 	public Paddle m_Paddle;
 	*/
 	
+	private int sceneWH = 700;
+	 private static HashSet<String> names = new HashSet<String>();
+	
 	public void start(Stage primaryStage) throws Exception {
 		
 		// Start Screen GUI Menu
 		// Construct GUI Opjects
 		BorderPane startSMBP = new BorderPane();
 		VBox buttonSMVB = new VBox();
-		Scene startMScene = new Scene(startSMBP, 700,700);
+		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH);
 		
 		// Controls
 		Button playBSM = new Button("Play");
@@ -87,7 +93,7 @@ public class GameGUI extends Application {
 		BorderPane optionsBP = new BorderPane();
 		VBox optionsVBox = new VBox();
 		HBox optionsHBox = new HBox();
-		Scene optionsScene = new Scene(optionsBP,700,700);
+		Scene optionsScene = new Scene(optionsBP,sceneWH,sceneWH);
 		
 		//Create checkboxes
 		CheckBox soundfxCB = new CheckBox("Sound Effects");
@@ -117,7 +123,7 @@ public class GameGUI extends Application {
 		//construct GUI objects
 		BorderPane choiceBP = new BorderPane();
 		VBox choiceVBox = new VBox();
-		Scene choiceScene = new Scene(choiceBP, 700,700);
+		Scene choiceScene = new Scene(choiceBP, sceneWH,sceneWH);
 		
 		//Buttons
 		Button playBCS = new Button("Join");
@@ -181,7 +187,7 @@ public class GameGUI extends Application {
 		bpHOS.setCenter(vbHOS);
 		bpHOS.setBottom(backHO);
 		
-		Scene sceneHOS = new Scene(bpHOS, 700,700);
+		Scene sceneHOS = new Scene(bpHOS, sceneWH,sceneWH);
 
 //*******************************************************************************
 		
@@ -228,7 +234,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		bpGOS.setCenter(powerUpVB);
 		
-		Scene sceneGOS = new Scene(bpGOS, 700,700);
+		Scene sceneGOS = new Scene(bpGOS, sceneWH,sceneWH);
 		
 //*******************************************************************************		
 		//Join Screen GUI
@@ -274,9 +280,27 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				jsBP.setBottom(backJS);
 			
 			
-				Scene jsScene = new Scene(jsBP, 700,700);
+				Scene jsScene = new Scene(jsBP, sceneWH,sceneWH);
 //*******************************************************************************			
-		
+				
+				BorderPane readyQBP = new BorderPane();
+				BorderPane lowerRQBP = new BorderPane();
+				
+				
+				
+				Button startRQB = new Button("Start");
+				Button disconnectRQB = new Button("Disconnect");
+				
+				lowerRQBP.setRight(startRQB);
+				lowerRQBP.setLeft(disconnectRQB);
+				lowerRQBP.setPadding(new Insets(10));
+				
+				readyQBP.setBottom(lowerRQBP);
+				
+				Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH);
+				
+		//*******************************************************************************
+			
 		
 		quitBSM.setOnMouseClicked(e -> System.exit(0));
 		playBSM.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
@@ -290,6 +314,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
 		
+		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText()));
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
 		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
 		
@@ -307,6 +332,11 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 	}
 
+	
+	public void readyScreen(Stage primaryStage, Scene scene, String hostName){ //TODO improve this method for multiplayer
+		names.add(hostName);
+	}
+	
 	
 	public static void main(String[] args){
 		GameGUI.launch(args);
