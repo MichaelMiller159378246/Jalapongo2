@@ -25,6 +25,8 @@ import javafx.stage.Stage;
  * @version 1.0
  * @created 02-Mar-2015 3:19:44 PM
  */
+
+// This is for the quiz Michael Miller
 public class GameGUI extends Application {
 
 	/*
