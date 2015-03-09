@@ -292,7 +292,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS));
 		
 		randomBHS.setOnMouseClicked( e -> {
-			int portGen = (int)(Math.random()*8847);
+			int portGen = (int)(Math.random()*9000)+1000;
 			String parsePortGen = Integer.toString(portGen);
 			portTFHS.setText(parsePortGen);
 		});
