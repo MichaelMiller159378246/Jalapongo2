@@ -315,6 +315,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
+		joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage,readyQS,nameTFJS.getText(),Integer.parseInt(portTFJS.getText())));
 		
 		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText())));
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
