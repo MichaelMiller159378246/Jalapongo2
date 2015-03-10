@@ -53,6 +53,7 @@ public class GameScreen {
 	
 	public GameScreen() {
 		
+		//Make the Rectangles that make up the corners of the game screen
 		Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
 		Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
 		Rectangle rect3 = new Rectangle(rectH, rectW); //0, 10 
@@ -62,8 +63,11 @@ public class GameScreen {
 		Rectangle rect7 = new Rectangle(rectH, rectW); //690, 650
 		Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
 		
+		//Get the rectangles and add them to the screen
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
 		
+		
+		//Set the location of all the rectangles to their respective corners
 		rect1.setX(paneWH-rectW); 	rect1.setY(0);
 		rect2.setX(0); 				rect2.setY(0);
 		rect3.setX(0); 				rect3.setY(0);
@@ -92,7 +96,7 @@ public class GameScreen {
 	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	      public void handle(KeyEvent event) { //@Override
 	    	  
-	    	  
+	    	  //Sets up the paddle movement for players 1 and 3 on the sides
 	    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
 	    		boolean minY = paddle.getPaddle().getY() >= rectW;
 	    	  	boolean maxY = paddle.getPaddle().getY() <=  paneWH - rectW - 150;
@@ -104,6 +108,7 @@ public class GameScreen {
 	    	  	}
 	    	  }//if
 	    	  
+	    	  //Sets up the paddle movement for players 2 and 4
 	    	  else {
 	    		  boolean minX = paddle.getPaddle().getX() >= rectW;
 		    	  boolean maxX = paddle.getPaddle().getX() <=  paneWH - rectW - 150;
@@ -118,6 +123,7 @@ public class GameScreen {
 	    });
 	  }
 	
+	//Changes the direction of the ball if there is contact
 	private void checkReverse() {
 		int x = gameBall.getXLoc();
 		int y = gameBall.getYLoc();
@@ -154,6 +160,9 @@ public class GameScreen {
 		checkCollisionWith3();
 		checkCollisionWith4();
 	}
+	
+	
+	// ------The following check the collision with the players paddles--------------
 	
 	private void checkCollisionWith1() {
 		if ( (gameBall.getYLoc() + 20 > paddle1.getPaddle().getY())
@@ -195,6 +204,8 @@ public class GameScreen {
 			}
 	}
 	
+	
+	//Continuously update the game screen to keep the ball moving
 	public void continuousUpdate() {
 		Task task = new Task<Void>() {
 			  @Override
