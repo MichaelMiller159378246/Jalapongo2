@@ -260,7 +260,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			// Get values from text fields
 				String name = nameTFJS.getText();
 				String portS = portTFJS.getText();
-				int port = Integer.parseInt(portS);
+				//Commented out so code will run
+				//int port = Integer.parseInt(portS);
 				
 			//Call method to pass values to client class
 				
@@ -325,7 +326,9 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		joinGameJS.setOnMouseClicked(e -> client(Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText()));
+		//commented out so code will run
+		//joinGameJS.setOnMouseClicked(e -> client(Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText()));
+		joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText())));
 		
 		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText())));
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
