@@ -5,6 +5,7 @@ import java.util.HashSet;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -336,6 +338,11 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		//Play -> Host -> Start Hosting -> Start
 		GameScreen game = new GameScreen();
 		startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene()));
+		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    public void handle(MouseEvent me) {
+		        game.continuousUpdate();;
+		    }
+		});
 
 		primaryStage.setScene(startMScene);
 		primaryStage.show();

@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 //Added by Leslie
@@ -8,7 +9,7 @@ import javafx.scene.shape.*;
  */
 public class Paddle {
 
-	private Rectangle Paddle;
+	private Rectangle paddle;
 	//private Line Paddle;
 	private int PaddleLocX;
 	private int PaddleLocY;
@@ -18,55 +19,63 @@ public class Paddle {
 	public Paddle(int pos){
 		if(pos == 1){ //left
 			PaddleLocX = 0;
-			Paddle = new Rectangle(PaddleLocX,325,30,150); //Rectangle(x, y, width, height)
+			paddle = new Rectangle(PaddleLocX,325,30,150); //Rectangle(x, y, width, height)
 			this.pos = pos;
+			paddle.setFill(Color.BLUE);
 		}
 		if(pos == 2){ //bottom
 			PaddleLocY = 670;
-			Paddle = new Rectangle(325,PaddleLocY,150,30);
+			paddle = new Rectangle(325,PaddleLocY,150,30);
 			this.pos = pos;
+			paddle.setFill(Color.GREEN);
 		}
 		if(pos == 3){ //right
 			PaddleLocX = 670;
-			Paddle = new Rectangle(PaddleLocX,325,150,30);
+			paddle = new Rectangle(PaddleLocX,325,30,150);
 			this.pos = pos;
+			paddle.setFill(Color.RED);
 		}
 		if(pos == 4){ //top
 			PaddleLocY = 0;
-			Paddle = new Rectangle(325,PaddleLocY,30,150);
+			paddle = new Rectangle(325,PaddleLocY,150,30);
 			this.pos = pos;
+			paddle.setFill(Color.YELLOW);
 		}	
 	}
 
 	public int getLength(){
 		int length = 0;
 		if(pos == 1 || pos == 3){
-			length = (int)(Paddle.getWidth());
+			length = (int)(paddle.getWidth());
 		}else{
-			length = (int)(Paddle.getHeight());
+			length = (int)(paddle.getHeight());
 		}
 		return length;
 	}
 
 	public void setLength(int length){
 		if(pos == 1 || pos == 3){
-			Paddle.setWidth((double)length);
+			paddle.setWidth((double)length);
 		}
 		else{
-			Paddle.setHeight((double)length);
+			paddle.setHeight((double)length);
 		}
 	}
 
 	public void paddleMove(int direction){
 		if(pos == 1 || pos == 3){
-			Paddle.setY(Paddle.getY() + direction*speed);
+			paddle.setY(paddle.getY() + direction*speed);
 		}
 		else{
-			Paddle.setX(Paddle.getX() + direction*speed);
+			paddle.setX(paddle.getX() + direction*speed);
 		}
 	}
 	
+	public int getPos() {
+		return pos;
+	}
+	
 	public Rectangle getPaddle() {
-		return Paddle;
+		return paddle;
 	}
 }//end Paddle

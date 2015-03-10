@@ -1,4 +1,5 @@
 //Jon changed this for the class quiz on March 9
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -11,16 +12,15 @@ import javafx.scene.shape.Rectangle;
 public class Ball {
 //Jon commented on ball 
 	private Rectangle ball;
-	private Circle GUIBall;
 	private Paddle paddleLastHit;
 	private int xSpeed;
 	private int ySpeed;
-	private int size;
+	private int size = 20;
 
 	public Ball(){
-		ball = new Rectangle();
-			ball.setX(setStartLoc());//Upper Left Corner
-			ball.setY(setStartLoc());//Upper Left Corner
+		ball = new Rectangle(20,20);
+			ball.setX(setStartLoc());
+			ball.setY(setStartLoc());
 			ball.setWidth(size);
 			ball.setHeight(size);
 		xSpeed = setStartSpeed();
@@ -84,6 +84,10 @@ public class Ball {
 		ball.setWidth(size);
 		ball.setHeight(size);
 		this.size = size;
+	}
+	
+	public Rectangle getBall() {
+		return ball;
 	}
 	
 }//end Ball

@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,7 +20,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GameScreen implements ActionListener {
+public class GameScreen {
 
 	//Corner Bumpers
 	int rectW = 100;
@@ -31,11 +33,10 @@ public class GameScreen implements ActionListener {
 	Pane gamePane = new Pane();
 	Scene gameScene = new Scene(gamePane, paneWH, paneWH);
 	
+	//Ball
+	Ball gameBall = new Ball();
+	
 	public GameScreen() {
-		
-		Timer time = new Timer(50, this);
-		time.start();
-
 		
 		Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
 		Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
@@ -58,23 +59,31 @@ public class GameScreen implements ActionListener {
 		rect8.setX(paneWH-rectH); 	rect8.setY(0);
 		
 		
-		//-----------------------------
-		//Test Paddle
+		//----------------------------
+		//Test Paddles
 		int paddleW = 150;
+		
 		Paddle playerPaddle1 = new Paddle(1);
-		//Rectangle paddle = new Rectangle(30, paddleW, Color.BLUE);
 		Rectangle paddle1 = playerPaddle1.getPaddle();
-		gamePane.getChildren().add(paddle1);
 		
-		movePaddleOnKeyPress(gameScene, playerPaddle1);
+		Paddle playerPaddle2 = new Paddle(2);
+		Rectangle paddle2 = playerPaddle2.getPaddle();
 		
-		/*
-		primaryStage.setScene(gameScene);
-		//primaryStage.setWidth(700);
-		//primaryStage.setHeight(700);
-		primaryStage.show();
-		primaryStage.setResizable(false);
-		*/
+		Paddle playerPaddle3 = new Paddle(3);
+		Rectangle paddle3 = playerPaddle3.getPaddle();
+		
+		Paddle playerPaddle4 = new Paddle(4);
+		Rectangle paddle4 = playerPaddle4.getPaddle();
+		gamePane.getChildren().addAll(paddle1, paddle2, paddle3, paddle4);
+		
+		//Moves the paddles, can only used one at a time
+		//movePaddleOnKeyPress(gameScene, playerPaddle1);
+		movePaddleOnKeyPress(gameScene, playerPaddle2);
+		//movePaddleOnKeyPress(gameScene, playerPaddle3);
+		//movePaddleOnKeyPress(gameScene, playerPaddle4);
+		
+		//Test Ball--------------------------------
+		gamePane.getChildren().add(gameBall.getBall());
 }
 	
 	//Method to test paddle movement
@@ -82,27 +91,54 @@ public class GameScreen implements ActionListener {
 	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	      public void handle(KeyEvent event) { //@Override
 	    	  
-	    	  boolean minY = paddle.getPaddle().getY() >= rectW;
-	    	  boolean maxY = paddle.getPaddle().getY() <=  paneWH - rectW - 150;
-	    	  switch (event.getCode()) {
-	    		  case UP:  if (minY) paddle.paddleMove(-1);
-	    		  			else paddle.paddleMove(1); break;
-	    		  case DOWN: if(maxY) paddle.paddleMove(1); 
-	    		  			 else paddle.paddleMove(-1); break;
-	    	  }
-
-	    		  
+	    	  
+	    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
+	    		boolean minY = paddle.getPaddle().getY() >= rectW;
+	    	  	boolean maxY = paddle.getPaddle().getY() <=  paneWH - rectW - 150;
+	    	  	switch (event.getCode()) {
+	    	  		case UP:  	if (minY) paddle.paddleMove(-1);
+	    		  				else paddle.paddleMove(1); break;
+	    	  		case DOWN: 	if(maxY) paddle.paddleMove(1); 
+	    		  			 	else paddle.paddleMove(-1); break;
+	    	  	}
+	    	  }//if
+	    	  
+	    	  else {
+	    		  boolean minX = paddle.getPaddle().getX() >= rectW;
+		    	  boolean maxX = paddle.getPaddle().getX() <=  paneWH - rectW - 150;
+		    	  switch (event.getCode()) {
+		    		  case LEFT:  if (minX) paddle.paddleMove(-1);
+		    		  			  else paddle.paddleMove(1); break;
+		    		  case RIGHT: if(maxX) paddle.paddleMove(1); 
+		    		  			  else paddle.paddleMove(-1); break;
+		    	  }
+	    	  }//else  
 	      }
 	    });
 	  }
+	
+	public void continuousUpdate() {
+		Task task = new Task<Void>() {
+			  @Override
+			  public Void call() throws Exception {
+			    while (true) {
+			      Platform.runLater(new Runnable() {
+			        @Override
+			        public void run() {
+			          gameBall.moveBall();
+			        }
+			      });
+			      Thread.sleep(100);
+			    }
+			  }
+			};
+			Thread th = new Thread(task);
+			th.setDaemon(true);
+			th.start();
+	}
 	
 	public Scene getGameScene() {
 		return this.gameScene;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }
