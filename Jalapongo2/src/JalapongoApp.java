@@ -1,22 +1,7 @@
-
-
-
-
-/**
- * @author Mike
- * @version 1.0
- * @created 02-Mar-2015 3:19:45 PM
- */
+//JalapongoApp class is the main class to start the program
 public class JalapongoApp {
 
-	public JalapongoApp(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
 	public static void main(String[] args){
-
+		GameGUI.main(args); // Starts the program
 	}
-}//end Jalapongo App
+}

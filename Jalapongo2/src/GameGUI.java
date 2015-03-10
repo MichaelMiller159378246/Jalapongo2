@@ -67,6 +67,7 @@ public class GameGUI extends Application {
 	private int sceneWH = 700;
 	private static HashSet<String> names = new HashSet<String>();
 	private static Label nameLRQ;
+	private int port;
 	
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -155,7 +156,7 @@ public class GameGUI extends Application {
 		Text AIText = new Text("# of AI: ");
 		Text portText = new Text("Port #: ");
 		TextField nameTF = new TextField("Joey");
-		TextField portTFHS = new TextField(" ");
+		TextField portTFHS = new TextField("7777");
 	// Make Buttons	
 		ComboBox AICB = new ComboBox(AIoptions);
 		AICB.setValue("1");
@@ -315,7 +316,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
 		
-		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText()));
+		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText())));
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
 		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
 		
@@ -336,13 +337,14 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 	}
 
 	
-	public void readyScreen(Stage primaryStage, Scene scene, String hostName){ //TODO improve this method for multiplayer
+	public void readyScreen(Stage primaryStage, Scene scene, String hostName, int port){ //TODO improve this method for multiplayer
 		names.add(hostName);
 		String hostN = names.toString();
 		nameLRQ.setText(hostN);
+		Thread Host = new Thread(new Host(port));
+		Host.start();
 		primaryStage.setScene(scene);
 	}
-	
 	
 	public static void main(String[] args){
 		GameGUI.launch(args);
