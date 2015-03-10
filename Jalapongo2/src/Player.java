@@ -1,11 +1,3 @@
-import java.io.BufferedReader; // Imports BufferedReader
-import java.io.IOException; // Imports IOException
-import java.io.InputStreamReader; // Imports InputStreamReader
-import java.io.PrintWriter; // Imports PrintWriter
-import java.net.ServerSocket; // Imports ServerSocket
-import java.net.Socket; // Imports Socket
-import java.util.HashSet; // Import HashSet
-
 /**
  * @author Mike
  * @version 1.0
@@ -16,19 +8,8 @@ public class Player{
 	private int lives;
 	private String name;
 	protected Paddle player;
-	private Socket socket;
 	protected int position; //added
-	public static String serverAddress;
-	public static int port;
-
 	
-	public Player(String serverAddress) throws Exception{
-		//setup networking
-		Player.serverAddress = serverAddress;
-		socket = new Socket(serverAddress, port);
-	}
-	
-
 
 	public Player(int position){
 		player = new Paddle(position);
