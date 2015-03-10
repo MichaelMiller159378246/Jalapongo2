@@ -146,13 +146,27 @@ public class GameScreen {
 				&& gameBall.getYSpeed() < 0) //top
 			gameBall.reverseY();
 		
-		//Point score
-		if ( (x > (paneWH - 20) && gameBall.getXSpeed() > 0) 
-				|| (x < 0 && gameBall.getXSpeed() < 0) )
+		//Life Lost if Ball Passes Player's Paddle
+		if (x < 0 && gameBall.getXSpeed() < 0) {
 			gameBall.reverseX();
-		if ( (y > (paneWH - 20) && gameBall.getYSpeed() > 0) 
-				|| (y < 0 && gameBall.getYSpeed() < 0) )
+			player1.scoredOn();
+			System.out.println("Player 1 Was Scored On");
+		}
+		if (y > (paneWH - 20) && gameBall.getYSpeed() > 0) {
 			gameBall.reverseY();
+			player2.scoredOn();
+			System.out.println("Player 2 Was Scored On");
+		}
+		if (x > (paneWH - 20) && gameBall.getXSpeed() > 0) {
+			gameBall.reverseX();
+			player3.scoredOn();
+			System.out.println("Player 3 Was Scored On");
+		}
+		if (y < 0 && gameBall.getYSpeed() < 0) {
+			gameBall.reverseY();
+			player4.scoredOn();
+			System.out.println("Player 4 Was Scored On");
+		}
 		
 		//Paddle Hits
 		checkCollisionWith1();
@@ -170,7 +184,7 @@ public class GameScreen {
 			if ( gameBall.getXLoc() < (rectH) &&
 					(gameBall.getXSpeed() < 0) ) {
 				gameBall.reverseX();
-				System.out.println("1");
+				System.out.println("1 hit");
 			}
 	}
 	
@@ -180,7 +194,7 @@ public class GameScreen {
 			if ( (gameBall.getYLoc() > (paneWH - (20 + rectH))) &&
 					(gameBall.getYSpeed() > 0) ) {
 				gameBall.reverseY();
-				System.out.println("2");
+				System.out.println("2 hit");
 			}
 	}
 	
@@ -190,7 +204,7 @@ public class GameScreen {
 			if ( gameBall.getXLoc() > (paneWH - (20 + rectH)) &&
 					(gameBall.getXSpeed() > 0) ) {
 				gameBall.reverseX();
-				System.out.println("3");
+				System.out.println("3 hit");
 			}
 	}
 	
@@ -200,7 +214,7 @@ public class GameScreen {
 			if ( gameBall.getYLoc() < (rectH) &&
 					(gameBall.getYSpeed() < 0) ) {
 				gameBall.reverseY();
-				System.out.println("4");
+				System.out.println("4 hit");
 			}
 	}
 	
