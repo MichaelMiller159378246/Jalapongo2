@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,20 +12,21 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GameScreen {
+public class GameScreen extends Application{
 
-	//Corner Bumpers
-	int rectW = 100;
-	int rectH = 30;
-	//Pane Size
-	int paneWH = 700;
 	
-	// Start Screen GUI Menu
-	// Construct GUI Opjects
-	Pane gamePane = new Pane();
-	Scene gameScene = new Scene(gamePane, paneWH, paneWH);
-	
-	public GameScreen() {
+	public void start(Stage primaryStage) throws Exception {
+		
+		// Start Screen GUI Menu
+		// Construct GUI Opjects
+		int paneWH = 700;
+		Pane gamePane = new Pane();
+		VBox gameVB = new VBox();
+		Scene gameScene = new Scene(gamePane, paneWH, paneWH);
+		
+		//Corner Bumpers
+		int rectW = 100;
+		int rectH = 30;
 		
 		Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
 		Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
@@ -50,45 +50,23 @@ public class GameScreen {
 		
 		
 		//-----------------------------
-		//Test Paddle
-		int paddleW = 150;
-		Rectangle paddle = new Rectangle(30, paddleW, Color.BLUE);
+		//Paddles
+		Paddle testPaddle = new Paddle(1);
+
+		Rectangle paddle = new Rectangle(30, 80, Color.BLUE);
 		gamePane.getChildren().add(paddle);
-		paddle.relocate(0, (paneWH/2 - paddleW/2));		
+		paddle.relocate(0, paneWH/2-40);		
 		
-		movePaddleOnKeyPress(gameScene, paddle);
-		
-		/*
 		primaryStage.setScene(gameScene);
 		//primaryStage.setWidth(700);
 		//primaryStage.setHeight(700);
 		primaryStage.show();
 		primaryStage.setResizable(false);
-		*/
+		
 }
+
+	public static void main(String[] args) {
+		GameScreen.launch(args);
+	} 
 	
-	//Method to test paddle movement
-	private void movePaddleOnKeyPress(Scene scene, Rectangle rect) {
-	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-	      public void handle(KeyEvent event) { //@Override
-	    	  
-	    	  int paddleVel = 5; //paddleVel = player.getPaddleSpeed();
-	    	  switch (event.getCode()) {
-	    		  case UP:   rect.setY(rect.getY() - paddleVel); System.out.println(rect.getY());break;
-	    		  case DOWN: rect.setY(rect.getY() + paddleVel); break;
-	    	  }
-	    	  boolean minY = rect.getY() > -(paneWH/2 - 1.5*rectW);
-	    	  boolean maxY = rect.getY() <  (paneWH/2 - 1.5*rectW);
-	    	  if (!minY)
-	    		  rect.setY(-(paneWH/2 - 1.5*rectW) + 1);
-	    	  if (!maxY)
-	    		  rect.setY((paneWH/2 - 1.5*rectW) -1);
-	    		  
-	      }
-	    });
-	  }
-	
-	public Scene getGameScene() {
-		return this.gameScene;
-	}
 }
