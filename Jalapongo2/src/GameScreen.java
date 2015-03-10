@@ -37,10 +37,10 @@ public class GameScreen {
 	Ball gameBall = new Ball();
 	
 	//Players
-	Player player1 = new Player(1);
+	AI player1 = new AI(1);
 	Player player2 = new Player(2);
-	Player player3 = new Player(3);
-	Player player4 = new Player(4);
+	AI player3 = new AI(3);
+	AI player4 = new AI(4);
 	
 	//Paddles
 	Paddle paddle1 = player1.getPaddle();
@@ -123,11 +123,18 @@ public class GameScreen {
 			gameBall.reverseX();
 		if ((gameBall.getYLoc()> 700) || (gameBall.getYLoc() < 0))
 			gameBall.reverseY();
+		
+		checkCollisionWith2();
 	}
 	
-	private void checkColisionWith1() {
-		if (gameBall.getYLoc() < player1.getLoc())
-			System.out.println();
+	private void checkCollisionWith2() {
+		if ((gameBall.getXLoc() - 20) > player2.getLoc() &&
+				gameBall.getXLoc() < (player2.getLoc() + paddle2.getLength()))
+			if ( (gameBall.getYLoc() > (paneWH - (20 + 30))) &&
+					(gameBall.getYSpeed() > 0) ) {
+				gameBall.reverseY();
+				System.out.println("Col");
+			}
 	}
 	
 	public void continuousUpdate() {
@@ -140,6 +147,9 @@ public class GameScreen {
 			        public void run() {
 			          gameBall.moveBall();
 			          checkReverse();
+			          player1.moveAI(gameBall);
+			          player3.moveAI(gameBall);
+			          player4.moveAI(gameBall);
 			        }
 			      });
 			      Thread.sleep(50);

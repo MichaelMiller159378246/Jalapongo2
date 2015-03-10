@@ -46,9 +46,9 @@ public class Paddle {
 	public int getLength(){
 		int length = 0;
 		if(pos == 1 || pos == 3){
-			length = (int)(paddle.getWidth());
-		}else{
 			length = (int)(paddle.getHeight());
+		}else{
+			length = (int)(paddle.getWidth());
 		}
 		return length;
 	}

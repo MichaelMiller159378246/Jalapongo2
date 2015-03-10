@@ -15,9 +15,9 @@ public class Player{
 
 	private int lives;
 	private String name;
-	private Paddle player;
+	protected Paddle player;
 	private Socket socket;
-	private int position; //added
+	protected int position; //added
 	public static String serverAddress;
 	public static int port;
 
