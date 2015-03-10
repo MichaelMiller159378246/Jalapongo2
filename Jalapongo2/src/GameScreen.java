@@ -119,9 +119,31 @@ public class GameScreen {
 	  }
 	
 	private void checkReverse() {
-		if ((gameBall.getXLoc() > 700) || (gameBall.getXLoc() < 0))
+		int x = gameBall.getXLoc();
+		int y = gameBall.getYLoc();
+		
+		//Corner Hits
+		if (x > (paneWH - rectH - 20) 
+				&& (y > (paneWH - rectW - 20) || y < 100 ) 
+				&& gameBall.getXSpeed() > 0) //right side
 			gameBall.reverseX();
-		if ((gameBall.getYLoc()> 700) || (gameBall.getYLoc() < 0))
+		if (x < rectH
+				&& (y > (paneWH - rectW - 20) || y < 100 ) 
+				&& gameBall.getXSpeed() < 0) //left side
+			gameBall.reverseX();
+		if (y > (paneWH - rectH - 20)
+				&& (x > (paneWH - rectW - 20) || x < 100 )
+				&& gameBall.getYSpeed() > 0) //bottom
+			gameBall.reverseY();
+		if (y < rectH
+				&& (x > (paneWH - rectW - 20) || x < 100 )
+				&& gameBall.getYSpeed() < 0) //top
+			gameBall.reverseY();
+		
+		//Point score
+		if (x > (paneWH - 20) || x < 0)
+			gameBall.reverseX();
+		if (y > (paneWH - 20) || y < 0)
 			gameBall.reverseY();
 		
 		checkCollisionWith2();
