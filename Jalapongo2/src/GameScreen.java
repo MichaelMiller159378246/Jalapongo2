@@ -36,6 +36,21 @@ public class GameScreen {
 	//Ball
 	Ball gameBall = new Ball();
 	
+	//Players
+	Player player1 = new Player(1);
+	Player player2 = new Player(2);
+	Player player3 = new Player(3);
+	Player player4 = new Player(4);
+	
+	//Paddles
+	Paddle paddle1 = player1.getPaddle();
+	Paddle paddle2 = player2.getPaddle();
+	Paddle paddle3 = player3.getPaddle();
+	Paddle paddle4 = player4.getPaddle();
+	
+	
+
+	
 	public GameScreen() {
 		
 		Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
@@ -60,30 +75,16 @@ public class GameScreen {
 		
 		
 		//----------------------------
-		//Test Paddles
-		int paddleW = 150;
-		
-		Paddle playerPaddle1 = new Paddle(1);
-		Rectangle paddle1 = playerPaddle1.getPaddle();
-		
-		Paddle playerPaddle2 = new Paddle(2);
-		Rectangle paddle2 = playerPaddle2.getPaddle();
-		
-		Paddle playerPaddle3 = new Paddle(3);
-		Rectangle paddle3 = playerPaddle3.getPaddle();
-		
-		Paddle playerPaddle4 = new Paddle(4);
-		Rectangle paddle4 = playerPaddle4.getPaddle();
-		gamePane.getChildren().addAll(paddle1, paddle2, paddle3, paddle4);
+		//Add shapes		
+		gamePane.getChildren().addAll(paddle1.getPaddle(), paddle2.getPaddle(),
+									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall());
 		
 		//Moves the paddles, can only used one at a time
-		//movePaddleOnKeyPress(gameScene, playerPaddle1);
-		movePaddleOnKeyPress(gameScene, playerPaddle2);
-		//movePaddleOnKeyPress(gameScene, playerPaddle3);
-		//movePaddleOnKeyPress(gameScene, playerPaddle4);
+		//movePaddleOnKeyPress(gameScene, paddle1);
+		movePaddleOnKeyPress(gameScene, paddle2);
+		//movePaddleOnKeyPress(gameScene, paddle3);
+		//movePaddleOnKeyPress(gameScene, paddle4);
 		
-		//Test Ball--------------------------------
-		gamePane.getChildren().add(gameBall.getBall());
 }
 	
 	//Method to test paddle movement
@@ -117,6 +118,18 @@ public class GameScreen {
 	    });
 	  }
 	
+	private void checkReverse() {
+		if ((gameBall.getXLoc() > 700) || (gameBall.getXLoc() < 0))
+			gameBall.reverseX();
+		if ((gameBall.getYLoc()> 700) || (gameBall.getYLoc() < 0))
+			gameBall.reverseY();
+	}
+	
+	private void checkColisionWith1() {
+		if (gameBall.getYLoc() < player1.getLoc())
+			System.out.println();
+	}
+	
 	public void continuousUpdate() {
 		Task task = new Task<Void>() {
 			  @Override
@@ -126,9 +139,10 @@ public class GameScreen {
 			        @Override
 			        public void run() {
 			          gameBall.moveBall();
+			          checkReverse();
 			        }
 			      });
-			      Thread.sleep(100);
+			      Thread.sleep(50);
 			    }
 			  }
 			};
@@ -140,5 +154,4 @@ public class GameScreen {
 	public Scene getGameScene() {
 		return this.gameScene;
 	}
-
 }

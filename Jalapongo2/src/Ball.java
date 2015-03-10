@@ -55,7 +55,7 @@ public class Ball {
 		return ySpeed;
 	}
 
-	public void moveBall(){//This needs Work
+	public void moveBall(){
 		ball.setX(ball.getX() + xSpeed);
 		ball.setY(ball.getY() + ySpeed);
 	}
@@ -90,4 +90,11 @@ public class Ball {
 		return ball;
 	}
 	
+	public void reverseX() {
+		xSpeed = -xSpeed;
+	}
+	
+	public void reverseY() {
+		ySpeed = -ySpeed;
+	}
 }//end Ball

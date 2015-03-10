@@ -17,8 +17,10 @@ public class Player{
 	private String name;
 	private Paddle player;
 	private Socket socket;
+	private int position; //added
 	public static String serverAddress;
 	public static int port;
+
 	
 	public Player(String serverAddress) throws Exception{
 		//setup networking
@@ -28,8 +30,9 @@ public class Player{
 	
 
 
-	public Player(int pos){
-		player = new Paddle(pos);
+	public Player(int position){
+		player = new Paddle(position);
+		this.position = position;
 	}
 	
 	public void setName(String name){
@@ -52,6 +55,18 @@ public class Player{
 		lives =- 1;
 	}
 	
+	//added
+	public Paddle getPaddle() {
+		return player;
+	}
+	
+	//added
+	public int getLoc() {
+		if (position == 1 || position == 3)
+			return (int)player.getPaddle().getY();
+		else
+			return (int)player.getPaddle().getX();
+	}
 	
 	
 }//end Player
