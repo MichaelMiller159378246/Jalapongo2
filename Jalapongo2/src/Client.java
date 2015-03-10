@@ -28,6 +28,7 @@ public class Client{
 	private void run() throws IOException{
 		
 		//Make connection and initialize streams
+		Socket socket = new Socket(ipAddress,port);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(),true);
 		

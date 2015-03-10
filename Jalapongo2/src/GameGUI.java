@@ -257,6 +257,14 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				TextField portTFJS= new TextField(" ");
 				TextField ipTF = new TextField("");
 				
+			// Get values from text fields
+				String name = nameTFJS.getText();
+				String portS = portTFJS.getText();
+				int port = Integer.parseInt(portS);
+				
+			//Call method to pass values to client class
+				
+				
 			// Make Buttons	
 				Button backJS = new Button("Back");
 				Button joinGameJS = new Button("Join Game");
@@ -317,7 +325,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		//joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText())));
+		joinGameJS.setOnMouseClicked(e -> client(Integer.parseInt(portTFJS.getText())),ipTF.getText(),nameTFJS.getText());
 		
 		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText())));
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
@@ -332,6 +340,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			String parsePortGen = Integer.toString(portGen);
 			portTFHS.setText(parsePortGen);
 		});
+		
 		
 		//Added by Jon on March 10
 		//Launches the game screen from the "Start" button under:
@@ -350,6 +359,10 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 	}
 
+	//method to transfer values to client class
+	public void client(int portNumber, String IP, String uName){
+		Client clientObject = new Client(portNumber,IP,uName);
+	}
 	
 	public void readyScreen(Stage primaryStage, Scene scene, String hostName, int port){ //TODO improve this method for multiplayer
 		names.add(hostName);
