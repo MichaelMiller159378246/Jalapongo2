@@ -1,3 +1,8 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -13,7 +18,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GameScreen {
+public class GameScreen implements ActionListener {
 
 	//Corner Bumpers
 	int rectW = 100;
@@ -27,6 +32,10 @@ public class GameScreen {
 	Scene gameScene = new Scene(gamePane, paneWH, paneWH);
 	
 	public GameScreen() {
+		
+		Timer time = new Timer(50, this);
+		time.start();
+
 		
 		Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
 		Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
@@ -52,12 +61,12 @@ public class GameScreen {
 		//-----------------------------
 		//Test Paddle
 		int paddleW = 150;
-		Paddle playerPaddle = new Paddle(1);
+		Paddle playerPaddle1 = new Paddle(1);
 		//Rectangle paddle = new Rectangle(30, paddleW, Color.BLUE);
-		Rectangle paddle = playerPaddle.getPaddle();
-		gamePane.getChildren().add(paddle);
+		Rectangle paddle1 = playerPaddle1.getPaddle();
+		gamePane.getChildren().add(paddle1);
 		
-		movePaddleOnKeyPress(gameScene, paddle);
+		movePaddleOnKeyPress(gameScene, playerPaddle1);
 		
 		/*
 		primaryStage.setScene(gameScene);
@@ -69,21 +78,19 @@ public class GameScreen {
 }
 	
 	//Method to test paddle movement
-	private void movePaddleOnKeyPress(Scene scene, Rectangle rect) {
+	private void movePaddleOnKeyPress(Scene scene, Paddle paddle) {
 	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	      public void handle(KeyEvent event) { //@Override
 	    	  
-	    	  int paddleVel = 5; //paddleVel = player.getPaddleSpeed();
+	    	  boolean minY = paddle.getPaddle().getY() >= rectW;
+	    	  boolean maxY = paddle.getPaddle().getY() <=  paneWH - rectW - 150;
 	    	  switch (event.getCode()) {
-	    		  case UP:   rect.setY(rect.getY() - paddleVel); break;
-	    		  case DOWN: rect.setY(rect.getY() + paddleVel); break;
+	    		  case UP:  if (minY) paddle.paddleMove(-1);
+	    		  			else paddle.paddleMove(1); break;
+	    		  case DOWN: if(maxY) paddle.paddleMove(1); 
+	    		  			 else paddle.paddleMove(-1); break;
 	    	  }
-	    	  boolean minY = rect.getY() > rectW;
-	    	  boolean maxY = rect.getY() <  paneWH - rectW - 150;
-	    	  if (!minY)
-	    		  rect.setY(rectW + 1);
-	    	  if (!maxY)
-	    		  rect.setY((paneWH - rectW - 150 ) - 1);
+
 	    		  
 	      }
 	    });
@@ -91,5 +98,11 @@ public class GameScreen {
 	
 	public Scene getGameScene() {
 		return this.gameScene;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

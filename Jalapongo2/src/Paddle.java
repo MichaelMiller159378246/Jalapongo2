@@ -13,7 +13,7 @@ public class Paddle {
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
-	private int speed;
+	private int speed = 5;
 
 	public Paddle(int pos){
 		if(pos == 1){ //left
@@ -57,12 +57,12 @@ public class Paddle {
 		}
 	}
 
-	public void paddleMove(){
+	public void paddleMove(int direction){
 		if(pos == 1 || pos == 3){
-			Paddle.setY(Paddle.getY() + speed);
+			Paddle.setY(Paddle.getY() + direction*speed);
 		}
 		else{
-			Paddle.setX(Paddle.getX() + speed);
+			Paddle.setX(Paddle.getX() + direction*speed);
 		}
 	}
 	
