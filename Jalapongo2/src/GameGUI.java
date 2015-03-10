@@ -329,6 +329,12 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			String parsePortGen = Integer.toString(portGen);
 			portTFHS.setText(parsePortGen);
 		});
+		
+		//Added by Jon on March 10
+		//Launches the game screen from the "Start" button under:
+		//Play -> Host -> Start Hosting -> Start
+		GameScreen game = new GameScreen();
+		startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene()));
 
 		primaryStage.setScene(startMScene);
 		primaryStage.show();
