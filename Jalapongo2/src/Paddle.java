@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 //Added by Leslie
@@ -8,69 +9,73 @@ import javafx.scene.shape.*;
  */
 public class Paddle {
 
-	private Rectangle GUIPaddle;
-	private Line Paddle;
+	private Rectangle paddle;
+	//private Line Paddle;
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
-	private int speed;
+	private int speed = 8;
 
 	public Paddle(int pos){
-		if(pos == 1){
-			PaddleLocX = 10;
-			Paddle = new Line(PaddleLocX,325,PaddleLocX,375);
+		if(pos == 1){ //left
+			PaddleLocX = 0;
+			paddle = new Rectangle(PaddleLocX,325,30,150); //Rectangle(x, y, width, height)
 			this.pos = pos;
+			paddle.setFill(Color.BLUE);
 		}
-		if(pos == 2){
-			PaddleLocY = 690;
-			Paddle = new Line(325,PaddleLocY,375,PaddleLocY);
+		if(pos == 2){ //bottom
+			PaddleLocY = 670;
+			paddle = new Rectangle(325,PaddleLocY,150,30);
 			this.pos = pos;
+			paddle.setFill(Color.GREEN);
 		}
-		if(pos == 3){
-			PaddleLocX = 690;
-			Paddle = new Line(PaddleLocX,325,PaddleLocX,375);
+		if(pos == 3){ //right
+			PaddleLocX = 670;
+			paddle = new Rectangle(PaddleLocX,325,30,150);
 			this.pos = pos;
+			paddle.setFill(Color.RED);
 		}
-		if(pos == 4){
-			PaddleLocY = 10;
-			Paddle = new Line(325,PaddleLocY,375,PaddleLocY);
+		if(pos == 4){ //top
+			PaddleLocY = 0;
+			paddle = new Rectangle(325,PaddleLocY,150,30);
 			this.pos = pos;
+			paddle.setFill(Color.YELLOW);
 		}	
 	}
 
 	public int getLength(){
-		int length = 0;
+		int length;
 		if(pos == 1 || pos == 3){
-			length = (int)(Paddle.getEndX() - Paddle.getStartX());
+			length = (int)(paddle.getHeight());
 		}else{
-			length = (int)(Paddle.getEndY() - Paddle.getStartY());
+			length = (int)(paddle.getWidth());
 		}
 		return length;
 	}
 
 	public void setLength(int length){
-		int start;
-		int end;
 		if(pos == 1 || pos == 3){
-			start = (int)Paddle.getStartX();
-			end = start + length;
-			Paddle.setEndX((double)end);
+			paddle.setWidth((double)length);
 		}
 		else{
-			start = (int)Paddle.getStartY();
-			end = start + length;
-			Paddle.setEndY((double)end);
+			paddle.setHeight((double)length);
 		}
 	}
 
-	public void paddleMove(){
+	public void paddleMove(int direction){
 		if(pos == 1 || pos == 3){
-			Paddle.setEndX(Paddle.getEndX() + speed);
-			Paddle.setStartX(Paddle.getStartX() + speed);
+			paddle.setY(paddle.getY() + direction*speed);
 		}
 		else{
-			Paddle.setEndY(Paddle.getEndY() + speed);
-			Paddle.setStartY(Paddle.getStartY() + speed);
+			paddle.setX(paddle.getX() + direction*speed);
 		}
+	}
+	
+	public int getPos() {
+		return pos;
+	}
+	
+	public Rectangle getPaddle() {
+		return paddle;
 	}
 }//end Paddle

@@ -1,4 +1,3 @@
-import java.net.Socket;
 /**
  * @author Mike
  * @version 1.0
@@ -8,13 +7,13 @@ public class Player{
 
 	private int lives;
 	private String name;
-	private Paddle player;
-	private String serverAddress;
-	private static int port;
-	private Socket socket;
+	protected Paddle player;
+	protected int position; //added
 	
-	public Player(int pos){
-		player = new Paddle(pos);
+
+	public Player(int position){
+		player = new Paddle(position);
+		this.position = position;
 	}
 	
 	public void setName(String name){
@@ -37,13 +36,18 @@ public class Player{
 		lives =- 1;
 	}
 	
-	public Player(String serverAddress) throws Exception{
-		
-		//setup networking
-		socket = new Socket(serverAddress,port);
-		
-		
-		
+	//added
+	public Paddle getPaddle() {
+		return player;
 	}
-
+	
+	//added
+	public int getLoc() {
+		if (position == 1 || position == 3)
+			return (int)player.getPaddle().getY();
+		else
+			return (int)player.getPaddle().getX();
+	}
+	
+	
 }//end Player

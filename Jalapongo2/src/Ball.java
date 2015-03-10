@@ -1,4 +1,5 @@
 //Jon changed this for the class quiz on March 9
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -11,20 +12,19 @@ import javafx.scene.shape.Rectangle;
 public class Ball {
 //Jon commented on ball 
 	private Rectangle ball;
-	private Circle GUIBall;
 	private Paddle paddleLastHit;
 	private int xSpeed;
 	private int ySpeed;
-	private int size;
+	private int size = 20;
 
 	public Ball(){
-		ball = new Rectangle();
-			ball.setX(setStartLoc());//Upper Left Corner
-			ball.setY(setStartLoc());//Upper Left Corner
+		ball = new Rectangle(20,20);
+			ball.setX(setStartLoc());
+			ball.setY(setStartLoc());
 			ball.setWidth(size);
 			ball.setHeight(size);
-		xSpeed = setStartSpeed();
-		ySpeed = setStartSpeed();
+		xSpeed = 15; // setStartSpeed();
+		ySpeed = 10; // setStartSpeed();
 	}
 
 	public int setStartLoc(){
@@ -32,7 +32,7 @@ public class Ball {
 	}
 	
 	public int setStartSpeed(){
-		return (int)Math.ceil(Math.random()*10 + 5);
+		return (int)Math.ceil(Math.random()*5 + 5);
 	}
 
 	public Paddle getPaddleLastHit(){
@@ -55,7 +55,7 @@ public class Ball {
 		return ySpeed;
 	}
 
-	public void moveBall(){//This needs Work
+	public void moveBall(){
 		ball.setX(ball.getX() + xSpeed);
 		ball.setY(ball.getY() + ySpeed);
 	}
@@ -86,4 +86,25 @@ public class Ball {
 		this.size = size;
 	}
 	
+	//Jon's add-ons
+	public Rectangle getBall() {
+		return ball;
+	}
+	
+	public void reverseX() {
+		xSpeed = -xSpeed;
+	}
+	
+	public void reverseY() {
+		ySpeed = -ySpeed;
+	}
+	
+	public void restart() {
+		ball.setX(setStartLoc());
+		ball.setY(setStartLoc());
+		ball.setWidth(size);
+		ball.setHeight(size);
+		xSpeed = setStartSpeed();
+		ySpeed = setStartSpeed();
+	}
 }//end Ball

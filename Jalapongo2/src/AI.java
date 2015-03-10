@@ -5,12 +5,21 @@ public class AI extends Player{
 
 	public AI(int pos) {
 		super(pos);
-		// TODO Auto-generated constructor stub
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-			
+	
+	public void moveAI(Ball ball) {
+		if (this.position == 1 || this.position == 3) {
+			if ((ball.getYLoc() - this.getPaddle().getLength()/2) > this.getLoc())
+				player.paddleMove(1);
+			else
+				player.paddleMove(-1);
+		}
+		else {
+			if ((ball.getXLoc() - this.getPaddle().getLength()/2) > this.getLoc())
+				player.paddleMove(1);
+			else
+				player.paddleMove(-1);
+		}
 	}
 
 }
