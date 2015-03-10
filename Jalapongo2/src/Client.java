@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.io.IOException;
 
+
 public class Client{
-	private static Socket socket;
 	private BufferedReader in;
 	private PrintWriter out;
 	private static int port;
