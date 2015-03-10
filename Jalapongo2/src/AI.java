@@ -7,13 +7,13 @@ public class AI extends Player{
 	
 	public void moveAI(Ball ball) {
 		if (this.position == 1 || this.position == 3) {
-			if ((ball.getYLoc() + 50) > this.getLoc())
+			if ((ball.getYLoc() - this.getPaddle().getLength()/2) > this.getLoc())
 				player.paddleMove(1);
 			else
 				player.paddleMove(-1);
 		}
 		else {
-			if ((ball.getXLoc() + 50) > this.getLoc())
+			if ((ball.getXLoc() - this.getPaddle().getLength()/2) > this.getLoc())
 				player.paddleMove(1);
 			else
 				player.paddleMove(-1);

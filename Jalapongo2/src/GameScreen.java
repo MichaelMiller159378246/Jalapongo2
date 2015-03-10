@@ -141,21 +141,57 @@ public class GameScreen {
 			gameBall.reverseY();
 		
 		//Point score
-		if (x > (paneWH - 20) || x < 0)
+		if ( (x > (paneWH - 20) && gameBall.getXSpeed() > 0) 
+				|| (x < 0 && gameBall.getXSpeed() < 0) )
 			gameBall.reverseX();
-		if (y > (paneWH - 20) || y < 0)
+		if ( (y > (paneWH - 20) && gameBall.getYSpeed() > 0) 
+				|| (y < 0 && gameBall.getYSpeed() < 0) )
 			gameBall.reverseY();
 		
+		//Paddle Hits
+		checkCollisionWith1();
 		checkCollisionWith2();
+		checkCollisionWith3();
+		checkCollisionWith4();
+	}
+	
+	private void checkCollisionWith1() {
+		if ( (gameBall.getYLoc() + 20 > paddle1.getPaddle().getY())
+				&& (gameBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getLength()) )
+			if ( gameBall.getXLoc() < (rectH) &&
+					(gameBall.getXSpeed() < 0) ) {
+				gameBall.reverseX();
+				System.out.println("1");
+			}
 	}
 	
 	private void checkCollisionWith2() {
-		if ((gameBall.getXLoc() - 20) > player2.getLoc() &&
-				gameBall.getXLoc() < (player2.getLoc() + paddle2.getLength()))
-			if ( (gameBall.getYLoc() > (paneWH - (20 + 30))) &&
+		if ( (gameBall.getXLoc() + 20 > paddle2.getPaddle().getX()) 
+				&& (gameBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getLength()) )
+			if ( (gameBall.getYLoc() > (paneWH - (20 + rectH))) &&
 					(gameBall.getYSpeed() > 0) ) {
 				gameBall.reverseY();
-				System.out.println("Col");
+				System.out.println("2");
+			}
+	}
+	
+	private void checkCollisionWith3() {
+		if ( (gameBall.getYLoc() + 20 > paddle3.getPaddle().getY()) 
+				&& (gameBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getLength()) )
+			if ( gameBall.getXLoc() > (paneWH - (20 + rectH)) &&
+					(gameBall.getXSpeed() > 0) ) {
+				gameBall.reverseX();
+				System.out.println("3");
+			}
+	}
+	
+	private void checkCollisionWith4() {
+		if ( (gameBall.getXLoc() + 20 > paddle4.getPaddle().getX())
+				&& (gameBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getLength()) )
+			if ( gameBall.getYLoc() < (rectH) &&
+					(gameBall.getYSpeed() < 0) ) {
+				gameBall.reverseY();
+				System.out.println("4");
 			}
 	}
 	

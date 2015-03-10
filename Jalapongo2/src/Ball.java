@@ -23,8 +23,8 @@ public class Ball {
 			ball.setY(setStartLoc());
 			ball.setWidth(size);
 			ball.setHeight(size);
-		xSpeed = setStartSpeed();
-		ySpeed = setStartSpeed();
+		xSpeed = 15; // setStartSpeed();
+		ySpeed = 10; // setStartSpeed();
 	}
 
 	public int setStartLoc(){
@@ -32,7 +32,7 @@ public class Ball {
 	}
 	
 	public int setStartSpeed(){
-		return (int)Math.ceil(Math.random()*10 + 5);
+		return (int)Math.ceil(Math.random()*5 + 5);
 	}
 
 	public Paddle getPaddleLastHit(){
@@ -86,6 +86,7 @@ public class Ball {
 		this.size = size;
 	}
 	
+	//Jon's add-ons
 	public Rectangle getBall() {
 		return ball;
 	}
@@ -96,5 +97,14 @@ public class Ball {
 	
 	public void reverseY() {
 		ySpeed = -ySpeed;
+	}
+	
+	public void restart() {
+		ball.setX(setStartLoc());
+		ball.setY(setStartLoc());
+		ball.setWidth(size);
+		ball.setHeight(size);
+		xSpeed = setStartSpeed();
+		ySpeed = setStartSpeed();
 	}
 }//end Ball
