@@ -1,32 +1,22 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 public class GameScreen {
 
 	//Corner Bumpers
-	int rectW = 100;
-	int rectH = 30;
+	static int rectW = 100;
+	static int rectH = 30;
 	//Pane Size
-	int paneWH = 700;
+	static int paneWH = 700;
+	
+	static int min = rectW;
+	static int max = paneWH - rectW;
+	
 	
 	// Start Screen GUI Menu
 	// Construct GUI Opjects
@@ -46,9 +36,7 @@ public class GameScreen {
 	Paddle paddle1 = player1.getPaddle();
 	Paddle paddle2 = player2.getPaddle();
 	Paddle paddle3 = player3.getPaddle();
-	Paddle paddle4 = player4.getPaddle();
-	
-	
+	Paddle paddle4 = player4.getPaddle();	
 
 	
 	public GameScreen() {
@@ -231,6 +219,14 @@ public class GameScreen {
 			Thread th = new Thread(task);
 			th.setDaemon(true);
 			th.start();
+	}
+	
+	static int min() {
+		return min;
+	}
+
+	static int max() {
+		return max;
 	}
 	
 	public Scene getGameScene() {
