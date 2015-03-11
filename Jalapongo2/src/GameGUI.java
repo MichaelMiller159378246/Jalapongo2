@@ -67,8 +67,8 @@ public class GameGUI extends Application {
 	*/
 	
 	private int sceneWH = 700;
-	private static HashSet<String> names = new HashSet<String>();
-	private static Label nameLRQ;
+	public static HashSet<String> names = new HashSet<String>();
+	public static Label nameLRQ;
 	private int port;
 	
 	public void start(Stage primaryStage) throws Exception {
@@ -253,8 +253,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				Text portTextJS = new Text("Port #:");
 				Text ipText = new Text("IP address:");
 				
-				TextField nameTFJS = new TextField(" ");
-				TextField portTFJS= new TextField(" ");
+				TextField nameTFJS = new TextField("");
+				TextField portTFJS= new TextField("");
 				TextField ipTF = new TextField("");
 				
 			// Get values from text fields
@@ -326,8 +326,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		//joinGameJS.setOnMouseClicked(e -> client(Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText()));
-		joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText())));
+		joinGameJS.setOnMouseClicked(e -> client(primaryStage, readyQS,Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText()));
+		//joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText())));
 		
 		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText())));
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
@@ -362,15 +362,16 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 	}
 
 	//method to transfer values to client class
-	public void client(int portNumber, String IP, String uName){
+	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName){
 		Client clientObject = new Client(portNumber,IP,uName);
+		primaryStage.setScene(scene);
 	}
 	
 	public void readyScreen(Stage primaryStage, Scene scene, String hostName, int port){ //TODO improve this method for multiplayer
 		names.add(hostName);
 		String hostN = names.toString();
 		nameLRQ.setText(hostN);
-		Thread Host = new Thread(new Host(port));
+		Thread Host = new Thread(new Host(port, hostName));
 		Host.start();
 		primaryStage.setScene(scene);
 	}

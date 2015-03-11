@@ -27,6 +27,7 @@ public class Client{
 		ipAddress = IP;
 		name = uName;
 		
+		/*
 		//Layout message transmission GUI
 		Stage stage = new Stage();
 		Scene scene = new Scene(new Group(),200,200);
@@ -41,6 +42,12 @@ public class Client{
 				textfield.appendText("");
 			}
 		});
+		*/
+		try {
+			run();
+		} catch (IOException e) {
+			System.out.println("Error connecting to user");
+		}
 	}
 	
 	private String getName(){
@@ -55,7 +62,7 @@ public class Client{
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(),true);
 		
-		
+		System.out.println("test");
 		/*Submit name and get verification that it is accepted*/
 		while(true){
 			String line = in.readLine();
@@ -72,9 +79,11 @@ public class Client{
 		}//end while loop
 	}//end run
 	
-	/*run the client*/
+	/*
+	//run the client
 	public static void main(String[] args) throws Exception{
 		Client user = new Client(port,ipAddress,name);
 		user.run();
 	}//end main
+	*/
 }//end Client
