@@ -23,7 +23,7 @@ public class Ball {
 			ball.setY(setStartLoc());
 			ball.setWidth(size);
 			ball.setHeight(size);
-		xSpeed = 15; // setStartSpeed();
+		xSpeed = 14; // setStartSpeed();
 		ySpeed = 10; // setStartSpeed();
 	}
 

@@ -326,7 +326,6 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
 		
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		//commented out so code will run
 		//joinGameJS.setOnMouseClicked(e -> client(Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText()));
 		joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText())));
 		

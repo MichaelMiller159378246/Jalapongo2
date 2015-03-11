@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 public class GameScreen {
 
 	//Corner Bumpers
-	static int rectW = 100;
+	static int rectW = 60;
 	static int rectH = 30;
 	//Pane Size
 	static int paneWH = 700;
@@ -80,28 +80,23 @@ public class GameScreen {
 	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	      public void handle(KeyEvent event) { //@Override
 	    	  
+	    	  if (player2.getLives() > 0) {
 	    	  
 	    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
-	    		boolean minY = paddle.getPaddle().getY() >= rectW;
-	    	  	boolean maxY = paddle.getPaddle().getY() <=  paneWH - rectW - 150;
 	    	  	switch (event.getCode()) {
-	    	  		case UP:  	if (minY) paddle.paddleMove(-1);
-	    		  				else paddle.paddleMove(1); break;
-	    	  		case DOWN: 	if(maxY) paddle.paddleMove(1); 
-	    		  			 	else paddle.paddleMove(-1); break;
+	    	  		case UP:  	paddle.paddleMove(-1); break;
+	    	  		case DOWN: 	paddle.paddleMove(1); break;
 	    	  	}
 	    	  }//if
 	    	  
 	    	  else {
-	    		  boolean minX = paddle.getPaddle().getX() >= rectW;
-		    	  boolean maxX = paddle.getPaddle().getX() <=  paneWH - rectW - 150;
 		    	  switch (event.getCode()) {
-		    		  case LEFT:  if (minX) paddle.paddleMove(-1);
-		    		  			  else paddle.paddleMove(1); break;
-		    		  case RIGHT: if(maxX) paddle.paddleMove(1); 
-		    		  			  else paddle.paddleMove(-1); break;
+		    		  case LEFT:  paddle.paddleMove(-1); break;
+		    		  case RIGHT: paddle.paddleMove(1); break;
 		    	  }
 	    	  }//else  
+	    	  
+	    	  }
 	      }
 	    });
 	  }
@@ -110,44 +105,48 @@ public class GameScreen {
 		int x = gameBall.getXLoc();
 		int y = gameBall.getYLoc();
 		
-		//Corner Hits
+		//Reverse direction if the ball hits a corner
 		if (x > (paneWH - rectH - 20) 
-				&& (y > (paneWH - rectW - 20) || y < 100 ) 
+				&& (y > (paneWH - rectW - 20) || y < rectW ) 
 				&& gameBall.getXSpeed() > 0) //right side
 			gameBall.reverseX();
 		if (x < rectH
-				&& (y > (paneWH - rectW - 20) || y < 100 ) 
+				&& (y > (paneWH - rectW - 20) || y < rectW ) 
 				&& gameBall.getXSpeed() < 0) //left side
 			gameBall.reverseX();
 		if (y > (paneWH - rectH - 20)
-				&& (x > (paneWH - rectW - 20) || x < 100 )
+				&& (x > (paneWH - rectW - 20) || x < rectW )
 				&& gameBall.getYSpeed() > 0) //bottom
 			gameBall.reverseY();
 		if (y < rectH
-				&& (x > (paneWH - rectW - 20) || x < 100 )
+				&& (x > (paneWH - rectW - 20) || x < rectW )
 				&& gameBall.getYSpeed() < 0) //top
 			gameBall.reverseY();
 		
-		//Life Lost if Ball Passes Player's Paddle
+		//Life Lost if Ball Passes Player's Paddle and hits their wall
 		if (x < 0 && gameBall.getXSpeed() < 0) {
 			gameBall.reverseX();
 			player1.scoredOn();
 			System.out.println("Player 1 Was Scored On");
+			playerOut(player1);
 		}
 		if (y > (paneWH - 20) && gameBall.getYSpeed() > 0) {
 			gameBall.reverseY();
 			player2.scoredOn();
 			System.out.println("Player 2 Was Scored On");
+			playerOut(player2);
 		}
 		if (x > (paneWH - 20) && gameBall.getXSpeed() > 0) {
 			gameBall.reverseX();
 			player3.scoredOn();
 			System.out.println("Player 3 Was Scored On");
+			playerOut(player3);
 		}
 		if (y < 0 && gameBall.getYSpeed() < 0) {
 			gameBall.reverseY();
 			player4.scoredOn();
 			System.out.println("Player 4 Was Scored On");
+			playerOut(player4);
 		}
 		
 		//Paddle Hits
@@ -157,6 +156,7 @@ public class GameScreen {
 		checkCollisionWith4();
 	}
 	
+	//If ball collides with paddle1, reverse x direction
 	private void checkCollisionWith1() {
 		if ( (gameBall.getYLoc() + 20 > paddle1.getPaddle().getY())
 				&& (gameBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getLength()) )
@@ -167,6 +167,7 @@ public class GameScreen {
 			}
 	}
 	
+	//If ball collides with paddle2, reverse y direction
 	private void checkCollisionWith2() {
 		if ( (gameBall.getXLoc() + 20 > paddle2.getPaddle().getX()) 
 				&& (gameBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getLength()) )
@@ -177,6 +178,7 @@ public class GameScreen {
 			}
 	}
 	
+	//If ball collides with paddle3, reverse x direction
 	private void checkCollisionWith3() {
 		if ( (gameBall.getYLoc() + 20 > paddle3.getPaddle().getY()) 
 				&& (gameBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getLength()) )
@@ -187,6 +189,7 @@ public class GameScreen {
 			}
 	}
 	
+	//If ball collides with paddle4, reverse y direction
 	private void checkCollisionWith4() {
 		if ( (gameBall.getXLoc() + 20 > paddle4.getPaddle().getX())
 				&& (gameBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getLength()) )
@@ -197,6 +200,7 @@ public class GameScreen {
 			}
 	}
 	
+	//moves the ball and AI paddles
 	public void continuousUpdate() {
 		Task task = new Task<Void>() {
 			  @Override
@@ -221,12 +225,26 @@ public class GameScreen {
 			th.start();
 	}
 	
-	static int min() {
+	//min paddle location
+	static int min() { 
 		return min;
 	}
 
-	static int max() {
+	//max paddle location
+	static int max() { 
 		return max;
+	}
+	
+	//If a player runs out of lives, make their paddle fill the whole side
+	private void playerOut(Player player) {
+		if (player.getLives() < 1) {
+			player.getPaddle().setLength(paneWH);
+			if (player.getPos() == 1 || player.getPos() == 3)
+				player.getPaddle().getPaddle().setY(0);
+			else
+				player.getPaddle().getPaddle().setX(0);
+			System.out.println("Player " + player.getPos() + " is out");
+		}
 	}
 	
 	public Scene getGameScene() {

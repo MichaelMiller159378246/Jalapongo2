@@ -14,7 +14,7 @@ public class Paddle {
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
-	private int speed = 8;
+	private int speed = 3;
 
 	public Paddle(int pos){
 		if(pos == 1){ //left
@@ -55,10 +55,10 @@ public class Paddle {
 
 	public void setLength(int length){
 		if(pos == 1 || pos == 3){
-			paddle.setWidth((double)length);
+			paddle.setHeight((double)length);
 		}
 		else{
-			paddle.setHeight((double)length);
+			paddle.setWidth((double)length);
 		}
 	}
 
