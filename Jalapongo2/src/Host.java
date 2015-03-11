@@ -6,9 +6,7 @@ import java.io.PrintWriter; // Imports PrintWriter
 import java.net.ServerSocket; // Imports ServerSocket
 import java.net.Socket; // Imports Socket
 import java.util.HashSet; // Import HashSet
-
-import javafx.application.Platform;
-import javafx.scene.paint.Color;
+import javafx.application.Platform; // Imports platform
 
 
 // Host class is used to launch the server so others can connect

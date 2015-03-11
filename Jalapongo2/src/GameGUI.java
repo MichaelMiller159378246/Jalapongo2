@@ -24,7 +24,7 @@ public class GameGUI extends Application {
 	
 	private int sceneWH = 700; // Int used to control screen size
 	public static Label nameLRQ; // Public label so the host class can edit the data
-	private int port; // 
+	private int port; //TODO Do we need this? 
 	
 	public void start(Stage primaryStage) throws Exception {
 
@@ -343,7 +343,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 	}
 	
 	public static void main(String[] args){
-		GameGUI.launch(args);
+		GameGUI.launch(args); // Launches the game
 	}
 	
 	
