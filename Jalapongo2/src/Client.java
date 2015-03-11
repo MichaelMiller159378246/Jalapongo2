@@ -40,7 +40,6 @@ public class Client{
 		*/
 		
 		try {
-			System.out.println("barg");
 			run();
 		} catch (IOException e) {
 			System.out.println("Error connecting to user");
