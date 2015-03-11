@@ -14,7 +14,7 @@ public class Paddle {
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
-	private int speed = 8;
+	private int speed = 5;
 
 	public Paddle(int pos){
 		if(pos == 1){ //left
@@ -55,20 +55,34 @@ public class Paddle {
 
 	public void setLength(int length){
 		if(pos == 1 || pos == 3){
-			paddle.setWidth((double)length);
+			paddle.setHeight((double)length);
 		}
 		else{
-			paddle.setHeight((double)length);
+			paddle.setWidth((double)length);
 		}
 	}
 
 	public void paddleMove(int direction){
-		if(pos == 1 || pos == 3){
+
+		int min = GameScreen.min();
+		int max = GameScreen.max() - getLength();
+		
+		if(pos == 1 || pos == 3) {
 			paddle.setY(paddle.getY() + direction*speed);
+			if (paddle.getY() > max)
+				paddle.setY(max);
+			else if (paddle.getY() < min)
+				paddle.setY(min);
 		}
-		else{
+		else {
 			paddle.setX(paddle.getX() + direction*speed);
+			if (paddle.getX() > max)
+				paddle.setX(max);
+			else if (paddle.getX() < min)
+				paddle.setX(min);
+			
 		}
+		
 	}
 	
 	public int getPos() {

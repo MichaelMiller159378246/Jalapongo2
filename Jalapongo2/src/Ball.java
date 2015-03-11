@@ -1,4 +1,6 @@
 //Jon changed this for the class quiz on March 9
+import java.util.Random;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -19,20 +21,19 @@ public class Ball {
 
 	public Ball(){
 		ball = new Rectangle(20,20);
-			ball.setX(setStartLoc());
-			ball.setY(setStartLoc());
-			ball.setWidth(size);
-			ball.setHeight(size);
-		xSpeed = 15; // setStartSpeed();
-		ySpeed = 10; // setStartSpeed();
+		ball.setX(setStartLoc());
+		ball.setY(setStartLoc());
+		ball.setWidth(size);
+		ball.setHeight(size);
+		randomizeDirection();
 	}
 
 	public int setStartLoc(){
-		return (int)Math.ceil(Math.random()*300 + 200);
+		return (int)(Math.random()*301 + 200);
 	}
 	
 	public int setStartSpeed(){
-		return (int)Math.ceil(Math.random()*5 + 5);
+		return (int)(Math.random()*6 + 5);
 	}
 
 	public Paddle getPaddleLastHit(){
@@ -106,5 +107,30 @@ public class Ball {
 		ball.setHeight(size);
 		xSpeed = setStartSpeed();
 		ySpeed = setStartSpeed();
+		randomizeDirection();
+	}
+	
+	private void randomizeDirection() {
+		Random random = new Random();
+		boolean randX = random.nextBoolean();
+		boolean randY = random.nextBoolean();
+		
+		xSpeed = setStartSpeed();
+		ySpeed = setStartSpeed();
+		
+		//Prevent ball from moving in constant diagonal
+				while (Math.abs(xSpeed) - Math.abs(ySpeed) < 2) {
+					if (Math.abs(xSpeed) > Math.abs(ySpeed))
+						ySpeed--;
+					else
+						xSpeed--;
+				}
+		
+		//Make x-direction random
+		if (randX)
+			xSpeed = -xSpeed;
+		//make y-direction random
+		if (randY)
+			ySpeed = -ySpeed;
 	}
 }//end Ball

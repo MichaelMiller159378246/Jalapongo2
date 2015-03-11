@@ -1,94 +1,52 @@
-//Nick Added This for the quiz
-//Changed the package
-import java.util.HashSet;
-
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+// Imports
+import javafx.application.Application; // Imports Application
+import javafx.collections.FXCollections; // Imports FXCollections
+import javafx.collections.ObservableList; // Imports ObservableList
+import javafx.event.EventHandler; // Imports EventHandlers
+import javafx.geometry.Insets; // Imports Insets
+import javafx.geometry.Pos; // Imports POS
+import javafx.scene.Scene; // Imports scene
+import javafx.scene.control.Button; // Imports Buttons
+import javafx.scene.control.CheckBox; // Imports CheckBox
+import javafx.scene.control.ComboBox; // Imports ComboBox
+import javafx.scene.control.Label; // Imports Label
+import javafx.scene.control.TextField; // Imports TextField
+import javafx.scene.input.MouseEvent; // Imports MouseEvent
+import javafx.scene.layout.BorderPane; // Imports BorderPane
+import javafx.scene.layout.HBox; // Imports HBox
+import javafx.scene.layout.VBox; // Imports VBox
+import javafx.scene.text.Font; // Imports Font
+import javafx.scene.text.Text; // Imports Text
+import javafx.stage.Stage; // Imports Stage
 
 
-
-/**
- * @author Leslie
- * @version 1.0
- * @created 02-Mar-2015 3:19:44 PM
- */
-
-// This is for the quiz Michael Miller
 public class GameGUI extends Application {
-
-	/*
-	private Button applyBOM;
-	private Button backBCS;
-	private Button backBOM;
-	private Button backBUQ;
-	private Button connectBCS;
-	private Button helpBHS;
-	private TextField helpTfHM;
-	private Button hostBCS;
-	private Label ipLCS;
-	private Label ipLHS;
-	private TextField ipTfCS;
-	private TextField ipTfHS;
-	private CheckBox musicCbOM;
-	private Label nameLUQ;
-	private Button okBSS;
-	private Button optionsBSM;
-	private Button playBCS;
-	private Button playBSM;
-	private Button playBUQ;
-	private Label portLCS;
-	private Label portLHS;
-	private TextField portTfCS;
-	private TextField portTfHS;
-	private Button quitBSM;
-	private CheckBox readyCbuQ;
-	private Circle readyCUQ;
-	private CheckBox soundCbOM;
-	private TextField summaryTfSS;
-	public Ball m_Ball;
-	public Paddle m_Paddle;
-	*/
 	
-	private int sceneWH = 700;
-	private static HashSet<String> names = new HashSet<String>();
-	private static Label nameLRQ;
-	private int port;
+	private int sceneWH = 700; // Int used to control screen size
+	public static Label nameLRQ; // Public label so the host class can edit the data
+	private int port; // 
 	
 	public void start(Stage primaryStage) throws Exception {
-		
+
+//*******************************************************************************
 		// Start Screen GUI Menu
-		// Construct GUI Opjects
-		BorderPane startSMBP = new BorderPane();
-		VBox buttonSMVB = new VBox();
-		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH);
+		
+		// Construct GUI Objects
+		BorderPane startSMBP = new BorderPane(); //Creates a BorderPane
+		VBox buttonSMVB = new VBox(); // Creates a VBox to house the buttons
 		
 		// Controls
-		Button playBSM = new Button("Play");
-		Button optionsBSM = new Button("Options");
-		Button quitBSM = new Button("Quit");
+		Button playBSM = new Button("Play"); // Creates a play button
+		Button optionsBSM = new Button("Options"); // creates a options button
+		Button quitBSM = new Button("Quit"); // Creates a quit button
 		
-		buttonSMVB.getChildren().addAll(playBSM, optionsBSM, quitBSM);
-		buttonSMVB.setSpacing(50);
-		buttonSMVB.setAlignment(Pos.CENTER);
+		//Alters VBox properties
+		buttonSMVB.getChildren().addAll(playBSM, optionsBSM, quitBSM); //Adds the buttons to the VBox
+		buttonSMVB.setSpacing(50); // Set the spacing between the buttons to 50
+		buttonSMVB.setAlignment(Pos.CENTER); // Sets the alignment of the VBox to the center
 		
-		startSMBP.setCenter(buttonSMVB);
+		startSMBP.setCenter(buttonSMVB); // Adds the VBox to the center of the BorderPane
+		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH); // Creates the scene
 		
 //*******************************************************************************
 		
@@ -253,14 +211,15 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				Text portTextJS = new Text("Port #:");
 				Text ipText = new Text("IP address:");
 				
-				TextField nameTFJS = new TextField(" ");
-				TextField portTFJS= new TextField(" ");
+				TextField nameTFJS = new TextField("");
+				TextField portTFJS= new TextField("");
 				TextField ipTF = new TextField("");
 				
 			// Get values from text fields
 				String name = nameTFJS.getText();
 				String portS = portTFJS.getText();
-				int port = Integer.parseInt(portS);
+				//Commented out so code will run
+				//int port = Integer.parseInt(portS);
 				
 			//Call method to pass values to client class
 				
@@ -292,125 +251,100 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			
 			
 				Scene jsScene = new Scene(jsBP, sceneWH,sceneWH);
-//*******************************************************************************			
+//*******************************************************************************		
+				//Ready Screen
 				
-				BorderPane readyQBP = new BorderPane();
-				BorderPane lowerRQBP = new BorderPane();
+				//Construct GUI objects
+				BorderPane readyQBP = new BorderPane(); // Creates a BorderPane
+				BorderPane lowerRQBP = new BorderPane(); // Creates a BorderPane
 				
-				nameLRQ = new Label();
+				// Creates controls
+				nameLRQ = new Label(); //Creates a label
+				Button startRQB = new Button("Start"); // Creates a start button
+				Button disconnectRQB = new Button("Disconnect"); // Creates a disconnect button
 				
-				Button startRQB = new Button("Start");
-				Button disconnectRQB = new Button("Disconnect");
+				// Alters BorderPane properties
+				lowerRQBP.setRight(startRQB); // Sets the button to the right side of the BorderPane
+				lowerRQBP.setLeft(disconnectRQB); // Sets the button to the left side of the BorderPane
+				lowerRQBP.setPadding(new Insets(10)); // Adds some padding to the BorderPane
 				
-				lowerRQBP.setRight(startRQB);
-				lowerRQBP.setLeft(disconnectRQB);
-				lowerRQBP.setPadding(new Insets(10));
+				// Alters BorderPane properties
+				readyQBP.setBottom(lowerRQBP); // Sets the BorderPane to the bottom of the BorderPane 
+				readyQBP.setRight(nameLRQ); // Sets the Label to the right of the BorderPane
 				
-				readyQBP.setBottom(lowerRQBP);
-				readyQBP.setRight(nameLRQ);
-				
-				Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH);
+				Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH); // Creates the scene
 				
 		//*******************************************************************************
 			
+		//Events
+		//Start Menu Scene Events
+		quitBSM.setOnMouseClicked(e -> System.exit(0)); // If the user presses quit the system closes
+		playBSM.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses play the scene changes to the choice scene
+		optionsBSM.setOnMouseClicked(e -> primaryStage.setScene(optionsScene)); // If the user presses options the scene changes to the options scene
 		
-		quitBSM.setOnMouseClicked(e -> System.exit(0));
-		playBSM.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		optionsBSM.setOnMouseClicked(e -> primaryStage.setScene(optionsScene));
+		//Options Menu Scene Events
+		backBOS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
 		
-		backBOS.setOnMouseClicked(e -> primaryStage.setScene(startMScene));
+		//Choice Menu Scene Events
+		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses host the scene changes to the host menu scene 
+		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene)); // If the user presses join the scene changes to the join menu scene 
+		backBCS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
 		
-		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS));
-		backBCS.setOnMouseClicked(e -> primaryStage.setScene(startMScene));
-		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene));
+		//Join Menu Scene Events
+		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses back the scene changes to the choice menu scene 
+		joinGameJS.setOnMouseClicked(e -> client(primaryStage, readyQS,Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText())); // If the user presses join then the client method is called 
+		//joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText()))); //TODO possibly delete this
 		
-		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		joinGameJS.setOnMouseClicked(e -> client(Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText()));
-		
-		startHostingHO.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText())));
-		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS));
-		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		
-		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS));
-		
-		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene));
-		
-		randomBHS.setOnMouseClicked( e -> {
-			int portGen = (int)(Math.random()*9000)+1000;
-			String parsePortGen = Integer.toString(portGen);
-			portTFHS.setText(parsePortGen);
+		//Host Menu Events
+		startHostingHO.setOnMouseClicked(e -> host(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText()))); // If the user presses start hosting then the host method is called 
+		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS)); // If the user presses options the scene changes to the host options menu scene 
+		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses back the scene changes to the choice menu scene 
+		randomBHS.setOnMouseClicked( e -> { // If the user presses random then a port number is randomly generated
+			int portGen = (int)(Math.random()*9000)+1000; // Randomly generates a number
+			String parsePortGen = Integer.toString(portGen); // Creates a string from the integer
+			portTFHS.setText(parsePortGen); // Displays the generated number
 		});
 		
+		//Host Options Menu Events
+		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses okay the scene changes to the host menu scene 
 		
+		// Ready Screen Menu Events
+		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
 		//Added by Jon on March 10
 		//Launches the game screen from the "Start" button under:
 		//Play -> Host -> Start Hosting -> Start
-		GameScreen game = new GameScreen();
-		startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene()));
-		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() {
-		    public void handle(MouseEvent me) {
-		        game.continuousUpdate();;
+		GameScreen game = new GameScreen(); // Creates a GameScreen object
+		startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene())); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
+		    public void handle(MouseEvent me) { // Creates a handler
+		        game.continuousUpdate();; // Calls the continuousUpdate method
 		    }
 		});
 
-		primaryStage.setScene(startMScene);
-		primaryStage.show();
-		primaryStage.setResizable(false);
+		// Alter stage properties
+		primaryStage.setScene(startMScene); //Sets the scene of the stage
+		primaryStage.setResizable(false); // Prevents anyone from changing the stage size
+		primaryStage.show(); // Shows the stage
 		
 	}
 
 	//method to transfer values to client class
-	public void client(int portNumber, String IP, String uName){
+	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName){
 		Client clientObject = new Client(portNumber,IP,uName);
+		primaryStage.setScene(scene);
 	}
 	
-	public void readyScreen(Stage primaryStage, Scene scene, String hostName, int port){ //TODO improve this method for multiplayer
-		names.add(hostName);
-		String hostN = names.toString();
-		nameLRQ.setText(hostN);
-		Thread Host = new Thread(new Host(port));
-		Host.start();
-		primaryStage.setScene(scene);
+	// Method to launch the host class
+	public void host(Stage primaryStage, Scene scene, String hostName, int port){ //TODO improve this method for multiplayer
+		nameLRQ.setText("[" + hostName + "]"); // Adds the hosts name to the label
+		Thread Host = new Thread(new Host(port, hostName)); // Creates a thread
+		Host.start(); // Starts the thread
+		primaryStage.setScene(scene); // Sets the scene to the ready screen
 	}
 	
 	public static void main(String[] args){
 		GameGUI.launch(args);
 	}
 	
-	/*
-	public GameGUI() {
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-
-	 
-	public changeScene(Scene){
-
-	}
-	 
-	public launchServer(int port){
-
-	}
-
-	public main(){
-
-	}
-
-	public run(){
-
-	}
-
-
-	public server(int port){
-
-	}
-	
-	
-	*/
-	
 	
 }//end Game GUI
-// Added for testing

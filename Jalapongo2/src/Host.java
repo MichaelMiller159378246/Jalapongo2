@@ -7,6 +7,9 @@ import java.net.ServerSocket; // Imports ServerSocket
 import java.net.Socket; // Imports Socket
 import java.util.HashSet; // Import HashSet
 
+import javafx.application.Platform;
+import javafx.scene.paint.Color;
+
 
 // Host class is used to launch the server so others can connect
 public class Host extends Thread{
@@ -18,8 +21,9 @@ public class Host extends Thread{
 
 
 	// Constructor
-	public Host(int port){
+	public Host(int port, String name){
 		Host.port = port; // Sets the global port to the inputed port
+		names.add(name);
 	}
 
 	// Method to launch the server
@@ -76,6 +80,13 @@ public class Host extends Thread{
 					}
 				}
 
+				String namesL = names.toString(); // Converts the names in the hash string to a string
+				Platform.runLater(new Runnable() { // Runs when it gets the chance
+					public void run() { //Runs
+						GameGUI.nameLRQ.setText(namesL); //Updates the gui
+					}
+				});
+				
 				out.println("NAMEACCEPTED"); // Sets the message to send to the client to "NAMEACCEPTED"
 				writers.add(out); // Tells the client that the name was accepted
 

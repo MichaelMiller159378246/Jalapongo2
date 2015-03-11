@@ -5,7 +5,7 @@
  */
 public class Player{
 
-	private int lives;
+	private int lives = 5;
 	private String name;
 	protected Paddle player;
 	protected int position; //added
@@ -33,7 +33,7 @@ public class Player{
 	}
 	
 	public void scoredOn(){
-		lives =- 1;
+		lives -= 1;
 	}
 	
 	//added
@@ -47,6 +47,11 @@ public class Player{
 			return (int)player.getPaddle().getY();
 		else
 			return (int)player.getPaddle().getX();
+	}
+	
+	//added
+	public int getPos() {
+		return position;
 	}
 	
 	

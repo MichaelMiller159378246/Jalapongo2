@@ -4,7 +4,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.io.IOException;
-
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.Group;
+import javafx.scene.input.KeyEvent;
+import javafx.event.EventHandler;
 
 public class Client{
 	private BufferedReader in;
@@ -12,12 +18,36 @@ public class Client{
 	private static int port;
 	private static String ipAddress;
 	private static String name;
+	TextField textfield = new TextField();
+	TextArea textarea = new TextArea();
 	
 	/*Construct client*/
 	public Client(int portN, String IP,String uName) {
 		port = portN;
 		ipAddress = IP;
 		name = uName;
+		
+		/*
+		//Layout message transmission GUI
+		Stage stage = new Stage();
+		Scene scene = new Scene(new Group(),200,200);
+		textfield.setDisable(true);
+		textarea.setDisable(true);
+		stage.setScene(scene);
+		stage.show();
+		
+		//Add listener
+		textfield.setOnKeyTyped(new EventHandler<KeyEvent>(){
+			public void handle(KeyEvent ke){
+				textfield.appendText("");
+			}
+		});
+		*/
+		try {
+			run();
+		} catch (IOException e) {
+			System.out.println("Error connecting to user");
+		}
 	}
 	
 	private String getName(){
@@ -32,7 +62,7 @@ public class Client{
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(),true);
 		
-		
+		System.out.println("test");
 		/*Submit name and get verification that it is accepted*/
 		while(true){
 			String line = in.readLine();
@@ -40,15 +70,20 @@ public class Client{
 				out.println(getName());
 			}
 			else if (line.startsWith("NAMEACCEPTED")){
-				
+				textfield.setDisable(false);
+				textarea.setDisable(false);
+			}
+			else if (line.startsWith("MESSAGE")){
+				textarea.appendText(line.substring(8) + '\n');
 			}
 		}//end while loop
 	}//end run
 	
-	/*run the client*/
+	/*
+	//run the client
 	public static void main(String[] args) throws Exception{
 		Client user = new Client(port,ipAddress,name);
 		user.run();
-		
-	}
+	}//end main
+	*/
 }//end Client
