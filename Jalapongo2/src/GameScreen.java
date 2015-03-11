@@ -82,17 +82,17 @@ public class GameScreen {
 	//Method to test paddle movement
 	private void movePaddleOnKeyPress(Scene scene, Paddle paddle) {
 	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-	      public void handle(KeyEvent event) { //@Override
+	      @SuppressWarnings("incomplete-switch")
+		public void handle(KeyEvent event) { //@Override
 	    	  
-<<<<<<< HEAD
+
 	    	  //Sets up the paddle movement for players 1 and 3 on the sides
-=======
+
 	    	  if (player2.getLives() > 0) {
-	    	  
->>>>>>> a741e157e88bc704efe6ce4283019e5435d6bb73
+	  
 	    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
 	    	  	switch (event.getCode()) {
-	    	  		case UP:  	if (minY) paddle.paddleMove(-1);
+	    	  		//case UP:  	if (minY) paddle.paddleMove(-1);
 	    	  		case UP:  	paddle.paddleMove(-1); break;
 	    	  		case DOWN: 	paddle.paddleMove(1); break;
 	    	  	}
@@ -110,13 +110,11 @@ public class GameScreen {
 	      }
 	    });
 	  }
-	
-<<<<<<< HEAD
+
 	//Changes the direction of the ball if there is contact
-	private void checkReverse() {
-=======
+
 	private void checkReverse() throws InterruptedException {
->>>>>>> a741e157e88bc704efe6ce4283019e5435d6bb73
+
 		int x = gameBall.getXLoc();
 		int y = gameBall.getYLoc();
 		
@@ -175,13 +173,11 @@ public class GameScreen {
 		checkCollisionWith4();
 	}
 	
-<<<<<<< HEAD
 	
 	// ------The following check the collision with the players paddles--------------
 	
-=======
 	//If ball collides with paddle1, reverse x direction
->>>>>>> a741e157e88bc704efe6ce4283019e5435d6bb73
+
 	private void checkCollisionWith1() {
 		if ( (gameBall.getYLoc() + 20 > paddle1.getPaddle().getY())
 				&& (gameBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getLength()) )
@@ -225,12 +221,11 @@ public class GameScreen {
 			}
 	}
 	
-<<<<<<< HEAD
 	
 	//Continuously update the game screen to keep the ball moving
-=======
+
 	//moves the ball and AI paddles
->>>>>>> a741e157e88bc704efe6ce4283019e5435d6bb73
+
 	public void continuousUpdate() {
 		Task task = new Task<Void>() {
 			  @Override
