@@ -14,7 +14,7 @@ public class Paddle {
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
-	private int speed = 3;
+	private int speed = 5;
 
 	public Paddle(int pos){
 		if(pos == 1){ //left

@@ -101,7 +101,7 @@ public class GameScreen {
 	    });
 	  }
 	
-	private void checkReverse() {
+	private void checkReverse() throws InterruptedException {
 		int x = gameBall.getXLoc();
 		int y = gameBall.getYLoc();
 		
@@ -125,28 +125,32 @@ public class GameScreen {
 		
 		//Life Lost if Ball Passes Player's Paddle and hits their wall
 		if (x < 0 && gameBall.getXSpeed() < 0) {
-			gameBall.reverseX();
 			player1.scoredOn();
 			System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
+			gameBall.restart();
+			Thread.sleep(200);
 		}
 		if (y > (paneWH - 20) && gameBall.getYSpeed() > 0) {
-			gameBall.reverseY();
 			player2.scoredOn();
 			System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
+			gameBall.restart();
+			Thread.sleep(200);
 		}
 		if (x > (paneWH - 20) && gameBall.getXSpeed() > 0) {
-			gameBall.reverseX();
 			player3.scoredOn();
 			System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
+			gameBall.restart();
+			Thread.sleep(200);
 		}
 		if (y < 0 && gameBall.getYSpeed() < 0) {
-			gameBall.reverseY();
 			player4.scoredOn();
 			System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
+			gameBall.restart();
+			Thread.sleep(200);
 		}
 		
 		//Paddle Hits
@@ -210,7 +214,12 @@ public class GameScreen {
 			        @Override
 			        public void run() {
 			          gameBall.moveBall();
-			          checkReverse();
+			          try {
+						checkReverse();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			          player1.moveAI(gameBall);
 			          player3.moveAI(gameBall);
 			          player4.moveAI(gameBall);

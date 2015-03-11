@@ -5,7 +5,7 @@
  */
 public class Player{
 
-	private int lives = 3;
+	private int lives = 5;
 	private String name;
 	protected Paddle player;
 	protected int position; //added
