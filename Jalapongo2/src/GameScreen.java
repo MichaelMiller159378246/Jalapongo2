@@ -17,6 +17,9 @@ public class GameScreen {
 	static int min = rectW;
 	static int max = paneWH - rectW;
 	
+	static int count = 2; //counter for power up timer when they appear
+	static int i = 1; //rotate through 5 power ups on screen at a time
+	
 	
 	// Start Screen GUI Menu
 	// Construct GUI Opjects
@@ -74,8 +77,8 @@ public class GameScreen {
 		//----------------------------
 		//Add shapes		
 		gamePane.getChildren().addAll(paddle1.getPaddle(), paddle2.getPaddle(),
-									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall(),
-									  powerUp4.getPowerUp(), powerUp5.getPowerUp());
+									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall()
+									  /*powerUp4.getPowerUp(), powerUp5.getPowerUp()*/);
 		
 		//Moves the paddles, can only used one at a time
 		//movePaddleOnKeyPress(gameScene, player1 paddle1);
@@ -87,25 +90,41 @@ public class GameScreen {
 		
 }
 	private void generatePowerUp(){
-		while (true){
-			int i = 1;
-			if(i%5 == 0){
-				powerUp1 = new PowerUps();
-			}
-			if(i%5 == 1){
-				powerUp2 = new PowerUps();
-			}
-			if(i%5 == 2){
-				powerUp3 = new PowerUps();
-			}
-			if(i%5 == 3){
-				powerUp4 = new PowerUps();
-			}
-			if(i%5 == 4){
-				powerUp5 = new PowerUps();
-			}
-			i++;
-		}
+		    			if(i%5 == 0){
+				            try {
+				            	gamePane.getChildren().remove(powerUp1.getPowerUp());
+							} catch (Exception e){}
+				            powerUp1 = new PowerUps();
+		    				gamePane.getChildren().add(powerUp1.getPowerUp());
+		    			}
+		    			if(i%5 == 1){
+					        try {
+					            gamePane.getChildren().remove(powerUp2.getPowerUp());
+					        } catch (Exception e){}
+		    				powerUp2 = new PowerUps();
+		    				gamePane.getChildren().add(powerUp2.getPowerUp());
+		    			}
+		    			if(i%5 == 2){
+				            try {
+				            	gamePane.getChildren().remove(powerUp3.getPowerUp());
+							} catch (Exception e){}
+		    				powerUp3 = new PowerUps();
+		    				gamePane.getChildren().add(powerUp3.getPowerUp());
+		    			}
+		    			if(i%5 == 3){
+					        try {
+					          	gamePane.getChildren().remove(powerUp4.getPowerUp());
+							} catch (Exception e){}
+		    				powerUp4 = new PowerUps();
+		    				gamePane.getChildren().add(powerUp4.getPowerUp());
+		    			}
+		    			if(i%5 == 4){
+					        try {
+					            gamePane.getChildren().remove(powerUp5.getPowerUp());
+							} catch (Exception e){}
+		    				powerUp5 = new PowerUps();
+		    				gamePane.getChildren().add(powerUp5.getPowerUp());
+		    			}
 	}
 	
 	private void checkBallHitPowerUp(){
@@ -305,15 +324,19 @@ public class GameScreen {
 			          try {
 						checkReverse();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 			          player1.moveAI(gameBall);
 			          player3.moveAI(gameBall);
 			          player4.moveAI(gameBall);
+			          if (count%50 == 1){
+			        	  generatePowerUp();
+			        	  i++;
+			          }
+			          count++;
 			        }
 			      });
-			      Thread.sleep(50);
+			      Thread.sleep(100);
 			    }
 			  }
 			};

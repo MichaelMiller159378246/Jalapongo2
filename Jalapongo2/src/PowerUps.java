@@ -26,8 +26,8 @@ public class PowerUps {
 	
 	public PowerUps(){
 		powerUp = new Rectangle(20,20);
-			powerUp.setX(generator.nextDouble()*600+200); //Upper Left Corner
-			powerUp.setY(generator.nextDouble()*600+200); //Upper Left Corner
+			powerUp.setX(generator.nextDouble()*400+100); //Upper Left Corner
+			powerUp.setY(generator.nextDouble()*400+100); //Upper Left Corner
 			type = (int)(Math.random()*9+1);
 			if(type == 1){
 				powerUp.setFill(Color.RED); //flip
