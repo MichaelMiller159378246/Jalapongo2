@@ -35,6 +35,10 @@ public class Player{
 		lives -= 1;
 	}
 	
+	public void addLife(){
+		lives += 1;
+	}
+	
 	//added
 	public Paddle getPaddle() {
 		return player;
@@ -53,5 +57,8 @@ public class Player{
 		return pos;
 	}
 	
+	public Player getPlayer(){
+		return this;
+	}
 	
 }//end Player

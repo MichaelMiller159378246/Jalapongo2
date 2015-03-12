@@ -38,21 +38,37 @@ public class PowerUps {
 		}
 	}
 	*/
-
-	public void addLives(){ //add 1 life to player
-
+	/*
+	public void addLives(Ball ball){ //add 1 life to player
+		Player player = GameScreen.getPlayer(ball.getPaddleLastHit());
+		player.addLife();
+	}
+	*/
+	public void shield(Ball ball){ // protect against one goal
+		Paddle paddle = ball.getPaddleLastHit();
+		
 	}
 
-	public void shield(){ // protect against one goal
-
+	public void largePaddle(Ball ball){ //increase paddle length
+		Paddle paddle = ball.getPaddleLastHit();
+		paddle.setLength(300);
+		try {
+		    Thread.sleep(2000);                 //1000 milliseconds is one second.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		paddle.setLength(150);
 	}
 
-	public void largePaddle(){ //increase paddle length
-
-	}
-
-	public void smallPaddle(){ //decrease paddle length
-
+	public void smallPaddle(Ball ball){ //decrease paddle length
+		Paddle paddle = ball.getPaddleLastHit();
+		paddle.setLength(75);
+		try {
+		    Thread.sleep(20000);                 //1000 milliseconds is one second.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		paddle.setLength(150);
 	}
 
 	public void speedAdd(){ //set ball speed higher
@@ -63,7 +79,16 @@ public class PowerUps {
 
 	}
 
-	public void stall(){ //set paddle speed = 0
-		
+	public void stall(Ball ball){ //set paddle speed = 0
+		Paddle paddle = ball.getPaddleLastHit();
+		if (paddle.getControls() !=0){
+			paddle.setControls(0);
+		}
+		try {
+		    Thread.sleep(2000);                 //1000 milliseconds is one second.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		paddle.setControls(1);
 	}
 }//end Power-Ups

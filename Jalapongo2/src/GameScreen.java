@@ -292,6 +292,19 @@ public class GameScreen {
 		}
 	}
 	
+	public Player getPlayer(Paddle paddle){
+		int pos = paddle.getPos();
+		if(pos == 1){
+			return player1;
+		}if(pos == 2){
+			return player2;
+		}if(pos == 3){
+			return player3;
+		}else{
+			return player4;
+		}
+	}
+	
 	public Scene getGameScene() {
 		return this.gameScene;
 	}

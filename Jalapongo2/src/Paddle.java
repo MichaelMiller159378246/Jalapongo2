@@ -16,32 +16,50 @@ public class Paddle {
 	private int pos;
 	private int speed = 5;
 	private int control = 1; //1=normal, 2=flipped
+	private int paddle12W = 30;
+	private int paddle12H = 150;
 
 	public Paddle(int pos){
 		if(pos == 1){ //left
 			PaddleLocX = 0;
-			paddle = new Rectangle(PaddleLocX,325,30,150); //Rectangle(x, y, width, height)
+			paddle = new Rectangle(PaddleLocX,325,paddle12W,paddle12H); //Rectangle(x, y, width, height)
 			this.pos = pos;
 			paddle.setFill(Color.BLUE);
 		}
 		if(pos == 2){ //bottom
 			PaddleLocY = 670;
-			paddle = new Rectangle(325,PaddleLocY,150,30);
+			paddle = new Rectangle(325,PaddleLocY,paddle12H,paddle12W);
 			this.pos = pos;
 			paddle.setFill(Color.GREEN);
 		}
 		if(pos == 3){ //right
 			PaddleLocX = 670;
-			paddle = new Rectangle(PaddleLocX,325,30,150);
+			paddle = new Rectangle(PaddleLocX,325,paddle12W,paddle12H);
 			this.pos = pos;
 			paddle.setFill(Color.RED);
 		}
 		if(pos == 4){ //top
 			PaddleLocY = 0;
-			paddle = new Rectangle(325,PaddleLocY,150,30);
+			paddle = new Rectangle(325,PaddleLocY,paddle12H,paddle12W);
 			this.pos = pos;
 			paddle.setFill(Color.YELLOW);
 		}	
+	}
+	
+	public void setLength(int x){
+		if(pos == 1 || pos == 3){
+			this.paddle12H = x;
+		}else{
+			this.paddle12W = x;
+		}
+	}
+	
+	public int getLength(){
+		if(pos == 1 || pos == 3){
+			return paddle12H;
+		}else{
+			return paddle12W;
+		}
 	}
 	
 	public void setControls(int x){
@@ -50,25 +68,6 @@ public class Paddle {
 	
 	public int getControls(){
 		return this.control;
-	}
-
-	public int getLength(){
-		int length;
-		if(pos == 1 || pos == 3){
-			length = (int)(paddle.getHeight());
-		}else{
-			length = (int)(paddle.getWidth());
-		}
-		return length;
-	}
-
-	public void setLength(int length){
-		if(pos == 1 || pos == 3){
-			paddle.setHeight((double)length);
-		}
-		else{
-			paddle.setWidth((double)length);
-		}
 	}
 
 	public void paddleMove(int direction){
