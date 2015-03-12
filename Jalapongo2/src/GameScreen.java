@@ -72,44 +72,59 @@ public class GameScreen {
 									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall());
 		
 		//Moves the paddles, can only used one at a time
-		//movePaddleOnKeyPress(gameScene, paddle1);
-		movePaddleOnKeyPress(gameScene, paddle2);
-		//movePaddleOnKeyPress(gameScene, paddle3);
-		//movePaddleOnKeyPress(gameScene, paddle4);
+		//movePaddleOnKeyPress(gameScene, player1 paddle1);
+		movePaddleOnKeyPress(gameScene, player2, paddle2);
+		//movePaddleOnKeyPress(gameScene, player3, paddle3);
+		//movePaddleOnKeyPress(gameScene, player4, paddle4);
 		
 }
 	
 	//Method to test paddle movement
-	private void movePaddleOnKeyPress(Scene scene, Paddle paddle) {
+	private void movePaddleOnKeyPress(Scene scene, Player player, Paddle paddle) {
 	    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	      @SuppressWarnings("incomplete-switch")
 		public void handle(KeyEvent event) { //@Override
 	    	  
 
 	    	  //Sets up the paddle movement for players 1 and 3 on the sides
-
-	    	  if (player2.getLives() > 0) {
-	  
-	    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
-	    	  	switch (event.getCode()) {
-	    	  		//case UP:  	if (minY) paddle.paddleMove(-1);
-	    	  		case UP:  	paddle.paddleMove(-1); break;
-	    	  		case DOWN: 	paddle.paddleMove(1); break;
-	    	  	}
-	    	  }//if
-	    	  
-	    	  //Sets up the paddle movement for players 2 and 4
-	    	  else {
-		    	  switch (event.getCode()) {
-		    		  case LEFT:  paddle.paddleMove(-1); break;
-		    		  case RIGHT: paddle.paddleMove(1); break;
-		    	  }
-	    	  }//else  
-	    	  
-	    	  }
-	      }
+	    if(paddle.getControls() == 1){
+	    	  if (player.getLives() > 0) {
+		    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
+		    	  	switch (event.getCode()) {
+		    	  		//case UP:  	if (minY) paddle.paddleMove(-1);
+		    	  		case UP:  	paddle.paddleMove(-1); break;
+		    	  		case DOWN: 	paddle.paddleMove(1); break;
+		    	  	}
+		    	  }//if
+		    	  
+		    	  //Sets up the paddle movement for players 2 and 4
+		    	  else {
+			    	  switch (event.getCode()) {
+			    		  case LEFT:  paddle.paddleMove(-1); break;
+			    		  case RIGHT: paddle.paddleMove(1); break;
+			    	  }
+	    	  }}  
+	    }else{
+	    	  if (player.getLives() > 0) {
+		    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
+		    	  	switch (event.getCode()) {
+		    	  		//case UP:  	if (minY) paddle.paddleMove(-1);
+		    	  		case UP:  	paddle.paddleMove(1); break;
+		    	  		case DOWN: 	paddle.paddleMove(-1); break;
+		    	  	}
+		    	  }//if
+		    	  
+		    	  //Sets up the paddle movement for players 2 and 4
+		    	  else {
+			    	  switch (event.getCode()) {
+			    		  case LEFT:  paddle.paddleMove(1); break;
+			    		  case RIGHT: paddle.paddleMove(-1); break;
+			    	  }
+	    	  }}   
+	    }
+	    }
 	    });
-	  }
+	}
 
 	//Changes the direction of the ball if there is contact
 

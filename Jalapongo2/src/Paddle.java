@@ -15,6 +15,7 @@ public class Paddle {
 	private int PaddleLocY;
 	private int pos;
 	private int speed = 5;
+	private int control = 1; //1=normal, 2=flipped
 
 	public Paddle(int pos){
 		if(pos == 1){ //left
@@ -41,6 +42,14 @@ public class Paddle {
 			this.pos = pos;
 			paddle.setFill(Color.YELLOW);
 		}	
+	}
+	
+	public void setControls(int x){
+		this.control = x;
+	}
+	
+	public int getControls(){
+		return this.control;
 	}
 
 	public int getLength(){

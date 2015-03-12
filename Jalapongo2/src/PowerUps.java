@@ -20,8 +20,13 @@ public class PowerUps {
 			powerUp.setHeight(20);
 	}
 
-	public void flipX(){ //flip player controls
-		
+	public void flipX(Ball ball){ //flip player controls
+		Paddle paddle = ball.getPaddleLastHit();
+		if (paddle.getControls() != 1){
+			paddle.setControls(1);
+		}else{
+			paddle.setControls(2);
+		}
 	}
 	
 	/*

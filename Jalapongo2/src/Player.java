@@ -8,12 +8,11 @@ public class Player{
 	private int lives = 5;
 	private String name;
 	protected Paddle player;
-	protected int position; //added
-	
+	protected int pos; //added
 
 	public Player(int position){
 		player = new Paddle(position);
-		this.position = position;
+		this.pos = position;
 	}
 	
 	public void setName(String name){
@@ -43,7 +42,7 @@ public class Player{
 	
 	//added
 	public int getLoc() {
-		if (position == 1 || position == 3)
+		if (pos == 1 || pos == 3)
 			return (int)player.getPaddle().getY();
 		else
 			return (int)player.getPaddle().getX();
@@ -51,7 +50,7 @@ public class Player{
 	
 	//added
 	public int getPos() {
-		return position;
+		return pos;
 	}
 	
 	
