@@ -1,3 +1,6 @@
+import java.util.Random;
+
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 /**
@@ -5,22 +8,65 @@ import javafx.scene.shape.*;
  * @version 1.0
  * @created 02-Mar-2015 3:19:46 PM
  */
+/*  flip => 1
+ *  multiBall => 2
+ *  addLives => 3
+ *  shield => 4
+ *  largePaddle => 5
+ *  smallPaddle => 6
+ *  addSpeed => 7
+ *  subSpeed => 8
+ *  stall => 9
+ */
 public class PowerUps {
-	
-	private Circle appearance;
-	private int power;
 	private Rectangle powerUp;
 	private int type;
 
+	private Random generator = new Random(System.currentTimeMillis());
+	
 	public PowerUps(){
-		powerUp = new Rectangle();
-			powerUp.setX((int)Math.random()*600 + 50); //Upper Left Corner
-			powerUp.setY((int)Math.random()*600 + 50); //Upper Left Corner
-			powerUp.setWidth(20);
-			powerUp.setHeight(20);
+		powerUp = new Rectangle(20,20);
+			powerUp.setX(generator.nextDouble()*600+200); //Upper Left Corner
+			powerUp.setY(generator.nextDouble()*600+200); //Upper Left Corner
+			type = (int)(Math.random()*9+1);
+			if(type == 1){
+				powerUp.setFill(Color.RED); //flip
+			}
+			if(type == 2){
+				powerUp.setFill(Color.BROWN); //multiball
+			}
+			if(type == 3){
+				powerUp.setFill(Color.ORANGE); //addlives
+			}
+			if(type == 4){
+				powerUp.setFill(Color.PURPLE); //shield
+			}
+			if(type == 5){
+				powerUp.setFill(Color.PINK); //largePaddle
+			}
+			if(type == 6){
+				powerUp.setFill(Color.YELLOW); //smallPaddle
+			}
+			if(type == 7){
+				powerUp.setFill(Color.BLUE); //fast
+			}
+			if(type == 8){
+				powerUp.setFill(Color.GREEN); //slow
+			}	
+			if(type == 9){
+				powerUp.setFill(Color.CYAN); //stall
+			}
+	}
+	
+	public int getType(){
+		return type;
+	}
+	
+	public Rectangle getPowerUp(){
+		return powerUp;
 	}
 
-	public void flipX(Ball ball){ //flip player controls
+	public void flipX(Ball ball){ //flip player controls 
 		Paddle paddle = ball.getPaddleLastHit();
 		if (paddle.getControls() != 1){
 			paddle.setControls(1);
@@ -52,31 +98,25 @@ public class PowerUps {
 	public void largePaddle(Ball ball){ //increase paddle length
 		Paddle paddle = ball.getPaddleLastHit();
 		paddle.setLength(300);
-		try {
-		    Thread.sleep(2000);                 //1000 milliseconds is one second.
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
+		//wait 10 seconds
 		paddle.setLength(150);
 	}
 
 	public void smallPaddle(Ball ball){ //decrease paddle length
 		Paddle paddle = ball.getPaddleLastHit();
 		paddle.setLength(75);
-		try {
-		    Thread.sleep(20000);                 //1000 milliseconds is one second.
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
+		//wait 10 seconds
 		paddle.setLength(150);
 	}
 
-	public void speedAdd(){ //set ball speed higher
-
+	public void speedAdd(Ball ball){ //set ball speed higher
+		ball.setXSpeed((int)ball.getXSpeed() + 2);
+		ball.setYSpeed((int)ball.getYSpeed() + 2);
 	}
 
-	public void speedSub(){ //set ball speed lower
-
+	public void speedSub(Ball ball){ //set ball speed lower
+		ball.setXSpeed((int)ball.getXSpeed() - 2);
+		ball.setYSpeed((int)ball.getYSpeed() - 2);
 	}
 
 	public void stall(Ball ball){ //set paddle speed = 0
@@ -84,11 +124,7 @@ public class PowerUps {
 		if (paddle.getControls() !=0){
 			paddle.setControls(0);
 		}
-		try {
-		    Thread.sleep(2000);                 //1000 milliseconds is one second.
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
+		// wait 2 seconds
 		paddle.setControls(1);
 	}
 }//end Power-Ups

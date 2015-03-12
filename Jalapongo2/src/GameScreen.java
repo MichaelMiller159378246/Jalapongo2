@@ -23,6 +23,11 @@ public class GameScreen {
 	Pane gamePane = new Pane();
 	Scene gameScene = new Scene(gamePane, paneWH, paneWH);
 	
+	//Power Ups
+	PowerUps powerUp1, powerUp2, powerUp3;
+	PowerUps powerUp4 = new PowerUps();
+	PowerUps powerUp5 = new PowerUps();
+	
 	//Ball
 	Ball gameBall = new Ball();
 	
@@ -64,12 +69,13 @@ public class GameScreen {
 		rect6.setX(paneWH-rectW); 	rect6.setY(paneWH-rectH);
 		rect7.setX(paneWH-rectH); 	rect7.setY(paneWH-rectW);
 		rect8.setX(paneWH-rectH); 	rect8.setY(0);
-		
+
 		
 		//----------------------------
 		//Add shapes		
 		gamePane.getChildren().addAll(paddle1.getPaddle(), paddle2.getPaddle(),
-									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall());
+									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall(),
+									  powerUp4.getPowerUp(), powerUp5.getPowerUp());
 		
 		//Moves the paddles, can only used one at a time
 		//movePaddleOnKeyPress(gameScene, player1 paddle1);
@@ -77,7 +83,34 @@ public class GameScreen {
 		//movePaddleOnKeyPress(gameScene, player3, paddle3);
 		//movePaddleOnKeyPress(gameScene, player4, paddle4);
 		
+		
+		
 }
+	private void generatePowerUp(){
+		while (true){
+			int i = 1;
+			if(i%5 == 0){
+				powerUp1 = new PowerUps();
+			}
+			if(i%5 == 1){
+				powerUp2 = new PowerUps();
+			}
+			if(i%5 == 2){
+				powerUp3 = new PowerUps();
+			}
+			if(i%5 == 3){
+				powerUp4 = new PowerUps();
+			}
+			if(i%5 == 4){
+				powerUp5 = new PowerUps();
+			}
+			i++;
+		}
+	}
+	
+	private void checkBallHitPowerUp(){
+		
+	}
 	
 	//Method to test paddle movement
 	private void movePaddleOnKeyPress(Scene scene, Player player, Paddle paddle) {
@@ -104,7 +137,8 @@ public class GameScreen {
 			    		  case RIGHT: paddle.paddleMove(1); break;
 			    	  }
 	    	  }}  
-	    }else{
+	    }
+	    if(paddle.getControls() == 2){
 	    	  if (player.getLives() > 0) {
 		    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
 		    	  	switch (event.getCode()) {
@@ -121,7 +155,25 @@ public class GameScreen {
 			    		  case RIGHT: paddle.paddleMove(-1); break;
 			    	  }
 	    	  }}   
+	    }else{
+	    	  if (player.getLives() > 0) {
+		    	  if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
+		    	  	switch (event.getCode()) {
+		    	  		//case UP:  	if (minY) paddle.paddleMove(-1);
+		    	  		case UP:  	paddle.paddleMove(0); break;
+		    	  		case DOWN: 	paddle.paddleMove(0); break;
+		    	  	}
+		    	  }//if
+		    	  
+		    	  //Sets up the paddle movement for players 2 and 4
+		    	  else {
+			    	  switch (event.getCode()) {
+			    		  case LEFT:  paddle.paddleMove(0); break;
+			    		  case RIGHT: paddle.paddleMove(0); break;
+			    	  }
+	    	  }}   
 	    }
+	    
 	    }
 	    });
 	}

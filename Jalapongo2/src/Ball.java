@@ -33,7 +33,7 @@ public class Ball {
 	}
 	
 	public int setStartSpeed(){
-		return (int)(Math.random()*6 + 5);
+		return (int)(Math.random()*3 + 5);
 	}
 
 	public Paddle getPaddleLastHit(){
