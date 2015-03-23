@@ -55,11 +55,12 @@ public class Paddle {
 	}
 	
 	public int getLength(){
-		if(pos == 1 || pos == 3){
-			return paddle12H;
-		}else{
-			return paddle12W;
-		}
+		//if(pos == 1 || pos == 3){ //TODO do we need this?
+		//	return paddle12H;
+		//}else{
+		//	return paddle12W;
+		//}
+		return paddle12H;
 	}
 	
 	public void setControls(int x){
