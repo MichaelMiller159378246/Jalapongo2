@@ -124,8 +124,48 @@ public class GameScreen {
 		    			}
 	}
 	
-	private void checkBallHitPowerUp(){
-		
+	private void powerUpHit(PowerUps powerup){
+		int type = powerup.getType();
+		/*  flip => 1
+		 *  multiBall => 2
+		 *  addLives => 3
+		 *  shield => 4
+		 *  largePaddle => 5
+		 *  smallPaddle => 6
+		 *  addSpeed => 7
+		 *  subSpeed => 8
+		 *  stall => 9
+		 */
+		switch (type){
+			case 1: 
+				PowerUps.flip(gameBall);
+				break;
+			case 2: 
+				//PowerUps.multiBall(gameBall);
+				break;
+			case 3: 
+				//PowerUps.addLives(gameBall);
+				break;
+			case 4: 
+				//PowerUps.shield(gameBall);
+				break; 
+			case 5: 
+				PowerUps.largePaddle(gameBall);
+				break;
+			case 6: 
+				PowerUps.smallPaddle(gameBall);
+				break;
+			case 7: 
+				PowerUps.subSpeed(gameBall);
+				break;
+			case 8: 
+				PowerUps.addSpeed(gameBall);
+				break;
+			case 9: 
+				PowerUps.stall(gameBall);
+				break;
+		}
+				
 	}
 	
 	//Method to test paddle movement
@@ -312,35 +352,40 @@ public class GameScreen {
 				
 				|| gameBall.getXLoc() + 20 >= powerUp1.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp1.getPowerUp().getX() + 20 
 				&& gameBall.getYLoc() + 20 >= powerUp1.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp1.getPowerUp().getY() + 20)
-				{System.out.println("power up 1 hit"); gamePane.getChildren().remove(powerUp1.getPowerUp());}	
+				{System.out.println("power up 1 hit"); gamePane.getChildren().remove(powerUp1.getPowerUp());
+				powerUpHit(powerUp1);}	
 			
 			if (   gameBall.getXLoc() >= powerUp2.getPowerUp().getX() && gameBall.getXLoc() <= powerUp2.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() >= powerUp2.getPowerUp().getY() && gameBall.getYLoc() <= powerUp2.getPowerUp().getY() + 20
 				
 				|| gameBall.getXLoc() + 20 >= powerUp2.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp2.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() + 20 >= powerUp2.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp2.getPowerUp().getY() + 20)
-				{System.out.println("power up 2 hit"); gamePane.getChildren().remove(powerUp2.getPowerUp());}
+				{System.out.println("power up 2 hit"); gamePane.getChildren().remove(powerUp2.getPowerUp());
+				powerUpHit(powerUp2);}
 			
 			if (   gameBall.getXLoc() >= powerUp3.getPowerUp().getX() && gameBall.getXLoc() <= powerUp3.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() >= powerUp3.getPowerUp().getY() && gameBall.getYLoc() <= powerUp3.getPowerUp().getY() + 20
 				
 				|| gameBall.getXLoc() + 20 >= powerUp3.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp3.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() + 20 >= powerUp3.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp3.getPowerUp().getY() + 20)
-				{System.out.println("power up 3 hit"); gamePane.getChildren().remove(powerUp3.getPowerUp());}
+				{System.out.println("power up 3 hit"); gamePane.getChildren().remove(powerUp3.getPowerUp());
+				powerUpHit(powerUp3);}
 			
 			if (   gameBall.getXLoc() >= powerUp4.getPowerUp().getX() && gameBall.getXLoc() <= powerUp4.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() >= powerUp4.getPowerUp().getY() && gameBall.getYLoc() <= powerUp4.getPowerUp().getY() + 20
 				
 				|| gameBall.getXLoc() + 20 >= powerUp4.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp4.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() + 20 >= powerUp4.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp4.getPowerUp().getY() + 20)
-				{System.out.println("power up 4 hit"); gamePane.getChildren().remove(powerUp4.getPowerUp());}	
+				{System.out.println("power up 4 hit"); gamePane.getChildren().remove(powerUp4.getPowerUp());
+				powerUpHit(powerUp4);}	
 			
 			if (   gameBall.getXLoc() >= powerUp5.getPowerUp().getX() && gameBall.getXLoc() <= powerUp5.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() >= powerUp5.getPowerUp().getY() && gameBall.getYLoc() <= powerUp5.getPowerUp().getY() + 20
 				
 				|| gameBall.getXLoc() + 20 >= powerUp5.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp5.getPowerUp().getX() + 20
 				&& gameBall.getYLoc() + 20 >= powerUp5.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp5.getPowerUp().getY() + 20)
-				{System.out.println("power up 5 hit"); gamePane.getChildren().remove(powerUp5.getPowerUp());}
+				{System.out.println("power up 5 hit"); gamePane.getChildren().remove(powerUp5.getPowerUp());
+				powerUpHit(powerUp5);}
 		} catch (Exception e){}
 	}
 	
