@@ -27,9 +27,7 @@ public class GameScreen {
 	Scene gameScene = new Scene(gamePane, paneWH, paneWH);
 	
 	//Power Ups
-	PowerUps powerUp1, powerUp2, powerUp3;
-	PowerUps powerUp4 = new PowerUps();
-	PowerUps powerUp5 = new PowerUps();
+	PowerUps powerUp1, powerUp2, powerUp3, powerUp4, powerUp5;
 	
 	//Ball
 	Ball gameBall = new Ball();
@@ -77,8 +75,7 @@ public class GameScreen {
 		//----------------------------
 		//Add shapes		
 		gamePane.getChildren().addAll(paddle1.getPaddle(), paddle2.getPaddle(),
-									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall()
-									  /*powerUp4.getPowerUp(), powerUp5.getPowerUp()*/);
+									  paddle3.getPaddle(), paddle4.getPaddle(), gameBall.getBall());
 		
 		//Moves the paddles, can only used one at a time
 		//movePaddleOnKeyPress(gameScene, player1 paddle1);
@@ -257,6 +254,7 @@ public class GameScreen {
 		checkCollisionWith2();
 		checkCollisionWith3();
 		checkCollisionWith4();
+		checkCollisionWithPowerUp();
 	}
 	
 	
@@ -307,6 +305,44 @@ public class GameScreen {
 			}
 	}
 	
+	private void checkCollisionWithPowerUp() {
+        try {
+			if (   gameBall.getXLoc() >= powerUp1.getPowerUp().getX() && gameBall.getXLoc() <= powerUp1.getPowerUp().getX() + 20 
+				&& gameBall.getYLoc() >= powerUp1.getPowerUp().getY() && gameBall.getYLoc() <= powerUp1.getPowerUp().getY() + 20
+				
+				|| gameBall.getXLoc() + 20 >= powerUp1.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp1.getPowerUp().getX() + 20 
+				&& gameBall.getYLoc() + 20 >= powerUp1.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp1.getPowerUp().getY() + 20)
+				{System.out.println("power up 1 hit"); gamePane.getChildren().remove(powerUp1.getPowerUp());}	
+			
+			if (   gameBall.getXLoc() >= powerUp2.getPowerUp().getX() && gameBall.getXLoc() <= powerUp2.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() >= powerUp2.getPowerUp().getY() && gameBall.getYLoc() <= powerUp2.getPowerUp().getY() + 20
+				
+				|| gameBall.getXLoc() + 20 >= powerUp2.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp2.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() + 20 >= powerUp2.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp2.getPowerUp().getY() + 20)
+				{System.out.println("power up 2 hit"); gamePane.getChildren().remove(powerUp2.getPowerUp());}
+			
+			if (   gameBall.getXLoc() >= powerUp3.getPowerUp().getX() && gameBall.getXLoc() <= powerUp3.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() >= powerUp3.getPowerUp().getY() && gameBall.getYLoc() <= powerUp3.getPowerUp().getY() + 20
+				
+				|| gameBall.getXLoc() + 20 >= powerUp3.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp3.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() + 20 >= powerUp3.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp3.getPowerUp().getY() + 20)
+				{System.out.println("power up 3 hit"); gamePane.getChildren().remove(powerUp3.getPowerUp());}
+			
+			if (   gameBall.getXLoc() >= powerUp4.getPowerUp().getX() && gameBall.getXLoc() <= powerUp4.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() >= powerUp4.getPowerUp().getY() && gameBall.getYLoc() <= powerUp4.getPowerUp().getY() + 20
+				
+				|| gameBall.getXLoc() + 20 >= powerUp4.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp4.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() + 20 >= powerUp4.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp4.getPowerUp().getY() + 20)
+				{System.out.println("power up 4 hit"); gamePane.getChildren().remove(powerUp4.getPowerUp());}	
+			
+			if (   gameBall.getXLoc() >= powerUp5.getPowerUp().getX() && gameBall.getXLoc() <= powerUp5.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() >= powerUp5.getPowerUp().getY() && gameBall.getYLoc() <= powerUp5.getPowerUp().getY() + 20
+				
+				|| gameBall.getXLoc() + 20 >= powerUp5.getPowerUp().getX() && gameBall.getXLoc() + 20 <= powerUp5.getPowerUp().getX() + 20
+				&& gameBall.getYLoc() + 20 >= powerUp5.getPowerUp().getY() && gameBall.getYLoc() + 20 <= powerUp5.getPowerUp().getY() + 20)
+				{System.out.println("power up 5 hit"); gamePane.getChildren().remove(powerUp5.getPowerUp());}
+		} catch (Exception e){}
+	}
 	
 	//Continuously update the game screen to keep the ball moving
 
