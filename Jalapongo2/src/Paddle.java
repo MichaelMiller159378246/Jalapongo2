@@ -10,7 +10,7 @@ import javafx.scene.shape.*;
 public class Paddle {
 
 	private Rectangle paddle;
-	//private Line Paddle;
+	private int lives = 5; //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
@@ -44,6 +44,22 @@ public class Paddle {
 			this.pos = pos;
 			paddle.setFill(Color.YELLOW);
 		}	
+	}
+	
+	public void setLives(int lives){
+		this.lives = lives;
+	}
+	
+	public int getLives(){
+		return lives;
+	}
+	
+	public void scoredOn(){
+		lives -= 1;
+	}
+	
+	public void addLife(){
+		lives += 1;
 	}
 	
 	public void setLength(int x){

@@ -5,13 +5,12 @@
  */
 public class Player{
 
-	private int lives = 5;
 	private String name;
-	protected Paddle player;
+	protected Paddle paddle;
 	protected int pos; //added
 
 	public Player(int position){
-		player = new Paddle(position);
+		paddle = new Paddle(position);
 		this.pos = position;
 	}
 	
@@ -23,33 +22,17 @@ public class Player{
 		return name;
 	}
 	
-	public void setLives(int lives){
-		this.lives = lives;
-	}
-	
-	public int getLives(){
-		return lives;
-	}
-	
-	public void scoredOn(){
-		lives -= 1;
-	}
-	
-	public void addLife(){
-		lives += 1;
-	}
-	
 	//added
 	public Paddle getPaddle() {
-		return player;
+		return paddle;
 	}
 	
 	//added
 	public int getLoc() {
 		if (pos == 1 || pos == 3)
-			return (int)player.getPaddle().getY();
+			return (int)paddle.getPaddle().getY();
 		else
-			return (int)player.getPaddle().getX();
+			return (int)paddle.getPaddle().getX();
 	}
 	
 	//added

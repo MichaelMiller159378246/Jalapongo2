@@ -8,19 +8,19 @@ public class AI extends Player{
 	}
 	
 	public void moveAI(Ball ball) {
-		if (getLives() > 0) {
+		if (paddle.getLives() > 0) {
 		
 		if (this.pos == 1 || this.pos == 3) {
 			if ((ball.getYLoc() - this.getPaddle().getLength()/2) > this.getLoc())
-				player.paddleMove(1);
+				paddle.paddleMove(1);
 			else
-				player.paddleMove(-1);
+				paddle.paddleMove(-1);
 		}
 		else {
 			if ((ball.getXLoc() - this.getPaddle().getLength()/2) > this.getLoc())
-				player.paddleMove(1);
+				paddle.paddleMove(1);
 			else
-				player.paddleMove(-1);
+				paddle.paddleMove(-1);
 		}
 	}
 		

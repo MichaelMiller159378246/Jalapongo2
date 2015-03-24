@@ -1,4 +1,3 @@
-//Jon changed this for the class quiz on March 9
 import java.util.Random;
 
 import javafx.scene.paint.Color;
@@ -20,11 +19,9 @@ public class Ball {
 	private int size = 20;
 
 	public Ball(){
-		ball = new Rectangle(20,20);
+		ball = new Rectangle(size, size);
 		ball.setX(setStartLoc());
 		ball.setY(setStartLoc());
-		ball.setWidth(size);
-		ball.setHeight(size);
 		randomizeDirection();
 	}
 
@@ -132,5 +129,9 @@ public class Ball {
 		//make y-direction random
 		if (randY)
 			ySpeed = -ySpeed;
+	}
+
+	public int getSize() {
+		return this.size;
 	}
 }//end Ball
