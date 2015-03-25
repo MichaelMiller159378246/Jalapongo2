@@ -479,14 +479,10 @@ public class GameScreen {
 	private void playerOut(Player player) {
 		if (player.getPaddle().getLives() < 1) {
 			player.getPaddle().setLength(paneWH);
-			if (player.getPos() == 1 || player.getPos() == 3) {
+			if (player.getPos() == 1 || player.getPos() == 3)
 				player.getPaddle().getPaddle().setY(0);
-				player.getPaddle().getPaddle().setHeight(paneWH);
-			}
-			else {
+			else
 				player.getPaddle().getPaddle().setX(0);
-				player.getPaddle().getPaddle().setWidth(paneWH);
-			}
 			System.out.println("Player " + player.getPos() + " is out");
 		}
 	}
