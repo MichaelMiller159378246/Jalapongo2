@@ -40,8 +40,5 @@ public class Player{
 		return pos;
 	}
 	
-	public Player getPlayer(){
-		return this;
-	}
 	
 }//end Player
