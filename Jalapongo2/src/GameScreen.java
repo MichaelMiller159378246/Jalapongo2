@@ -314,6 +314,7 @@ public class GameScreen {
 			if ( mainBall.getXLoc() < (rectH) &&
 					(mainBall.getXSpeed() < 0) ) {
 				mainBall.reverseX();
+				mainBall.setPaddleLastHit(paddle1);
 				System.out.println("1 hit");
 			}
 	}
@@ -325,6 +326,7 @@ public class GameScreen {
 			if ( (mainBall.getYLoc() > (paneWH - (20 + rectH))) &&
 					(mainBall.getYSpeed() > 0) ) {
 				mainBall.reverseY();
+				mainBall.setPaddleLastHit(paddle2);
 				System.out.println("2 hit");
 			}
 	}
@@ -336,6 +338,7 @@ public class GameScreen {
 			if ( mainBall.getXLoc() > (paneWH - (20 + rectH)) &&
 					(mainBall.getXSpeed() > 0) ) {
 				mainBall.reverseX();
+				mainBall.setPaddleLastHit(paddle3);
 				System.out.println("3 hit");
 			}
 	}
@@ -347,6 +350,7 @@ public class GameScreen {
 			if ( mainBall.getYLoc() < (rectH) &&
 					(mainBall.getYSpeed() < 0) ) {
 				mainBall.reverseY();
+				mainBall.setPaddleLastHit(paddle4);
 				System.out.println("4 hit");
 			}
 	}
@@ -460,6 +464,7 @@ public class GameScreen {
 						e.printStackTrace();
 					}
 			          player1.moveAI(mainBall);
+			          //player2.moveAI(mainBall);
 			          player3.moveAI(mainBall);
 			          player4.moveAI(mainBall);
 			          if (count%100 == 1){
