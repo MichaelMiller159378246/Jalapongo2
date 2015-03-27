@@ -5,6 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.net.URL;
 
 public class GameScreen {
 
@@ -43,6 +47,9 @@ public class GameScreen {
 	Paddle paddle2 = player2.getPaddle();
 	Paddle paddle3 = player3.getPaddle();
 	Paddle paddle4 = player4.getPaddle();	
+	
+	//Music
+	String song = "Song.mp3";
 
 	
 	public GameScreen() {
@@ -60,6 +67,13 @@ public class GameScreen {
 		//Get the rectangles and add them to the screen
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
 		
+		
+		//Add song to GameScreen
+		URL resource = getClass().getResource(song);
+		Media media = new Media(resource.toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		mediaPlayer.play();
 		
 		//Set the location of all the rectangles to their respective corners
 		rect1.setX(paneWH-rectW); 	rect1.setY(0);
