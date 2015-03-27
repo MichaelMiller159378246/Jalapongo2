@@ -51,18 +51,17 @@ public class GameScreen {
 	//Music
 	String song = "Song2.mp3";
 
-	
-	public GameScreen() {
+	//Make the Rectangles that make up the corners of the game screen
+	Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
+	Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
+	Rectangle rect3 = new Rectangle(rectH, rectW); //0, 10 
+	Rectangle rect4 = new Rectangle(rectH, rectW); //0, 650
+	Rectangle rect5 = new Rectangle(rectW, rectH); //10, 650
+	Rectangle rect6 = new Rectangle(rectW, rectH); //650, 690
+	Rectangle rect7 = new Rectangle(rectH, rectW); //690, 650
+	Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
 		
-		//Make the Rectangles that make up the corners of the game screen
-		Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
-		Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
-		Rectangle rect3 = new Rectangle(rectH, rectW); //0, 10 
-		Rectangle rect4 = new Rectangle(rectH, rectW); //0, 650
-		Rectangle rect5 = new Rectangle(rectW, rectH); //10, 650
-		Rectangle rect6 = new Rectangle(rectW, rectH); //650, 690
-		Rectangle rect7 = new Rectangle(rectH, rectW); //690, 650
-		Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
+	public GameScreen() {
 		
 		//Get the rectangles and add them to the screen
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
@@ -250,21 +249,21 @@ public class GameScreen {
 		int y = mainBall.getYLoc();
 		
 		//Reverse direction if the ball hits a corner
-		if (x > (paneWH - rectH - 20) 
-				&& (y > (paneWH - rectW - 20) || y < rectW ) 
-				&& mainBall.getXSpeed() > 0) //right side
+		//Right Side
+		if (x + 20 > (paneWH-rectH) && (mainBall.getXSpeed() > 0) &&
+				(y < rect8.getHeight() || y > rect7.getY()))
 			mainBall.reverseX();
-		if (x < rectH
-				&& (y > (paneWH - rectW - 20) || y < rectW ) 
-				&& mainBall.getXSpeed() < 0) //left side
+		//Left Side
+		if (x < rectH && (mainBall.getXSpeed() < 0) &&
+				(y < rect3.getHeight() || y > rect4.getY()))
 			mainBall.reverseX();
-		if (y > (paneWH - rectH - 20)
-				&& (x > (paneWH - rectW - 20) || x < rectW )
-				&& mainBall.getYSpeed() > 0) //bottom
+		//Bottom
+		if (y + 20 > (paneWH-rectH) && (mainBall.getYSpeed() > 0) &&
+				(x < rect5.getWidth() || x > rect6.getX()))
 			mainBall.reverseY();
-		if (y < rectH
-				&& (x > (paneWH - rectW - 20) || x < rectW )
-				&& mainBall.getYSpeed() < 0) //top
+		//Top
+		if (y < (rectH) && (mainBall.getXSpeed() < 0) &&
+				(x < rect2.getWidth() || x > rect1.getX()))
 			mainBall.reverseY();
 		
 		//Life Lost if Ball Passes Player's Paddle and hits their wall
@@ -493,13 +492,21 @@ public class GameScreen {
 	private void playerOut(Player player) {
 		if (player.getPaddle().getLives() < 1) {
 			player.getPaddle().setLength(paneWH);
-			if (player.getPos() == 1 || player.getPos() == 3) {
-				player.getPaddle().getPaddle().setY(0);
-				player.getPaddle().getPaddle().setHeight(paneWH);
+			if (player.getPos() == 1) {
+				gamePane.getChildren().remove(paddle1.getPaddle());
+				rect3.setHeight(paneWH);
+			}
+			else if (player.getPos() == 3) {
+				gamePane.getChildren().remove(paddle3.getPaddle());
+				rect8.setHeight(paneWH);
+			}
+			else if (player.getPos() == 2) {
+				gamePane.getChildren().remove(paddle2.getPaddle());
+				rect5.setWidth(paneWH);
 			}
 			else {
-				player.getPaddle().getPaddle().setX(0);
-				player.getPaddle().getPaddle().setWidth(paneWH);
+				gamePane.getChildren().remove(paddle4.getPaddle());
+				rect2.setWidth(paneWH);
 			}
 			System.out.println("Player " + player.getPos() + " is out");
 		}
