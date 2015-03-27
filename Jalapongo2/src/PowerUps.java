@@ -169,7 +169,7 @@ public class PowerUps {
 		System.out.println("larger paddle");
 		Paddle paddle = ball.getPaddleLastHit();
 		if(paddle.getPos() == 1 || paddle.getPos() == 3){ //left
-			paddle.getPaddle().setWidth(300);
+			paddle.getPaddle().setHeight(300);
 		}
 		else{											 //bottom
 			paddle.getPaddle().setWidth(300);
@@ -181,7 +181,7 @@ public class PowerUps {
 		System.out.println("smaller paddle");
 		Paddle paddle = ball.getPaddleLastHit();
 		if(paddle.getPos() == 1 || paddle.getPos() == 3){ //left
-			paddle.getPaddle().setWidth(75);
+			paddle.getPaddle().setHeight(75);
 		}
 		else{ 											 //bottom
 			paddle.getPaddle().setWidth(75);

@@ -310,8 +310,8 @@ public class GameScreen {
 
 	private void checkCollisionWith1() {
 		if ( (mainBall.getYLoc() + 20 > paddle1.getPaddle().getY())
-				&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getLength()) )
-			if ( mainBall.getXLoc() < (rectH) &&
+				&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) )
+			if ( mainBall.getXLoc() < (paddle1.getPaddle().getWidth()) &&
 					(mainBall.getXSpeed() < 0) ) {
 				mainBall.reverseX();
 				mainBall.setPaddleLastHit(paddle1);
@@ -322,8 +322,8 @@ public class GameScreen {
 	//If ball collides with paddle2, reverse y direction
 	private void checkCollisionWith2() {
 		if ( (mainBall.getXLoc() + 20 > paddle2.getPaddle().getX()) 
-				&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getLength()) )
-			if ( (mainBall.getYLoc() > (paneWH - (20 + rectH))) &&
+				&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) )
+			if ( (mainBall.getYLoc() > (paneWH - (20 + paddle2.getPaddle().getHeight()))) &&
 					(mainBall.getYSpeed() > 0) ) {
 				mainBall.reverseY();
 				mainBall.setPaddleLastHit(paddle2);
@@ -334,8 +334,8 @@ public class GameScreen {
 	//If ball collides with paddle3, reverse x direction
 	private void checkCollisionWith3() {
 		if ( (mainBall.getYLoc() + 20 > paddle3.getPaddle().getY()) 
-				&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getLength()) )
-			if ( mainBall.getXLoc() > (paneWH - (20 + rectH)) &&
+				&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) )
+			if ( mainBall.getXLoc() > (paneWH - (20 + paddle3.getPaddle().getWidth())) &&
 					(mainBall.getXSpeed() > 0) ) {
 				mainBall.reverseX();
 				mainBall.setPaddleLastHit(paddle3);
@@ -346,8 +346,8 @@ public class GameScreen {
 	//If ball collides with paddle4, reverse y direction
 	private void checkCollisionWith4() {
 		if ( (mainBall.getXLoc() + 20 > paddle4.getPaddle().getX())
-				&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getLength()) )
-			if ( mainBall.getYLoc() < (rectH) &&
+				&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) )
+			if ( mainBall.getYLoc() < (paddle2.getPaddle().getHeight()) &&
 					(mainBall.getYSpeed() < 0) ) {
 				mainBall.reverseY();
 				mainBall.setPaddleLastHit(paddle4);
