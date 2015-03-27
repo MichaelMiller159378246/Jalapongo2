@@ -90,9 +90,10 @@ public class Paddle {
 	public void paddleMove(int direction){
 
 		int min = GameScreen.min();
-		int max = GameScreen.max() - getLength();
+		int max;
 		
 		if(pos == 1 || pos == 3) {
+			max = GameScreen.max() - (int)paddle.getHeight();
 			paddle.setY(paddle.getY() + direction*speed);
 			if (paddle.getY() > max)
 				paddle.setY(max);
@@ -100,6 +101,7 @@ public class Paddle {
 				paddle.setY(min);
 		}
 		else {
+			max = GameScreen.max() - (int)paddle.getWidth();
 			paddle.setX(paddle.getX() + direction*speed);
 			if (paddle.getX() > max)
 				paddle.setX(max);
