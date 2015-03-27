@@ -87,6 +87,9 @@ public class Host extends Thread{
 				
 				out.println("NAMEACCEPTED"); // Sets the message to send to the client to "NAMEACCEPTED"
 				writers.add(out); // Tells the client that the name was accepted
+				for (PrintWriter writer : writers){ // Adds writer to the types of writes
+					writer.println("MESSAGE " + name + ": " + names.toString()); // Takes the message from the client and displays it on the screen
+				}
 
 				// Listens for the client and displays messages
 				while(true){

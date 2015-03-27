@@ -330,7 +330,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 
 	//method to transfer values to client class
 	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName){
-		Client clientObject = new Client(portNumber,IP,uName);
+		Thread Client = new Thread(new Client(portNumber,IP,uName));
+		Client.start();
 		primaryStage.setScene(scene);
 	}
 	
