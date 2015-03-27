@@ -49,8 +49,8 @@ public class GameScreen {
 	Paddle paddle4 = player4.getPaddle();	
 	
 	//Music
-	String song = "Song.mp3";
-	String song2 = "Song2.mp3";
+	String song = "Song2.mp3";
+
 	
 	public GameScreen() {
 		
@@ -72,14 +72,9 @@ public class GameScreen {
 		URL resource = getClass().getResource(song);
 		Media media = new Media(resource.toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.play();
-		mediaPlayer.getCycleDuration();
-/**		resource = getClass().getResource(song2);
-		media = new Media(resource.toString());
-		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
-*/
+		
 		//Set the location of all the rectangles to their respective corners
 		rect1.setX(paneWH-rectW); 	rect1.setY(0);
 		rect2.setX(0); 				rect2.setY(0);
