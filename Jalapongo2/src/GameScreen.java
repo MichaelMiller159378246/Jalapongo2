@@ -49,7 +49,7 @@ public class GameScreen {
 	Paddle paddle4 = player4.getPaddle();	
 	
 	//Music
-	String song = "Song2.mp3";
+	String song = "pongSong.mp3";
 
 	//Make the Rectangles that make up the corners of the game screen
 	Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
