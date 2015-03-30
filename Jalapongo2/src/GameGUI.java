@@ -2,6 +2,8 @@
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections; // Imports FXCollections
 import javafx.collections.ObservableList; // Imports ObservableList
 import javafx.event.EventHandler; // Imports EventHandlers
@@ -73,6 +75,9 @@ public class GameGUI extends Application {
 		VBox optionsVBox = new VBox();
 		HBox optionsHBox = new HBox();
 		Scene optionsScene = new Scene(optionsBP,sceneWH,sceneWH);
+		songPlayer.play();
+
+		
 		
 		//Create checkboxes
 		CheckBox soundfxCB = new CheckBox("Sound Effects");
@@ -311,7 +316,18 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		//Options Menu Scene Events
 		backBOS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
+			//toggle music
 		
+		musicCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
+		    @Override
+		    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if (musicCB.isSelected()==true)
+					songPlayer.play();
+				else
+					songPlayer.stop();	
+		    }
+		});
+
 		
 		//Choice Menu Scene Events
 		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses host the scene changes to the host menu scene 
