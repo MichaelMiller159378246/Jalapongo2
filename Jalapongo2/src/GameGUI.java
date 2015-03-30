@@ -1,4 +1,6 @@
 // Imports
+import java.net.URL;
+
 import javafx.application.Application; // Imports Application
 import javafx.collections.FXCollections; // Imports FXCollections
 import javafx.collections.ObservableList; // Imports ObservableList
@@ -15,10 +17,15 @@ import javafx.scene.input.MouseEvent; // Imports MouseEvent
 import javafx.scene.layout.BorderPane; // Imports BorderPane
 import javafx.scene.layout.HBox; // Imports HBox
 import javafx.scene.layout.VBox; // Imports VBox
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font; // Imports Font
 import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.net.URL;
 
 public class GameGUI extends Application {
 	
@@ -50,6 +57,17 @@ public class GameGUI extends Application {
 		
 //*******************************************************************************
 		
+		//Music
+		String song = "pongSong.mp3";
+		
+		//Add song to GameScreen
+		URL resource = getClass().getResource(song);
+		Media media = new Media(resource.toString());
+		MediaPlayer songPlayer = new MediaPlayer(media);
+		songPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		songPlayer.play();
+		
+		
 		//Options Menu
 		BorderPane optionsBP = new BorderPane();
 		VBox optionsVBox = new VBox();
@@ -70,13 +88,16 @@ public class GameGUI extends Application {
 		
 		//Preset check box for music and sound effects
 		musicCB.setIndeterminate(false);
-		musicCB.fire();
+		musicCB.setSelected(true);
 		soundfxCB.setIndeterminate(false);
-		soundfxCB.fire();
+		soundfxCB.setSelected(true);
+		
 		
 		//Add button to VBox
 		optionsHBox.getChildren().addAll(backBOS);
 		optionsHBox.setAlignment(Pos.CENTER);
+		
+	
 		
 		//Set VBox in BorderPane
 		optionsBP.setCenter(optionsVBox);
@@ -291,6 +312,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		//Options Menu Scene Events
 		backBOS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
 		
+		
 		//Choice Menu Scene Events
 		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses host the scene changes to the host menu scene 
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene)); // If the user presses join the scene changes to the join menu scene 
@@ -353,5 +375,10 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		GameGUI.launch(args); // Launches the game
 	}
 	
+	public void setMusic(){
+		
+		
+		
+	}
 	
 }//end Game GUI
