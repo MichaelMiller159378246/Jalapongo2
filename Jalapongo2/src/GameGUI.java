@@ -68,6 +68,12 @@ public class GameGUI extends Application {
 		optionsVBox.setAlignment(Pos.CENTER);
 		optionsVBox.setSpacing(50);
 		
+		//Preset check box for music and sound effects
+		musicCB.setIndeterminate(false);
+		musicCB.fire();
+		soundfxCB.setIndeterminate(false);
+		soundfxCB.fire();
+		
 		//Add button to VBox
 		optionsHBox.getChildren().addAll(backBOS);
 		optionsHBox.setAlignment(Pos.CENTER);
