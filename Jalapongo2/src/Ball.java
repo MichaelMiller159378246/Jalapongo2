@@ -1,9 +1,11 @@
+import java.net.URL;
 import java.util.Random;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-
 
 /**
  * @author Mike
@@ -18,6 +20,13 @@ public class Ball {
 	private int ySpeed;
 	private int size = 20;
 
+	//Sounds
+	String bounce = "Bounce.wav";
+	URL resource = getClass().getResource(bounce);
+	Media media = new Media(resource.toString());
+	
+
+	
 	public Ball(){
 		ball = new Rectangle(size, size);
 		ball.setX(setStartLoc());
@@ -91,10 +100,16 @@ public class Ball {
 	
 	public void reverseX() {
 		xSpeed = -xSpeed;
+		MediaPlayer bouncePlayer = new MediaPlayer(media);	
+		bouncePlayer.play();
+		
 	}
-	
+
 	public void reverseY() {
 		ySpeed = -ySpeed;
+		MediaPlayer bouncePlayer = new MediaPlayer(media);	
+		bouncePlayer.play();
+		
 	}
 	
 	public void restart() {

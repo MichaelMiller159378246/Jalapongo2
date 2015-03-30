@@ -65,7 +65,7 @@ public class GameGUI extends Application {
 		Media media = new Media(resource.toString());
 		MediaPlayer songPlayer = new MediaPlayer(media);
 		songPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		songPlayer.play();
+		//songPlayer.play();
 		
 		
 		//Options Menu
