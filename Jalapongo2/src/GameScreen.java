@@ -324,9 +324,18 @@ public class GameScreen {
 				//System.out.println("1 hit");
 				if(mainBall.getYSpeed() <= 0){
 					if((mainBall.getYLoc() + mainBall.getSize() > paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
-						&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) ){
+						&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) ){
 					mainBall.reverseY();
 					//System.out.println("2 reverse");
+					mainBall.setXSpeed(mainBall.getXSpeed() - 1);
+					}
+				}
+				if(mainBall.getYSpeed() >= 0){
+					if((mainBall.getYLoc() + mainBall.getSize() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
+						&& (mainBall.getYLoc() > paddle1.getPaddle().getY()) ){
+					mainBall.reverseY();
+					//System.out.println("3 reverse");
+					mainBall.setXSpeed(mainBall.getXSpeed() - 1);
 					}
 				}
 			}
@@ -346,6 +355,7 @@ public class GameScreen {
 						&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) ){
 					mainBall.reverseX();
 					//System.out.println("2 reverse");
+					mainBall.setYSpeed(mainBall.getYSpeed() - 1);
 					}
 				}
 				if(mainBall.getXSpeed() >= 0){
@@ -353,6 +363,7 @@ public class GameScreen {
 						&& (mainBall.getXLoc() > paddle2.getPaddle().getX()) ){
 					mainBall.reverseX();
 					//System.out.println("2 reverse");
+					mainBall.setYSpeed(mainBall.getYSpeed() - 1);
 					}
 				}
 			}
@@ -369,9 +380,18 @@ public class GameScreen {
 				//System.out.println("3 hit");
 				if(mainBall.getYSpeed() <= 0){
 					if((mainBall.getYLoc() + mainBall.getSize() > paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
-						&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) ){
+						&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) ){
 					mainBall.reverseY();
 					//System.out.println("3 reverse");
+					mainBall.setXSpeed(mainBall.getXSpeed() + 1);
+					}
+				}
+				if(mainBall.getYSpeed() >= 0){
+					if((mainBall.getYLoc() + mainBall.getSize() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
+						&& (mainBall.getYLoc() > paddle3.getPaddle().getY()) ){
+					mainBall.reverseY();
+					//System.out.println("3 reverse");
+					mainBall.setXSpeed(mainBall.getXSpeed() + 1);
 					}
 				}
 			}
@@ -388,9 +408,18 @@ public class GameScreen {
 				//System.out.println("4 hit");
 				if(mainBall.getXSpeed() <= 0){
 					if((mainBall.getXLoc() + mainBall.getSize() > paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
-						&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) ){
+						&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) ){
 					mainBall.reverseX();
 					//System.out.println("4 reverse");
+					mainBall.setYSpeed(mainBall.getYSpeed() + 1);
+					}
+				}
+				if(mainBall.getXSpeed() >= 0){
+					if((mainBall.getXLoc() + mainBall.getSize() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
+						&& (mainBall.getXLoc() > paddle4.getPaddle().getX()) ){
+					mainBall.reverseX();
+					//System.out.println("4 reverse");
+					mainBall.setYSpeed(mainBall.getYSpeed() + 1);
 					}
 				}
 			}
