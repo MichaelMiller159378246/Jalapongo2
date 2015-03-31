@@ -169,10 +169,10 @@ public class PowerUps {
 		System.out.println("larger paddle");
 		Paddle paddle = ball.getPaddleLastHit();
 		if(paddle.getPos() == 1 || paddle.getPos() == 3){ //left
-			paddle.getPaddle().setHeight(300);
+			paddle.getPaddle().setHeight(200);
 		}
 		else{											 //bottom
-			paddle.getPaddle().setWidth(300);
+			paddle.getPaddle().setWidth(200);
 		}
 		GameScreen.gamePane.getChildren().add(paddle.getPaddle());
 	}
@@ -190,14 +190,32 @@ public class PowerUps {
 		}
 
 	public static void addSpeed(Ball ball){ //set ball speed higher
-		ball.setXSpeed((int)ball.getXSpeed() + 2);
-		ball.setYSpeed((int)ball.getYSpeed() + 2);
+		if(ball.getXSpeed() >= 0){
+			ball.setXSpeed((int)ball.getXSpeed() + 2);
+		}else{
+			ball.setXSpeed((int)ball.getXSpeed() - 2);
+		}
+		
+		if(ball.getYSpeed() >= 0){
+			ball.setYSpeed((int)ball.getYSpeed() + 2);
+		}else{
+			ball.setYSpeed((int)ball.getYSpeed() - 2);
+		}
 		System.out.println("faster ball");
 	}
 
 	public static void subSpeed(Ball ball){ //set ball speed lower
-		ball.setXSpeed((int)ball.getXSpeed() - 2);
-		ball.setYSpeed((int)ball.getYSpeed() - 1);
+		if(ball.getXSpeed() >= 0){
+			ball.setXSpeed((int)ball.getXSpeed() - 2);
+		}else{
+			ball.setXSpeed((int)ball.getXSpeed() + 2);
+		}
+		
+		if(ball.getYSpeed() >= 0){
+			ball.setYSpeed((int)ball.getYSpeed() - 2);
+		}else{
+			ball.setYSpeed((int)ball.getYSpeed() + 2);
+		}	
 		System.out.println("slower ball");
 	}
 

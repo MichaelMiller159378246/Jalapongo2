@@ -286,7 +286,7 @@ public class GameScreen {
 			mainBall.restart();
 			Thread.sleep(200);
 		}
-		
+
 		//Paddle Hits
 		checkCollisionWith1();
 		checkCollisionWith2();
@@ -487,21 +487,28 @@ public class GameScreen {
 	//If a player runs out of lives, make their paddle fill the whole side
 	private void playerOut(Player player) {
 		if (player.getPaddle().getLives() < 1) {
-			player.getPaddle().setLength(paneWH);
 			if (player.getPos() == 1) {
 				gamePane.getChildren().remove(paddle1.getPaddle());
+				paddle1.getPaddle().setX(-1000);
+				paddle1.getPaddle().setY(-1000);
 				rect3.setHeight(paneWH);
 			}
 			else if (player.getPos() == 3) {
 				gamePane.getChildren().remove(paddle3.getPaddle());
+				paddle3.getPaddle().setX(-1000);
+				paddle3.getPaddle().setY(-1000);
 				rect8.setHeight(paneWH);
 			}
 			else if (player.getPos() == 2) {
 				gamePane.getChildren().remove(paddle2.getPaddle());
+				paddle2.getPaddle().setX(-1000);
+				paddle2.getPaddle().setY(-1000);
 				rect5.setWidth(paneWH);
 			}
 			else {
 				gamePane.getChildren().remove(paddle4.getPaddle());
+				paddle4.getPaddle().setX(-1000);
+				paddle4.getPaddle().setY(-1000);
 				rect2.setWidth(paneWH);
 			}
 			System.out.println("Player " + player.getPos() + " is out");

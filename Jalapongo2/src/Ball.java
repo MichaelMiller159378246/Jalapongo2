@@ -64,7 +64,7 @@ public class Ball {
 
 	public void moveBall(){
 		ball.setX(ball.getX() + xSpeed);
-		ball.setY(ball.getY() + ySpeed);
+		ball.setY(ball.getY() + ySpeed);		
 	}
 
 	public void setPaddleLastHit(Paddle paddleLastHit){
