@@ -391,10 +391,4 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		GameGUI.launch(args); // Launches the game
 	}
 	
-	public void setMusic(){
-		
-		
-		
-	}
-	
 }//end Game GUI
