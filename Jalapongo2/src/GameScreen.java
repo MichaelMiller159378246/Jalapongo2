@@ -129,14 +129,14 @@ public class GameScreen {
 	public static void powerUpHit(PowerUps powerUp){
 		int type = powerUp.getType();
 		/*  flip => 1
-		 *  multiBall => 2
-		 *  addLives => 3
-		 *  shield => 4
-		 *  largePaddle => 5
-		 *  smallPaddle => 6
-		 *  subSpeed => 7
-		 *  addSpeed => 8
-		 *  stall => 9
+		 *  addLives => 2
+		 *  shield => 3
+		 *  largePaddle => 4
+		 *  smallPaddle => 5
+		 *  slowSpeed => 6
+		 *  addSpeed => 7
+		 *  stall => 8
+		 *  multiBall => 9
 		 */
 		switch (type){
 			case 1: 
