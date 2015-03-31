@@ -225,8 +225,7 @@ public class PowerUps {
 		if (paddle.getControls() != 0){
 			paddle.setControls(0);
 		}
-		//try {Thread.sleep(4000);}
-		//catch (InterruptedException e) {}
+		//wait 4 seconds
 		//paddle.setControls(1);
 	}
 }//end Power-Ups

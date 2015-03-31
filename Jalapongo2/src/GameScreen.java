@@ -298,51 +298,94 @@ public class GameScreen {
 	// ------The following check the collision with the players paddles--------------
 	
 	//If ball collides with paddle1, reverse x direction
+	
+	private void checkWin(){
+		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle3.getLives() < 0){
+			//player 4 wins 
+		}
+		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
+			//player 3 wins 
+		}
+		if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+			//player 2 wins 
+		}
+		if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+			//player 1 wins 
+		}
+	}
 
 	private void checkCollisionWith1() {
-		if ( (mainBall.getYLoc() + 20 > paddle1.getPaddle().getY())
+		if ( (mainBall.getYLoc() + mainBall.getSize() > paddle1.getPaddle().getY())
 				&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) )
 			if ( mainBall.getXLoc() < (paddle1.getPaddle().getWidth()) &&
 					(mainBall.getXSpeed() < 0) ) {
 				mainBall.reverseX();
 				mainBall.setPaddleLastHit(paddle1);
-				System.out.println("1 hit");
+				//System.out.println("1 hit");
+				if(mainBall.getYSpeed() <= 0){
+					if((mainBall.getYLoc() + mainBall.getSize() > paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
+						&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) ){
+					mainBall.reverseY();
+					//System.out.println("2 reverse");
+					}
+				}
 			}
 	}
 	
 	//If ball collides with paddle2, reverse y direction
 	private void checkCollisionWith2() {
-		if ( (mainBall.getXLoc() + 20 > paddle2.getPaddle().getX()) 
+		if ( (mainBall.getXLoc() + mainBall.getSize() > paddle2.getPaddle().getX()) 
 				&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) )
-			if ( (mainBall.getYLoc() > (paneWH - (20 + paddle2.getPaddle().getHeight()))) &&
+			if ( (mainBall.getYLoc() > (paneWH - (mainBall.getSize() + paddle2.getPaddle().getHeight()))) &&
 					(mainBall.getYSpeed() > 0) ) {
 				mainBall.reverseY();
 				mainBall.setPaddleLastHit(paddle2);
 				System.out.println("2 hit");
+				if(mainBall.getXSpeed() <= 0){
+					if((mainBall.getXLoc() + mainBall.getSize() > paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
+						&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) ){
+					mainBall.reverseX();
+					//System.out.println("2 reverse");
+					}
+				}
 			}
 	}
 	
 	//If ball collides with paddle3, reverse x direction
 	private void checkCollisionWith3() {
-		if ( (mainBall.getYLoc() + 20 > paddle3.getPaddle().getY()) 
+		if ( (mainBall.getYLoc() + mainBall.getSize() > paddle3.getPaddle().getY()) 
 				&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) )
-			if ( mainBall.getXLoc() > (paneWH - (20 + paddle3.getPaddle().getWidth())) &&
+			if ( mainBall.getXLoc() > (paneWH - (mainBall.getSize() + paddle3.getPaddle().getWidth())) &&
 					(mainBall.getXSpeed() > 0) ) {
 				mainBall.reverseX();
 				mainBall.setPaddleLastHit(paddle3);
-				System.out.println("3 hit");
+				//System.out.println("3 hit");
+				if(mainBall.getYSpeed() <= 0){
+					if((mainBall.getYLoc() + mainBall.getSize() > paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
+						&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) ){
+					mainBall.reverseY();
+					//System.out.println("3 reverse");
+					}
+				}
 			}
 	}
 	
 	//If ball collides with paddle4, reverse y direction
 	private void checkCollisionWith4() {
-		if ( (mainBall.getXLoc() + 20 > paddle4.getPaddle().getX())
+		if ( (mainBall.getXLoc() + mainBall.getSize() > paddle4.getPaddle().getX())
 				&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) )
 			if ( mainBall.getYLoc() < (paddle2.getPaddle().getHeight()) &&
 					(mainBall.getYSpeed() < 0) ) {
 				mainBall.reverseY();
 				mainBall.setPaddleLastHit(paddle4);
-				System.out.println("4 hit");
+				//System.out.println("4 hit");
+				if(mainBall.getXSpeed() <= 0){
+					if((mainBall.getXLoc() + mainBall.getSize() > paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
+						&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) ){
+					mainBall.reverseX();
+					//System.out.println("4 reverse");
+					}
+				}
 			}
 	}
 	
@@ -359,7 +402,7 @@ public class GameScreen {
 			
 				|| ball.getXLoc()                  >= powerUp1.getPowerUp().getX() && ball.getXLoc()                  <= powerUp1.getPowerUp().getX() + powerUp1.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp1.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp1.getPowerUp().getY() + powerUp1.getSize()
-				){System.out.println("power up 1 hit"); powerUp1.movePowerUpOffPane(ball);}	
+				){powerUp1.movePowerUpOffPane(ball);}	
 			
 			if (   ball.getXLoc() >= powerUp2.getPowerUp().getX() && ball.getXLoc() <= powerUp2.getPowerUp().getX() + powerUp2.getSize()
 				&& ball.getYLoc() >= powerUp2.getPowerUp().getY() && ball.getYLoc() <= powerUp2.getPowerUp().getY() + powerUp2.getSize()
@@ -372,7 +415,7 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp2.getPowerUp().getX() && ball.getXLoc()                  <= powerUp2.getPowerUp().getX() + powerUp2.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp2.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp2.getPowerUp().getY() + powerUp2.getSize()
-				){System.out.println("power up 2 hit"); powerUp2.movePowerUpOffPane(ball);}
+				){powerUp2.movePowerUpOffPane(ball);}
 			
 			if (   ball.getXLoc() >= powerUp3.getPowerUp().getX() && ball.getXLoc() <= powerUp3.getPowerUp().getX() + powerUp3.getSize()
 				&& ball.getYLoc() >= powerUp3.getPowerUp().getY() && ball.getYLoc() <= powerUp3.getPowerUp().getY() + powerUp3.getSize()
@@ -385,7 +428,7 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp3.getPowerUp().getX() && ball.getXLoc()                  <= powerUp3.getPowerUp().getX() + powerUp3.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp3.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp3.getPowerUp().getY() + powerUp3.getSize()
-				){System.out.println("power up 3 hit"); powerUp3.movePowerUpOffPane(ball);}
+				){powerUp3.movePowerUpOffPane(ball);}
 				
 			if (   ball.getXLoc() >= powerUp4.getPowerUp().getX() && ball.getXLoc() <= powerUp4.getPowerUp().getX() + powerUp4.getSize()
 				&& ball.getYLoc() >= powerUp4.getPowerUp().getY() && ball.getYLoc() <= powerUp4.getPowerUp().getY() + powerUp4.getSize()
@@ -398,7 +441,7 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp4.getPowerUp().getX() && ball.getXLoc()                  <= powerUp4.getPowerUp().getX() + powerUp4.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp4.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp4.getPowerUp().getY() + powerUp4.getSize()
-				){System.out.println("power up 4 hit"); powerUp4.movePowerUpOffPane(ball);}
+				){powerUp4.movePowerUpOffPane(ball);}
 			
 			if (   ball.getXLoc() >= powerUp5.getPowerUp().getX() && ball.getXLoc() <= powerUp5.getPowerUp().getX() + powerUp5.getSize()
 				&& ball.getYLoc() >= powerUp5.getPowerUp().getY() && ball.getYLoc() <= powerUp5.getPowerUp().getY() + powerUp5.getSize()
@@ -411,7 +454,7 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp5.getPowerUp().getX() && ball.getXLoc()                  <= powerUp5.getPowerUp().getX() + powerUp5.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp5.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp5.getPowerUp().getY() + powerUp5.getSize()
-				){System.out.println("power up 5 hit"); powerUp5.movePowerUpOffPane(ball);}
+				){powerUp5.movePowerUpOffPane(ball);}
 			
 		} catch (Exception e){}
 	}
