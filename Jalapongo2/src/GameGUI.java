@@ -191,20 +191,22 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		HBox liveshb = new HBox();
 		HBox bottomhb = new HBox();
 		
-		Text powerUpsText = new Text("Power Ups:                       "
+		Text powerUpsText = new Text("Power Ups:                               "
 				+ "                            ");
-			powerUpsText.setFont(new Font(20));
-		CheckBox fastSlowCB = new CheckBox("Fast/Slow");
-		CheckBox sheildCB = new CheckBox("Sheild     ");
-		CheckBox multiCB = new CheckBox("Multi Ball"); 
-		CheckBox bigSmallCB = new CheckBox("Big/Small ");
-		CheckBox magnetCB = new CheckBox("Magnet    ");
-		CheckBox crazyCB = new CheckBox("CrazyBall ");
+			powerUpsText.setFont(new Font(24));
+		CheckBox fastCB = new CheckBox("Fast Ball       ");
+		CheckBox sheildCB = new CheckBox("Sheild           ");
+		CheckBox livesCB = new CheckBox("Extra Lives    "); 
+		CheckBox bigCB = new CheckBox("Big Paddle    ");
+		CheckBox slowCB = new CheckBox("Slow Ball      ");
+		CheckBox smallCB = new CheckBox("Small Paddle ");
+		CheckBox flipCB = new CheckBox("Flip Controls ");
+		CheckBox stallCB = new CheckBox("Stall Controls");
 		
 		Text livesText = new Text("# of Lives:        ");
-			livesText.setFont(new Font(20));
-		ComboBox livesCB = new ComboBox(livesoptions);
-		livesCB.setValue("5");
+			livesText.setFont(new Font(24));
+		ComboBox livesCoB = new ComboBox(livesoptions);
+		livesCoB.setValue("5");
 		
 		Button okaybt = new Button("Okay");
 			okaybt.setFont(new Font(24));
@@ -213,17 +215,17 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			cancelbt.setFont(new Font(24));
 			//cancelbt.setMaxWidth(300);
 		
-		liveshb.getChildren().addAll(livesText, livesCB);
+		liveshb.getChildren().addAll(livesText, livesCoB);
 		liveshb.setAlignment(Pos.CENTER);
 		
 		bottomhb.getChildren().addAll(okaybt, cancelbt);
 		bottomhb.setAlignment(Pos.CENTER);
-		bottomhb.setSpacing(50);
+		bottomhb.setSpacing(25);
 		
-		powerUpVB.getChildren().addAll(liveshb, powerUpsText, fastSlowCB, sheildCB,
-				multiCB, bigSmallCB, magnetCB, crazyCB, bottomhb);
+		powerUpVB.getChildren().addAll(liveshb, powerUpsText, fastCB, slowCB, sheildCB,
+				livesCB, bigCB, smallCB, flipCB, stallCB, bottomhb);
 		powerUpVB.setAlignment(Pos.CENTER);		
-		powerUpVB.setSpacing(35);
+		powerUpVB.setSpacing(15);
 		
 		bpGOS.setCenter(powerUpVB);
 		
@@ -351,6 +353,21 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		//Host Options Menu Events
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses okay the scene changes to the host menu scene 
+		
+		
+		/*fastCB
+		 sheildCB
+		 livesCB
+		 bigCB
+		 slowCB
+		 smallCB
+		 flipCB
+		 stallCB
+		
+		livesCoB
+		livesCoB.setValue("5");*/
+		
+		
 		
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
