@@ -343,7 +343,14 @@ public class GameScreen {
 				System.out.println("2 hit");
 				if(mainBall.getXSpeed() <= 0){
 					if((mainBall.getXLoc() + mainBall.getSize() > paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
-						&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) ){
+						&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) ){
+					mainBall.reverseX();
+					//System.out.println("2 reverse");
+					}
+				}
+				if(mainBall.getXSpeed() >= 0){
+					if((mainBall.getXLoc() + mainBall.getSize() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
+						&& (mainBall.getXLoc() > paddle2.getPaddle().getX()) ){
 					mainBall.reverseX();
 					//System.out.println("2 reverse");
 					}
