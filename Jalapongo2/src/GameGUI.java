@@ -44,6 +44,18 @@ public class GameGUI extends Application {
 	public Circle circle3 = new Circle(25);
 	public Circle circle4 = new Circle(25);
 	
+	//hosting options
+	public static CheckBox fastCB;
+	public static CheckBox sheildCB;
+	public static CheckBox livesCB;
+	public static CheckBox bigCB;
+	public static CheckBox slowCB;
+	public static CheckBox smallCB;
+	public static CheckBox flipCB;
+	public static CheckBox stallCB;
+	
+	public static ComboBox livesCoB;
+	
 	public void start(Stage primaryStage) throws Exception {
 		
 		circle1.setFill(Color.DARKGREEN);
@@ -216,18 +228,18 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		Text powerUpsText = new Text("Power Ups:                               "
 				+ "                            ");
 			powerUpsText.setFont(new Font(24));
-		CheckBox fastCB = new CheckBox("Fast Ball       ");
-		CheckBox sheildCB = new CheckBox("Sheild           ");
-		CheckBox livesCB = new CheckBox("Extra Lives    "); 
-		CheckBox bigCB = new CheckBox("Big Paddle    ");
-		CheckBox slowCB = new CheckBox("Slow Ball      ");
-		CheckBox smallCB = new CheckBox("Small Paddle ");
-		CheckBox flipCB = new CheckBox("Flip Controls ");
-		CheckBox stallCB = new CheckBox("Stall Controls");
+		 fastCB = new CheckBox("Fast Ball       ");
+		 sheildCB = new CheckBox("Sheild           ");
+		 livesCB = new CheckBox("Extra Lives    "); 
+		 bigCB = new CheckBox("Big Paddle    ");
+		 slowCB = new CheckBox("Slow Ball      ");
+		 smallCB = new CheckBox("Small Paddle ");
+		 flipCB = new CheckBox("Flip Controls ");
+		 stallCB = new CheckBox("Stall Controls");
 		
 		Text livesText = new Text("# of Lives:        ");
 			livesText.setFont(new Font(24));
-		ComboBox livesCoB = new ComboBox(livesoptions);
+		livesCoB = new ComboBox(livesoptions);
 		livesCoB.setValue("5");
 		
 		Button okaybt = new Button("Okay");
