@@ -6,16 +6,7 @@ import java.io.PrintWriter; // Imports PrintWriter
 import java.net.ServerSocket; // Imports ServerSocket
 import java.net.Socket; // Imports Socket
 import java.util.HashSet; // Import HashSet
-
 import javafx.application.Platform; // Imports platform
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 
 // Host class is used to launch the server so others can connect
@@ -24,7 +15,6 @@ public class Host extends Thread{
 	public static ServerSocket listener; // Creates a ServerSocket Listener
 	public static int port; // Creates an integer for the port for the server to listen on
 	private static HashSet<String> names = new HashSet<String>(); // Creates a HashSet for the players names
-	private static String hostN;
 	private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>(); // Creates a writer to communicate with the Client
 
 
@@ -32,7 +22,6 @@ public class Host extends Thread{
 	public Host(int port, String name){
 		Host.port = port; // Sets the global port to the inputed port
 		names.add(name);
-		hostN = name;
 	}
 
 	// Method to launch the server
@@ -93,48 +82,9 @@ public class Host extends Thread{
 				Platform.runLater(new Runnable() { // Runs when it gets the chance
 					public void run() { //Runs
 						GameGUI.nameLRQ.setText(namesL); //Updates the gui
-
-						System.out.println("Jello");
-						String[] namesA = names.toArray(new String[names.size()]);
-						GameGUI.namesGPRQ.getChildren().clear();
-						for(int i = 0; i < names.size(); i++){
-							CheckBox readyCB = new CheckBox();
-							BorderPane nameBP = new BorderPane();
-							Label nameL = new Label(namesA[i]);
-							Circle circle = new Circle(25);
-							circle.setFill(Color.DARKGREEN);
-							readyCB.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-								public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-									if (t1) {
-										circle.setFill(Color.LIME);
-
-									} else {
-										circle.setFill(Color.DARKGREEN);
-									}
-								}
-
-							});
-							circle.setStroke(Color.BLACK);
-							circle.setStrokeWidth(2);
-							nameBP.setLeft(nameL);
-							nameBP.setRight(circle);
-							if(nameL.toString().substring(nameL.toString().indexOf("'") + 1, nameL.toString().length() - 1).equals(hostN)){
-								nameBP.setCenter(readyCB);
-							}
-							nameBP.setPrefWidth(700 / 2);
-							nameL.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-									"-fx-font-weight: bold;" +  // Sets the font to bold
-									"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-							//		"-fx-border-color: Black"); // Sets the border to black
-							nameBP.setStyle("-fx-border-color: Black");
-							nameBP.setPadding(new Insets(10));
-							GameGUI.namesGPRQ.add(nameBP, 0, i);
-
-						}
 					}
 				});
-
+				
 				out.println("NAMEACCEPTED"); // Sets the message to send to the client to "NAMEACCEPTED"
 				writers.add(out); // Tells the client that the name was accepted
 				for (PrintWriter writer : writers){ // Adds writer to the types of writes

@@ -13,11 +13,8 @@ import javafx.scene.control.Label; // Imports Label
 import javafx.scene.control.TextField; // Imports TextField
 import javafx.scene.input.MouseEvent; // Imports MouseEvent
 import javafx.scene.layout.BorderPane; // Imports BorderPane
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox; // Imports HBox
 import javafx.scene.layout.VBox; // Imports VBox
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font; // Imports Font
 import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
@@ -27,27 +24,10 @@ public class GameGUI extends Application {
 	
 	private int sceneWH = 700; // Int used to control screen size
 	public static Label nameLRQ; // Public label so the host class can edit the data
-	public static GridPane namesGPRQ; // Public HBox so the host class can edit the data
-	public Circle circle1 = new Circle(25);
-	public Circle circle2 = new Circle(25);
-	public Circle circle3 = new Circle(25);
-	public Circle circle4 = new Circle(25);
+	private int port; //TODO Do we need this? 
 	
 	public void start(Stage primaryStage) throws Exception {
-		
-		circle1.setFill(Color.DARKGREEN);
-		circle1.setStroke(Color.BLACK);
-		circle1.setStrokeWidth(2);
-		circle2.setFill(Color.DARKGREEN);
-		circle2.setStroke(Color.BLACK);
-		circle2.setStrokeWidth(2);
-		circle3.setFill(Color.DARKGREEN);
-		circle3.setStroke(Color.BLACK);
-		circle3.setStrokeWidth(2);
-		circle4.setFill(Color.DARKGREEN);
-		circle4.setStroke(Color.BLACK);
-		circle4.setStrokeWidth(2);
-		
+
 //*******************************************************************************
 		// Start Screen GUI Menu
 		
@@ -233,7 +213,16 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				
 				TextField nameTFJS = new TextField("");
 				TextField portTFJS= new TextField("");
-				TextField ipTF = new TextField("");				
+				TextField ipTF = new TextField("");
+				
+			// Get values from text fields
+				String name = nameTFJS.getText();
+				String portS = portTFJS.getText();
+				//Commented out so code will run
+				//int port = Integer.parseInt(portS);
+				
+			//Call method to pass values to client class
+				
 				
 			// Make Buttons	
 				Button backJS = new Button("Back");
@@ -269,27 +258,8 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				BorderPane readyQBP = new BorderPane(); // Creates a BorderPane
 				BorderPane lowerRQBP = new BorderPane(); // Creates a BorderPane
 				
-				namesGPRQ = new GridPane();
-				//CheckBox readyCB = new CheckBox();
-				//BorderPane nameBP = new BorderPane();
-				//Label nameL = new Label(nameTF.getText());
-				//nameBP.setLeft(nameL);
-				//nameBP.setRight(readyCB);
-				//nameBP.setPrefWidth(sceneWH / 2);
-				//nameL.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-				//		"-fx-font-weight: bold;" +  // Sets the font to bold
-				//		"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-				//		"-fx-border-color: Black"); // Sets the border to black
-				//nameBP.setStyle("-fx-border-color: Black");
-				//nameBP.setPadding(new Insets(10));
-				//namesGPRQ.add(nameBP, 0, 0);
-				namesGPRQ.setPadding(new Insets(10));
-				namesGPRQ.setVgap(20);
-				namesGPRQ.setPrefWidth(sceneWH / 2);
-				//nameRQVB.setPadding(new Insets(10));
-				
 				// Creates controls
-				nameLRQ = new Label(); //Creates a label;
+				nameLRQ = new Label(); //Creates a label
 				Button startRQB = new Button("Start"); // Creates a start button
 				Button disconnectRQB = new Button("Disconnect"); // Creates a disconnect button
 				
@@ -301,7 +271,6 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				// Alters BorderPane properties
 				readyQBP.setBottom(lowerRQBP); // Sets the BorderPane to the bottom of the BorderPane 
 				readyQBP.setRight(nameLRQ); // Sets the Label to the right of the BorderPane
-				readyQBP.setCenter(namesGPRQ);
 				
 				Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH); // Creates the scene
 				
@@ -323,7 +292,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		//Join Menu Scene Events
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses back the scene changes to the choice menu scene 
-		joinGameJS.setOnMouseClicked(e -> client(primaryStage, readyQS,Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText(), startRQB)); // If the user presses join then the client method is called 
+		joinGameJS.setOnMouseClicked(e -> client(primaryStage, readyQS,Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText())); // If the user presses join then the client method is called 
 		//joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText()))); //TODO possibly delete this
 		
 		//Host Menu Events
@@ -360,10 +329,9 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 	}
 
 	//method to transfer values to client class
-	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName, Button startB){
+	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName){
 		Thread Client = new Thread(new Client(portNumber,IP,uName));
 		Client.start();
-		startB.setVisible(false);
 		primaryStage.setScene(scene);
 	}
 	
@@ -372,22 +340,6 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		nameLRQ.setText("[" + hostName + "]"); // Adds the hosts name to the label
 		Thread Host = new Thread(new Host(port, hostName)); // Creates a thread
 		Host.start(); // Starts the thread
-		
-		CheckBox readyCB = new CheckBox();
-		BorderPane nameBP = new BorderPane();
-		Label nameL = new Label(hostName);
-		nameBP.setLeft(nameL);
-		nameBP.setCenter(readyCB);
-		nameBP.setRight(circle1);
-		nameBP.setPrefWidth(700 / 2);
-		nameL.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-				"-fx-font-weight: bold;" +  // Sets the font to bold
-				"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-		//		"-fx-border-color: Black"); // Sets the border to black
-		nameBP.setStyle("-fx-border-color: Black");
-		nameBP.setPadding(new Insets(10));
-		GameGUI.namesGPRQ.add(nameBP, 0, 0);
-		
 		primaryStage.setScene(scene); // Sets the scene to the ready screen
 	}
 	
