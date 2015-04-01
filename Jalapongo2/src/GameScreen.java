@@ -1,9 +1,13 @@
+import java.net.URL;
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 
 
@@ -32,6 +36,16 @@ public class GameScreen {
 	//Ball
 	static Ball mainBall = new Ball();
 	static Ball ball1, ball2, ball3, ball4, ball5, ball6, ball7;
+	
+	//Sound Effects
+	String loseSound = "Lose.wav";
+	String PowerUpSound = "PowerUp.wav";
+	URL loseResource = getClass().getResource(loseSound);
+	URL puResource = getClass().getResource(PowerUpSound);
+	
+	Media loseMedia = new Media(loseResource.toString());
+	Media puMedia = new Media(puResource.toString());
+
 	
 	//Players
 	AI player1 = new AI(1);
@@ -89,6 +103,7 @@ public class GameScreen {
 }
 	
 	private void generatePowerUp(){
+
 		    			if(i%5 == 0){
 				            try {
 				            	gamePane.getChildren().removeAll(powerUp1.getPowerUp());
@@ -128,6 +143,9 @@ public class GameScreen {
 	
 	public static void powerUpHit(PowerUps powerUp){
 		int type = powerUp.getType();
+		//MediaPlayer puPlayer = new MediaPlayer(puMedia);
+		//puPlayer.play();
+		
 		/*  flip => 1
 		 *  multiBall => 2
 		 *  addLives => 3
@@ -487,6 +505,9 @@ public class GameScreen {
 	//If a player runs out of lives, make their paddle fill the whole side
 	private void playerOut(Player player) {
 		if (player.getPaddle().getLives() < 1) {
+			MediaPlayer losePlayer = new MediaPlayer(loseMedia);
+			losePlayer.play();
+			
 			if (player.getPos() == 1) {
 				gamePane.getChildren().remove(paddle1.getPaddle());
 				paddle1.getPaddle().setX(-1000);
