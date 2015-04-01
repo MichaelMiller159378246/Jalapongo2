@@ -157,8 +157,6 @@ public class GameScreen {
 	
 	public static void powerUpHit(PowerUps powerUp){
 		int type = powerUp.getType();
-
-		
 		/*  flip => 1
 		 *  addLives => 2
 		 *  shield => 3
@@ -174,28 +172,28 @@ public class GameScreen {
 				PowerUps.flip(powerUp.getTriggerBall());
 				break;
 			case 2: 
-				PowerUps.multiBall();
-				break;
-			case 3: 
 				PowerUps.addLives(powerUp.getTriggerBall());
 				break;
-			case 4: 
+			case 3: 
 				PowerUps.shield(powerUp.getTriggerBall());
 				break; 
-			case 5: 
+			case 4: 
 				PowerUps.largePaddle(powerUp.getTriggerBall());
 				break;
-			case 6: 
+			case 5: 
 				PowerUps.smallPaddle(powerUp.getTriggerBall());
 				break;
-			case 7: 
+			case 6: 
 				PowerUps.subSpeed(powerUp.getTriggerBall());
 				break;
-			case 8: 
+			case 7: 
 				PowerUps.addSpeed(powerUp.getTriggerBall());
 				break;
-			case 9: 
+			case 8: 
 				PowerUps.stall(powerUp.getTriggerBall());
+				break;
+			case 9: 
+				PowerUps.multiBall();
 				break;
 		}			
 	}
