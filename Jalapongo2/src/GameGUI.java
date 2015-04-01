@@ -20,10 +20,8 @@ import javafx.scene.layout.BorderPane; // Imports BorderPane
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox; // Imports HBox
 import javafx.scene.layout.VBox; // Imports VBox
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font; // Imports Font
@@ -56,6 +54,7 @@ public class GameGUI extends Application {
 	
 	public static ComboBox livesCoB;
 	
+	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
 		
 		circle1.setFill(Color.DARKGREEN);
@@ -239,7 +238,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		Text livesText = new Text("# of Lives:        ");
 			livesText.setFont(new Font(24));
-		livesCoB = new ComboBox(livesoptions);
+		livesCoB = new ComboBox<String>(livesoptions);
 		livesCoB.setValue("5");
 		
 		Button okaybt = new Button("Okay");
@@ -249,6 +248,15 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			cancelbt.setFont(new Font(24));
 			//cancelbt.setMaxWidth(300);
 		
+		 fastCB.setSelected(true);
+		 sheildCB.setSelected(true);
+		 livesCB.setSelected(true);
+		 bigCB.setSelected(true);
+		 slowCB.setSelected(true);
+		 smallCB.setSelected(true);
+		 flipCB.setSelected(true);
+		 stallCB.setSelected(true);
+			
 		liveshb.getChildren().addAll(livesText, livesCoB);
 		liveshb.setAlignment(Pos.CENTER);
 		
@@ -398,21 +406,6 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 		
 		//Host Options Menu Events
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses okay the scene changes to the host menu scene 
-		
-		
-		/*fastCB
-		 sheildCB
-		 livesCB
-		 bigCB
-		 slowCB
-		 smallCB
-		 flipCB
-		 stallCB
-		
-		livesCoB
-		livesCoB.setValue("5");*/
-		
-		
 		
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 

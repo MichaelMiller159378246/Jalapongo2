@@ -103,7 +103,8 @@ public class GameScreen {
 }
 	
 	private void generatePowerUp(){
-
+		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.sheildCB.isSelected()||GameGUI.bigCB.isSelected()||
+				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()){
 		    			if(i%5 == 0){
 				            try {
 				            	gamePane.getChildren().removeAll(powerUp1.getPowerUp());
@@ -139,6 +140,7 @@ public class GameScreen {
 		    				powerUp5 = new PowerUps();
 		    				gamePane.getChildren().add(powerUp5.getPowerUp());
 		    			}
+		}
 	}
 	
 	public void playSound(){
@@ -284,6 +286,7 @@ public class GameScreen {
 			player1.getPaddle().scoredOn();
 			System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
+			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
 		}
@@ -291,6 +294,7 @@ public class GameScreen {
 			player2.getPaddle().scoredOn();
 			System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
+			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
 		}
@@ -298,6 +302,7 @@ public class GameScreen {
 			player3.getPaddle().scoredOn();
 			System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
+			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
 		}
@@ -305,6 +310,7 @@ public class GameScreen {
 			player4.getPaddle().scoredOn();
 			System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
+			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
 		}

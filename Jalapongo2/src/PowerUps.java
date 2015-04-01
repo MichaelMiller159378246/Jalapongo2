@@ -2,6 +2,7 @@ import java.util.Collection;
 import java.util.Random;
 
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
@@ -26,44 +27,77 @@ public class PowerUps {
 	private Ball triggerBall;
 	private static int newBallCounter = 1;
 	private int size = 40;
-
+			
 	private Random generator = new Random(System.currentTimeMillis());
 	
 	public PowerUps(){
+		int flag = 1;
 		powerUp = new Rectangle(size, size);
 			powerUp.setX(generator.nextDouble()*500+100); //Upper Left Corner
 			powerUp.setY(generator.nextDouble()*500+100); //Upper Left Corner
-			type = (int)(Math.random()*9+1);
-			
-			switch (type){
-			case 1:
-				powerUp.setFill(Color.RED); //flip
-				break;
-			case 2:
-				powerUp.setFill(Color.BROWN); //multiball
-				break;
-			case 3:
-				powerUp.setFill(Color.ORANGE); //addlives
-				break;
-			case 4:
-				powerUp.setFill(Color.PURPLE); //shield
-				break;
-			case 5:
-				powerUp.setFill(Color.PINK); //largePaddle
-				break;
-			case 6:
-				powerUp.setFill(Color.YELLOW); //smallPaddle
-				break;
-			case 7:
-				powerUp.setFill(Color.BLUE); //slow
-				break;
-			case 8:
-				powerUp.setFill(Color.GREEN); //fast
-				break;
-			case 9:
-				powerUp.setFill(Color.CYAN); //stall
-				break;
+		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.sheildCB.isSelected()||GameGUI.bigCB.isSelected()||
+				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()){	
+			while(flag == 1){	
+				type = (int)(Math.random()*8+1);
+				switch (type){
+					case 1:
+						if(GameGUI.flipCB.isSelected()){
+							powerUp.setFill(Color.RED); //flip
+							flag = 0;
+							break;
+						}else{break;}
+					case 2:
+						if(GameGUI.livesCB.isSelected()){
+							powerUp.setFill(Color.ORANGE); //addlives
+							break;
+						}else{break;}
+					case 3:
+						if(GameGUI.sheildCB.isSelected()){
+							powerUp.setFill(Color.PURPLE); //shield
+							flag = 0;
+							break;
+						}else{break;}
+					case 4:
+						if(GameGUI.bigCB.isSelected()){
+							powerUp.setFill(Color.PINK); //largePaddle
+							flag = 0;
+							break;
+						}else{break;}
+					case 5:
+						if(GameGUI.smallCB.isSelected()){
+							powerUp.setFill(Color.YELLOW); //smallPaddle
+							flag = 0;
+							break;
+						}else{break;}
+					case 6:
+						if(GameGUI.slowCB.isSelected()){
+							powerUp.setFill(Color.BLUE); //slow
+							flag = 0;
+							break;
+						}else{break;}
+					case 7:
+						if(GameGUI.fastCB.isSelected()){
+							powerUp.setFill(Color.GREEN); //fast
+							flag = 0;
+							break;
+						}else{break;}
+					case 8:
+						if(GameGUI.stallCB.isSelected()){
+							powerUp.setFill(Color.CYAN); //stall
+							flag = 0;
+							break;
+						}else{break;}
+					/*case 9:
+					    if(){
+							powerUp.setFill(Color.BROWN); //multiball
+							flag = 0;
+							break;
+						}else{break;}*/
+					}
 			}
+		}else{
+			//Don't make any power ups
+		}
 	}
 	
 	public void movePowerUpOffPane(Ball ball){
