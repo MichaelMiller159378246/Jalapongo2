@@ -262,7 +262,7 @@ public class GameScreen {
 				(x < rect5.getWidth() || x > rect6.getX()))
 			mainBall.reverseY();
 		//Top
-		if (y < (rectH) && (mainBall.getXSpeed() < 0) &&
+		if (y < (rectH) && (mainBall.getYSpeed() < 0) &&
 				(x < rect2.getWidth() || x > rect1.getX()))
 			mainBall.reverseY();
 		
