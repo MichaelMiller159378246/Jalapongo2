@@ -65,8 +65,8 @@ public class Paddle {
 	
 	public void scoredOn(){
 		lives -= 1;
-//		MediaPlayer scorePlayer = new MediaPlayer(scoreMedia);
-		
+		MediaPlayer scorePlayer = new MediaPlayer(scoreMedia);
+		scorePlayer.play();
 	}
 	
 	public void addLife(){
