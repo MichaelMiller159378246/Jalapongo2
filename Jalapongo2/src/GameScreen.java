@@ -8,7 +8,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 
 public class GameScreen {
@@ -59,6 +61,9 @@ public class GameScreen {
 	Paddle paddle3 = player3.getPaddle();
 	Paddle paddle4 = player4.getPaddle();	
 	
+	//Lives Display
+	Text player1L = new Text(10, 20, paddle1.getLives() + "Lives");
+	
 
 
 	//Make the Rectangles that make up the corners of the game screen
@@ -88,7 +93,9 @@ public class GameScreen {
 		rect6.setX(paneWH-rectW); 	rect6.setY(paneWH-rectH);
 		rect7.setX(paneWH-rectH); 	rect7.setY(paneWH-rectW);
 		rect8.setX(paneWH-rectH); 	rect8.setY(0);
-
+		
+		player1L.setFill(Color.WHITE);
+		player1L.setX(0); player1L.setY(0);
 		
 		//----------------------------
 		//Add shapes		
