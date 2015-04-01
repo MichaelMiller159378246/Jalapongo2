@@ -1,3 +1,7 @@
+import java.net.URL;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
@@ -19,6 +23,11 @@ public class Paddle {
 	private int paddle12W = 30;
 	private int paddle12H = 150;
 
+	//Sounds
+	String scoreSound = "Score.wav";
+	URL scoreResource = getClass().getResource(scoreSound);
+	Media scoreMedia = new Media(scoreResource.toString());
+	
 	public Paddle(int pos){
 		if(pos == 1){ //left
 			PaddleLocX = 0;
@@ -56,6 +65,8 @@ public class Paddle {
 	
 	public void scoredOn(){
 		lives -= 1;
+//		MediaPlayer scorePlayer = new MediaPlayer(scoreMedia);
+		
 	}
 	
 	public void addLife(){
