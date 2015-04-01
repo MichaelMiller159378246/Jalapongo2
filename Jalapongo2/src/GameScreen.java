@@ -141,10 +141,14 @@ public class GameScreen {
 		    			}
 	}
 	
+	public void playSound(){
+		MediaPlayer puPlayer = new MediaPlayer(puMedia);
+		puPlayer.play();
+	}
+	
 	public static void powerUpHit(PowerUps powerUp){
 		int type = powerUp.getType();
-		//MediaPlayer puPlayer = new MediaPlayer(puMedia);
-		//puPlayer.play();
+
 		
 		/*  flip => 1
 		 *  addLives => 2
@@ -456,7 +460,9 @@ public class GameScreen {
 			
 				|| ball.getXLoc()                  >= powerUp1.getPowerUp().getX() && ball.getXLoc()                  <= powerUp1.getPowerUp().getX() + powerUp1.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp1.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp1.getPowerUp().getY() + powerUp1.getSize()
-				){powerUp1.movePowerUpOffPane(ball);}	
+				){powerUp1.movePowerUpOffPane(ball);
+				MediaPlayer puPlayer = new MediaPlayer(puMedia);
+				puPlayer.play();}	
 			
 			if (   ball.getXLoc() >= powerUp2.getPowerUp().getX() && ball.getXLoc() <= powerUp2.getPowerUp().getX() + powerUp2.getSize()
 				&& ball.getYLoc() >= powerUp2.getPowerUp().getY() && ball.getYLoc() <= powerUp2.getPowerUp().getY() + powerUp2.getSize()
@@ -469,7 +475,9 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp2.getPowerUp().getX() && ball.getXLoc()                  <= powerUp2.getPowerUp().getX() + powerUp2.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp2.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp2.getPowerUp().getY() + powerUp2.getSize()
-				){powerUp2.movePowerUpOffPane(ball);}
+				){powerUp2.movePowerUpOffPane(ball);
+				MediaPlayer puPlayer = new MediaPlayer(puMedia);
+				puPlayer.play();}
 			
 			if (   ball.getXLoc() >= powerUp3.getPowerUp().getX() && ball.getXLoc() <= powerUp3.getPowerUp().getX() + powerUp3.getSize()
 				&& ball.getYLoc() >= powerUp3.getPowerUp().getY() && ball.getYLoc() <= powerUp3.getPowerUp().getY() + powerUp3.getSize()
@@ -482,7 +490,9 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp3.getPowerUp().getX() && ball.getXLoc()                  <= powerUp3.getPowerUp().getX() + powerUp3.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp3.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp3.getPowerUp().getY() + powerUp3.getSize()
-				){powerUp3.movePowerUpOffPane(ball);}
+				){powerUp3.movePowerUpOffPane(ball);
+				MediaPlayer puPlayer = new MediaPlayer(puMedia);
+				puPlayer.play();}
 				
 			if (   ball.getXLoc() >= powerUp4.getPowerUp().getX() && ball.getXLoc() <= powerUp4.getPowerUp().getX() + powerUp4.getSize()
 				&& ball.getYLoc() >= powerUp4.getPowerUp().getY() && ball.getYLoc() <= powerUp4.getPowerUp().getY() + powerUp4.getSize()
@@ -495,7 +505,9 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp4.getPowerUp().getX() && ball.getXLoc()                  <= powerUp4.getPowerUp().getX() + powerUp4.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp4.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp4.getPowerUp().getY() + powerUp4.getSize()
-				){powerUp4.movePowerUpOffPane(ball);}
+				){powerUp4.movePowerUpOffPane(ball);
+				MediaPlayer puPlayer = new MediaPlayer(puMedia);
+				puPlayer.play();}
 			
 			if (   ball.getXLoc() >= powerUp5.getPowerUp().getX() && ball.getXLoc() <= powerUp5.getPowerUp().getX() + powerUp5.getSize()
 				&& ball.getYLoc() >= powerUp5.getPowerUp().getY() && ball.getYLoc() <= powerUp5.getPowerUp().getY() + powerUp5.getSize()
@@ -508,7 +520,9 @@ public class GameScreen {
 				
 				|| ball.getXLoc()                  >= powerUp5.getPowerUp().getX() && ball.getXLoc()                  <= powerUp5.getPowerUp().getX() + powerUp5.getSize() 
 				&& ball.getYLoc() + ball.getSize() >= powerUp5.getPowerUp().getY() && ball.getYLoc() + ball.getSize() <= powerUp5.getPowerUp().getY() + powerUp5.getSize()
-				){powerUp5.movePowerUpOffPane(ball);}
+				){powerUp5.movePowerUpOffPane(ball);
+				MediaPlayer puPlayer = new MediaPlayer(puMedia);
+				puPlayer.play();}
 			
 		} catch (Exception e){}
 	}
