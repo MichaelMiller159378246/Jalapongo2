@@ -62,10 +62,12 @@ public class GameScreen {
 	Paddle paddle4 = player4.getPaddle();	
 	
 	//Lives Display
-	Text player2L = new Text();
-	//10, 20, paddle2.getLives() + "Lives"
-
-
+	Text player1L = new Text(paddle2.getLives() + " Lives");
+	Text player2L = new Text(paddle2.getLives() + " Lives");
+	Text player3L = new Text(paddle2.getLives() + " Lives");
+	Text player4L = new Text(paddle2.getLives() + " Lives");
+	
+	
 	//Make the Rectangles that make up the corners of the game screen
 	Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
 	Rectangle rect2 = new Rectangle(rectW, rectH); //10, 0
@@ -79,14 +81,16 @@ public class GameScreen {
 	public GameScreen() {
 		
 		//Get the rectangles and add them to the screen
-		gamePane.getChildren().addAll(player2L);
+		gamePane.getChildren().addAll(player1L, player2L, player3L, player4L);
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
 
-		
-		player2L.setFill(Color.BLACK);
-		player2L.setX(paneWH/2); player2L.setY(paneWH-50);
-		
-		
+		//Add Lives Text
+		player1L.setX(50); 			player1L.setY(paneWH/2);
+		player1L.setRotate(90);
+		player2L.setX(paneWH/2); 	player2L.setY(paneWH-50);
+		player3L.setX(paneWH-50); 	player3L.setY(paneWH/2);
+		player3L.setRotate(270);
+		player4L.setX(paneWH/2); 	player4L.setY(50);
 		
 		//Set the location of all the rectangles to their respective corners
 		rect1.setX(paneWH-rectW); 	rect1.setY(0);
