@@ -52,7 +52,7 @@ public class GameGUI extends Application {
 	public static CheckBox flipCB;
 	public static CheckBox stallCB;
 	
-	public static ComboBox livesCoB;
+	public static ComboBox<Integer> livesCoB;
 	
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
@@ -169,8 +169,6 @@ public class GameGUI extends Application {
 //*******************************************************************************		
 	
 		//Host Menu GUI
-		ObservableList AIoptions = FXCollections.observableArrayList("1", "2", "3"); // TODO add a 0 option in second sprint
-		
 		BorderPane bpHOS = new BorderPane();
 		VBox vbHOS = new VBox();
 		HBox hbName = new HBox();
@@ -183,8 +181,9 @@ public class GameGUI extends Application {
 		TextField nameTF = new TextField("Joey");
 		TextField portTFHS = new TextField("7777");
 	// Make Buttons	
-		ComboBox AICB = new ComboBox(AIoptions);
-		AICB.setValue("1");
+		ComboBox AICB = new ComboBox<Integer>();
+			AICB.getItems().addAll(1, 2, 3);
+			AICB.setValue(1);
 		Button backHO = new Button("Back");
 		Button optionsHO = new Button("Options");
 			optionsHO.setFont(new Font(24));
@@ -217,8 +216,6 @@ public class GameGUI extends Application {
 
 //*******************************************************************************
 		//Host Options GUI
-		ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25", "50");
-		
 		BorderPane bpGOS = new BorderPane();
 		VBox powerUpVB = new VBox();
 		HBox liveshb = new HBox();
@@ -238,8 +235,9 @@ public class GameGUI extends Application {
 		
 		Text livesText = new Text("# of Lives:        ");
 			livesText.setFont(new Font(24));
-		livesCoB = new ComboBox<String>(livesoptions);
-		livesCoB.setValue("5");
+		livesCoB = new ComboBox<Integer>();
+			livesCoB.getItems().addAll(1, 5, 10, 25);
+			livesCoB.setValue(5);
 		
 		Button okaybt = new Button("Okay");
 			okaybt.setFont(new Font(24));
