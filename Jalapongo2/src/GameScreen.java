@@ -28,7 +28,7 @@ public class GameScreen {
 	static int i = 1; //rotate through 5 power ups on screen at a time
 	
 	// Start Screen GUI Menu
-	// Construct GUI Opjects
+	// Construct GUI Objects
 	static Pane gamePane = new Pane();
 	static Scene gameScene = new Scene(gamePane, paneWH, paneWH);
 	
@@ -62,8 +62,8 @@ public class GameScreen {
 	Paddle paddle4 = player4.getPaddle();	
 	
 	//Lives Display
-	Text player1L = new Text(10, 20, paddle1.getLives() + "Lives");
-	
+	Text player2L = new Text();
+	//10, 20, paddle2.getLives() + "Lives"
 
 
 	//Make the Rectangles that make up the corners of the game screen
@@ -79,10 +79,14 @@ public class GameScreen {
 	public GameScreen() {
 		
 		//Get the rectangles and add them to the screen
+		gamePane.getChildren().addAll(player2L);
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
-		
-		
 
+		
+		player2L.setFill(Color.BLACK);
+		player2L.setX(paneWH/2); player2L.setY(paneWH-50);
+		
+		
 		
 		//Set the location of all the rectangles to their respective corners
 		rect1.setX(paneWH-rectW); 	rect1.setY(0);
@@ -94,9 +98,7 @@ public class GameScreen {
 		rect7.setX(paneWH-rectH); 	rect7.setY(paneWH-rectW);
 		rect8.setX(paneWH-rectH); 	rect8.setY(0);
 		
-		player1L.setFill(Color.WHITE);
-		player1L.setX(0); player1L.setY(0);
-		
+
 		//----------------------------
 		//Add shapes		
 		gamePane.getChildren().addAll(paddle1.getPaddle(), paddle2.getPaddle(),
@@ -290,6 +292,7 @@ public class GameScreen {
 		if (x < 0 && mainBall.getXSpeed() < 0) {
 			player1.getPaddle().scoredOn();
 			System.out.println("Player 1 Was Scored On");
+			player2L.setText(paddle1.getLives() + "Lives");
 			playerOut(player1);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
