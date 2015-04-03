@@ -102,7 +102,7 @@ public class GameGUI extends Application {
 		songPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		//songPlayer.play();
 		
-		
+//*******************************************************************************		
 		//Options Menu
 		BorderPane optionsBP = new BorderPane();
 		VBox optionsVBox = new VBox();
@@ -216,8 +216,8 @@ public class GameGUI extends Application {
 		Scene sceneHOS = new Scene(bpHOS, sceneWH,sceneWH);
 
 //*******************************************************************************
-		
-ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25", "50");
+		//Host Options GUI
+		ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25", "50");
 		
 		BorderPane bpGOS = new BorderPane();
 		VBox powerUpVB = new VBox();
@@ -319,7 +319,7 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 			
 				Scene jsScene = new Scene(jsBP, sceneWH,sceneWH);
 //*******************************************************************************		
-				//Ready Screen
+				//Ready Screen GUI
 				
 				//Construct GUI objects
 				BorderPane readyQBP = new BorderPane(); // Creates a BorderPane
@@ -361,8 +361,10 @@ ObservableList livesoptions = FXCollections.observableArrayList("5", "10", "25",
 				
 				Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH); // Creates the scene
 				
-		//*******************************************************************************
-			
+//*******************************************************************************
+			//Scoreboard GUI
+				
+//*******************************************************************************
 		//Events
 		//Start Menu Scene Events
 		quitBSM.setOnMouseClicked(e -> System.exit(0)); // If the user presses quit the system closes
