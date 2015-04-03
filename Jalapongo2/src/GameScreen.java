@@ -297,6 +297,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 		if (y > (paneWH - 20) && mainBall.getYSpeed() > 0) {
 			player2.getPaddle().scoredOn();
@@ -305,6 +306,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 		if (x > (paneWH - 20) && mainBall.getXSpeed() > 0) {
 			player3.getPaddle().scoredOn();
@@ -313,6 +315,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 		if (y < 0 && mainBall.getYSpeed() < 0) {
 			player4.getPaddle().scoredOn();
@@ -321,6 +324,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 
 		//Paddle Hits
@@ -335,19 +339,25 @@ public class GameScreen {
 	
 	//If ball collides with paddle1, reverse x direction
 	
-	private void checkWin(){
+	private int checkWin(){
 		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle3.getLives() < 0){
 			//player 4 wins 
+			return 4;
 		}
-		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
 			//player 3 wins 
+			return 3;
 		}
-		if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
 			//player 2 wins 
+			return 2;
 		}
-		if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
 			//player 1 wins 
+			return 1;
 		}
+		else return 0;
+		
 	}
 
 	private void checkCollisionWith1() {
@@ -640,6 +650,27 @@ public class GameScreen {
 				rect2.setWidth(paneWH);
 			}
 			System.out.println("Player " + player.getPos() + " is out");
+		}
+	}
+	//End of game
+	public void endGame() throws InterruptedException {
+		int playersIn = 0;
+		
+		if (player1.getPaddle().getLives() < 1)
+			playersIn++;
+		if (player2.getPaddle().getLives() < 1)
+			playersIn++;
+		if (player3.getPaddle().getLives() < 1)
+			playersIn++;
+		if (player4.getPaddle().getLives() < 1)
+			playersIn++;
+		
+		//Switch to summary screen
+		//--Your Code Here--
+		if (playersIn <= 1) {
+			System.out.printf("Player %d wins!%n",checkWin());
+			Thread.sleep(10000);
+			System.exit(0); //Needs to change
 		}
 	}
 	
