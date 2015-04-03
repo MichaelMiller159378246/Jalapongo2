@@ -56,10 +56,10 @@ public class GameScreen {
 	AI player4 = new AI(4);
 	
 	//Paddles
-	Paddle paddle1 = player1.getPaddle();
-	Paddle paddle2 = player2.getPaddle();
-	Paddle paddle3 = player3.getPaddle();
-	Paddle paddle4 = player4.getPaddle();	
+	public Paddle paddle1 = player1.getPaddle();
+	public Paddle paddle2 = player2.getPaddle();
+	public Paddle paddle3 = player3.getPaddle();
+	public Paddle paddle4 = player4.getPaddle();	
 	
 	//Lives Display
 	Text player2L = new Text();
@@ -457,6 +457,7 @@ public class GameScreen {
 						&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) ){
 					mainBall.reverseX();
 					//System.out.println("4 reverse");
+					if (Math.abs(mainBall.getYSpeed()) > 2)
 					mainBall.setYSpeed(mainBall.getYSpeed() + 1);
 					}
 				}
