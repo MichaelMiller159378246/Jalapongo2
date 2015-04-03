@@ -56,10 +56,10 @@ public class GameScreen {
 	AI player4 = new AI(4);
 	
 	//Paddles
-	Paddle paddle1 = player1.getPaddle();
-	Paddle paddle2 = player2.getPaddle();
-	Paddle paddle3 = player3.getPaddle();
-	Paddle paddle4 = player4.getPaddle();	
+	public Paddle paddle1 = player1.getPaddle();
+	public Paddle paddle2 = player2.getPaddle();
+	public Paddle paddle3 = player3.getPaddle();
+	public Paddle paddle4 = player4.getPaddle();	
 	
 	//Lives Display
 	Text player1L = new Text(paddle2.getLives() + " Lives");
@@ -301,6 +301,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 		if (y > (paneWH - 20) && mainBall.getYSpeed() > 0) {
 			player2.getPaddle().scoredOn();
@@ -309,6 +310,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 		if (x > (paneWH - 20) && mainBall.getXSpeed() > 0) {
 			player3.getPaddle().scoredOn();
@@ -317,6 +319,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 		if (y < 0 && mainBall.getYSpeed() < 0) {
 			player4.getPaddle().scoredOn();
@@ -325,6 +328,7 @@ public class GameScreen {
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
 			Thread.sleep(200);
+			endGame();
 		}
 
 		//Paddle Hits
@@ -339,19 +343,25 @@ public class GameScreen {
 	
 	//If ball collides with paddle1, reverse x direction
 	
-	private void checkWin(){
+	private int checkWin(){
 		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle3.getLives() < 0){
 			//player 4 wins 
+			return 4;
 		}
-		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
 			//player 3 wins 
+			return 3;
 		}
-		if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
 			//player 2 wins 
+			return 2;
 		}
-		if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
 			//player 1 wins 
+			return 1;
 		}
+		else return 0;
+		
 	}
 
 	private void checkCollisionWith1() {
@@ -451,6 +461,7 @@ public class GameScreen {
 						&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) ){
 					mainBall.reverseX();
 					//System.out.println("4 reverse");
+					if (Math.abs(mainBall.getYSpeed()) > 2)
 					mainBall.setYSpeed(mainBall.getYSpeed() + 1);
 					}
 				}
@@ -644,6 +655,27 @@ public class GameScreen {
 				rect2.setWidth(paneWH);
 			}
 			System.out.println("Player " + player.getPos() + " is out");
+		}
+	}
+	//End of game
+	public void endGame() throws InterruptedException {
+		int playersIn = 0;
+		
+		if (player1.getPaddle().getLives() > 0)
+			playersIn++;
+		if (player2.getPaddle().getLives() > 0)
+			playersIn++;
+		if (player3.getPaddle().getLives() > 0)
+			playersIn++;
+		if (player4.getPaddle().getLives() > 0)
+			playersIn++;
+		
+		//Switch to summary screen
+		//--Your Code Here--
+		if (playersIn <= 1) {
+			System.out.printf("Player %d wins!%n",checkWin());
+			Thread.sleep(10000);
+			System.exit(0); //Need to change
 		}
 	}
 	
