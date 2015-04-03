@@ -670,7 +670,7 @@ public class GameScreen {
 		if (playersIn <= 1) {
 			System.out.printf("Player %d wins!%n",checkWin());
 			Thread.sleep(10000);
-			System.exit(0); //Needs to change
+			System.exit(0); //Need to change
 		}
 	}
 	
