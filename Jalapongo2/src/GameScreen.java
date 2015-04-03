@@ -656,13 +656,13 @@ public class GameScreen {
 	public void endGame() throws InterruptedException {
 		int playersIn = 0;
 		
-		if (player1.getPaddle().getLives() < 1)
+		if (player1.getPaddle().getLives() > 0)
 			playersIn++;
-		if (player2.getPaddle().getLives() < 1)
+		if (player2.getPaddle().getLives() > 0)
 			playersIn++;
-		if (player3.getPaddle().getLives() < 1)
+		if (player3.getPaddle().getLives() > 0)
 			playersIn++;
-		if (player4.getPaddle().getLives() < 1)
+		if (player4.getPaddle().getLives() > 0)
 			playersIn++;
 		
 		//Switch to summary screen
