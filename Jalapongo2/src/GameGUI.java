@@ -100,7 +100,7 @@ public class GameGUI extends Application {
 		Media media = new Media(resource.toString());
 		MediaPlayer songPlayer = new MediaPlayer(media);
 		songPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		//songPlayer.play();
+
 		
 //*******************************************************************************		
 		//Options Menu
@@ -108,7 +108,7 @@ public class GameGUI extends Application {
 		VBox optionsVBox = new VBox();
 		HBox optionsHBox = new HBox();
 		Scene optionsScene = new Scene(optionsBP,sceneWH,sceneWH);
-		songPlayer.play();
+		//songPlayer.play();
 
 		
 		
@@ -126,7 +126,7 @@ public class GameGUI extends Application {
 		
 		//Preset check box for music and sound effects
 		musicCB.setIndeterminate(false);
-		musicCB.setSelected(true);
+		musicCB.setSelected(false);
 		soundfxCB.setIndeterminate(false);
 		soundfxCB.setSelected(true);
 		
