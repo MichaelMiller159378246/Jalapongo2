@@ -25,7 +25,6 @@ public class PowerUps {
 	private Rectangle powerUp;
 	private int type;
 	private Ball triggerBall;
-	private static int newBallCounter = 1;
 	private int size = 40;
 			
 	private Random generator = new Random(System.currentTimeMillis());
@@ -36,9 +35,10 @@ public class PowerUps {
 			powerUp.setX(generator.nextDouble()*500+100); //Upper Left Corner
 			powerUp.setY(generator.nextDouble()*500+100); //Upper Left Corner
 		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.sheildCB.isSelected()||GameGUI.bigCB.isSelected()||
-				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()){	
+				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()||
+				GameGUI.multiCB.isSelected()){	
 			while(flag == 1){	
-				type = (int)(Math.random()*8+1);
+				type = (int)(Math.random()*9+1);
 				switch (type){
 					case 1:
 						if(GameGUI.flipCB.isSelected()){
@@ -88,12 +88,12 @@ public class PowerUps {
 							flag = 0;
 							break;
 						}else{break;}
-					/*case 9:
-					    if(){
+					case 9:
+					    if(GameGUI.multiCB.isSelected()){
 							powerUp.setFill(Color.BROWN); //multiball
 							flag = 0;
 							break;
-						}else{break;}*/
+						}else{break;}
 					}
 			}
 		}else{
@@ -121,10 +121,6 @@ public class PowerUps {
 		return powerUp;
 	}
 	
-	public void resetNewBallCounter(){
-		newBallCounter = 1;
-	}
-	
 	public Ball getTriggerBall(){
 		return this.triggerBall;
 	}
@@ -142,51 +138,10 @@ public class PowerUps {
 			paddle.setControls(2);
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	public static void multiBall(){ //Add 2 additional balls
 		System.out.println("multi balls");
-		if(newBallCounter%8 == 0){
-            try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball1 = new Ball()));
-			} catch (Exception e){}
-		}
-		if(newBallCounter%8 == 1){
-	        try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball2 = new Ball()).getBall());
-	        } catch (Exception e){}
-		}
-		if(newBallCounter%8 == 2){
-            try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball3 = new Ball()).getBall());
-			} catch (Exception e){}
-		}
-		if(newBallCounter%8 == 3){
-	        try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball4 = new Ball()).getBall());
-			} catch (Exception e){}
-		}
-		if(newBallCounter%8 == 4){
-	        try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball5 = new Ball()).getBall());
-			} catch (Exception e){}
-		}
-		if(newBallCounter%8 == 5){
-	        try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball6 = new Ball()).getBall());
-			} catch (Exception e){}
-		}
-		if(newBallCounter%8 == 6){
-	        try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.ball7 = new Ball()).getBall());
-			} catch (Exception e){}
-		}
-		if(newBallCounter%8 == 7){
-	        try {
-            	GameScreen.gamePane.getChildren().addAll((Collection<? extends Node>) (GameScreen.mainBall = new Ball()).getBall());
-			} catch (Exception e){}
-		}
-		newBallCounter++;
+		GameScreen.addBall();
 	}
 	
 	public static void addLives(Ball ball){ //add 1 life to player
@@ -198,6 +153,7 @@ public class PowerUps {
 	public static void shield(Ball ball){ // protect against one goal
 		System.out.println("SHIELD! JK");
 		Paddle paddle = ball.getPaddleLastHit();
+		GameScreen.createSheild(paddle);
 	}
 
 	public static void largePaddle(Ball ball){ //increase paddle length

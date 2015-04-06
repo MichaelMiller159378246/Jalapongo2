@@ -1,9 +1,11 @@
 import java.net.URL;
 import java.time.LocalTime;
+import java.util.Collection;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -55,6 +57,7 @@ public class GameScreen {
 	//Ball
 	static Ball mainBall = new Ball();
 	static Ball ball1, ball2, ball3, ball4, ball5, ball6, ball7;
+	static int newBallCounter = 1;
 	
 	//Sound Effects
 	String loseSound = "Lose.wav";
@@ -94,6 +97,9 @@ public class GameScreen {
 	Rectangle rect6 = new Rectangle(rectW, rectH); //650, 690
 	Rectangle rect7 = new Rectangle(rectH, rectW); //690, 650
 	Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
+	
+	//create shields 
+	static Rectangle sheild1, sheild2, sheild3, sheild4;
 		
 	public GameScreen() {
 		
@@ -129,7 +135,6 @@ public class GameScreen {
 		rect6.setX(paneWH-rectW); 	rect6.setY(paneWH-rectH);
 		rect7.setX(paneWH-rectH); 	rect7.setY(paneWH-rectW);
 		rect8.setX(paneWH-rectH); 	rect8.setY(0);
-		
 
 		//----------------------------
 		//Add shapes		
@@ -143,9 +148,119 @@ public class GameScreen {
 		//movePaddleOnKeyPress(gameScene, player4, paddle4);		
 }
 	
+	public void checkCollisionWithSheild(){
+		//if hit move sheild off pane and reverse ball TODO
+		sheild1.setX(-999);
+	}
+	
+	public static void createSheild(Paddle paddle){
+		if(paddle.getPos() == 1){
+           try {
+            	gamePane.getChildren().removeAll(sheild1);
+			} catch (Exception e){}
+			sheild1 = new Rectangle(10, paneWH);
+			sheild1.setX(690);
+			sheild1.setY(0);
+            gamePane.getChildren().addAll(sheild1);
+		}
+		if(paddle.getPos() == 2){
+			try {
+            	gamePane.getChildren().removeAll(sheild2);
+			} catch (Exception e){}
+			sheild2 = new Rectangle(paneWH, 10);
+			sheild2.setX(690);
+			sheild2.setY(0);
+            gamePane.getChildren().addAll(sheild2);
+		}
+		if(paddle.getPos() == 3){
+			try {
+            	gamePane.getChildren().removeAll(sheild3);
+			} catch (Exception e){}
+			sheild3 = new Rectangle(10, paneWH);
+			sheild3.setX(0);
+			sheild3.setY(0);
+            gamePane.getChildren().addAll(sheild3);
+		}
+		if(paddle.getPos() == 4){
+			try {
+            	gamePane.getChildren().removeAll(sheild4);
+			} catch (Exception e){}
+			sheild4 = new Rectangle(paneWH, 10);
+			sheild4.setX(0);
+			sheild4.setY(0);
+            gamePane.getChildren().addAll(sheild4);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void addBall(){
+		if(newBallCounter%8 == 0){
+            try {
+            	gamePane.getChildren().removeAll(ball1.getBall());
+			} catch (Exception e){}
+			ball1 = new Ball();
+            gamePane.getChildren().addAll(ball1.getBall());
+		}
+		if(newBallCounter%8 == 1){
+            try {
+            	gamePane.getChildren().removeAll(ball2.getBall());
+			} catch (Exception e){}
+			ball2 = new Ball();
+            gamePane.getChildren().addAll(ball2.getBall());
+		}
+		if(newBallCounter%8 == 2){
+            try {
+            	gamePane.getChildren().removeAll(ball3.getBall());
+			} catch (Exception e){}
+			ball3 = new Ball();
+            gamePane.getChildren().addAll(ball3.getBall());
+		}
+		if(newBallCounter%8 == 3){
+            try {
+            	gamePane.getChildren().removeAll(ball4.getBall());
+			} catch (Exception e){}
+			ball4 = new Ball();
+            gamePane.getChildren().addAll(ball4.getBall());
+		}
+		if(newBallCounter%8 == 4){
+            try {
+            	gamePane.getChildren().removeAll(ball5.getBall());
+			} catch (Exception e){}
+			ball5 = new Ball();
+            gamePane.getChildren().addAll(ball5.getBall());
+		}
+		if(newBallCounter%8 == 5){
+            try {
+            	gamePane.getChildren().removeAll(ball6.getBall());
+			} catch (Exception e){}
+			ball6 = new Ball();
+            gamePane.getChildren().addAll(ball6.getBall());
+		}
+		if(newBallCounter%8 == 6){
+            try {
+            	gamePane.getChildren().removeAll(ball7.getBall());
+			} catch (Exception e){}
+			ball7 = new Ball();
+            gamePane.getChildren().addAll(ball7.getBall());
+		}
+		if(newBallCounter%8 == 7){
+            try {
+            	gamePane.getChildren().removeAll(mainBall.getBall());
+			} catch (Exception e){}
+			mainBall = new Ball();
+            gamePane.getChildren().addAll(mainBall.getBall());
+		}
+		newBallCounter++;
+	}
+	
+	public void removeBall(){
+		
+	}
+	
 	private void generatePowerUp(){
 		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.sheildCB.isSelected()||GameGUI.bigCB.isSelected()||
-				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()){
+				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()||
+				GameGUI.multiCB.isSelected()){
 		    			if(i%5 == 0){
 				            try {
 				            	gamePane.getChildren().removeAll(powerUp1.getPowerUp());
@@ -297,74 +412,104 @@ public class GameScreen {
 
 	//Changes the direction of the ball if there is contact
 
-	private void checkReverse() throws InterruptedException {
+	private void checkReverse(Ball ball) throws InterruptedException {
 
-		int x = mainBall.getXLoc();
-		int y = mainBall.getYLoc();
+		int x = ball.getXLoc();
+		int y = ball.getYLoc();
 		
 		//Reverse direction if the ball hits a corner
 		//Right Side
-		if (x + 20 > (paneWH-rectH) && (mainBall.getXSpeed() > 0) &&
+		if (x + 20 > (paneWH-rectH) && (ball.getXSpeed() > 0) &&
 				(y < rect8.getHeight() || y > rect7.getY()))
-			mainBall.reverseX();
+			ball.reverseX();
 		//Left Side
-		if (x < rectH && (mainBall.getXSpeed() < 0) &&
+		if (x < rectH && (ball.getXSpeed() < 0) &&
 				(y < rect3.getHeight() || y > rect4.getY()))
-			mainBall.reverseX();
+			ball.reverseX();
 		//Bottom
-		if (y + 20 > (paneWH-rectH) && (mainBall.getYSpeed() > 0) &&
+		if (y + 20 > (paneWH-rectH) && (ball.getYSpeed() > 0) &&
 				(x < rect5.getWidth() || x > rect6.getX()))
-			mainBall.reverseY();
+			ball.reverseY();
 		//Top
-		if (y < (rectH) && (mainBall.getYSpeed() < 0) &&
+		if (y < (rectH) && (ball.getYSpeed() < 0) &&
 				(x < rect2.getWidth() || x > rect1.getX()))
-			mainBall.reverseY();
+			ball.reverseY();
 		
 		//Life Lost if Ball Passes Player's Paddle and hits their wall
-		if (x < 0 && mainBall.getXSpeed() < 0) {
+		if (x < 0 && ball.getXSpeed() < 0) {
 			player1.getPaddle().scoredOn();
-			System.out.println("Player 1 Was Scored On");
+			//System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
-			mainBall.setPaddleLastHit(null);
-			mainBall.restart();
+			ball.setPaddleLastHit(null);
+			ball.restart();
 			Thread.sleep(200);
 			endGame();
 		}
-		if (y > (paneWH - 20) && mainBall.getYSpeed() > 0) {
+		if (y > (paneWH - 20) && ball.getYSpeed() > 0) {
 			player2.getPaddle().scoredOn();
-			System.out.println("Player 2 Was Scored On");
+			//System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
-			mainBall.setPaddleLastHit(null);
-			mainBall.restart();
+			ball.setPaddleLastHit(null);
+			ball.restart();
 			Thread.sleep(200);
 			endGame();
 		}
-		if (x > (paneWH - 20) && mainBall.getXSpeed() > 0) {
+		if (x > (paneWH - 20) && ball.getXSpeed() > 0) {
 			player3.getPaddle().scoredOn();
-			System.out.println("Player 3 Was Scored On");
+			//System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
-			mainBall.setPaddleLastHit(null);
-			mainBall.restart();
+			ball.setPaddleLastHit(null);
+			ball.restart();
 			Thread.sleep(200);
 			endGame();
 		}
-		if (y < 0 && mainBall.getYSpeed() < 0) {
+		if (y < 0 && ball.getYSpeed() < 0) {
 			player4.getPaddle().scoredOn();
-			System.out.println("Player 4 Was Scored On");
+			//System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
-			mainBall.setPaddleLastHit(null);
-			mainBall.restart();
+			ball.setPaddleLastHit(null);
+			ball.restart();
 			Thread.sleep(200);
 			endGame();
 		}
-
+		
 		//Paddle Hits
-		checkCollisionWith1();
-		checkCollisionWith2();
-		checkCollisionWith3();
-		checkCollisionWith4();
-	}
+		try{checkCollisionWith1(mainBall);}catch(Exception e){}  
+		try{checkCollisionWith1(ball1);}catch(Exception e){}  
+		try{checkCollisionWith1(ball2);}catch(Exception e){}  
+		try{checkCollisionWith1(ball3);}catch(Exception e){}  
+		try{checkCollisionWith1(ball4);}catch(Exception e){}  
+		try{checkCollisionWith1(ball5);}catch(Exception e){}  
+		try{checkCollisionWith1(ball6);}catch(Exception e){}  
+		try{checkCollisionWith1(ball7);}catch(Exception e){}  
+		
+		try{checkCollisionWith2(mainBall);}catch(Exception e){}  
+		try{checkCollisionWith2(ball1);}catch(Exception e){}  
+		try{checkCollisionWith2(ball2);}catch(Exception e){}  
+		try{checkCollisionWith2(ball3);}catch(Exception e){}  
+		try{checkCollisionWith2(ball4);}catch(Exception e){}  
+		try{checkCollisionWith2(ball5);}catch(Exception e){}  
+		try{checkCollisionWith2(ball6);}catch(Exception e){}  
+		try{checkCollisionWith2(ball7);}catch(Exception e){}  
+		
+		try{checkCollisionWith3(mainBall);}catch(Exception e){}  
+		try{checkCollisionWith3(ball1);}catch(Exception e){}  
+		try{checkCollisionWith3(ball2);}catch(Exception e){}  
+		try{checkCollisionWith3(ball3);}catch(Exception e){}  
+		try{checkCollisionWith3(ball4);}catch(Exception e){}  
+		try{checkCollisionWith3(ball5);}catch(Exception e){}  
+		try{checkCollisionWith3(ball6);}catch(Exception e){}  
+		try{checkCollisionWith3(ball7);}catch(Exception e){}  
 	
+		try{checkCollisionWith4(mainBall);}catch(Exception e){}  
+		try{checkCollisionWith4(ball1);}catch(Exception e){}  
+		try{checkCollisionWith4(ball2);}catch(Exception e){}  
+		try{checkCollisionWith4(ball3);}catch(Exception e){}  
+		try{checkCollisionWith4(ball4);}catch(Exception e){}  
+		try{checkCollisionWith4(ball5);}catch(Exception e){}  
+		try{checkCollisionWith4(ball6);}catch(Exception e){}  
+		try{checkCollisionWith4(ball7);}catch(Exception e){}  
+	}
 	
 	// ------The following check the collision with the players paddles--------------
 	
@@ -391,113 +536,113 @@ public class GameScreen {
 		
 	}
 
-	private void checkCollisionWith1() {
-		if ( (mainBall.getYLoc() + mainBall.getSize() > paddle1.getPaddle().getY())
-				&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) )
-			if ( mainBall.getXLoc() < (paddle1.getPaddle().getWidth()) &&
-					(mainBall.getXSpeed() < 0) ) {
-				mainBall.reverseX();
-				mainBall.setPaddleLastHit(paddle1);
+	private void checkCollisionWith1(Ball ball) {
+		if ( (ball.getYLoc() + ball.getSize() > paddle1.getPaddle().getY())
+				&& (ball.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) )
+			if ( ball.getXLoc() < (paddle1.getPaddle().getWidth()) &&
+					(ball.getXSpeed() < 0) ) {
+				ball.reverseX();
+				ball.setPaddleLastHit(paddle1);
 				//System.out.println("1 hit");
-				if(mainBall.getYSpeed() <= 0){
-					if((mainBall.getYLoc() + mainBall.getSize() > paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
-						&& (mainBall.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) ){
-					mainBall.reverseY();
+				if(ball.getYSpeed() <= 0){
+					if((ball.getYLoc() + ball.getSize() > paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
+						&& (ball.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) ){
+					ball.reverseY();
 					//System.out.println("2 reverse");
-					mainBall.setXSpeed(mainBall.getXSpeed() - 1);
+					ball.setXSpeed(ball.getXSpeed() - 1);
 					}
 				}
-				if(mainBall.getYSpeed() >= 0){
-					if((mainBall.getYLoc() + mainBall.getSize() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
-						&& (mainBall.getYLoc() > paddle1.getPaddle().getY()) ){
-					mainBall.reverseY();
+				if(ball.getYSpeed() >= 0){
+					if((ball.getYLoc() + ball.getSize() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
+						&& (ball.getYLoc() > paddle1.getPaddle().getY()) ){
+					ball.reverseY();
 					//System.out.println("3 reverse");
-					mainBall.setXSpeed(mainBall.getXSpeed() - 1);
+					ball.setXSpeed(ball.getXSpeed() - 1);
 					}
 				}
 			}
 	}
 	
 	//If ball collides with paddle2, reverse y direction
-	private void checkCollisionWith2() {
-		if ( (mainBall.getXLoc() + mainBall.getSize() > paddle2.getPaddle().getX()) 
-				&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) )
-			if ( (mainBall.getYLoc() > (paneWH - (mainBall.getSize() + paddle2.getPaddle().getHeight()))) &&
-					(mainBall.getYSpeed() > 0) ) {
-				mainBall.reverseY();
-				mainBall.setPaddleLastHit(paddle2);
-				System.out.println("2 hit");
-				if(mainBall.getXSpeed() <= 0){
-					if((mainBall.getXLoc() + mainBall.getSize() > paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
-						&& (mainBall.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) ){
-					mainBall.reverseX();
+	private void checkCollisionWith2(Ball ball) {
+		if ( (ball.getXLoc() + ball.getSize() > paddle2.getPaddle().getX()) 
+				&& (ball.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) )
+			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + paddle2.getPaddle().getHeight()))) &&
+					(ball.getYSpeed() > 0) ) {
+				ball.reverseY();
+				ball.setPaddleLastHit(paddle2);
+				//System.out.println("2 hit");
+				if(ball.getXSpeed() <= 0){
+					if((ball.getXLoc() + ball.getSize() > paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
+						&& (ball.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) ){
+					ball.reverseX();
 					//System.out.println("2 reverse");
-					mainBall.setYSpeed(mainBall.getYSpeed() - 1);
+					ball.setYSpeed(ball.getYSpeed() - 1);
 					}
 				}
-				if(mainBall.getXSpeed() >= 0){
-					if((mainBall.getXLoc() + mainBall.getSize() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
-						&& (mainBall.getXLoc() > paddle2.getPaddle().getX()) ){
-					mainBall.reverseX();
+				if(ball.getXSpeed() >= 0){
+					if((ball.getXLoc() + ball.getSize() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
+						&& (ball.getXLoc() > paddle2.getPaddle().getX()) ){
+					ball.reverseX();
 					//System.out.println("2 reverse");
-					mainBall.setYSpeed(mainBall.getYSpeed() - 1);
+					ball.setYSpeed(ball.getYSpeed() - 1);
 					}
 				}
 			}
 	}
 	
 	//If ball collides with paddle3, reverse x direction
-	private void checkCollisionWith3() {
-		if ( (mainBall.getYLoc() + mainBall.getSize() > paddle3.getPaddle().getY()) 
-				&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) )
-			if ( mainBall.getXLoc() > (paneWH - (mainBall.getSize() + paddle3.getPaddle().getWidth())) &&
-					(mainBall.getXSpeed() > 0) ) {
-				mainBall.reverseX();
-				mainBall.setPaddleLastHit(paddle3);
+	private void checkCollisionWith3(Ball ball) {
+		if ( (ball.getYLoc() + ball.getSize() > paddle3.getPaddle().getY()) 
+				&& (ball.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) )
+			if ( ball.getXLoc() > (paneWH - (ball.getSize() + paddle3.getPaddle().getWidth())) &&
+					(ball.getXSpeed() > 0) ) {
+				ball.reverseX();
+				ball.setPaddleLastHit(paddle3);
 				//System.out.println("3 hit");
-				if(mainBall.getYSpeed() <= 0){
-					if((mainBall.getYLoc() + mainBall.getSize() > paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
-						&& (mainBall.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) ){
-					mainBall.reverseY();
+				if(ball.getYSpeed() <= 0){
+					if((ball.getYLoc() + ball.getSize() > paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
+						&& (ball.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) ){
+					ball.reverseY();
 					//System.out.println("3 reverse");
-					mainBall.setXSpeed(mainBall.getXSpeed() + 1);
+					ball.setXSpeed(ball.getXSpeed() + 1);
 					}
 				}
-				if(mainBall.getYSpeed() >= 0){
-					if((mainBall.getYLoc() + mainBall.getSize() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
-						&& (mainBall.getYLoc() > paddle3.getPaddle().getY()) ){
-					mainBall.reverseY();
+				if(ball.getYSpeed() >= 0){
+					if((ball.getYLoc() + ball.getSize() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
+						&& (ball.getYLoc() > paddle3.getPaddle().getY()) ){
+					ball.reverseY();
 					//System.out.println("3 reverse");
-					mainBall.setXSpeed(mainBall.getXSpeed() + 1);
+					ball.setXSpeed(ball.getXSpeed() + 1);
 					}
 				}
 			}
 	}
 	
 	//If ball collides with paddle4, reverse y direction
-	private void checkCollisionWith4() {
-		if ( (mainBall.getXLoc() + mainBall.getSize() > paddle4.getPaddle().getX())
-				&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) )
-			if ( mainBall.getYLoc() < (paddle2.getPaddle().getHeight()) &&
-					(mainBall.getYSpeed() < 0) ) {
-				mainBall.reverseY();
-				mainBall.setPaddleLastHit(paddle4);
+	private void checkCollisionWith4(Ball ball) {
+		if ( (ball.getXLoc() + ball.getSize() > paddle4.getPaddle().getX())
+				&& (ball.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) )
+			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
+					(ball.getYSpeed() < 0) ) {
+				ball.reverseY();
+				ball.setPaddleLastHit(paddle4);
 				//System.out.println("4 hit");
-				if(mainBall.getXSpeed() <= 0){
-					if((mainBall.getXLoc() + mainBall.getSize() > paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
-						&& (mainBall.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) ){
-					mainBall.reverseX();
+				if(ball.getXSpeed() <= 0){
+					if((ball.getXLoc() + ball.getSize() > paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
+						&& (ball.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) ){
+					ball.reverseX();
 					//System.out.println("4 reverse");
-					if (Math.abs(mainBall.getYSpeed()) > 2)
-					mainBall.setYSpeed(mainBall.getYSpeed() + 1);
+					if (Math.abs(ball.getYSpeed()) > 2)
+					ball.setYSpeed(ball.getYSpeed() + 1);
 					}
 				}
-				if(mainBall.getXSpeed() >= 0){
-					if((mainBall.getXLoc() + mainBall.getSize() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
-						&& (mainBall.getXLoc() > paddle4.getPaddle().getX()) ){
-					mainBall.reverseX();
+				if(ball.getXSpeed() >= 0){
+					if((ball.getXLoc() + ball.getSize() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
+						&& (ball.getXLoc() > paddle4.getPaddle().getX()) ){
+					ball.reverseX();
 					//System.out.println("4 reverse");
-					mainBall.setYSpeed(mainBall.getYSpeed() + 1);
+					ball.setYSpeed(ball.getYSpeed() + 1);
 					}
 				}
 			}
@@ -594,10 +739,35 @@ public class GameScreen {
 		checkBallHitPowerUp(ball7);
 	}
 	
+	public void moveAllBalls(){
+		try{
+			mainBall.moveBall();	
+		}catch(Exception e){}
+		try{
+		    ball1.moveBall();
+		}catch(Exception e){}
+		try{
+	    	ball2.moveBall();	
+		}catch(Exception e){}
+		try{
+	    	ball3.moveBall();	
+		}catch(Exception e){}
+		try{
+	    	ball4.moveBall();	
+		}catch(Exception e){}
+		try{
+	    	ball5.moveBall();	
+		}catch(Exception e){}
+		try{
+	    	ball6.moveBall();
+		}catch(Exception e){}
+		try{
+	    	ball7.moveBall();	
+		}catch(Exception e){}
+	}
+	
 	//Continuously update the game screen to keep the ball moving
-
 	//moves the ball and AI paddles
-
 	public void continuousUpdate() {
 		Task task = new Task<Void>() {
 			  @Override
@@ -606,21 +776,17 @@ public class GameScreen {
 			      Platform.runLater(new Runnable() {
 			        @Override
 			        public void run() {
-			        	mainBall.moveBall();
-			        try{ball1.moveBall();
-			        	ball2.moveBall();
-			        	ball3.moveBall();
-			        	ball4.moveBall();
-			        	ball5.moveBall();
-			        	ball6.moveBall();
-			        	ball7.moveBall();
-			        }catch (Exception e) {}
-			        try {
-						checkReverse();
+			        	moveAllBalls();
+			        try {checkReverse(mainBall);
 						checkCollisionWithPowerUp();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					}catch (InterruptedException e) {e.printStackTrace();}
+			        try{checkReverse(ball1);}catch(Exception e){}
+			        try{checkReverse(ball2);}catch(Exception e){}
+			        try{checkReverse(ball3);}catch(Exception e){}
+			        try{checkReverse(ball4);}catch(Exception e){}
+			        try{checkReverse(ball5);}catch(Exception e){}
+			        try{checkReverse(ball6);}catch(Exception e){}
+			        try{checkReverse(ball7);}catch(Exception e){}         
 			        //TODO variable AI
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);

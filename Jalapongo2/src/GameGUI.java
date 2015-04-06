@@ -63,6 +63,7 @@ public class GameGUI extends Application {
 	public static CheckBox smallCB;
 	public static CheckBox flipCB;
 	public static CheckBox stallCB;
+	public static CheckBox multiCB;
 	
 	public static ComboBox<Integer> livesCoB;
 	
@@ -246,6 +247,7 @@ public class GameGUI extends Application {
 		 smallCB = new CheckBox("Small Paddle ");
 		 flipCB = new CheckBox("Flip Controls ");
 		 stallCB = new CheckBox("Stall Controls");
+		 multiCB = new CheckBox("Multi Ball      ");
 		
 		Text livesText = new Text("# of Lives:        ");
 			livesText.setFont(new Font(24));
@@ -268,6 +270,7 @@ public class GameGUI extends Application {
 		 smallCB.setSelected(true);
 		 flipCB.setSelected(true);
 		 stallCB.setSelected(true);
+		 multiCB.setSelected(true);
 			
 		liveshb.getChildren().addAll(livesText, livesCoB);
 		liveshb.setAlignment(Pos.CENTER);
@@ -277,7 +280,7 @@ public class GameGUI extends Application {
 		bottomhb.setSpacing(25);
 		
 		powerUpVB.getChildren().addAll(liveshb, powerUpsText, fastCB, slowCB, sheildCB,
-				livesCB, bigCB, smallCB, flipCB, stallCB, bottomhb);
+				livesCB, bigCB, smallCB, flipCB, stallCB, multiCB, bottomhb);
 		powerUpVB.setAlignment(Pos.CENTER);		
 		powerUpVB.setSpacing(15);
 		
