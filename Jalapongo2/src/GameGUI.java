@@ -1,6 +1,5 @@
 // Imports
 import java.net.URL;
-
 import javafx.application.Application; // Imports Application
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,7 +28,12 @@ import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.Group;
+import javafx.scene.control.Label;
+import javafx.geometry.Insets;
+import javafx.scene.text.TextAlignment;
 import java.net.URL;
 
 public class GameGUI extends Application {
@@ -53,6 +57,8 @@ public class GameGUI extends Application {
 	public static CheckBox stallCB;
 	
 	public static ComboBox<Integer> livesCoB;
+	
+	private TableView scoreboard = new TableView();
 	
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
@@ -361,7 +367,40 @@ public class GameGUI extends Application {
 				
 //*******************************************************************************
 			//Scoreboard GUI
+				//TODO add text fields for each player, make column width fixed, center button,
+				//construct GUI objects
+				BorderPane sbBP = new BorderPane();
+				final VBox vbTableSB = new VBox();
+				HBox hbContinueSB = new HBox();
 				
+				//display scoreboard title
+				final Label summary = new Label("Game Summary");
+				summary.setFont(new Font("Arial",25));
+				summary.setTextAlignment(TextAlignment.CENTER);
+				scoreboard.setEditable(true);
+				
+				//create columns for scoreboard
+				TableColumn players = new TableColumn("Players");
+				TableColumn time = new TableColumn("Time Defeated");
+				TableColumn powerups = new TableColumn("# of powerups used");
+				
+				scoreboard.getColumns().addAll(players,time,powerups);
+				
+				//add title and table to VBox
+				vbTableSB.setSpacing(10);
+				vbTableSB.setPadding(new Insets(10,0,0,10));
+				vbTableSB.getChildren().addAll(summary,scoreboard);
+				
+				//Create continue button
+				Button sbContinueB = new Button("Continue");
+				
+				//add button to HBox
+				hbContinueSB.getChildren().addAll(sbContinueB);
+				
+				sbBP.setCenter(vbTableSB);
+				sbBP.setBottom(hbContinueSB);
+				
+				Scene sbScene = new Scene(sbBP,sceneWH,sceneWH);
 //*******************************************************************************
 		//Events
 		//Start Menu Scene Events
