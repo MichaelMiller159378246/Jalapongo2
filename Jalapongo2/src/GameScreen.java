@@ -610,6 +610,7 @@ public class GameScreen {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+			        //TODO variable AI
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);
 			          player3.moveAI(mainBall);
