@@ -2,12 +2,9 @@ import java.net.URL;
 import java.time.LocalTime;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -601,13 +598,11 @@ public class GameScreen {
 
 	//moves the ball and AI paddles
 
-	private boolean running;
 	public void continuousUpdate() {
-		running = true;
 		Task task = new Task<Void>() {
 			  @Override
 			  public Void call() throws Exception {
-			    while (running) {
+			    while (true) {
 			      Platform.runLater(new Runnable() {
 			        @Override
 			        public void run() {
@@ -644,7 +639,6 @@ public class GameScreen {
 			      });
 			      Thread.sleep(50);
 			    }
-				return null;
 			  }
 			};
 			Thread th = new Thread(task);
@@ -729,6 +723,7 @@ public class GameScreen {
 			playersIn++;
 		
 		//Switch to summary screen
+		//--Your Code Here--
 		if (playersIn <= 1) {
 			int endTime = LocalTime.now().toSecondOfDay();
 			int secondsElapsed = endTime - startTime;
@@ -736,10 +731,6 @@ public class GameScreen {
 			int timeSeconds = secondsElapsed % 60; //Game time seconds
 			System.out.printf("Player %d wins!%n",checkWin());
 			primaryStage.setScene(summaryScene);
-			running = false;
-			
-			//Code to place game stats to 
-			//--Your Code Here--
 		}
 	}
 	

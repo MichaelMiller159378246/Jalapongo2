@@ -1,6 +1,5 @@
 // Imports
 import java.net.URL;
-
 import javafx.application.Application; // Imports Application
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -33,10 +32,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.geometry.Insets;
 import javafx.scene.text.TextAlignment;
-
 import java.net.URL;
 
 public class GameGUI extends Application {
