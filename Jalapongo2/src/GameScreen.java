@@ -11,6 +11,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 
@@ -89,12 +91,23 @@ public class GameScreen {
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
 
 		//Add Lives Text
-		player1L.setX(30); 			player1L.setY(paneWH/2);
+		player1L.setX(10); 			player1L.setY(paneWH/2);
 		player1L.setRotate(90);
+		player1L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+		player1L.setFill(Color.BLUE);
+		
 		player2L.setX(paneWH/2); 	player2L.setY(paneWH-50);
-		player3L.setX(paneWH-70); 	player3L.setY(paneWH/2);
+		player2L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+		player2L.setFill(Color.GREEN);
+		
+		player3L.setX(paneWH-90); 	player3L.setY(paneWH/2);
 		player3L.setRotate(270);
+		player3L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+		player3L.setFill(Color.RED);
+		
 		player4L.setX(paneWH/2); 	player4L.setY(50);
+		player4L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+		player4L.setFill(Color.YELLOW);
 		
 		//Set the location of all the rectangles to their respective corners
 		rect1.setX(paneWH-rectW); 	rect1.setY(0);
@@ -300,7 +313,6 @@ public class GameScreen {
 		if (x < 0 && mainBall.getXSpeed() < 0) {
 			player1.getPaddle().scoredOn();
 			System.out.println("Player 1 Was Scored On");
-			//player1L.setText(paddle1.getLives() + " Lives");
 			playerOut(player1);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -310,7 +322,6 @@ public class GameScreen {
 		if (y > (paneWH - 20) && mainBall.getYSpeed() > 0) {
 			player2.getPaddle().scoredOn();
 			System.out.println("Player 2 Was Scored On");
-			//player2L.setText(paddle2.getLives() + " Lives");
 			playerOut(player2);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -320,7 +331,6 @@ public class GameScreen {
 		if (x > (paneWH - 20) && mainBall.getXSpeed() > 0) {
 			player3.getPaddle().scoredOn();
 			System.out.println("Player 3 Was Scored On");
-			//player3L.setText(paddle3.getLives() + " Lives");
 			playerOut(player3);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -330,7 +340,6 @@ public class GameScreen {
 		if (y < 0 && mainBall.getYSpeed() < 0) {
 			player4.getPaddle().scoredOn();
 			System.out.println("Player 4 Was Scored On");
-			//player4L.setText(paddle4.getLives() + " Lives");
 			playerOut(player4);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
