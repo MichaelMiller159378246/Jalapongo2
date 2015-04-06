@@ -41,10 +41,10 @@ public class GameGUI extends Application {
 	private int sceneWH = 700; // Int used to control screen size
 	public static Label nameLRQ; // Public label so the host class can edit the data
 	public static GridPane namesGPRQ; // Public HBox so the host class can edit the data
-	public Circle circle1 = new Circle(25);
-	public Circle circle2 = new Circle(25);
-	public Circle circle3 = new Circle(25);
-	public Circle circle4 = new Circle(25);
+	public static Circle circle1 = new Circle(25);
+	public static Circle circle2 = new Circle(25);
+	public static Circle circle3 = new Circle(25);
+	public static Circle circle4 = new Circle(25);
 	
 	//hosting options
 	public static CheckBox fastCB;
