@@ -45,6 +45,14 @@ public class GameGUI extends Application {
 	public static Circle circle2 = new Circle(25);
 	public static Circle circle3 = new Circle(25);
 	public static Circle circle4 = new Circle(25);
+	public static CheckBox readyCB1 = new CheckBox();
+	public static CheckBox readyCB2 = new CheckBox();
+	public static CheckBox readyCB3 = new CheckBox();
+	public static CheckBox readyCB4 = new CheckBox();
+	public static BorderPane nameBP1 = new BorderPane();
+	public static BorderPane nameBP2 = new BorderPane();
+	public static BorderPane nameBP3 = new BorderPane();
+	public static BorderPane nameBP4 = new BorderPane();
 	
 	//hosting options
 	public static CheckBox fastCB;
