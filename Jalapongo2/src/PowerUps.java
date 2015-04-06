@@ -49,6 +49,7 @@ public class PowerUps {
 					case 2:
 						if(GameGUI.livesCB.isSelected()){
 							powerUp.setFill(Color.ORANGE); //addlives
+							flag = 0;
 							break;
 						}else{break;}
 					case 3:

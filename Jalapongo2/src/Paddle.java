@@ -14,12 +14,12 @@ import javafx.scene.shape.*;
 public class Paddle {
 
 	private Rectangle paddle;
-	private int lives = 5;//(int) GameGUI.livesCoB.getValue(); //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
+	public int lives = 5; //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
 	private int speed = 5;
-	private int control = 1; //1=normal, 2=flipped
+	private int control = 1; //1=normal, 2=flipped, 0=stall
 	private int paddle12W = 30;
 	private int paddle12H = 150;
 

@@ -1,4 +1,5 @@
 import java.net.URL;
+import java.time.LocalTime;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -14,6 +15,9 @@ import javafx.scene.text.Text;
 
 
 public class GameScreen {
+	
+	//Game Timer
+	int startTime = LocalTime.now().toSecondOfDay();
 
 	//Corner Bumpers
 	static int rectW = 60;
@@ -642,24 +646,40 @@ public class GameScreen {
 				paddle1.getPaddle().setX(-1000);
 				paddle1.getPaddle().setY(-1000);
 				rect3.setHeight(paneWH);
+				int player1Lost = LocalTime.now().toSecondOfDay();
+				int player1Elapsed = player1Lost - startTime;
+				int player1Minutes = player1Elapsed / 60; //Minutes in game
+				int player1Seconds = player1Elapsed % 60; //Seconds in game
 			}
 			else if (player.getPos() == 3) {
 				gamePane.getChildren().remove(paddle3.getPaddle());
 				paddle3.getPaddle().setX(-1000);
 				paddle3.getPaddle().setY(-1000);
 				rect8.setHeight(paneWH);
+				int player2Lost = LocalTime.now().toSecondOfDay();
+				int player2Elapsed = player2Lost - startTime;
+				int player2Minutes = player2Elapsed / 60; //Minutes in game
+				int player2Seconds = player2Elapsed % 60; //Seconds in game
 			}
 			else if (player.getPos() == 2) {
 				gamePane.getChildren().remove(paddle2.getPaddle());
 				paddle2.getPaddle().setX(-1000);
 				paddle2.getPaddle().setY(-1000);
 				rect5.setWidth(paneWH);
+				int player3Lost = LocalTime.now().toSecondOfDay();
+				int player3Elapsed = player3Lost - startTime;
+				int player3Minutes = player3Elapsed / 60; //Minutes in game
+				int player3Seconds = player3Elapsed % 60; //Seconds in game
 			}
 			else {
 				gamePane.getChildren().remove(paddle4.getPaddle());
 				paddle4.getPaddle().setX(-1000);
 				paddle4.getPaddle().setY(-1000);
 				rect2.setWidth(paneWH);
+				int player4Lost = LocalTime.now().toSecondOfDay();
+				int player4Elapsed = player4Lost - startTime;
+				int player4Minutes = player4Elapsed / 60; //Minutes in game
+				int player4Seconds = player4Elapsed % 60; //Seconds in game
 			}
 			System.out.println("Player " + player.getPos() + " is out");
 		}
@@ -680,6 +700,10 @@ public class GameScreen {
 		//Switch to summary screen
 		//--Your Code Here--
 		if (playersIn <= 1) {
+			int endTime = LocalTime.now().toSecondOfDay();
+			int secondsElapsed = endTime - startTime;
+			int timeMinutes = secondsElapsed / 60; //Game time minutes
+			int timeSeconds = secondsElapsed % 60; //Game time seconds
 			System.out.printf("Player %d wins!%n",checkWin());
 			Thread.sleep(10000);
 			System.exit(0); //Need to change
