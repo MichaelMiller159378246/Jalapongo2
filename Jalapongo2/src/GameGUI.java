@@ -406,6 +406,7 @@ public class GameGUI extends Application {
 		
 		//Host Options Menu Events
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses okay the scene changes to the host menu scene 
+		//livesCoB.valueProperty().bind(GameScreen.paddle1.lives);; 
 		
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
