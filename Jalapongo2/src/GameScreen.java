@@ -89,10 +89,10 @@ public class GameScreen {
 		gamePane.getChildren().addAll(rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8);
 
 		//Add Lives Text
-		player1L.setX(50); 			player1L.setY(paneWH/2);
+		player1L.setX(30); 			player1L.setY(paneWH/2);
 		player1L.setRotate(90);
 		player2L.setX(paneWH/2); 	player2L.setY(paneWH-50);
-		player3L.setX(paneWH-50); 	player3L.setY(paneWH/2);
+		player3L.setX(paneWH-70); 	player3L.setY(paneWH/2);
 		player3L.setRotate(270);
 		player4L.setX(paneWH/2); 	player4L.setY(50);
 		
