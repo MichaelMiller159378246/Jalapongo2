@@ -419,7 +419,7 @@ public class GameGUI extends Application {
 		//Options Menu Scene Events
 		backBOS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
 			//toggle music
-		
+	
 		musicCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
 		    @Override
 		    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
