@@ -14,10 +14,21 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class GameScreen {
 	
+	//Player times
+	public String player1Time;
+	public String player2Time;
+	public String player3Time;
+	public String player4Time;
+	
+	//Stage
+	private Stage primaryStage;
+	private Scene summaryScene;
+
 	//Game Timer
 	int startTime = LocalTime.now().toSecondOfDay();
 
@@ -646,54 +657,58 @@ public class GameScreen {
 	}
 	
 	//If a player runs out of lives, make their paddle fill the whole side
-	private void playerOut(Player player) {
-		if (player.getPaddle().getLives() < 1) {
-			MediaPlayer losePlayer = new MediaPlayer(loseMedia);
-			losePlayer.play();
-			
-			if (player.getPos() == 1) {
-				gamePane.getChildren().remove(paddle1.getPaddle());
-				paddle1.getPaddle().setX(-1000);
-				paddle1.getPaddle().setY(-1000);
-				rect3.setHeight(paneWH);
-				int player1Lost = LocalTime.now().toSecondOfDay();
-				int player1Elapsed = player1Lost - startTime;
-				int player1Minutes = player1Elapsed / 60; //Minutes in game
-				int player1Seconds = player1Elapsed % 60; //Seconds in game
+		private void playerOut(Player player) {
+			if (player.getPaddle().getLives() < 1) {
+				MediaPlayer losePlayer = new MediaPlayer(loseMedia);
+				losePlayer.play();
+				
+				if (player.getPos() == 1) {
+					gamePane.getChildren().remove(paddle1.getPaddle());
+					paddle1.getPaddle().setX(-1000);
+					paddle1.getPaddle().setY(-1000);
+					rect3.setHeight(paneWH);
+					int player1Lost = LocalTime.now().toSecondOfDay();
+					int player1Elapsed = player1Lost - startTime;
+					int player1Minutes = player1Elapsed / 60; //Minutes in game
+					int player1Seconds = player1Elapsed % 60; //Seconds in game
+					player1Time = new String(player1Minutes + ":" + player1Seconds);
+				}
+				else if (player.getPos() == 3) {
+					gamePane.getChildren().remove(paddle3.getPaddle());
+					paddle3.getPaddle().setX(-1000);
+					paddle3.getPaddle().setY(-1000);
+					rect8.setHeight(paneWH);
+					int player3Lost = LocalTime.now().toSecondOfDay();
+					int player3Elapsed = player3Lost - startTime;
+					int player3Minutes = player3Elapsed / 60; //Minutes in game
+					int player3Seconds = player3Elapsed % 60; //Seconds in game
+					player3Time = new String(player3Minutes + ":" + player3Seconds);
+				}
+				else if (player.getPos() == 2) {
+					gamePane.getChildren().remove(paddle2.getPaddle());
+					paddle2.getPaddle().setX(-1000);
+					paddle2.getPaddle().setY(-1000);
+					rect5.setWidth(paneWH);
+					int player2Lost = LocalTime.now().toSecondOfDay();
+					int player2Elapsed = player2Lost - startTime;
+					int player2Minutes = player2Elapsed / 60; //Minutes in game
+					int player2Seconds = player2Elapsed % 60; //Seconds in game
+					player2Time = new String(player2Minutes + ":" + player2Seconds);
+				}
+				else {
+					gamePane.getChildren().remove(paddle4.getPaddle());
+					paddle4.getPaddle().setX(-1000);
+					paddle4.getPaddle().setY(-1000);
+					rect2.setWidth(paneWH);
+					int player4Lost = LocalTime.now().toSecondOfDay();
+					int player4Elapsed = player4Lost - startTime;
+					int player4Minutes = player4Elapsed / 60; //Minutes in game
+					int player4Seconds = player4Elapsed % 60; //Seconds in game
+					player4Time = new String(player4Minutes + ":" + player4Seconds);
+				}
+				System.out.println("Player " + player.getPos() + " is out");
 			}
-			else if (player.getPos() == 3) {
-				gamePane.getChildren().remove(paddle3.getPaddle());
-				paddle3.getPaddle().setX(-1000);
-				paddle3.getPaddle().setY(-1000);
-				rect8.setHeight(paneWH);
-				int player2Lost = LocalTime.now().toSecondOfDay();
-				int player2Elapsed = player2Lost - startTime;
-				int player2Minutes = player2Elapsed / 60; //Minutes in game
-				int player2Seconds = player2Elapsed % 60; //Seconds in game
-			}
-			else if (player.getPos() == 2) {
-				gamePane.getChildren().remove(paddle2.getPaddle());
-				paddle2.getPaddle().setX(-1000);
-				paddle2.getPaddle().setY(-1000);
-				rect5.setWidth(paneWH);
-				int player3Lost = LocalTime.now().toSecondOfDay();
-				int player3Elapsed = player3Lost - startTime;
-				int player3Minutes = player3Elapsed / 60; //Minutes in game
-				int player3Seconds = player3Elapsed % 60; //Seconds in game
-			}
-			else {
-				gamePane.getChildren().remove(paddle4.getPaddle());
-				paddle4.getPaddle().setX(-1000);
-				paddle4.getPaddle().setY(-1000);
-				rect2.setWidth(paneWH);
-				int player4Lost = LocalTime.now().toSecondOfDay();
-				int player4Elapsed = player4Lost - startTime;
-				int player4Minutes = player4Elapsed / 60; //Minutes in game
-				int player4Seconds = player4Elapsed % 60; //Seconds in game
-			}
-			System.out.println("Player " + player.getPos() + " is out");
 		}
-	}
 	//End of game
 	public void endGame() throws InterruptedException {
 		int playersIn = 0;
@@ -715,12 +730,13 @@ public class GameScreen {
 			int timeMinutes = secondsElapsed / 60; //Game time minutes
 			int timeSeconds = secondsElapsed % 60; //Game time seconds
 			System.out.printf("Player %d wins!%n",checkWin());
-			Thread.sleep(10000);
-			System.exit(0); //Need to change
+			primaryStage.setScene(summaryScene);
 		}
 	}
 	
-	public Scene getGameScene() {
+	public Scene getGameScene(Stage primaryStage, Scene summaryScene) {
+		this.primaryStage = primaryStage;
+		this.summaryScene = summaryScene;
 		return this.gameScene;
 	}
 }
