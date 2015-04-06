@@ -296,7 +296,7 @@ public class GameScreen {
 		if (x < 0 && mainBall.getXSpeed() < 0) {
 			player1.getPaddle().scoredOn();
 			System.out.println("Player 1 Was Scored On");
-			player2L.setText(paddle1.getLives() + "Lives");
+			player1L.setText(paddle1.getLives() + " Lives");
 			playerOut(player1);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -306,6 +306,7 @@ public class GameScreen {
 		if (y > (paneWH - 20) && mainBall.getYSpeed() > 0) {
 			player2.getPaddle().scoredOn();
 			System.out.println("Player 2 Was Scored On");
+			player2L.setText(paddle2.getLives() + " Lives");
 			playerOut(player2);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -315,6 +316,7 @@ public class GameScreen {
 		if (x > (paneWH - 20) && mainBall.getXSpeed() > 0) {
 			player3.getPaddle().scoredOn();
 			System.out.println("Player 3 Was Scored On");
+			player3L.setText(paddle3.getLives() + " Lives");
 			playerOut(player3);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -324,6 +326,7 @@ public class GameScreen {
 		if (y < 0 && mainBall.getYSpeed() < 0) {
 			player4.getPaddle().scoredOn();
 			System.out.println("Player 4 Was Scored On");
+			player4L.setText(paddle4.getLives() + " Lives");
 			playerOut(player4);
 			mainBall.setPaddleLastHit(null);
 			mainBall.restart();
@@ -344,19 +347,19 @@ public class GameScreen {
 	//If ball collides with paddle1, reverse x direction
 	
 	private int checkWin(){
-		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle3.getLives() < 0){
+		if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle3.getLives() < 1){
 			//player 4 wins 
 			return 4;
 		}
-		else if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle4.getLives() < 1){
 			//player 3 wins 
 			return 3;
 		}
-		else if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 1 && paddle3.getLives() < 1 && paddle4.getLives() < 1){
 			//player 2 wins 
 			return 2;
 		}
-		else if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle2.getLives() < 1 && paddle3.getLives() < 1 && paddle4.getLives() < 1){
 			//player 1 wins 
 			return 1;
 		}
