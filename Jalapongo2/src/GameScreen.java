@@ -344,19 +344,19 @@ public class GameScreen {
 	//If ball collides with paddle1, reverse x direction
 	
 	private int checkWin(){
-		if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle3.getLives() < 0){
+		if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle3.getLives() < 1){
 			//player 4 wins 
 			return 4;
 		}
-		else if(paddle1.getLives() < 0 && paddle2.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle4.getLives() < 1){
 			//player 3 wins 
 			return 3;
 		}
-		else if(paddle1.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle1.getLives() < 1 && paddle3.getLives() < 1 && paddle4.getLives() < 1){
 			//player 2 wins 
 			return 2;
 		}
-		else if(paddle2.getLives() < 0 && paddle3.getLives() < 0 && paddle4.getLives() < 0){
+		else if(paddle2.getLives() < 1 && paddle3.getLives() < 1 && paddle4.getLives() < 1){
 			//player 1 wins 
 			return 1;
 		}
