@@ -55,7 +55,7 @@ public class GameScreen {
 	static PowerUps powerUp1, powerUp2, powerUp3, powerUp4, powerUp5;
 	
 	//Ball
-	static Ball mainBall = new Ball();
+	static Ball mainBall = new Ball(8); //main ball id # is 8
 	static Ball ball1, ball2, ball3, ball4, ball5, ball6, ball7;
 	static int newBallCounter = 1;
 	
@@ -158,7 +158,8 @@ public class GameScreen {
            try {
             	gamePane.getChildren().removeAll(sheild1);
 			} catch (Exception e){}
-			sheild1 = new Rectangle(10, paneWH);
+			sheild1 = new Rectangle(paneWH, 10);
+			sheild1.setFill(Color.CYAN);
 			sheild1.setX(690);
 			sheild1.setY(0);
             gamePane.getChildren().addAll(sheild1);
@@ -167,7 +168,8 @@ public class GameScreen {
 			try {
             	gamePane.getChildren().removeAll(sheild2);
 			} catch (Exception e){}
-			sheild2 = new Rectangle(paneWH, 10);
+			sheild2 = new Rectangle(10, paneWH);
+			sheild2.setFill(Color.CYAN);
 			sheild2.setX(690);
 			sheild2.setY(0);
             gamePane.getChildren().addAll(sheild2);
@@ -177,6 +179,7 @@ public class GameScreen {
             	gamePane.getChildren().removeAll(sheild3);
 			} catch (Exception e){}
 			sheild3 = new Rectangle(10, paneWH);
+			sheild3.setFill(Color.CYAN);
 			sheild3.setX(0);
 			sheild3.setY(0);
             gamePane.getChildren().addAll(sheild3);
@@ -186,6 +189,7 @@ public class GameScreen {
             	gamePane.getChildren().removeAll(sheild4);
 			} catch (Exception e){}
 			sheild4 = new Rectangle(paneWH, 10);
+			sheild4.setFill(Color.CYAN);
 			sheild4.setX(0);
 			sheild4.setY(0);
             gamePane.getChildren().addAll(sheild4);
@@ -198,63 +202,62 @@ public class GameScreen {
             try {
             	gamePane.getChildren().removeAll(ball1.getBall());
 			} catch (Exception e){}
-			ball1 = new Ball();
+			ball1 = new Ball(0);
             gamePane.getChildren().addAll(ball1.getBall());
 		}
 		if(newBallCounter%8 == 1){
             try {
             	gamePane.getChildren().removeAll(ball2.getBall());
 			} catch (Exception e){}
-			ball2 = new Ball();
+			ball2 = new Ball(1);
             gamePane.getChildren().addAll(ball2.getBall());
 		}
 		if(newBallCounter%8 == 2){
             try {
             	gamePane.getChildren().removeAll(ball3.getBall());
 			} catch (Exception e){}
-			ball3 = new Ball();
+			ball3 = new Ball(2);
             gamePane.getChildren().addAll(ball3.getBall());
 		}
 		if(newBallCounter%8 == 3){
             try {
             	gamePane.getChildren().removeAll(ball4.getBall());
 			} catch (Exception e){}
-			ball4 = new Ball();
+			ball4 = new Ball(3);
             gamePane.getChildren().addAll(ball4.getBall());
 		}
 		if(newBallCounter%8 == 4){
             try {
             	gamePane.getChildren().removeAll(ball5.getBall());
 			} catch (Exception e){}
-			ball5 = new Ball();
+			ball5 = new Ball(4);
             gamePane.getChildren().addAll(ball5.getBall());
 		}
 		if(newBallCounter%8 == 5){
             try {
             	gamePane.getChildren().removeAll(ball6.getBall());
 			} catch (Exception e){}
-			ball6 = new Ball();
+			ball6 = new Ball(5);
             gamePane.getChildren().addAll(ball6.getBall());
 		}
 		if(newBallCounter%8 == 6){
             try {
             	gamePane.getChildren().removeAll(ball7.getBall());
 			} catch (Exception e){}
-			ball7 = new Ball();
+			ball7 = new Ball(6);
             gamePane.getChildren().addAll(ball7.getBall());
 		}
 		if(newBallCounter%8 == 7){
             try {
             	gamePane.getChildren().removeAll(mainBall.getBall());
 			} catch (Exception e){}
-			mainBall = new Ball();
+			mainBall = new Ball(7);
             gamePane.getChildren().addAll(mainBall.getBall());
 		}
 		newBallCounter++;
 	}
 	
 	public void removeBall(){
-		
 	}
 	
 	private void generatePowerUp(){
@@ -441,8 +444,16 @@ public class GameScreen {
 			//System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
 			ball.setPaddleLastHit(null);
-			ball.restart();
-			Thread.sleep(200);
+			if(ball.getID() == 8){
+				ball.restart();
+				Thread.sleep(200);
+			}else{
+				ball.setXLoc(-999);
+				ball.setYLoc(-999);
+				ball.setXSpeed(0);
+				ball.setYSpeed(0);
+				gamePane.getChildren().remove(ball.getBall());
+			}
 			endGame();
 		}
 		if (y > (paneWH - 20) && ball.getYSpeed() > 0) {
@@ -450,8 +461,16 @@ public class GameScreen {
 			//System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
 			ball.setPaddleLastHit(null);
-			ball.restart();
-			Thread.sleep(200);
+			if(ball.getID() == 8){
+				ball.restart();
+				Thread.sleep(200);
+			}else{
+				ball.setXLoc(-999);
+				ball.setYLoc(-999);
+				ball.setXSpeed(0);
+				ball.setYSpeed(0);
+				gamePane.getChildren().remove(ball.getBall());
+			}
 			endGame();
 		}
 		if (x > (paneWH - 20) && ball.getXSpeed() > 0) {
@@ -459,8 +478,16 @@ public class GameScreen {
 			//System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
 			ball.setPaddleLastHit(null);
-			ball.restart();
-			Thread.sleep(200);
+			if(ball.getID() == 8){
+				ball.restart();
+				Thread.sleep(200);
+			}else{
+				ball.setXLoc(-999);
+				ball.setYLoc(-999);
+				ball.setXSpeed(0);
+				ball.setYSpeed(0);
+				gamePane.getChildren().remove(ball.getBall());
+			}
 			endGame();
 		}
 		if (y < 0 && ball.getYSpeed() < 0) {
@@ -468,8 +495,16 @@ public class GameScreen {
 			//System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
 			ball.setPaddleLastHit(null);
-			ball.restart();
-			Thread.sleep(200);
+			if(ball.getID() == 8){
+				ball.restart();
+				Thread.sleep(200);
+			}else{
+				ball.setXLoc(-999);
+				ball.setYLoc(-999);
+				ball.setXSpeed(0);
+				ball.setYSpeed(0);
+				gamePane.getChildren().remove(ball.getBall());
+			}
 			endGame();
 		}
 		

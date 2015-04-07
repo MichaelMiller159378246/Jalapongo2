@@ -18,6 +18,7 @@ public class Ball {
 	private Paddle paddleLastHit;
 	private int xSpeed;
 	private int ySpeed;
+	private int id;
 	private int size = 20;
 
 	//Sounds
@@ -27,11 +28,16 @@ public class Ball {
 	
 
 	
-	public Ball(){
+	public Ball(int id){
 		ball = new Rectangle(size, size);
+		this.id = id;
 		ball.setX(setStartLoc());
 		ball.setY(setStartLoc());
 		randomizeDirection();
+	}
+	
+	public int getID(){
+		return this.id;
 	}
 
 	public int setStartLoc(){
@@ -64,7 +70,13 @@ public class Ball {
 
 	public void moveBall(){
 		ball.setX(ball.getX() + xSpeed);
-		ball.setY(ball.getY() + ySpeed);		
+		if(xSpeed == 0){
+			xSpeed = xSpeed - 2;
+		}
+		ball.setY(ball.getY() + ySpeed);	
+		if(ySpeed == 0){
+			ySpeed = ySpeed + 1;
+		}
 	}
 
 	public void setPaddleLastHit(Paddle paddleLastHit){
