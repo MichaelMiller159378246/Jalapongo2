@@ -491,22 +491,7 @@ public class GameGUI extends Application {
 		nameLRQ.setText("[" + hostName + "]"); // Adds the hosts name to the label
 		Thread Host = new Thread(new Host(port, hostName)); // Creates a thread
 		Host.start(); // Starts the thread
-		
-		CheckBox readyCB = new CheckBox();
-		BorderPane nameBP = new BorderPane();
-		Label nameL = new Label(hostName);
-		nameBP.setLeft(nameL);
-		nameBP.setCenter(readyCB);
-		nameBP.setRight(circle1);
-		nameBP.setPrefWidth(700 / 2);
-		nameL.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-				"-fx-font-weight: bold;" +  // Sets the font to bold
-				"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-		//		"-fx-border-color: Black"); // Sets the border to black
-		nameBP.setStyle("-fx-border-color: Black");
-		nameBP.setPadding(new Insets(10));
-		GameGUI.namesGPRQ.add(nameBP, 0, 0);
-		
+
 		primaryStage.setScene(scene); // Sets the scene to the ready screen
 	}
 	
