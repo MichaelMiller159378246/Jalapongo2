@@ -66,6 +66,7 @@ public class GameGUI extends Application {
 	public static CheckBox multiCB;
 	
 	public static ComboBox<Integer> livesCoB;
+	public static ComboBox AICB = new ComboBox<Integer>();
 	
 	private TableView scoreboard = new TableView();
 	
@@ -196,8 +197,7 @@ public class GameGUI extends Application {
 		TextField nameTF = new TextField("Joey");
 		TextField portTFHS = new TextField("7777");
 	// Make Buttons	
-		ComboBox AICB = new ComboBox<Integer>();
-			AICB.getItems().addAll(1, 2, 3);
+			AICB.getItems().addAll(0, 1, 2, 3);
 			AICB.setValue(1);
 		Button backHO = new Button("Back");
 		Button optionsHO = new Button("Options");
