@@ -809,11 +809,13 @@ public class GameScreen {
 	
 	//Continuously update the game screen to keep the ball moving
 	//moves the ball and AI paddles
+	
+	private boolean running = true;
 	public void continuousUpdate() {
 		Task task = new Task<Void>() {
 			  @Override
 			  public Void call() throws Exception {
-			    while (true) {
+			    while (running) {
 			      Platform.runLater(new Runnable() {
 			        @Override
 			        public void run() {
@@ -846,6 +848,7 @@ public class GameScreen {
 			      });
 			      Thread.sleep(50);
 			    }
+				return null;
 			  }
 			};
 			Thread th = new Thread(task);
@@ -938,6 +941,10 @@ public class GameScreen {
 			int timeSeconds = secondsElapsed % 60; //Game time seconds
 			System.out.printf("Player %d wins!%n",checkWin());
 			primaryStage.setScene(summaryScene);
+			running = false;
+			
+			//Code to add game stats to summary screen
+			//--Your Code Here--
 		}
 	}
 	
