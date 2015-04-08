@@ -3,12 +3,12 @@ import javafx.beans.property.SimpleStringProperty;
 public class ScoreboardData extends GameScreen {
 	private final SimpleStringProperty name;
 	private final SimpleStringProperty timeElapsed;
-	private final SimpleStringProperty powerupsUsed;
+	//private final SimpleStringProperty powerupsUsed;
 	
-	public ScoreboardData(String uName,String time, String powerups){
+	public ScoreboardData(String uName,String time){
 		this.name = new SimpleStringProperty(uName);
 		this.timeElapsed = new SimpleStringProperty(time);
-		this.powerupsUsed = new SimpleStringProperty(powerups);
+		//this.powerupsUsed = new SimpleStringProperty(powerups);
 	}
 	
 	public String getName(){
@@ -27,13 +27,13 @@ public class ScoreboardData extends GameScreen {
 		timeElapsed.set(time);
 	}
 	
-	public String getPowerupsUsed(){
+	/*public String getPowerupsUsed(){
 		return powerupsUsed.get();
 	}
 	
 	public void setPowerupsUsed(String powerups){
 		powerupsUsed.set(powerups);
-	}
+	}*/
 	
 	
 	
