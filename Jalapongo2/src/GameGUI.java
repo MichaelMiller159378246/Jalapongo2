@@ -34,7 +34,6 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 
 public class GameGUI extends Application {
@@ -75,10 +74,10 @@ public class GameGUI extends Application {
 	//scoreboard variables
 	private TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
 	private final ObservableList<ScoreboardData> data = FXCollections.observableArrayList(
-			new ScoreboardData("Player 1",game.getP1Time()),
-			new ScoreboardData("Player 2",game.getP2Time()),
-			new ScoreboardData("Player 3",game.getP3Time()),
-			new ScoreboardData("Player 4",game.getP4Time())
+			new ScoreboardData("Player 1",game.getP1Time(),game.getP1Lives()),
+			new ScoreboardData("Player 2",game.getP2Time(),game.getP2Lives()),
+			new ScoreboardData("Player 3",game.getP3Time(),game.getP3Lives()),
+			new ScoreboardData("Player 4",game.getP4Time(),game.getP4Lives())
 			);
 	
 	@SuppressWarnings("unchecked")
@@ -403,16 +402,8 @@ public class GameGUI extends Application {
 
 		//create columns for scoreboard
 		TableColumn players = new TableColumn("Players");
-		players.setMinWidth(100);
-		players.setCellValueFactory(new PropertyValueFactory<ScoreboardData,String>("name"));
 		TableColumn time = new TableColumn("Time Defeated");
-		time.setMinWidth(100);
-		time.setCellValueFactory(new PropertyValueFactory<ScoreboardData,String>("timeElapsed"));
 		TableColumn powerups = new TableColumn("# of powerups used");
-		powerups.setMinWidth(100);
-		powerups.setCellValueFactory(new PropertyValueFactory<ScoreboardData,String>("powerupsUsed"));
-		
-		scoreboard.setItems(data);
 
 		scoreboard.getColumns().addAll(players,time,powerups);
 
