@@ -475,6 +475,9 @@ public class GameGUI extends Application {
 				if(Host.getPlayerCount() == 4 - Integer.parseInt(AICB.getValue().toString())){
 					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 					game.continuousUpdate();; // Calls the continuousUpdate method
+				}else if(Integer.parseInt(AICB.getValue().toString()) == 3){
+					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+					game.continuousUpdate();; // Calls the continuousUpdate method
 				}
 			}
 		});
