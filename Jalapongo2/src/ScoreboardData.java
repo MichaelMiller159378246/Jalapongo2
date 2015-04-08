@@ -5,7 +5,7 @@ public class ScoreboardData extends GameScreen {
 	private final SimpleStringProperty timeElapsed;
 	private final SimpleStringProperty powerupsUsed;
 	
-	private ScoreboardData(String uName,String time, String powerups){
+	public ScoreboardData(String uName,String time, String powerups){
 		this.name = new SimpleStringProperty(uName);
 		this.timeElapsed = new SimpleStringProperty(time);
 		this.powerupsUsed = new SimpleStringProperty(powerups);
