@@ -863,50 +863,6 @@ public class GameScreen {
 		return max;
 	}
 	
-	//player 1 time
-	public String getP1Time(){
-		return player1Time;
-	}
-	
-	//player 2 time
-	public String getP2Time(){
-		return player2Time;
-	}
-	
-	//player 3 time
-	public String getP3Time(){
-		return player3Time;
-	}
-
-	//player 4 time
-	public String getP4Time(){
-		return player4Time;
-	}	
-	
-	//parse lives to String
-	String p1Lives = Integer.toString(player1.getPaddle().getLives());
-	String p2Lives = Integer.toString(player2.getPaddle().getLives());
-	String p3Lives = Integer.toString(player3.getPaddle().getLives());
-	String p4Lives = Integer.toString(player4.getPaddle().getLives());
-	
-	//player 1 lives
-	public String getP1Lives(){
-		return p1Lives;
-	}
-	
-	//player 1 lives
-	public String getP2Lives(){
-		return p2Lives;
-	}
-	//player 3 lives
-	public String getP3Lives(){
-		return p3Lives;
-	}
-	//player 4 lives
-	public String getP4Lives(){
-		return p4Lives;
-	}
-	
 	//If a player runs out of lives, make their paddle fill the whole side
 		private void playerOut(Player player) {
 			if (player.getPaddle().getLives() < 1) {
