@@ -68,9 +68,13 @@ public class GameGUI extends Application {
 
 	public static ComboBox<Integer> livesCoB;
 	public static ComboBox AICB = new ComboBox<Integer>();
-
-	private TableView scoreboard = new TableView();
-
+	
+	//scoreboard variables
+	private TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
+	private final ObservableList<ScoreboardData> data = FXCollections.observableArrayList(
+			
+			);
+	
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
 
