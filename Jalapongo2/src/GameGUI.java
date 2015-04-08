@@ -1,5 +1,6 @@
 // Imports
 import java.net.URL;
+
 import javafx.application.Application; // Imports Application
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,6 +15,7 @@ import javafx.scene.control.CheckBox; // Imports CheckBox
 import javafx.scene.control.ComboBox; // Imports ComboBox
 import javafx.scene.control.Label; // Imports Label
 import javafx.scene.control.TextField; // Imports TextField
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent; // Imports MouseEvent
 import javafx.scene.layout.BorderPane; // Imports BorderPane
 import javafx.scene.layout.GridPane;
@@ -34,6 +36,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.text.TextAlignment;
+
 import java.net.URL;
 
 public class GameGUI extends Application {
@@ -200,6 +203,17 @@ public class GameGUI extends Application {
 		Text AIText = new Text("# of AI: ");
 		Text portText = new Text("Port #: ");
 		TextField nameTF = new TextField("Joey");
+		
+		nameTF.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+	            if (nameTF.getText().length() > 10) {
+	                String s = nameTF.getText().substring(0, 10);
+	                nameTF.setText(s);
+	            }
+	        }
+	    });
+		
 		TextField portTFHS = new TextField("7777");
 		// Make Buttons	
 		AICB.getItems().addAll(0, 1, 2, 3);
@@ -308,6 +322,19 @@ public class GameGUI extends Application {
 		Text ipText = new Text("IP address:");
 
 		TextField nameTFJS = new TextField("");
+		
+		nameTFJS.textProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+	            if (nameTFJS.getText().length() > 10) {
+	                String s = nameTFJS.getText().substring(0, 10);
+	                nameTFJS.setText(s);
+	            }
+	        }
+	    });
+
+		
+		
 		TextField portTFJS= new TextField("");
 		TextField ipTF = new TextField("");				
 
