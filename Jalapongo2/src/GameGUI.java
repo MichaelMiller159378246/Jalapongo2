@@ -60,7 +60,7 @@ public class GameGUI extends Application {
 	public static Button startRQB = new Button("Start"); // Creates a start button
 	//hosting options
 	public static CheckBox fastCB;
-	public static CheckBox sheildCB;
+	public static CheckBox shieldCB;
 	public static CheckBox livesCB;
 	public static CheckBox bigCB;
 	public static CheckBox slowCB;
@@ -259,7 +259,7 @@ public class GameGUI extends Application {
 				+ "                            ");
 		powerUpsText.setFont(new Font(24));
 		fastCB = new CheckBox("Fast Ball       ");
-		sheildCB = new CheckBox("Sheild           ");
+		shieldCB = new CheckBox("Sheild           ");
 		livesCB = new CheckBox("Extra Lives    "); 
 		bigCB = new CheckBox("Big Paddle    ");
 		slowCB = new CheckBox("Slow Ball      ");
@@ -282,7 +282,7 @@ public class GameGUI extends Application {
 		//cancelbt.setMaxWidth(300);
 
 		fastCB.setSelected(true);
-		sheildCB.setSelected(true);
+		shieldCB.setSelected(true);
 		livesCB.setSelected(true);
 		bigCB.setSelected(true);
 		slowCB.setSelected(true);
@@ -298,7 +298,7 @@ public class GameGUI extends Application {
 		bottomhb.setAlignment(Pos.CENTER);
 		bottomhb.setSpacing(25);
 
-		powerUpVB.getChildren().addAll(liveshb, powerUpsText, fastCB, slowCB, sheildCB,
+		powerUpVB.getChildren().addAll(liveshb, powerUpsText, fastCB, slowCB, shieldCB,
 				livesCB, bigCB, smallCB, flipCB, stallCB, multiCB, bottomhb);
 		powerUpVB.setAlignment(Pos.CENTER);		
 		powerUpVB.setSpacing(15);

@@ -99,7 +99,7 @@ public class GameScreen {
 	Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
 	
 	//create shields 
-	static Rectangle sheild1, sheild2, sheild3, sheild4;
+	static Rectangle shield1, shield2, shield3, shield4;
 		
 	public GameScreen() {
 		
@@ -154,98 +154,98 @@ public class GameScreen {
 		//movePaddleOnKeyPress(gameScene, player4, paddle4);		
 }
 	
-	public void checkCollisionWithSheild(Ball ball){
-		if ( (ball.getYLoc() + ball.getSize() > sheild1.getY())
-				&& (ball.getYLoc() < sheild1.getY() + sheild1.getHeight()) ){
-			if ( ball.getXLoc() < (sheild1.getWidth()) &&
+	public void checkCollisionWithshield(Ball ball){
+		if ( (ball.getYLoc() + ball.getSize() > shield1.getY())
+				&& (ball.getYLoc() < shield1.getY() + shield1.getHeight()) ){
+			if ( ball.getXLoc() < (shield1.getWidth()) &&
 					(ball.getXSpeed() < 0) ) {
 				ball.reverseX();
-				sheild1.setX(-900);
-				sheild1.setY(-900);
-	            gamePane.getChildren().removeAll(sheild1);
-				//System.out.println("sheild 1 hit");
+				shield1.setX(-900);
+				shield1.setY(-900);
+	            gamePane.getChildren().removeAll(shield1);
+				//System.out.println("shield 1 hit");
 			}
 		}
 		
-		if ( (ball.getXLoc() + ball.getSize() > sheild2.getX()) 
-				&& (ball.getXLoc() < sheild2.getX() + sheild2.getWidth()) ){
-			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + sheild2.getHeight()))) &&
+		if ( (ball.getXLoc() + ball.getSize() > shield2.getX()) 
+				&& (ball.getXLoc() < shield2.getX() + shield2.getWidth()) ){
+			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + shield2.getHeight()))) &&
 					(ball.getYSpeed() > 0) ) {
 				ball.reverseY();
-				sheild2.setX(-900);
-				sheild2.setY(-900);
-	            gamePane.getChildren().removeAll(sheild2);
-				//System.out.println("sheild 2 hit");
+				shield2.setX(-900);
+				shield2.setY(-900);
+	            gamePane.getChildren().removeAll(shield2);
+				//System.out.println("shield 2 hit");
 
 			}
 		}
 
-		if ( (ball.getYLoc() + ball.getSize() > sheild3.getY()) 
-				&& (ball.getYLoc() < sheild3.getY() + sheild3.getHeight()) ){
-			if ( ball.getXLoc() > (paneWH - (ball.getSize() + sheild3.getWidth())) &&
+		if ( (ball.getYLoc() + ball.getSize() > shield3.getY()) 
+				&& (ball.getYLoc() < shield3.getY() + shield3.getHeight()) ){
+			if ( ball.getXLoc() > (paneWH - (ball.getSize() + shield3.getWidth())) &&
 					(ball.getXSpeed() > 0) ) {
 				ball.reverseX();
-				sheild3.setX(-900);
-				sheild3.setY(-900);
-	            gamePane.getChildren().removeAll(sheild3);
-				//System.out.println("sheild 3 hit");
+				shield3.setX(-900);
+				shield3.setY(-900);
+	            gamePane.getChildren().removeAll(shield3);
+				//System.out.println("shield 3 hit");
 			}
 		}
 	
 	
-		if ( (ball.getXLoc() + ball.getSize() > sheild4.getX())
-				&& (ball.getXLoc() < sheild4.getX() + sheild4.getWidth()) ){
+		if ( (ball.getXLoc() + ball.getSize() > shield4.getX())
+				&& (ball.getXLoc() < shield4.getX() + shield4.getWidth()) ){
 			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
 					(ball.getYSpeed() < 0) ) {
 				ball.reverseY();
-				sheild4.setX(-900);
-				sheild4.setY(-900);
-	            gamePane.getChildren().removeAll(sheild4);
-				//System.out.println("sheild 4 hit");
+				shield4.setX(-900);
+				shield4.setY(-900);
+	            gamePane.getChildren().removeAll(shield4);
+				//System.out.println("shield 4 hit");
 			}
 		}	
 	}
 	
-	public static void createSheild(Paddle paddle){
+	public static void createShield(Paddle paddle){
 		if(paddle.getPos() == 1){
            try {
-            	gamePane.getChildren().removeAll(sheild1);
+            	gamePane.getChildren().removeAll(shield1);
 			} catch (Exception e){}
-			sheild1 = new Rectangle(10, paneWH);
-			sheild1.setFill(Color.CYAN);
-			sheild1.setX(0);
-			sheild1.setY(0);
-            gamePane.getChildren().addAll(sheild1);
+			shield1 = new Rectangle(10, paneWH);
+			shield1.setFill(Color.CYAN);
+			shield1.setX(0);
+			shield1.setY(0);
+            gamePane.getChildren().addAll(shield1);
 		}
 		if(paddle.getPos() == 2){
 			try {
-            	gamePane.getChildren().removeAll(sheild2);
+            	gamePane.getChildren().removeAll(shield2);
 			} catch (Exception e){}
-			sheild2 = new Rectangle(paneWH, 10);
-			sheild2.setFill(Color.CYAN);
-			sheild2.setX(0);
-			sheild2.setY(690);
-            gamePane.getChildren().addAll(sheild2);
+			shield2 = new Rectangle(paneWH, 10);
+			shield2.setFill(Color.CYAN);
+			shield2.setX(0);
+			shield2.setY(690);
+            gamePane.getChildren().addAll(shield2);
 		}
 		if(paddle.getPos() == 3){
 			try {
-            	gamePane.getChildren().removeAll(sheild3);
+            	gamePane.getChildren().removeAll(shield3);
 			} catch (Exception e){}
-			sheild3 = new Rectangle(10, paneWH);
-			sheild3.setFill(Color.CYAN);
-			sheild3.setX(690);
-			sheild3.setY(0);
-            gamePane.getChildren().addAll(sheild3);
+			shield3 = new Rectangle(10, paneWH);
+			shield3.setFill(Color.CYAN);
+			shield3.setX(690);
+			shield3.setY(0);
+            gamePane.getChildren().addAll(shield3);
 		}
 		if(paddle.getPos() == 4){
 			try {
-            	gamePane.getChildren().removeAll(sheild4);
+            	gamePane.getChildren().removeAll(shield4);
 			} catch (Exception e){}
-			sheild4 = new Rectangle(paneWH, 10);
-			sheild4.setFill(Color.CYAN);
-			sheild4.setX(0);
-			sheild4.setY(0);
-            gamePane.getChildren().addAll(sheild4);
+			shield4 = new Rectangle(paneWH, 10);
+			shield4.setFill(Color.CYAN);
+			shield4.setX(0);
+			shield4.setY(0);
+            gamePane.getChildren().addAll(shield4);
 		}
 	}
 	
@@ -311,7 +311,7 @@ public class GameScreen {
 	}
 	
 	private void generatePowerUp(){
-		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.sheildCB.isSelected()||GameGUI.bigCB.isSelected()||
+		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.shieldCB.isSelected()||GameGUI.bigCB.isSelected()||
 				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()||
 				GameGUI.multiCB.isSelected()){
 		    			if(i%5 == 0){
@@ -595,14 +595,14 @@ public class GameScreen {
 		try{checkCollisionWith4(ball6);}catch(Exception e){}  
 		try{checkCollisionWith4(ball7);}catch(Exception e){}  
 		
-		try{checkCollisionWithSheild(mainBall);}catch(Exception e){}  
-		try{checkCollisionWithSheild(ball1);}catch(Exception e){}
-		try{checkCollisionWithSheild(ball2);}catch(Exception e){}
-		try{checkCollisionWithSheild(ball3);}catch(Exception e){}
-		try{checkCollisionWithSheild(ball4);}catch(Exception e){}
-		try{checkCollisionWithSheild(ball5);}catch(Exception e){}
-		try{checkCollisionWithSheild(ball6);}catch(Exception e){}
-		try{checkCollisionWithSheild(ball7);}catch(Exception e){}
+		try{checkCollisionWithshield(mainBall);}catch(Exception e){}  
+		try{checkCollisionWithshield(ball1);}catch(Exception e){}
+		try{checkCollisionWithshield(ball2);}catch(Exception e){}
+		try{checkCollisionWithshield(ball3);}catch(Exception e){}
+		try{checkCollisionWithshield(ball4);}catch(Exception e){}
+		try{checkCollisionWithshield(ball5);}catch(Exception e){}
+		try{checkCollisionWithshield(ball6);}catch(Exception e){}
+		try{checkCollisionWithshield(ball7);}catch(Exception e){}
 	}
 	
 	// ------The following check the collision with the players paddles--------------
@@ -873,16 +873,15 @@ public class GameScreen {
 			        @Override
 			        public void run() {
 			        	moveAllBalls();
-			        try {checkReverse(mainBall);
-						checkCollisionWithPowerUp();
-					}catch (InterruptedException e) {e.printStackTrace();}
+			        try{checkReverse(mainBall);}catch(InterruptedException e) {e.printStackTrace();}
 			        try{checkReverse(ball1);}catch(Exception e){}
 			        try{checkReverse(ball2);}catch(Exception e){}
 			        try{checkReverse(ball3);}catch(Exception e){}
 			        try{checkReverse(ball4);}catch(Exception e){}
 			        try{checkReverse(ball5);}catch(Exception e){}
 			        try{checkReverse(ball6);}catch(Exception e){}
-			        try{checkReverse(ball7);}catch(Exception e){}         
+			        try{checkReverse(ball7);}catch(Exception e){}  
+			        try{checkCollisionWithPowerUp();}catch(Exception e){}
 			        //TODO variable AI
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);

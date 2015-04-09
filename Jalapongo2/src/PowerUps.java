@@ -8,11 +8,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 /**
- * @author Mike
+ * @author Dalton L'Heureux
  * @version 1.0
  * @created 02-Mar-2015 3:19:46 PM
- */
-/*  flip => 1
+ * 
+ * 
+ *  flip => 1
  *  multiBall => 2
  *  addLives => 3
  *  shield => 4
@@ -22,6 +23,7 @@ import javafx.scene.shape.*;
  *  addSpeed => 8
  *  stall => 9
  */
+
 public class PowerUps {
 	private Rectangle powerUp;
 	private int type;
@@ -35,7 +37,7 @@ public class PowerUps {
 		powerUp = new Rectangle(size, size);
 			powerUp.setX(generator.nextDouble()*500+100); //Upper Left Corner
 			powerUp.setY(generator.nextDouble()*500+100); //Upper Left Corner
-		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.sheildCB.isSelected()||GameGUI.bigCB.isSelected()||
+		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.shieldCB.isSelected()||GameGUI.bigCB.isSelected()||
 				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()||
 				GameGUI.multiCB.isSelected()){	
 			while(flag == 1){	
@@ -54,7 +56,7 @@ public class PowerUps {
 							break;
 						}else{break;}
 					case 3:
-						if(GameGUI.sheildCB.isSelected()){
+						if(GameGUI.shieldCB.isSelected()){
 							powerUp.setFill(Color.PURPLE); //shield
 							flag = 0;
 							break;
@@ -154,7 +156,7 @@ public class PowerUps {
 	public static void shield(Ball ball){ // protect against one goal
 		//System.out.println("SHIELD! JK");
 		Paddle paddle = ball.getPaddleLastHit();
-		GameScreen.createSheild(paddle);
+		GameScreen.createShield(paddle);
 	}
 
 	public static void largePaddle(Ball ball){ //increase paddle length
