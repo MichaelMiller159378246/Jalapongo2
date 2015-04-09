@@ -154,9 +154,56 @@ public class GameScreen {
 		//movePaddleOnKeyPress(gameScene, player4, paddle4);		
 }
 	
-	public void checkCollisionWithSheild(){
-		//if hit move sheild off pane and reverse ball TODO
-		sheild1.setX(-999);
+	public void checkCollisionWithSheild(Ball ball){
+		if ( (ball.getYLoc() + ball.getSize() > sheild1.getY())
+				&& (ball.getYLoc() < sheild1.getY() + sheild1.getHeight()) ){
+			if ( ball.getXLoc() < (sheild1.getWidth()) &&
+					(ball.getXSpeed() < 0) ) {
+				ball.reverseX();
+				sheild1.setX(-900);
+				sheild1.setY(-900);
+	            gamePane.getChildren().removeAll(sheild1);
+				//System.out.println("sheild 1 hit");
+			}
+		}
+		
+		if ( (ball.getXLoc() + ball.getSize() > sheild2.getX()) 
+				&& (ball.getXLoc() < sheild2.getX() + sheild2.getWidth()) ){
+			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + sheild2.getHeight()))) &&
+					(ball.getYSpeed() > 0) ) {
+				ball.reverseY();
+				sheild2.setX(-900);
+				sheild2.setY(-900);
+	            gamePane.getChildren().removeAll(sheild2);
+				//System.out.println("sheild 2 hit");
+
+			}
+		}
+
+		if ( (ball.getYLoc() + ball.getSize() > sheild3.getY()) 
+				&& (ball.getYLoc() < sheild3.getY() + sheild3.getHeight()) ){
+			if ( ball.getXLoc() > (paneWH - (ball.getSize() + sheild3.getWidth())) &&
+					(ball.getXSpeed() > 0) ) {
+				ball.reverseX();
+				sheild3.setX(-900);
+				sheild3.setY(-900);
+	            gamePane.getChildren().removeAll(sheild3);
+				//System.out.println("sheild 3 hit");
+			}
+		}
+	
+	
+		if ( (ball.getXLoc() + ball.getSize() > sheild4.getX())
+				&& (ball.getXLoc() < sheild4.getX() + sheild4.getWidth()) ){
+			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
+					(ball.getYSpeed() < 0) ) {
+				ball.reverseY();
+				sheild4.setX(-900);
+				sheild4.setY(-900);
+	            gamePane.getChildren().removeAll(sheild4);
+				//System.out.println("sheild 4 hit");
+			}
+		}	
 	}
 	
 	public static void createSheild(Paddle paddle){
@@ -164,9 +211,9 @@ public class GameScreen {
            try {
             	gamePane.getChildren().removeAll(sheild1);
 			} catch (Exception e){}
-			sheild1 = new Rectangle(paneWH, 10);
+			sheild1 = new Rectangle(10, paneWH);
 			sheild1.setFill(Color.CYAN);
-			sheild1.setX(690);
+			sheild1.setX(0);
 			sheild1.setY(0);
             gamePane.getChildren().addAll(sheild1);
 		}
@@ -174,10 +221,10 @@ public class GameScreen {
 			try {
             	gamePane.getChildren().removeAll(sheild2);
 			} catch (Exception e){}
-			sheild2 = new Rectangle(10, paneWH);
+			sheild2 = new Rectangle(paneWH, 10);
 			sheild2.setFill(Color.CYAN);
-			sheild2.setX(690);
-			sheild2.setY(0);
+			sheild2.setX(0);
+			sheild2.setY(690);
             gamePane.getChildren().addAll(sheild2);
 		}
 		if(paddle.getPos() == 3){
@@ -186,7 +233,7 @@ public class GameScreen {
 			} catch (Exception e){}
 			sheild3 = new Rectangle(10, paneWH);
 			sheild3.setFill(Color.CYAN);
-			sheild3.setX(0);
+			sheild3.setX(690);
 			sheild3.setY(0);
             gamePane.getChildren().addAll(sheild3);
 		}
@@ -261,9 +308,6 @@ public class GameScreen {
             gamePane.getChildren().addAll(mainBall.getBall());
 		}
 		newBallCounter++;
-	}
-	
-	public void removeBall(){
 	}
 	
 	private void generatePowerUp(){
@@ -550,6 +594,15 @@ public class GameScreen {
 		try{checkCollisionWith4(ball5);}catch(Exception e){}  
 		try{checkCollisionWith4(ball6);}catch(Exception e){}  
 		try{checkCollisionWith4(ball7);}catch(Exception e){}  
+		
+		try{checkCollisionWithSheild(mainBall);}catch(Exception e){}  
+		try{checkCollisionWithSheild(ball1);}catch(Exception e){}
+		try{checkCollisionWithSheild(ball2);}catch(Exception e){}
+		try{checkCollisionWithSheild(ball3);}catch(Exception e){}
+		try{checkCollisionWithSheild(ball4);}catch(Exception e){}
+		try{checkCollisionWithSheild(ball5);}catch(Exception e){}
+		try{checkCollisionWithSheild(ball6);}catch(Exception e){}
+		try{checkCollisionWithSheild(ball7);}catch(Exception e){}
 	}
 	
 	// ------The following check the collision with the players paddles--------------
@@ -664,7 +717,7 @@ public class GameScreen {
 	private void checkCollisionWith4(Ball ball) {
 		if ( (ball.getXLoc() + ball.getSize() > paddle4.getPaddle().getX())
 				&& (ball.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) )
-			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
+			if ( ball.getYLoc() < (paddle4.getPaddle().getHeight()) &&
 					(ball.getYSpeed() < 0) ) {
 				ball.reverseY();
 				ball.setPaddleLastHit(paddle4);

@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Random;
 
@@ -130,7 +131,7 @@ public class PowerUps {
 	}
 
 	public static void flip(Ball ball){ //flip player controls 
-		System.out.println("flipped controls");
+		//System.out.println("flipped controls");
 		Paddle paddle = ball.getPaddleLastHit();
 		if (paddle.getControls() != 1){
 			paddle.setControls(1);
@@ -140,24 +141,24 @@ public class PowerUps {
 	}
 
 	public static void multiBall(){ //Add 2 additional balls
-		System.out.println("multi balls");
+		//System.out.println("multi balls");
 		GameScreen.addBall();
 	}
 	
 	public static void addLives(Ball ball){ //add 1 life to player
-		System.out.println("lives Added");
+		//System.out.println("lives Added");
 		Paddle paddle = ball.getPaddleLastHit();
 		paddle.addLife();
 	}
 	
 	public static void shield(Ball ball){ // protect against one goal
-		System.out.println("SHIELD! JK");
+		//System.out.println("SHIELD! JK");
 		Paddle paddle = ball.getPaddleLastHit();
 		GameScreen.createSheild(paddle);
 	}
 
 	public static void largePaddle(Ball ball){ //increase paddle length
-		System.out.println("larger paddle");
+		//System.out.println("larger paddle");
 		Paddle paddle = ball.getPaddleLastHit();
 		if(paddle.getPos() == 1 || paddle.getPos() == 3){ //left
 			paddle.getPaddle().setHeight(200);
@@ -169,7 +170,7 @@ public class PowerUps {
 	}
 
 	public static void smallPaddle(Ball ball){ //decrease paddle length
-		System.out.println("smaller paddle");
+		//System.out.println("smaller paddle");
 		Paddle paddle = ball.getPaddleLastHit();
 		if(paddle.getPos() == 1 || paddle.getPos() == 3){ //left
 			paddle.getPaddle().setHeight(75);
@@ -192,31 +193,33 @@ public class PowerUps {
 		}else{
 			ball.setYSpeed((int)ball.getYSpeed() - 2);
 		}
-		System.out.println("faster ball");
+		//System.out.println("faster ball");
 	}
 
 	public static void subSpeed(Ball ball){ //set ball speed lower
 		if(ball.getXSpeed() >= 0){
-			ball.setXSpeed((int)ball.getXSpeed() - 2);
+			ball.setXSpeed((int)ball.getXSpeed() - 1);
 		}else{
-			ball.setXSpeed((int)ball.getXSpeed() + 2);
+			ball.setXSpeed((int)ball.getXSpeed() + 1);
 		}
 		
 		if(ball.getYSpeed() >= 0){
-			ball.setYSpeed((int)ball.getYSpeed() - 2);
+			ball.setYSpeed((int)ball.getYSpeed() - 1);
 		}else{
-			ball.setYSpeed((int)ball.getYSpeed() + 2);
+			ball.setYSpeed((int)ball.getYSpeed() + 1);
 		}	
-		System.out.println("slower ball");
+		//System.out.println("slower ball");
 	}
 
 	public static void stall(Ball ball){ //set paddle speed = 0
-		System.out.println("stall controls");
+		//System.out.println("stall controls");
 		Paddle paddle = ball.getPaddleLastHit();
 		if (paddle.getControls() != 0){
 			paddle.setControls(0);
 		}
 		//wait 4 seconds
-		//paddle.setControls(1);
+		/*int startTime = LocalTime.now().toSecondOfDay();
+		while (LocalTime.now().toSecondOfDay() - startTime  < 4){}
+		paddle.setControls(1);*/
 	}
 }//end Power-Ups
