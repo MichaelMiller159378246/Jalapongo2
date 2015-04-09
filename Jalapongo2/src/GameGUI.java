@@ -1,4 +1,4 @@
-// Imports
+ // Imports
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
@@ -72,11 +72,7 @@ public class GameGUI extends Application {
 	public static ComboBox<Integer> livesCoB;
 	public static ComboBox AICB = new ComboBox<Integer>();
 	
-	//scoreboard variables
-	private TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
-	private final ObservableList<ScoreboardData> data = FXCollections.observableArrayList(
-			
-			);
+	
 	
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
@@ -408,42 +404,7 @@ public class GameGUI extends Application {
 
 		Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH); // Creates the scene
 
-		//*******************************************************************************
-		//Scoreboard GUI
-		//TODO add text fields for each player, make column width fixed, center button,
-		//construct GUI objects
-		BorderPane sbBP = new BorderPane();
-		final VBox vbTableSB = new VBox();
-		HBox hbContinueSB = new HBox();
-
-		//display scoreboard title
-		final Label summary = new Label("Game Summary");
-		summary.setFont(new Font("Arial",25));
-		summary.setTextAlignment(TextAlignment.CENTER);
-		scoreboard.setEditable(true);
-
-		//create columns for scoreboard
-		TableColumn players = new TableColumn("Players");
-		TableColumn time = new TableColumn("Time Defeated");
-		TableColumn powerups = new TableColumn("# of powerups used");
-
-		scoreboard.getColumns().addAll(players,time,powerups);
-
-		//add title and table to VBox
-		vbTableSB.setSpacing(10);
-		vbTableSB.setPadding(new Insets(10,0,0,10));
-		vbTableSB.getChildren().addAll(summary,scoreboard);
-
-		//Create continue button
-		Button sbContinueB = new Button("Continue");
-
-		//add button to HBox
-		hbContinueSB.getChildren().addAll(sbContinueB);
-
-		sbBP.setCenter(vbTableSB);
-		sbBP.setBottom(hbContinueSB);
-
-		Scene sbScene = new Scene(sbBP,sceneWH,sceneWH);
+	
 		//*******************************************************************************
 		//Events
 		//Start Menu Scene Events
@@ -497,6 +458,52 @@ public class GameGUI extends Application {
 		//Play -> Host -> Start Hosting -> Start
 		GameScreen game = new GameScreen(); // Creates a GameScreen object
 		//startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene(primaryStage, sbScene))); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+		//scoreboard variables
+		final TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
+		/*final ObservableList<ScoreboardData> data = FXCollections.observableArrayList(
+				new ScoreboardData("Player1",game.getP1Time()),
+				new ScoreboardData("Player2",game.getP2Time()),
+				new ScoreboardData("Player3",game.getP3Time()),
+				new ScoreboardData("Player4",game.getP4Time())
+				);*/
+		//*******************************************************************************
+		//Scoreboard GUI
+		//TODO add text fields for each player, make column width fixed, center button,
+		//construct GUI objects
+		BorderPane sbBP = new BorderPane();
+		final VBox vbTableSB = new VBox();
+		HBox hbContinueSB = new HBox();
+
+		//display scoreboard title
+		final Label summary = new Label("Game Summary");
+		summary.setFont(new Font("Arial",25));
+		summary.setTextAlignment(TextAlignment.CENTER);
+		scoreboard.setEditable(true);
+
+		//create columns for scoreboard
+		TableColumn players = new TableColumn("Players");
+		TableColumn time = new TableColumn("Time Defeated");
+		TableColumn powerups = new TableColumn("# of powerups used");
+
+		scoreboard.getColumns().addAll(players,time,powerups);
+
+		//add title and table to VBox
+		vbTableSB.setSpacing(10);
+		vbTableSB.setPadding(new Insets(10,0,0,10));
+		vbTableSB.getChildren().addAll(summary,scoreboard);
+
+		//Create continue button
+		Button sbContinueB = new Button("Continue");
+
+		//add button to HBox
+		hbContinueSB.getChildren().addAll(sbContinueB);
+
+		sbBP.setCenter(vbTableSB);
+		sbBP.setBottom(hbContinueSB);
+
+		Scene sbScene = new Scene(sbBP,sceneWH,sceneWH);
+		//*******************************************************************************
+		
 		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
 				if(Host.getPlayerCount() == 4 - Integer.parseInt(AICB.getValue().toString())){
@@ -508,7 +515,8 @@ public class GameGUI extends Application {
 				}
 			}
 		});
-
+		
+		
 		// Alter stage properties
 		primaryStage.setScene(startMScene); //Sets the scene of the stage
 		primaryStage.setResizable(false); // Prevents anyone from changing the stage size

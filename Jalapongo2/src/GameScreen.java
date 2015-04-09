@@ -1005,4 +1005,24 @@ public class GameScreen {
 		this.summaryScene = summaryScene;
 		return this.gameScene;
 	}
+
+	//get player 1 time
+	public String getP1Time() {
+		return player1Time;
+	}
+	
+	//get player 2 time
+	public String getP2Time() {
+		return player2Time;
+	}
+	
+	//get player 2 time
+	public String getP3Time() {
+		return player3Time;
+	}
+	
+	//player 4 time
+	public String getP4Time() {
+		return player1Time;
+	}
 }
