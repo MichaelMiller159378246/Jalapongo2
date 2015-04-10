@@ -507,12 +507,12 @@ public class GameGUI extends Application {
 		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
 				if(Host.getPlayerCount() == 4 - Integer.parseInt(AICB.getValue().toString())){
-					Paddle.setLives(livesCoB.getValue());
+					//Paddle.setLives(livesCoB.getValue());
 					GameScreen game = new GameScreen(); // Creates a GameScreen object
 					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 					game.continuousUpdate();; // Calls the continuousUpdate method
 				}else if(Integer.parseInt(AICB.getValue().toString()) == 3){
-					Paddle.setLives(livesCoB.getValue());
+					//Paddle.setLives(livesCoB.getValue());
 					GameScreen game = new GameScreen(); // Creates a GameScreen object
 					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 					game.continuousUpdate();; // Calls the continuousUpdate method
