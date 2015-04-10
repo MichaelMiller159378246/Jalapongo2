@@ -456,7 +456,7 @@ public class GameGUI extends Application {
 		//Added by Jon on March 10
 		//Launches the game screen from the "Start" button under:
 		//Play -> Host -> Start Hosting -> Start
-		GameScreen game = new GameScreen(); // Creates a GameScreen object
+		//GameScreen game = new GameScreen(); // Creates a GameScreen object
 		//startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene(primaryStage, sbScene))); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 		//scoreboard variables
 		final TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
@@ -507,9 +507,13 @@ public class GameGUI extends Application {
 		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
 				if(Host.getPlayerCount() == 4 - Integer.parseInt(AICB.getValue().toString())){
+					//Paddle.setLives(livesCoB.getValue());
+					GameScreen game = new GameScreen(); // Creates a GameScreen object
 					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 					game.continuousUpdate();; // Calls the continuousUpdate method
 				}else if(Integer.parseInt(AICB.getValue().toString()) == 3){
+					//Paddle.setLives(livesCoB.getValue());
+					GameScreen game = new GameScreen(); // Creates a GameScreen object
 					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 					game.continuousUpdate();; // Calls the continuousUpdate method
 				}

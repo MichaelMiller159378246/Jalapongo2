@@ -14,7 +14,7 @@ import javafx.scene.shape.*;
 public class Paddle {
 
 	private Rectangle paddle;
-	public int lives = 5; //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
+	public int lives = GameGUI.livesCoB.getValue(); //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
