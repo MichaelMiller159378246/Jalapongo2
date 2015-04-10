@@ -1,7 +1,11 @@
+import java.awt.event.ActionListener;
 import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Random;
 
+import javax.swing.Timer;
+
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
@@ -219,9 +223,19 @@ public class PowerUps {
 		if (paddle.getControls() != 0){
 			paddle.setControls(0);
 		}
+		
 		//wait 4 seconds
-		/*int startTime = LocalTime.now().toSecondOfDay();
-		while (LocalTime.now().toSecondOfDay() - startTime  < 4){}
-		paddle.setControls(1);*/
+		  ActionListener taskPerformer = new ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				// TODO Auto-generated method stub
+				paddle.setControls(1);
+			}
+		  };
+		  
+		Timer timer = new Timer(4000, taskPerformer);
+		timer.setRepeats(false);
+		timer.start();
 	}
+	
 }//end Power-Ups
