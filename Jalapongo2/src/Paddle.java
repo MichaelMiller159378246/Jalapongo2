@@ -14,7 +14,7 @@ import javafx.scene.shape.*;
 public class Paddle {
 
 	private Rectangle paddle;
-	public int lives = 5; //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
+	public static int lives = 5; //required on paddle for in order to add lives... impossable to getplayer based on paddle last hit
 	private int PaddleLocX;
 	private int PaddleLocY;
 	private int pos;
@@ -55,8 +55,8 @@ public class Paddle {
 		}	
 	}
 	
-	public void setLives(int lives){
-		this.lives = lives;
+	public static void setLives(int livesEntered){
+		lives = livesEntered;
 	}
 	
 	public int getLives(){
