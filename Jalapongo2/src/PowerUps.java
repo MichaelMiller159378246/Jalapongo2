@@ -232,7 +232,7 @@ public class PowerUps {
 				paddle.setControls(1);
 			}
 		  };
-		  
+		//After 4 seconds, trigger action event to set controls to normal
 		Timer timer = new Timer(4000, taskPerformer);
 		timer.setRepeats(false);
 		timer.start();
