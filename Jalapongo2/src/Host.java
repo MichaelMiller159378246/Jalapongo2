@@ -11,9 +11,12 @@ import java.util.HashSet; // Import HashSet
 import javafx.application.Platform; // Imports platform
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -41,7 +44,28 @@ public class Host extends Thread{
 	}
 	
 	// Constructor
-	public Host(int port, String name){				
+	public Host(int port, String name, Button startB){			
+		//startB.setOnAction(e -> GameGUI.gameStart());
+		
+		startB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
+			public void handle(MouseEvent me) { // Creates a handler
+				if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){
+					GameGUI.gameStart();
+					output = "CHANGE";
+				}else if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){
+					GameGUI.gameStart();
+					output = "CHANGE";
+				}
+				for (PrintWriter writer : writers){ // Adds writer to the types of writes
+					//writer.println(out); // Takes the message from the client and displays it on the screen
+					writer.println( output);
+				}
+			}
+		});
+		
+		
+		
+		
 		Host.port = port; // Sets the global port to the inputed port
 		names.add(name);
 		namesB = name;

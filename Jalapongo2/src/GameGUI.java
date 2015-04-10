@@ -41,6 +41,9 @@ import java.net.URL;
 
 public class GameGUI extends Application {
 
+	private static Stage globalS;
+	private static GameScreen globalG;
+	private static Scene sbScene;
 	private int sceneWH = 700; // Int used to control screen size
 	public static Label nameLRQ; // Public label so the host class can edit the data
 	public static GridPane namesGPRQ; // Public HBox so the host class can edit the data
@@ -438,7 +441,7 @@ public class GameGUI extends Application {
 		//joinGameJS.setOnMouseClicked(e -> readyScreen(primaryStage, readyQS, nameTFJS.getText(),Integer.parseInt(portTFJS.getText()))); //TODO possibly delete this
 
 		//Host Menu Events
-		startHostingHO.setOnMouseClicked(e -> host(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText()))); // If the user presses start hosting then the host method is called 
+		startHostingHO.setOnMouseClicked(e -> host(primaryStage, readyQS, nameTF.getText(), Integer.parseInt(portTFHS.getText()), startRQB)); // If the user presses start hosting then the host method is called 
 		optionsHO.setOnMouseClicked(e -> primaryStage.setScene(sceneGOS)); // If the user presses options the scene changes to the host options menu scene 
 		backHO.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses back the scene changes to the choice menu scene 
 		randomBHS.setOnMouseClicked( e -> { // If the user presses random then a port number is randomly generated
@@ -501,21 +504,22 @@ public class GameGUI extends Application {
 		sbBP.setCenter(vbTableSB);
 		sbBP.setBottom(hbContinueSB);
 
-		Scene sbScene = new Scene(sbBP,sceneWH,sceneWH);
+		sbScene = new Scene(sbBP,sceneWH,sceneWH);
 		//*******************************************************************************
 		
 		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
 				if(Host.getPlayerCount() == 4 - Integer.parseInt(AICB.getValue().toString())){
 					//Paddle.setLives(livesCoB.getValue());
-					GameScreen game = new GameScreen(); // Creates a GameScreen object
-					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
-					game.continuousUpdate();; // Calls the continuousUpdate method
+					//GameScreen game = new GameScreen(); // Creates a GameScreen object
+					//globalG = game;
+					//primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+					//game.continuousUpdate();; // Calls the continuousUpdate method
 				}else if(Integer.parseInt(AICB.getValue().toString()) == 3){
 					//Paddle.setLives(livesCoB.getValue());
-					GameScreen game = new GameScreen(); // Creates a GameScreen object
-					primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
-					game.continuousUpdate();; // Calls the continuousUpdate method
+					//GameScreen game = new GameScreen(); // Creates a GameScreen object
+					//primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+					//game.continuousUpdate();; // Calls the continuousUpdate method
 				}
 			}
 		});
@@ -525,9 +529,18 @@ public class GameGUI extends Application {
 		primaryStage.setScene(startMScene); //Sets the scene of the stage
 		primaryStage.setResizable(false); // Prevents anyone from changing the stage size
 		primaryStage.show(); // Shows the stage
+		
+		globalS = primaryStage;
 
 	}
 
+	
+	public static void gameStart(){
+		GameScreen game = new GameScreen();
+		globalS.setScene(game.getGameScene(globalS, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+		game.continuousUpdate();; // Calls the continuousUpdate method
+	}
+	
 	//method to transfer values to client class
 	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName, Button startB){
 		Thread Client = new Thread(new Client(portNumber,IP,uName));
@@ -537,9 +550,9 @@ public class GameGUI extends Application {
 	}
 
 	// Method to launch the host class
-	public void host(Stage primaryStage, Scene scene, String hostName, int port){ //TODO improve this method for multiplayer
+	public void host(Stage primaryStage, Scene scene, String hostName, int port, Button startB){ //TODO improve this method for multiplayer
 		nameLRQ.setText("[" + hostName + "]"); // Adds the hosts name to the label
-		Thread Host = new Thread(new Host(port, hostName)); // Creates a thread
+		Thread Host = new Thread(new Host(port, hostName, startB)); // Creates a thread
 		Host.start(); // Starts the thread
 
 		primaryStage.setScene(scene); // Sets the scene to the ready screen

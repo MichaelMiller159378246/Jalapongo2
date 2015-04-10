@@ -314,6 +314,13 @@ public class Client extends Thread{
 						}
 					});
 				}
+				else if(line.startsWith("CHANGE")){
+					Platform.runLater(new Runnable() { // Runs when it gets the chance
+						public void run() { //Runs
+							GameGUI.gameStart();
+						}
+					});
+				}
 			}//end while loop
 		} catch (UnknownHostException e) { // if an UnknownHostException was caught proceed
 			System.out.println("There was an error connecting to the host"); // displays an error
