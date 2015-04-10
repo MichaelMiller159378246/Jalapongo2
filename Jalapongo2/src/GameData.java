@@ -19,11 +19,10 @@ public class GameData extends Application {
     private TableView<PlayerData> table = new TableView<PlayerData>();
     private final ObservableList<PlayerData> data =
         FXCollections.observableArrayList(
-            new PlayerData("Jacob", "Smith", "jacob.smith@example.com"),
-            new PlayerData("Isabella", "Johnson", "isabella.johnson@example.com"),
-            new PlayerData("Ethan", "Williams", "ethan.williams@example.com"),
-            new PlayerData("Emma", "Jones", "emma.jones@example.com"),
-            new PlayerData("Michael", "Brown", "michael.brown@example.com")
+            new PlayerData("Player 1 ", "1:23", "I made up those times"),
+            new PlayerData("Player 2", "2:47", "I made up those times"),
+            new PlayerData("Player 3", "0:32", "I made up those times"),
+            new PlayerData("Player 4", "3:44", "I made up those times")
         );
    
     public static void main(String[] args) {
