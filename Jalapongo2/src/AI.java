@@ -8,7 +8,7 @@ public class AI extends Player{
 	}
 	
 	public void moveAI(Ball ball) {
-		if (paddle.getLives() > 0) {
+		if (paddle.getLives() > 0 && paddle.getControls() != 0) {
 		
 		if (this.pos == 1 || this.pos == 3) {
 			if ((ball.getYLoc() - this.getPaddle().getLength()/2) > this.getLoc())
