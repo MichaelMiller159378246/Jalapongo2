@@ -1,3 +1,5 @@
+
+
 // Imports
 import java.io.BufferedReader; // Imports BufferedReader
 import java.io.IOException; // Imports IOException
@@ -5,110 +7,103 @@ import java.io.InputStreamReader; // Imports InputStreamReader
 import java.io.PrintWriter; // Imports PrintWriter
 import java.net.ServerSocket; // Imports ServerSocket
 import java.net.Socket; // Imports Socket
-import java.util.Arrays;
 import java.util.HashSet; // Import HashSet
 
 import javafx.application.Platform; // Imports platform
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.beans.value.ChangeListener; // imports ChangeListener
+import javafx.beans.value.ObservableValue; // Imports ObservableValue
+import javafx.event.EventHandler; // Imports EventHandler
+import javafx.geometry.Insets; // Imports Insets
+import javafx.scene.control.Button; //Imports Button
+import javafx.scene.control.Label; // Imports label
+import javafx.scene.input.MouseEvent; // Imports MouseEvent
+import javafx.scene.paint.Color; // Imports Color
 
 
 // Host class is used to launch the server so others can connect
+/**
+ * @author Mike, Leslie
+ *
+ */
 public class Host extends Thread{
 
-	public static ServerSocket listener; // Creates a ServerSocket Listener
-	public static int port; // Creates an integer for the port for the server to listen on
+	private static ServerSocket listener; // Creates a ServerSocket Listener
+	private static int port; // Creates an integer for the port for the server to listen on
 	private static HashSet<String> names = new HashSet<String>(); // Creates a HashSet for the players names
-	private static String namesB = new String();
-	private static String hostN;
-	private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>(); // Creates a writer to communicate with the Client
-	public static int k = 0;
-	public static String output;
-	private static int readyState1 = 0;
-	private static int readyState2 = 0;
-	private static int readyState3 = 0;
-	private static int readyState4 = 0;
+	private static String namesB = new String(); // Creates a string to hold all player names
+	private static String hostN; // Creates a string for the hosts name
+	private static HashSet<PrintWriter> writers = new HashSet<PrintWriter>(); // Creates a writer to communicate with the Client 
+	private static int k = 1; // Creates a counting value
+	private static String output; // Creates an output string variable
+	private static int readyState1 = 0; // Creates an integer to indicate if the player is ready
+	private static int readyState2 = 0; // Creates an integer to indicate if the player is ready
+	private static int readyState3 = 0; // Creates an integer to indicate if the player is ready
+	private static int readyState4 = 0; // Creates an integer to indicate if the player is ready
 
 
+	/**
+	 * @returns sum of players ready
+	 */
 	public static int getPlayerCount(){
-		return readyState1 + readyState2 + readyState3 + readyState4;
+		return readyState1 + readyState2 + readyState3 + readyState4; // returns the sum of all the players ready
 	}
-	
+
 	// Constructor
 	public Host(int port, String name, Button startB){			
-		//startB.setOnAction(e -> GameGUI.gameStart());
-		
+
 		startB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
-				if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){
-					GameGUI.gameStart();
-					output = "CHANGE";
-				}else if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){
-					GameGUI.gameStart();
-					output = "CHANGE";
+				if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){ // If all users are ready
+					GameGUI.gameStart(); // Start the game
+					output = "CHANGE"; // Change the output message to "CHANGE"
+				}else if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){ // If the host is the only person playing
+					GameGUI.gameStart(); // Start the game
+					output = "CHANGE"; // Change the output message to "CHANGE"
 				}
 				for (PrintWriter writer : writers){ // Adds writer to the types of writes
-					//writer.println(out); // Takes the message from the client and displays it on the screen
-					writer.println( output);
+					writer.println( output); // Sends a message to all players
 				}
 			}
 		});
-		
-		
-		
-		
+
+
+
+
 		Host.port = port; // Sets the global port to the inputed port
-		names.add(name);
-		namesB = name;
-		hostN = name;
+		names.add(name); // add the inputed name to the names list
+		namesB = name; // add the inputed name to the secondary name list
+		hostN = name; // add the name to the host name variable
 
-		Label nameL1 = new Label(hostN);
-		GameGUI.readyCB1.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
+		Label nameL1 = new Label(hostN); // Creates a new label for the host.
+		GameGUI.readyCB1.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Creates a listener for the host check box
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-				if (t1) {
-					GameGUI.circle1.setFill(Color.LIME);
-					output = "1A";
-					readyState1 = 1;
-
-				} else {
-					GameGUI.circle1.setFill(Color.DARKGREEN);
-					output = "1B";
-					readyState1 = 0;
+				if (t1) { // If the boolean value is true
+					GameGUI.circle1.setFill(Color.LIME); // Change the color of the first circle to LIME
+					output = "1A"; // Change the output message to "1A"
+					readyState1 = 1; // Change the ready state of 1 to 1
+				} else { // If the check box is not selected
+					GameGUI.circle1.setFill(Color.DARKGREEN); // Change the color of the first circle to DARKGREEN
+					output = "1B"; // Change the output message to "1B"
+					readyState1 = 0; // Change the ready state of 1 to 0
 				}
 				for (PrintWriter writer : writers){ // Adds writer to the types of writes
-					//writer.println(out); // Takes the message from the client and displays it on the screen
-					writer.println( output);
+					writer.println( output); // Sends message to all players
 				}
 			}
-
 		});
-		GameGUI.nameBP1.setLeft(nameL1);
-		GameGUI.nameBP1.setRight(GameGUI.circle1);
-		if(nameL1.toString().substring(nameL1.toString().indexOf("'") + 1, nameL1.toString().length() - 1).equals(hostN)){
-			GameGUI.nameBP1.setCenter(GameGUI.readyCB1);
-		}
-		GameGUI.nameBP1.setPrefWidth(700 / 2);
+		GameGUI.nameBP1.setLeft(nameL1); // Adds the hosts name to the left side of the border pane
+		GameGUI.nameBP1.setRight(GameGUI.circle1); // Adds the circle to the right side of the border pane
+		GameGUI.nameBP1.setCenter(GameGUI.readyCB1); // Adds the check box to the center of the border pane
+		GameGUI.nameBP1.setPrefWidth(GameGUI.getWidthHeight() / 2); // Sets the prefered width of the borderpane
 		nameL1.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 				"-fx-font-weight: bold;" +  // Sets the font to bold
 				"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-		//		"-fx-border-color: Black"); // Sets the border to black
-		GameGUI.nameBP1.setStyle("-fx-border-color: Black");
-		GameGUI.nameBP1.setPadding(new Insets(10));
-		
-		GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0);
-		
-		
-		
+		GameGUI.nameBP1.setStyle("-fx-border-color: Black"); //Sets the border color to black
+		GameGUI.nameBP1.setPadding(new Insets(10)); // Adds padding to the borderpane
+		GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // Adds the borderpane to the first position in the GridPane
+
+
+
 	}
 
 	// Method to launch the server
@@ -134,11 +129,12 @@ public class Host extends Thread{
 	//  Method used to broadcast to the clients
 	private static class Handler extends Thread{
 		// Declare Variables
-		private String name;
-		private Socket socket;
-		private BufferedReader in;
-		private PrintWriter out;
+		private String name; // String for all the names
+		private Socket socket; // Socket for the server
+		private BufferedReader in; // BufferedReader to get messages from the client
+		private PrintWriter out; // PrintWriter to send messages to the client(s)
 
+		// Sets the global socket
 		public Handler(Socket socket){
 			this.socket = socket; //Sets the Handler socket to the given socket
 		}
@@ -146,8 +142,7 @@ public class Host extends Thread{
 		// Constantly asks for user information
 		public void run(){
 			try{
-				in = new BufferedReader(new InputStreamReader(
-						socket.getInputStream())); // Creates a buffered reader based off the sockets input stream
+				in = new BufferedReader(new InputStreamReader(socket.getInputStream())); // Creates a buffered reader based off the sockets input stream
 				out = new PrintWriter(socket.getOutputStream(), true); // Creates a print writer based off the sockets output stream
 
 				// Asks for user information
@@ -169,211 +164,76 @@ public class Host extends Thread{
 				String namesL = names.toString(); // Converts the names in the hash string to a string
 				Platform.runLater(new Runnable() { // Runs when it gets the chance
 					public void run() { //Runs
-						GameGUI.nameLRQ.setText(namesL); //Updates the gui
-						int x = namesB.length() - namesB.replace(",", "").length() + 1;
-						//System.out.println(names.size());
-						//String[] namesA = names.toArray(new String[names.size()]);
-						String[] namesA = namesB.split(", ");
-						GameGUI.namesGPRQ.getChildren().clear();
-						System.out.println(k);
+						GameGUI.nameLRQ.setText(namesL); //Updates the GUI
+						int x = namesB.length() - namesB.replace(",", "").length() + 1; // Calculates how many clients have connected to the host
+						String[] namesA = namesB.split(", "); // Creates a array of all the names
+						GameGUI.namesGPRQ.getChildren().clear(); // Clears the Gridpane
 						for(int i = k; i < x; i++){
-							/*
-							CheckBox readyCB = new CheckBox();
-							BorderPane nameBP = new BorderPane();
-							Label nameL = new Label(namesA[names.size()-(i+1)]);
-							Circle circle = new Circle(25);
-							circle.setFill(Color.DARKGREEN);
-							readyCB.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-								public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-									if (t1) {
-										circle.setFill(Color.LIME);
-
-									} else {
-										circle.setFill(Color.DARKGREEN);
-									}
-								}
-
-							});
-							circle.setStroke(Color.BLACK);
-							circle.setStrokeWidth(2);
-							nameBP.setLeft(nameL);
-							 */
-
-
-
-							System.out.println(Arrays.toString(namesA));
-
-
-
+							// Switch for the current player
 							switch (i + 1){
-							case 1:
-								Label nameL1 = new Label(namesA[0]);
-								GameGUI.readyCB1.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-									public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-										if (t1) {
-											GameGUI.circle1.setFill(Color.LIME);
-											output = "1A";
-											readyState1 = 1;
-
-										} else {
-											GameGUI.circle1.setFill(Color.DARKGREEN);
-											output = "1B";
-											readyState1 = 0;
-										}
-										for (PrintWriter writer : writers){ // Adds writer to the types of writes
-											//writer.println(out); // Takes the message from the client and displays it on the screen
-											writer.println( output);
-										}
-									}
-
-								});
-								GameGUI.nameBP1.setLeft(nameL1);
-								GameGUI.nameBP1.setRight(GameGUI.circle1);
-								System.out.println(namesA[0]);
-								if(nameL1.toString().substring(nameL1.toString().indexOf("'") + 1, nameL1.toString().length() - 1).equals(hostN)){
-									GameGUI.nameBP1.setCenter(GameGUI.readyCB1);
-								}
-								GameGUI.nameBP1.setPrefWidth(700 / 2);
-								nameL1.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-										"-fx-font-weight: bold;" +  // Sets the font to bold
-										"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-								//		"-fx-border-color: Black"); // Sets the border to black
-								GameGUI.nameBP1.setStyle("-fx-border-color: Black");
-								GameGUI.nameBP1.setPadding(new Insets(10));
-								k++;
-								break;
 							case 2:
-								Label nameL2 = new Label(namesA[1]);
-								GameGUI.readyCB2.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-									public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-										if (t1) {
-											GameGUI.circle2.setFill(Color.LIME);
-
-										} else {
-											GameGUI.circle2.setFill(Color.DARKGREEN);
-										}
-									}
-
-								});
-								GameGUI.nameBP2.setLeft(nameL2);
-								GameGUI.nameBP2.setRight(GameGUI.circle2);
-								if(nameL2.toString().substring(nameL2.toString().indexOf("'") + 1, nameL2.toString().length() - 1).equals(hostN)){
-									GameGUI.nameBP2.setCenter(GameGUI.readyCB2);
-								}
-								GameGUI.nameBP2.setPrefWidth(700 / 2);
+								Label nameL2 = new Label(namesA[1]); // Creates a label and inserts the players name in it
+								GameGUI.nameBP2.setLeft(nameL2); // Sets the name to the left side of the border pane
+								GameGUI.nameBP2.setRight(GameGUI.circle2); // Sets the circle to the right side of the border pane
+								GameGUI.nameBP2.setPrefWidth(GameGUI.getWidthHeight() / 2); // Sets the width
 								nameL2.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 										"-fx-font-weight: bold;" +  // Sets the font to bold
 										"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-								//		"-fx-border-color: Black"); // Sets the border to black
-								GameGUI.nameBP2.setStyle("-fx-border-color: Black");
-								GameGUI.nameBP2.setPadding(new Insets(10));
-								k++;
+								GameGUI.nameBP2.setStyle("-fx-border-color: Black"); // Sets the border color to black
+								GameGUI.nameBP2.setPadding(new Insets(10)); // Adds padding to the border pane
+								k++; // Adds 1 to the current value of k
 								break;
 							case 3:
-								Label nameL3 = new Label(namesA[2]);
-								GameGUI.readyCB3.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-									public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-										if (t1) {
-											GameGUI.circle3.setFill(Color.LIME);
-
-										} else {
-											GameGUI.circle3.setFill(Color.DARKGREEN);
-										}
-									}
-
-								});
-								GameGUI.nameBP3.setLeft(nameL3);
-								GameGUI.nameBP3.setRight(GameGUI.circle3);
-								if(nameL3.toString().substring(nameL3.toString().indexOf("'") + 1, nameL3.toString().length() - 1).equals(hostN)){
-									GameGUI.nameBP3.setCenter(GameGUI.readyCB3);
-								}
-								GameGUI.nameBP3.setPrefWidth(700 / 2);
+								Label nameL3 = new Label(namesA[2]); // Creates a label and inserts the players name in it
+								GameGUI.nameBP3.setLeft(nameL3); // Sets the name to the left side of the border pane
+								GameGUI.nameBP3.setRight(GameGUI.circle3); // Sets the circle to the right side of the border pane
+								GameGUI.nameBP3.setPrefWidth(GameGUI.getWidthHeight() / 2); // Sets the width
 								nameL3.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 										"-fx-font-weight: bold;" +  // Sets the font to bold
 										"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-								//		"-fx-border-color: Black"); // Sets the border to black
-								GameGUI.nameBP3.setStyle("-fx-border-color: Black");
-								GameGUI.nameBP3.setPadding(new Insets(10));
-								k++;
+								GameGUI.nameBP3.setStyle("-fx-border-color: Black"); // Sets the border color to black
+								GameGUI.nameBP3.setPadding(new Insets(10)); // Adds padding to the border pane
+								k++; // Adds 1 to the current value of k
 								break;
 							case 4:
-								Label nameL4 = new Label(namesA[3]);
-								GameGUI.readyCB4.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-									public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-										if (t1) {
-											GameGUI.circle4.setFill(Color.LIME);
-
-										} else {
-											GameGUI.circle4.setFill(Color.DARKGREEN);
-										}
-									}
-
-								});
-								GameGUI.nameBP4.setLeft(nameL4);
-								GameGUI.nameBP4.setRight(GameGUI.circle4);
-								if(nameL4.toString().substring(nameL4.toString().indexOf("'") + 1, nameL4.toString().length() - 1).equals(hostN)){
-									GameGUI.nameBP4.setCenter(GameGUI.readyCB4);
-								}
-								GameGUI.nameBP4.setPrefWidth(700 / 2);
+								Label nameL4 = new Label(namesA[3]); // Creates a label and inserts the players name in it
+								GameGUI.nameBP4.setLeft(nameL4); // Sets the name to the left side of the border pane
+								GameGUI.nameBP4.setRight(GameGUI.circle4); // Sets the circle to the right side of the border pane
+								GameGUI.nameBP4.setPrefWidth(GameGUI.getWidthHeight() / 2); // Sets the width
 								nameL4.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 										"-fx-font-weight: bold;" +  // Sets the font to bold
 										"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-								//		"-fx-border-color: Black"); // Sets the border to black
-								GameGUI.nameBP4.setStyle("-fx-border-color: Black");
-								GameGUI.nameBP4.setPadding(new Insets(10));
-								k++;
+								GameGUI.nameBP4.setStyle("-fx-border-color: Black"); // Sets the border color to black
+								GameGUI.nameBP4.setPadding(new Insets(10)); // Adds padding to the border pane
+								k++; // Adds 1 to the current value of k
 								break;
 							}
-
-
-
-
-
-							/*
-							if(nameL.toString().substring(nameL.toString().indexOf("'") + 1, nameL.toString().length() - 1).equals(hostN)){
-								nameBP.setCenter(readyCB);
-							}
-							nameBP.setPrefWidth(700 / 2);
-							nameL.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-									"-fx-font-weight: bold;" +  // Sets the font to bold
-									"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-							//		"-fx-border-color: Black"); // Sets the border to black
-							nameBP.setStyle("-fx-border-color: Black");
-							nameBP.setPadding(new Insets(10));
-							GameGUI.namesGPRQ.add(nameBP, 0, i);
-							 */
 						}
 						switch(x){
 						case 2:
-							GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0);
-							GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1);
+							GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // adds the border pane to the grid pane
+							GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1); // adds the border pane to the grid pane
 							break;
 						case 3:
-							GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0);
-							GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1);
-							GameGUI.namesGPRQ.add(GameGUI.nameBP3, 0, 2);
+							GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // adds the border pane to the grid pane
+							GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1); // adds the border pane to the grid pane
+							GameGUI.namesGPRQ.add(GameGUI.nameBP3, 0, 2); // adds the border pane to the grid pane
 							break;
 						case 4:
-							GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0);
-							GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1);
-							GameGUI.namesGPRQ.add(GameGUI.nameBP3, 0, 2);
-							GameGUI.namesGPRQ.add(GameGUI.nameBP4, 0, 3);
+							GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // adds the border pane to the grid pane
+							GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1); // adds the border pane to the grid pane
+							GameGUI.namesGPRQ.add(GameGUI.nameBP3, 0, 2); // adds the border pane to the grid pane
+							GameGUI.namesGPRQ.add(GameGUI.nameBP4, 0, 3); // adds the border pane to the grid pane
 							break;
 						}
 					}
 				});
 
-				String readyS = readyState1 + "," + readyState2 + "," + readyState3 + "," + readyState4;
+				String readyS = readyState1 + "," + readyState2 + "," + readyState3 + "," + readyState4; // Creates a string for all the ready states
 				out.println("NAMEACCEPTED :" + readyS); // Sets the message to send to the client to "NAMEACCEPTED"
 				writers.add(out); // Tells the client that the name was accepted
 				for (PrintWriter writer : writers){ // Adds writer to the types of writes
-					//writer.println("MESSAGE " + name + ": " + names.toString()); // Takes the message from the client and displays it on the screen
-					writer.println("MESSAGE " + name + ":" + namesB);
+					writer.println("MESSAGE " + name + ":" + namesB); // Sends the message to all clients
 				}
 
 				// Listens for the client and displays messages
@@ -382,68 +242,63 @@ public class Host extends Thread{
 					if (input == null){ // If the client did not send any info proceed
 						return; // Restart the while loop
 					}
-					if(input.equals("2A")){
+					if(input.equals("2A")){ // If the second user indicates that they are ready
 						Platform.runLater(new Runnable() { // Runs when it gets the chance
 							public void run() { //Runs
-								GameGUI.circle2.setFill(Color.LIME);
-								//GameGUI.readyCB2.setSelected(true);
-								//out.println("2A");
-								//System.out.println(Arrays.toString(writers.toArray()));
+								GameGUI.circle2.setFill(Color.LIME); // Change the color of the circle to LIME
 							}
 						});
-						output = "2A";
-						readyState2 = 1;
+						output = "2A"; // Change the output to "2A"
+						readyState2 = 1; // Change the ready state to 1
 					}
-					else if(input.equals("2B")){
+					else if(input.equals("2B")){ // If the client indicated they are not ready
 						Platform.runLater(new Runnable() { // Runs when it gets the chance
 							public void run() { //Runs
-								GameGUI.circle2.setFill(Color.DARKGREEN);
-								//out.println("2B");
+								GameGUI.circle2.setFill(Color.DARKGREEN); // Change the color of the circle to DARKGREEN
 							}
 						});	
-						output = "2B";
-						readyState2 = 0;
+						output = "2B"; // Change the output to "2B"
+						readyState2 = 0; // Change the ready state to 0
 					}
-					else if(input.equals("3A")){
+					else if(input.equals("3A")){ // If the client indicates they are ready
 						Platform.runLater(new Runnable() { // Runs when it gets the chance
 							public void run() { //Runs
-								GameGUI.circle3.setFill(Color.LIME);
+								GameGUI.circle3.setFill(Color.LIME); // Change the color of the circle to LIME
 							}
 						});	
-						output = "3A";
-						readyState3 = 1;
+						output = "3A"; // Change the output to "3A"
+						readyState3 = 1; // Change the ready state to 1
 					}
-					else if(input.equals("3B")){
+					else if(input.equals("3B")){ // If the client indicates they are not ready
 						Platform.runLater(new Runnable() { // Runs when it gets the chance
 							public void run() { //Runs
-								GameGUI.circle3.setFill(Color.DARKGREEN);
+								GameGUI.circle3.setFill(Color.DARKGREEN); // Change the color of the circle to DarkGreen
 							}
 						});	
-						output = "3B";
-						readyState3 = 0;
+						output = "3B"; // Change the output to "3B"
+						readyState3 = 0; // Change the ready state to 0
 					}
-					else if(input.equals("4A")){
+					else if(input.equals("4A")){ // If the client indicates they are ready
 						Platform.runLater(new Runnable() { // Runs when it gets the chance
 							public void run() { //Runs
-								GameGUI.circle4.setFill(Color.LIME);
+								GameGUI.circle4.setFill(Color.LIME); // Change the color of the circle to LIME
 							}
 						});	
-						output = "4A";
-						readyState4 = 1;
+						output = "4A"; // Change the output to "4A"
+						readyState4 = 1; // Change the ready state to 1
 					}
-					else if(input.equals("4B")){
+					else if(input.equals("4B")){ // If the client indicates they are not ready
 						Platform.runLater(new Runnable() { // Runs when it gets the chance
 							public void run() { //Runs
-								GameGUI.circle4.setFill(Color.DARKGREEN);
+								GameGUI.circle4.setFill(Color.DARKGREEN); // Change the color of the circle to DARKGREEN
 							}
 						});	
-						output = "4B";
-						readyState4 = 0;
+						output = "4B"; // Change the output to "4B"
+						readyState4 = 0; // Change the ready state to 0
 					}
-					
+
 					for (PrintWriter writer : writers){ // Adds writer to the types of writes
-						//writer.println(out); // Takes the message from the client and displays it on the screen
-						writer.println( output);
+						writer.println( output); // Sends to all clients
 					}
 				}
 			} catch (IOException e){
@@ -462,18 +317,10 @@ public class Host extends Thread{
 				}
 			}
 		}
-
 	}
 
 	// Runs the server
 	public void run(){
 		launchServer(port); // Starts the process
 	}
-
-	/*
-	public void releasePowerUp(){
-
-	}
-	 */ //TODO use or not use
-
 }

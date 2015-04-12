@@ -44,7 +44,7 @@ public class GameGUI extends Application {
 	private static Stage globalS;
 	private static GameScreen globalG;
 	private static Scene sbScene;
-	private int sceneWH = 700; // Int used to control screen size
+	private static int sceneWH = 700; // Int used to control screen size
 	public static Label nameLRQ; // Public label so the host class can edit the data
 	public static GridPane namesGPRQ; // Public HBox so the host class can edit the data
 	public static Circle circle1 = new Circle(25);
@@ -562,4 +562,8 @@ public class GameGUI extends Application {
 		GameGUI.launch(args); // Launches the game
 	}
 
+	public static int getWidthHeight(){
+		return sceneWH;
+	}
+	
 }//end Game GUI
