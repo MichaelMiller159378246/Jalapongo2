@@ -79,14 +79,19 @@ public class GameScreen {
 	public Paddle paddle1 = player1.getPaddle();
 	public Paddle paddle2 = player2.getPaddle();
 	public Paddle paddle3 = player3.getPaddle();
-	public Paddle paddle4 = player4.getPaddle();	
+	public Paddle paddle4 = player4.getPaddle();
+	
+	// Player Names
+	private String player1Name;
+	private String player2Name;
+	private String player3Name;
+	private String player4Name;
 	
 	//Lives Display
-	Text player1L = new Text(paddle2.getLives() + " Lives");
-	Text player2L = new Text(paddle2.getLives() + " Lives");
-	Text player3L = new Text(paddle2.getLives() + " Lives");
-	Text player4L = new Text(paddle2.getLives() + " Lives");
-	
+	Text player1L;
+	Text player2L;
+	Text player3L;
+	Text player4L;	
 	
 	//Make the Rectangles that make up the corners of the game screen
 	Rectangle rect1 = new Rectangle(rectW, rectH); //650,0
@@ -99,12 +104,36 @@ public class GameScreen {
 	Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
 	
 	//create shields 
-	static Rectangle shield1;
-	static Rectangle shield2;
-	static Rectangle shield3;
-	static Rectangle shield4;
+	static Rectangle shield1, shield2, shield3, shield4;
 		
-	public GameScreen() {
+	public GameScreen(){
+		
+	}
+	public GameScreen(String name1, String name2, String name3, String name4) {
+
+		if(name2 == null){
+			name2 = "AI";
+		}
+		
+		if(name3 == null){
+			name3 = "AI";
+		}
+		
+		if(name4 == null){
+			name4 = "AI";
+		}
+		
+		player1Name = name1;
+		player2Name = name2;
+		player3Name = name3;
+		player4Name = name4;
+		
+		
+		player1L = new Text(player3Name + ": " + paddle2.getLives() + " Lives");
+		player2L = new Text(player1Name + ": " + paddle2.getLives() + " Lives");
+		player3L = new Text(player4Name + ": " + paddle2.getLives() + " Lives");
+		player4L = new Text(player2Name + ": " + paddle2.getLives() + " Lives");
+
 		
 		//Get the rectangles and add them to the screen
 		gamePane.getChildren().addAll(player1L, player2L, player3L, player4L);
@@ -158,67 +187,55 @@ public class GameScreen {
 }
 	
 	public void checkCollisionWithshield(Ball ball){
-		//System.out.println("in method");
-		//bottom
- 		if ( (ball.getYLoc() + ball.getSize() > shield2.getY())
-				&& (ball.getYLoc() < shield2.getY() + shield2.getHeight()) ){
- 			if ( ball.getXLoc() < (shield2.getWidth()) &&
- 					(ball.getXSpeed() < 0) ) {
- 				ball.reverseY();
- 				shield2.setX(-900);
-				shield2.setY(-900);
-	            try{gamePane.getChildren().removeAll(shield2);}catch(Exception e){}
+		if ( (ball.getYLoc() + ball.getSize() > shield1.getY())
+				&& (ball.getYLoc() < shield1.getY() + shield1.getHeight()) ){
+			if ( ball.getXLoc() < (shield1.getWidth()) &&
+					(ball.getXSpeed() < 0) ) {
+				ball.reverseX();
+				shield1.setX(-900);
+				shield1.setY(-900);
+	            gamePane.getChildren().removeAll(shield1);
 				//System.out.println("shield 1 hit");
 			}
 		}
-		//left side?????
-		/*if ( (ball.getXLoc() + ball.getSize() > shield3.getX()) 
-				&& (ball.getXLoc() < shield3.getX() + shield3.getWidth()) ){
-			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + shield3.getHeight()))) &&
+		
+		if ( (ball.getXLoc() + ball.getSize() > shield2.getX()) 
+				&& (ball.getXLoc() < shield2.getX() + shield2.getWidth()) ){
+			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + shield2.getHeight()))) &&
 					(ball.getYSpeed() > 0) ) {
+				ball.reverseY();
+				shield2.setX(-900);
+				shield2.setY(-900);
+	            gamePane.getChildren().removeAll(shield2);
+				//System.out.println("shield 2 hit");
+
+			}
+		}
+
+		if ( (ball.getYLoc() + ball.getSize() > shield3.getY()) 
+				&& (ball.getYLoc() < shield3.getY() + shield3.getHeight()) ){
+			if ( ball.getXLoc() > (paneWH - (ball.getSize() + shield3.getWidth())) &&
+					(ball.getXSpeed() > 0) ) {
 				ball.reverseX();
 				shield3.setX(-900);
 				shield3.setY(-900);
-	            try{gamePane.getChildren().removeAll(shield3);}catch(Exception e){}
-				System.out.println("shield 2 hit");
-
-			}
-		}*/
-		//top
-		if ( (ball.getYLoc() + ball.getSize() > shield4.getY()) 
-				&& (ball.getYLoc() < shield4.getY() + shield4.getHeight()) ){
-			if ( ball.getXLoc() > (paneWH - (ball.getSize() + shield4.getWidth())) &&
-					(ball.getXSpeed() > 0) ) {
-				ball.reverseY();
-				shield4.setX(-900);
-				shield4.setY(-900);
-	            try{gamePane.getChildren().removeAll(shield4);}catch(Exception e){}
+	            gamePane.getChildren().removeAll(shield3);
 				//System.out.println("shield 3 hit");
 			}
 		}
-		// right side????
-	/*	if ( (ball.getXLoc() + ball.getSize() > shield3.getX())
-				&& (ball.getXLoc() < shield3.getX() + shield3.getWidth()) ){
-			if ( ball.getYLoc() < (paddle3.getPaddle().getHeight()) &&
-					(ball.getYSpeed() < 0) ) {
-				ball.reverseX();
-				shield3.setX(-900);
-				shield3.setY(-900);
-	            try{gamePane.getChildren().removeAll(shield3);}catch(Exception e){}
-				System.out.println("shield 4 hit");
-			}
-		}	*/
-	}
 	
-	private void CheckCollisionWithShields(){
-		try{checkCollisionWithshield(mainBall);}catch(Exception e){}
-		try{checkCollisionWithshield(ball1);}catch(Exception e){}
-		try{checkCollisionWithshield(ball2);}catch(Exception e){}
-		try{checkCollisionWithshield(ball3);}catch(Exception e){}
-		try{checkCollisionWithshield(ball4);}catch(Exception e){}
-		try{checkCollisionWithshield(ball5);}catch(Exception e){}
-		try{checkCollisionWithshield(ball6);}catch(Exception e){}
-		try{checkCollisionWithshield(ball7);}catch(Exception e){}		
+	
+		if ( (ball.getXLoc() + ball.getSize() > shield4.getX())
+				&& (ball.getXLoc() < shield4.getX() + shield4.getWidth()) ){
+			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
+					(ball.getYSpeed() < 0) ) {
+				ball.reverseY();
+				shield4.setX(-900);
+				shield4.setY(-900);
+	            gamePane.getChildren().removeAll(shield4);
+				//System.out.println("shield 4 hit");
+			}
+		}	
 	}
 	
 	public static void createShield(Paddle paddle){
@@ -609,6 +626,15 @@ public class GameScreen {
 		try{checkCollisionWith4(ball5);}catch(Exception e){}  
 		try{checkCollisionWith4(ball6);}catch(Exception e){}  
 		try{checkCollisionWith4(ball7);}catch(Exception e){}  
+		
+		try{checkCollisionWithshield(mainBall);}catch(Exception e){}  
+		try{checkCollisionWithshield(ball1);}catch(Exception e){}
+		try{checkCollisionWithshield(ball2);}catch(Exception e){}
+		try{checkCollisionWithshield(ball3);}catch(Exception e){}
+		try{checkCollisionWithshield(ball4);}catch(Exception e){}
+		try{checkCollisionWithshield(ball5);}catch(Exception e){}
+		try{checkCollisionWithshield(ball6);}catch(Exception e){}
+		try{checkCollisionWithshield(ball7);}catch(Exception e){}
 	}
 	
 	// ------The following check the collision with the players paddles--------------
@@ -879,7 +905,6 @@ public class GameScreen {
 			        @Override
 			        public void run() {
 			        	moveAllBalls();
-			        //paddle and wall checks
 			        try{checkReverse(mainBall);}catch(InterruptedException e) {e.printStackTrace();}
 			        try{checkReverse(ball1);}catch(Exception e){}
 			        try{checkReverse(ball2);}catch(Exception e){}
@@ -888,19 +913,16 @@ public class GameScreen {
 			        try{checkReverse(ball5);}catch(Exception e){}
 			        try{checkReverse(ball6);}catch(Exception e){}
 			        try{checkReverse(ball7);}catch(Exception e){}  
-			        //power up checks
 			        try{checkCollisionWithPowerUp();}catch(Exception e){}
-					//shield checks
-			        try{CheckCollisionWithShields();}catch(Exception e){}
 			        //TODO variable AI
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);
 			          player3.moveAI(mainBall);
 			          player4.moveAI(mainBall);
-			          player1L.setText(paddle1.getLives() + " Lives");
-			          player2L.setText(paddle2.getLives() + " Lives");
-			          player3L.setText(paddle3.getLives() + " Lives");
-			          player4L.setText(paddle4.getLives() + " Lives");
+			          player1L.setText(player3Name + ": " + paddle1.getLives() + " Lives");
+			          player2L.setText(player1Name + ": " + paddle2.getLives() + " Lives");
+			          player3L.setText(player4Name + ": " + paddle3.getLives() + " Lives");
+			          player4L.setText(player2Name + ": " + paddle4.getLives() + " Lives");
 			          if (count%100 == 1){
 			        	  generatePowerUp();
 			        	  i++;

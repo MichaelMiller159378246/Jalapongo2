@@ -24,7 +24,7 @@ public class Client extends Thread{
 	private static String ipAddress; // Creates a global string for the IP address
 	private static String name; // Creates a global string for the name
 	private int k = 0; // Creates a global integer to keep track of position
-	public String[] names; // Creates a global string array to keep track of names
+	public String[] names = {null, null, null, null}; // Creates a global string array to keep track of names
 
 	/*Construct client*/
 	public Client(int portN, String IP,String uName) {
@@ -47,7 +47,7 @@ public class Client extends Thread{
 				if(line.startsWith("SUBMITNAME")){ // If the message sent from the host starts with SUBMITNAME proceed
 					out.println(name); // Sends the clients name to the host
 				}
-				else if (line.startsWith("NAMEACCEPTED ")){
+				else if (line.startsWith("NAMEACCEPTED ")){ // If the host sends "NAMEACCEPTED"
 					String lights = line.substring(line.indexOf(":") + 1, line.length()); // Reads the message from the host
 					String[] lightsA = lights.split(","); // Creates an array from the string
 
@@ -75,6 +75,7 @@ public class Client extends Thread{
 							for(int i = k; i < x; i++){
 								switch(i + 1){
 								case 1:
+									names[0] = namesA[0]; // Updates the name list
 									Label nameL1 = new Label(namesA[0]); // Adds the hosts name to the first label
 									GameGUI.nameBP1.setLeft(nameL1); // Sets the label to the left side of the border pane
 									GameGUI.nameBP1.setRight(GameGUI.circle1); // Sets the circle to the right side of the border pane
@@ -87,6 +88,7 @@ public class Client extends Thread{
 									k++; // Adds 1 to k
 									break;
 								case 2:
+									names[1] = namesA[1]; // Updates the name list
 									Label nameL2 = new Label(namesA[1]); // Adds the second players name to the label
 									GameGUI.nameBP2.setLeft(nameL2); // Set the label to the left of the border pane
 									GameGUI.nameBP2.setRight(GameGUI.circle2); // Set the circle to the right of the border pane
@@ -114,6 +116,7 @@ public class Client extends Thread{
 									k++; // add 1 to k
 									break;
 								case 3:
+									names[2] = namesA[2]; // Updates the name list
 									Label nameL3 = new Label(namesA[2]); // Adds the third name to the label
 									GameGUI.readyCB3.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Add an action listener to the check box
 
@@ -151,6 +154,7 @@ public class Client extends Thread{
 									k++; // Adds 1 to the value of k
 									break;
 								case 4:
+									names[3] = namesA[3]; // Updates the name list
 									Label nameL4 = new Label(namesA[3]); // Adds the last players name to the label =
 									GameGUI.readyCB4.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Adds a listener to the check box
 
@@ -206,7 +210,6 @@ public class Client extends Thread{
 								GameGUI.namesGPRQ.add(GameGUI.nameBP4, 0, 3); // Adds player 4
 								break;
 							}
-							names = namesA; // Update the names list
 						}
 					});
 				}
@@ -269,7 +272,7 @@ public class Client extends Thread{
 				else if(line.startsWith("CHANGE")){ // If the host sent "Change"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.gameStart(); // Calls the gameStart method from GameGUI
+							GameGUI.gameStart(names[0], names[1], names[2], names[3]); // Calls the gameStart method from GameGUI
 						}
 					});
 				}

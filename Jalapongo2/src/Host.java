@@ -39,6 +39,7 @@ public class Host extends Thread{
 	private static int readyState2 = 0; // Creates an integer to indicate if the player is ready
 	private static int readyState3 = 0; // Creates an integer to indicate if the player is ready
 	private static int readyState4 = 0; // Creates an integer to indicate if the player is ready
+	private static String[] namesA = {null, null, null, null}; // Creates a private string array to hold all the names
 
 
 	/**
@@ -54,10 +55,10 @@ public class Host extends Thread{
 		startB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
 				if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){ // If all users are ready
-					GameGUI.gameStart(); // Start the game
+					GameGUI.gameStart(namesA[0], namesA[1], namesA[2], namesA[3]);// Start the game
 					output = "CHANGE"; // Change the output message to "CHANGE"
 				}else if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){ // If the host is the only person playing
-					GameGUI.gameStart(); // Start the game
+					GameGUI.gameStart(namesA[0], namesA[1], namesA[2], namesA[3]); // Start the game
 					output = "CHANGE"; // Change the output message to "CHANGE"
 				}
 				for (PrintWriter writer : writers){ // Adds writer to the types of writes
@@ -73,6 +74,7 @@ public class Host extends Thread{
 		names.add(name); // add the inputed name to the names list
 		namesB = name; // add the inputed name to the secondary name list
 		hostN = name; // add the name to the host name variable
+		namesA[0] = name;
 
 		Label nameL1 = new Label(hostN); // Creates a new label for the host.
 		GameGUI.readyCB1.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Creates a listener for the host check box
@@ -166,12 +168,13 @@ public class Host extends Thread{
 					public void run() { //Runs
 						GameGUI.nameLRQ.setText(namesL); //Updates the GUI
 						int x = namesB.length() - namesB.replace(",", "").length() + 1; // Calculates how many clients have connected to the host
-						String[] namesA = namesB.split(", "); // Creates a array of all the names
+						String[] namesList = namesB.split(", "); // Creates a array of all the names
 						GameGUI.namesGPRQ.getChildren().clear(); // Clears the Gridpane
 						for(int i = k; i < x; i++){
 							// Switch for the current player
 							switch (i + 1){
 							case 2:
+								namesA[1] = namesList[1]; // Updates the name list
 								Label nameL2 = new Label(namesA[1]); // Creates a label and inserts the players name in it
 								GameGUI.nameBP2.setLeft(nameL2); // Sets the name to the left side of the border pane
 								GameGUI.nameBP2.setRight(GameGUI.circle2); // Sets the circle to the right side of the border pane
@@ -184,6 +187,7 @@ public class Host extends Thread{
 								k++; // Adds 1 to the current value of k
 								break;
 							case 3:
+								namesA[2] = namesList[2]; // Updates the name list
 								Label nameL3 = new Label(namesA[2]); // Creates a label and inserts the players name in it
 								GameGUI.nameBP3.setLeft(nameL3); // Sets the name to the left side of the border pane
 								GameGUI.nameBP3.setRight(GameGUI.circle3); // Sets the circle to the right side of the border pane
@@ -196,6 +200,7 @@ public class Host extends Thread{
 								k++; // Adds 1 to the current value of k
 								break;
 							case 4:
+								namesA[3] = namesList[3]; // Updates the name list
 								Label nameL4 = new Label(namesA[3]); // Creates a label and inserts the players name in it
 								GameGUI.nameBP4.setLeft(nameL4); // Sets the name to the left side of the border pane
 								GameGUI.nameBP4.setRight(GameGUI.circle4); // Sets the circle to the right side of the border pane
