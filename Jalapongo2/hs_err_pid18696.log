@@ -1,0 +1,564 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d8fe7c7, pid=18696, tid=4344
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_25-b18) (build 1.8.0_25-b18)
+# Java VM: Java HotSpot(TM) Client VM (25.25-b02 mixed mode, sharing windows-x86 )
+# Problematic frame:
+# C  [gstreamer-lite.dll+0x2e7c7]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x13ef7400):  JavaThread "JavaFX Application Thread" [_thread_in_native, id=4344, stack(0x14260000,0x142b0000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x00000040
+
+Registers:
+EAX=0x00000000, EBX=0x142aed6c, ECX=0x1bfe0dc8, EDX=0x00000000
+ESP=0x142aecd8, EBP=0x142aecf0, ESI=0x161f67b8, EDI=0x00000000
+EIP=0x6d8fe7c7, EFLAGS=0x00210246
+
+Top of Stack: (sp=0x142aecd8)
+0x142aecd8:   1bfe0dc8 00000000 161f67b8 6d8fe9f3
+0x142aece8:   6d8b7164 147392c0 142aed3c 6d878b31
+0x142aecf8:   161f67b8 00000002 142aed20 147392c0
+0x142aed08:   00000000 142aedf0 00000002 161f92c0
+0x142aed18:   14738488 161f67b8 00000038 142aedc8
+0x142aed28:   00000000 00000000 00000000 00000000
+0x142aed38:   0b267b86 142aedc8 6d879d04 161f67b8
+0x142aed48:   161f92c0 14661500 13ef7400 161f8348 
+
+Instructions: (pc=0x6d8fe7c7)
+0x6d8fe7a7:   f7 d8 b9 10 27 00 00 3b c1 7f 09 b9 f0 d8 ff ff
+0x6d8fe7b7:   3b c1 7d 02 8b c1 8b 8e ec 01 00 00 8b 11 50 51
+0x6d8fe7c7:   ff 52 40 5f c3 e8 b9 0a 00 00 50 ff 74 24 08 e8
+0x6d8fe7d7:   d3 9e 01 00 8b 54 24 14 8b 12 59 59 3b 90 fc 01 
+
+
+Register to memory mapping:
+
+EAX=0x00000000 is an unknown value
+EBX=0x142aed6c is pointing into the stack for thread: 0x13ef7400
+ECX=0x1bfe0dc8 is an unknown value
+EDX=0x00000000 is an unknown value
+ESP=0x142aecd8 is pointing into the stack for thread: 0x13ef7400
+EBP=0x142aecf0 is pointing into the stack for thread: 0x13ef7400
+ESI=0x161f67b8 is an unknown value
+EDI=0x00000000 is an unknown value
+
+
+Stack: [0x14260000,0x142b0000],  sp=0x142aecd8,  free space=315k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [gstreamer-lite.dll+0x2e7c7]
+C  [glib-lite.dll+0x18b31]
+C  [glib-lite.dll+0x19d04]
+C  [glib-lite.dll+0x19fc7]
+C  [jfxmedia.dll+0x53a5]
+j  com.sun.media.jfxmediaimpl.platform.gstreamer.GSTMediaPlayer.gstSetBalance(JF)I+0
+j  com.sun.media.jfxmediaimpl.platform.gstreamer.GSTMediaPlayer.playerSetBalance(F)V+9
+j  com.sun.media.jfxmediaimpl.NativeMediaPlayer.setBalance(F)V+23
+j  javafx.scene.media.MediaPlayer.init()V+60
+j  javafx.scene.media.MediaPlayer.<init>(Ljavafx/scene/media/Media;)V+256
+J 1262 C1 GameScreen.checkCollisionWith4(LBall;)V (273 bytes) @ 0x00ba26f8 [0x00ba2430+0x2c8]
+J 1264 C1 GameScreen.checkReverse(LBall;)V (997 bytes) @ 0x00ba5d08 [0x00ba46f0+0x1618]
+J 1619 C1 GameScreen$2$1.run()V (439 bytes) @ 0x00c36690 [0x00c36640+0x50]
+J 1379 C1 com.sun.javafx.application.PlatformImpl$$Lambda$47.run()Ljava/lang/Object; (8 bytes) @ 0x00be5c78 [0x00be5c50+0x28]
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x147285]
+V  [jvm.dll+0x20d19e]
+V  [jvm.dll+0x14731e]
+V  [jvm.dll+0xfc4df]
+C  [java.dll+0x102f]
+J 1386 C1 com.sun.javafx.application.PlatformImpl.lambda$runLater$165(Ljava/lang/Runnable;Ljava/security/AccessControlContext;)V (38 bytes) @ 0x00be8090 [0x00be8030+0x60]
+J 1376 C1 com.sun.javafx.application.PlatformImpl$$Lambda$46.run()V (12 bytes) @ 0x00be566c [0x00be5640+0x2c]
+J 1306 C1 com.sun.glass.ui.InvokeLaterDispatcher$Future.run()V (91 bytes) @ 0x00bcaab0 [0x00bcaa80+0x30]
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x147285]
+V  [jvm.dll+0x20d19e]
+V  [jvm.dll+0x14731e]
+V  [jvm.dll+0xd0b97]
+V  [jvm.dll+0xd3b2c]
+C  [glass.dll+0x45ee]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  com.sun.media.jfxmediaimpl.platform.gstreamer.GSTMediaPlayer.gstSetBalance(JF)I+0
+j  com.sun.media.jfxmediaimpl.platform.gstreamer.GSTMediaPlayer.playerSetBalance(F)V+9
+j  com.sun.media.jfxmediaimpl.NativeMediaPlayer.setBalance(F)V+23
+j  javafx.scene.media.MediaPlayer.init()V+60
+j  javafx.scene.media.MediaPlayer.<init>(Ljavafx/scene/media/Media;)V+256
+J 1262 C1 GameScreen.checkCollisionWith4(LBall;)V (273 bytes) @ 0x00ba26f8 [0x00ba2430+0x2c8]
+J 1264 C1 GameScreen.checkReverse(LBall;)V (997 bytes) @ 0x00ba5d08 [0x00ba46f0+0x1618]
+J 1619 C1 GameScreen$2$1.run()V (439 bytes) @ 0x00c36690 [0x00c36640+0x50]
+J 1379 C1 com.sun.javafx.application.PlatformImpl$$Lambda$47.run()Ljava/lang/Object; (8 bytes) @ 0x00be5c78 [0x00be5c50+0x28]
+v  ~StubRoutines::call_stub
+J 892  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedAction;Ljava/security/AccessControlContext;)Ljava/lang/Object; (0 bytes) @ 0x00b44207 [0x00b441a0+0x67]
+J 1386 C1 com.sun.javafx.application.PlatformImpl.lambda$runLater$165(Ljava/lang/Runnable;Ljava/security/AccessControlContext;)V (38 bytes) @ 0x00be8090 [0x00be8030+0x60]
+J 1376 C1 com.sun.javafx.application.PlatformImpl$$Lambda$46.run()V (12 bytes) @ 0x00be566c [0x00be5640+0x2c]
+J 1306 C1 com.sun.glass.ui.InvokeLaterDispatcher$Future.run()V (91 bytes) @ 0x00bcaab0 [0x00bcaa80+0x30]
+v  ~StubRoutines::call_stub
+j  com.sun.glass.ui.win.WinApplication._runLoop(Ljava/lang/Runnable;)V+0
+j  com.sun.glass.ui.win.WinApplication.lambda$null$141(Ljava/lang/Runnable;)V+7
+j  com.sun.glass.ui.win.WinApplication$$Lambda$37.run()V+8
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x161f8800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=15688, stack(0x1ee00000,0x1ee50000)]
+  0x161e9400 JavaThread "Timer-84" daemon [_thread_blocked, id=21540, stack(0x1edb0000,0x1ee00000)]
+  0x162bc800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=8804, stack(0x1ec70000,0x1ecc0000)]
+  0x15fc3800 JavaThread "Timer-83" daemon [_thread_blocked, id=12100, stack(0x1ec20000,0x1ec70000)]
+  0x15fc1c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=18244, stack(0x1eae0000,0x1eb30000)]
+  0x160ce000 JavaThread "Timer-82" daemon [_thread_blocked, id=7888, stack(0x1ea90000,0x1eae0000)]
+  0x160cb400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=16132, stack(0x1e950000,0x1e9a0000)]
+  0x162b0400 JavaThread "Timer-81" daemon [_thread_blocked, id=22508, stack(0x1e900000,0x1e950000)]
+  0x1629e800 JavaThread "Timer-80" daemon [_thread_blocked, id=17604, stack(0x1e860000,0x1e8b0000)]
+  0x162a6c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=16088, stack(0x1e770000,0x1e7c0000)]
+  0x1620cc00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=8004, stack(0x1e630000,0x1e680000)]
+  0x161e6800 JavaThread "Timer-79" daemon [_thread_blocked, id=9472, stack(0x1e5e0000,0x1e630000)]
+  0x161e6400 JavaThread "Timer-78" daemon [_thread_blocked, id=6712, stack(0x1e590000,0x1e5e0000)]
+  0x161dd400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=14112, stack(0x1e450000,0x1e4a0000)]
+  0x02aae800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13348, stack(0x1e310000,0x1e360000)]
+  0x1612e800 JavaThread "Timer-77" daemon [_thread_blocked, id=20652, stack(0x1e2c0000,0x1e310000)]
+  0x1624f400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=9056, stack(0x1e180000,0x1e1d0000)]
+  0x16131400 JavaThread "Timer-76" daemon [_thread_blocked, id=15720, stack(0x1e130000,0x1e180000)]
+  0x1626d400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=21652, stack(0x1dff0000,0x1e040000)]
+  0x16290000 JavaThread "Timer-75" daemon [_thread_blocked, id=17080, stack(0x1dfa0000,0x1dff0000)]
+  0x1628d400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=20208, stack(0x1de60000,0x1deb0000)]
+  0x16280400 JavaThread "Timer-74" daemon [_thread_blocked, id=15024, stack(0x1de10000,0x1de60000)]
+  0x1627e400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19740, stack(0x1dcd0000,0x1dd20000)]
+  0x16269c00 JavaThread "Timer-73" daemon [_thread_blocked, id=10908, stack(0x1dc80000,0x1dcd0000)]
+  0x1622e400 JavaThread "Timer-72" daemon [_thread_blocked, id=1648, stack(0x1dc30000,0x1dc80000)]
+  0x1625a000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=9060, stack(0x1daf0000,0x1db40000)]
+  0x160c4400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=2644, stack(0x1d9b0000,0x1da00000)]
+  0x161c5c00 JavaThread "Timer-71" daemon [_thread_blocked, id=3916, stack(0x1d960000,0x1d9b0000)]
+  0x16244400 JavaThread "Timer-70" daemon [_thread_blocked, id=7500, stack(0x1d910000,0x1d960000)]
+  0x1623ac00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=12192, stack(0x1d7d0000,0x1d820000)]
+  0x160c1400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13488, stack(0x1d690000,0x1d6e0000)]
+  0x1617b800 JavaThread "Timer-69" daemon [_thread_blocked, id=7112, stack(0x1d640000,0x1d690000)]
+  0x15f68400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=22164, stack(0x1d500000,0x1d550000)]
+  0x160c7400 JavaThread "Timer-68" daemon [_thread_blocked, id=16596, stack(0x1d4b0000,0x1d500000)]
+  0x1617c400 JavaThread "Timer-67" daemon [_thread_blocked, id=15892, stack(0x1d460000,0x1d4b0000)]
+  0x16156000 JavaThread "Timer-66" daemon [_thread_blocked, id=13384, stack(0x1d3c0000,0x1d410000)]
+  0x1615a400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=22460, stack(0x1d2d0000,0x1d320000)]
+  0x1616b800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19448, stack(0x1d190000,0x1d1e0000)]
+  0x16150800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19304, stack(0x1d050000,0x1d0a0000)]
+  0x16147800 JavaThread "Timer-65" daemon [_thread_blocked, id=10664, stack(0x1d000000,0x1d050000)]
+  0x1613dc00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=18868, stack(0x1cec0000,0x1cf10000)]
+  0x16132400 JavaThread "Timer-64" daemon [_thread_blocked, id=9300, stack(0x1ce70000,0x1cec0000)]
+  0x160f5800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=15680, stack(0x1cd30000,0x1cd80000)]
+  0x1619c400 JavaThread "Timer-63" daemon [_thread_blocked, id=12324, stack(0x1cce0000,0x1cd30000)]
+  0x1619a800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=8928, stack(0x1cba0000,0x1cbf0000)]
+  0x16115000 JavaThread "Timer-62" daemon [_thread_blocked, id=10088, stack(0x1cb50000,0x1cba0000)]
+  0x16116000 JavaThread "Timer-61" daemon [_thread_blocked, id=16532, stack(0x1cab0000,0x1cb00000)]
+  0x1611c400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=10136, stack(0x1c9c0000,0x1ca10000)]
+  0x1610b000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19944, stack(0x1c880000,0x1c8d0000)]
+  0x160ac800 JavaThread "Timer-60" daemon [_thread_blocked, id=15456, stack(0x1c830000,0x1c880000)]
+  0x160d6800 JavaThread "Timer-59" daemon [_thread_blocked, id=14864, stack(0x1c7e0000,0x1c830000)]
+  0x160d2000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=10448, stack(0x1c6a0000,0x1c6f0000)]
+  0x16097400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19760, stack(0x1c560000,0x1c5b0000)]
+  0x160a2c00 JavaThread "Timer-58" daemon [_thread_blocked, id=3056, stack(0x1c510000,0x1c560000)]
+  0x1607ec00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=18336, stack(0x1c3d0000,0x1c420000)]
+  0x160af400 JavaThread "Timer-57" daemon [_thread_blocked, id=10616, stack(0x1c380000,0x1c3d0000)]
+  0x160bc000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=16636, stack(0x1be40000,0x1be90000)]
+  0x160e7c00 JavaThread "Timer-56" daemon [_thread_blocked, id=21020, stack(0x1bdf0000,0x1be40000)]
+  0x160e2c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=21244, stack(0x1bcb0000,0x1bd00000)]
+  0x160b0400 JavaThread "Timer-55" daemon [_thread_blocked, id=14024, stack(0x1bc60000,0x1bcb0000)]
+  0x1608bc00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=21724, stack(0x1bb20000,0x1bb70000)]
+  0x15fce800 JavaThread "Timer-54" daemon [_thread_blocked, id=16784, stack(0x1bad0000,0x1bb20000)]
+  0x15fc9400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=5536, stack(0x1b990000,0x1b9e0000)]
+  0x16058000 JavaThread "Timer-53" daemon [_thread_blocked, id=19508, stack(0x1b940000,0x1b990000)]
+  0x16057800 JavaThread "Timer-52" daemon [_thread_blocked, id=8460, stack(0x1b8f0000,0x1b940000)]
+  0x16062400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=16284, stack(0x1b7b0000,0x1b800000)]
+  0x16051c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=17496, stack(0x1b670000,0x1b6c0000)]
+  0x16045800 JavaThread "Timer-51" daemon [_thread_blocked, id=21196, stack(0x1b620000,0x1b670000)]
+  0x16041800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=4852, stack(0x1b4e0000,0x1b530000)]
+  0x16034000 JavaThread "Timer-50" daemon [_thread_blocked, id=9028, stack(0x1b490000,0x1b4e0000)]
+  0x16031400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=12628, stack(0x1b350000,0x1b3a0000)]
+  0x16023800 JavaThread "Timer-49" daemon [_thread_blocked, id=8524, stack(0x1b300000,0x1b350000)]
+  0x16020c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=2136, stack(0x1b1c0000,0x1b210000)]
+  0x1601a400 JavaThread "Timer-48" daemon [_thread_blocked, id=16920, stack(0x1b170000,0x1b1c0000)]
+  0x16010800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=20116, stack(0x1b030000,0x1b080000)]
+  0x15fe1800 JavaThread "Timer-47" daemon [_thread_blocked, id=11532, stack(0x1afe0000,0x1b030000)]
+  0x02aa9000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=8648, stack(0x1aea0000,0x1aef0000)]
+  0x16004400 JavaThread "Timer-46" daemon [_thread_blocked, id=2604, stack(0x1ae50000,0x1aea0000)]
+  0x02aa5000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=11948, stack(0x1ad10000,0x1ad60000)]
+  0x15fe6000 JavaThread "Timer-45" daemon [_thread_blocked, id=12860, stack(0x1acc0000,0x1ad10000)]
+  0x15fdc000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=12316, stack(0x1ab80000,0x1abd0000)]
+  0x15fcfc00 JavaThread "Timer-44" daemon [_thread_blocked, id=244, stack(0x1ab30000,0x1ab80000)]
+  0x15fd5c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=6976, stack(0x1a9f0000,0x1aa40000)]
+  0x15fb8000 JavaThread "Timer-43" daemon [_thread_blocked, id=13920, stack(0x1a9a0000,0x1a9f0000)]
+  0x15fb5400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=7004, stack(0x1a860000,0x1a8b0000)]
+  0x15fab400 JavaThread "Timer-42" daemon [_thread_blocked, id=1172, stack(0x1a710000,0x1a760000)]
+  0x15fa1400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13412, stack(0x1a5d0000,0x1a620000)]
+  0x15f6fc00 JavaThread "Timer-41" daemon [_thread_blocked, id=19432, stack(0x1a580000,0x1a5d0000)]
+  0x15f6f400 JavaThread "Timer-40" daemon [_thread_blocked, id=20564, stack(0x1a4e0000,0x1a530000)]
+  0x13e66400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=16020, stack(0x1a3f0000,0x1a440000)]
+  0x14884000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13868, stack(0x1a2b0000,0x1a300000)]
+  0x15f89400 JavaThread "Timer-39" daemon [_thread_blocked, id=15148, stack(0x1a260000,0x1a2b0000)]
+  0x15f90800 JavaThread "Timer-38" daemon [_thread_blocked, id=9920, stack(0x1a210000,0x1a260000)]
+  0x15f80400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=8152, stack(0x1a080000,0x1a0d0000)]
+  0x14b08800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=12340, stack(0x19f90000,0x19fe0000)]
+  0x14b02800 JavaThread "Timer-37" daemon [_thread_blocked, id=9152, stack(0x19f40000,0x19f90000)]
+  0x14af7400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=22464, stack(0x19e00000,0x19e50000)]
+  0x14adec00 JavaThread "Timer-36" daemon [_thread_blocked, id=5156, stack(0x19db0000,0x19e00000)]
+  0x14adb800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19976, stack(0x19c70000,0x19cc0000)]
+  0x14adac00 JavaThread "Timer-35" daemon [_thread_blocked, id=17576, stack(0x19c20000,0x19c70000)]
+  0x14ad7000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=12408, stack(0x19ae0000,0x19b30000)]
+  0x14abcc00 JavaThread "Timer-34" daemon [_thread_blocked, id=17964, stack(0x19a90000,0x19ae0000)]
+  0x14abe400 JavaThread "Timer-33" daemon [_thread_blocked, id=13304, stack(0x19a40000,0x19a90000)]
+  0x14aae400 JavaThread "Timer-32" daemon [_thread_blocked, id=18548, stack(0x199f0000,0x19a40000)]
+  0x14ace800 JavaThread "Timer-31" daemon [_thread_blocked, id=15972, stack(0x199a0000,0x199f0000)]
+  0x14ac4800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=15244, stack(0x19860000,0x198b0000)]
+  0x14a9a000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=7872, stack(0x19720000,0x19770000)]
+  0x14aab800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=17812, stack(0x195e0000,0x19630000)]
+  0x14a91400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=544, stack(0x193a0000,0x193f0000)]
+  0x14a84000 JavaThread "Timer-30" daemon [_thread_blocked, id=22416, stack(0x19350000,0x193a0000)]
+  0x14a81000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=14444, stack(0x19210000,0x19260000)]
+  0x14a73c00 JavaThread "Timer-29" daemon [_thread_blocked, id=15520, stack(0x191c0000,0x19210000)]
+  0x14a70c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=10648, stack(0x19080000,0x190d0000)]
+  0x14a59800 JavaThread "Timer-28" daemon [_thread_blocked, id=10364, stack(0x19030000,0x19080000)]
+  0x14a44000 JavaThread "Timer-27" daemon [_thread_blocked, id=7444, stack(0x18fe0000,0x19030000)]
+  0x14984400 JavaThread "Timer-26" daemon [_thread_blocked, id=9008, stack(0x18f90000,0x18fe0000)]
+  0x14982400 JavaThread "Timer-25" daemon [_thread_blocked, id=12536, stack(0x18f40000,0x18f90000)]
+  0x14a61000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19312, stack(0x18e00000,0x18e50000)]
+  0x14a50400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=16812, stack(0x18cc0000,0x18d10000)]
+  0x14a41400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=7956, stack(0x18b80000,0x18bd0000)]
+  0x1497ac00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=14512, stack(0x18a40000,0x18a90000)]
+  0x13e49c00 JavaThread "Timer-24" daemon [_thread_blocked, id=7428, stack(0x189f0000,0x18a40000)]
+  0x14900400 JavaThread "Timer-23" daemon [_thread_blocked, id=15192, stack(0x18950000,0x189a0000)]
+  0x16198400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=21892, stack(0x18860000,0x188b0000)]
+  0x13e6b400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13616, stack(0x18720000,0x18770000)]
+  0x149fe400 JavaThread "Timer-22" daemon [_thread_blocked, id=20700, stack(0x186d0000,0x18720000)]
+  0x149ff000 JavaThread "Timer-21" daemon [_thread_blocked, id=10992, stack(0x18680000,0x186d0000)]
+  0x1487a000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=1532, stack(0x18540000,0x18590000)]
+  0x14a36800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=4092, stack(0x18400000,0x18450000)]
+  0x14a2ec00 JavaThread "Timer-20" daemon [_thread_blocked, id=5812, stack(0x183b0000,0x18400000)]
+  0x149f3400 JavaThread "Timer-19" daemon [_thread_blocked, id=7732, stack(0x18360000,0x183b0000)]
+  0x14a2c400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19320, stack(0x18220000,0x18270000)]
+  0x14a16800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=21368, stack(0x180e0000,0x18130000)]
+  0x14a0f000 JavaThread "Timer-18" daemon [_thread_blocked, id=19124, stack(0x18090000,0x180e0000)]
+  0x1486ac00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=11100, stack(0x17d50000,0x17da0000)]
+  0x1488f000 JavaThread "Timer-17" daemon [_thread_blocked, id=22020, stack(0x17d00000,0x17d50000)]
+  0x1488c000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=12684, stack(0x17bc0000,0x17c10000)]
+  0x1493e000 JavaThread "Timer-16" daemon [_thread_blocked, id=19848, stack(0x17b70000,0x17bc0000)]
+  0x14937400 JavaThread "Timer-15" daemon [_thread_blocked, id=18280, stack(0x17ad0000,0x17b20000)]
+  0x1493ac00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=2740, stack(0x17990000,0x179e0000)]
+  0x14891400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=4952, stack(0x178a0000,0x178f0000)]
+  0x13e44000 JavaThread "Timer-14" daemon [_thread_blocked, id=18636, stack(0x17850000,0x178a0000)]
+  0x14874400 JavaThread "Timer-13" daemon [_thread_blocked, id=6016, stack(0x177b0000,0x17800000)]
+  0x14940400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=17672, stack(0x176c0000,0x17710000)]
+  0x149c5800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=20776, stack(0x17580000,0x175d0000)]
+  0x149c2000 JavaThread "Timer-12" daemon [_thread_blocked, id=13352, stack(0x17530000,0x17580000)]
+  0x149b4800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=7612, stack(0x173f0000,0x17440000)]
+  0x149bc000 JavaThread "Timer-11" daemon [_thread_blocked, id=21872, stack(0x173a0000,0x173f0000)]
+  0x149aac00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=14064, stack(0x17260000,0x172b0000)]
+  0x1498e400 JavaThread "Timer-10" daemon [_thread_blocked, id=19256, stack(0x17210000,0x17260000)]
+  0x1498dc00 JavaThread "Timer-9" daemon [_thread_blocked, id=12260, stack(0x171c0000,0x17210000)]
+  0x14996800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13388, stack(0x17080000,0x170d0000)]
+  0x14872000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19948, stack(0x16f40000,0x16f90000)]
+  0x16195c00 JavaThread "Timer-8" daemon [_thread_blocked, id=10032, stack(0x16ef0000,0x16f40000)]
+  0x14973400 JavaThread "Timer-7" daemon [_thread_blocked, id=12336, stack(0x16ea0000,0x16ef0000)]
+  0x14975c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=1940, stack(0x16d60000,0x16db0000)]
+  0x1496a000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=11280, stack(0x16c20000,0x16c70000)]
+  0x14962c00 JavaThread "Timer-6" daemon [_thread_blocked, id=20192, stack(0x16bd0000,0x16c20000)]
+  0x14952000 JavaThread "Timer-5" daemon [_thread_blocked, id=8204, stack(0x16b30000,0x16b80000)]
+  0x14959400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=7212, stack(0x16a40000,0x16a90000)]
+  0x14947800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=14892, stack(0x16900000,0x16950000)]
+  0x1492ac00 JavaThread "Timer-4" daemon [_thread_blocked, id=9512, stack(0x168b0000,0x16900000)]
+  0x14b0a400 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19208, stack(0x16770000,0x167c0000)]
+  0x14908400 JavaThread "Timer-3" daemon [_thread_blocked, id=19624, stack(0x15f10000,0x15f60000)]
+  0x14911c00 JavaThread "Timer-2" daemon [_thread_blocked, id=15648, stack(0x15e70000,0x15ec0000)]
+  0x14910800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=10212, stack(0x15d80000,0x15dd0000)]
+  0x13e36c00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=19872, stack(0x15c40000,0x15c90000)]
+  0x148af400 JavaThread "Timer-1" daemon [_thread_blocked, id=5164, stack(0x15bf0000,0x15c40000)]
+  0x148a4800 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=6756, stack(0x15ab0000,0x15b00000)]
+  0x14896400 JavaThread "Timer-0" daemon [_thread_blocked, id=15120, stack(0x15a60000,0x15ab0000)]
+  0x1485a000 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=13808, stack(0x15920000,0x15970000)]
+  0x14846400 JavaThread "Thread-13" daemon [_thread_blocked, id=16548, stack(0x15890000,0x158e0000)]
+  0x1481c400 JavaThread "Media Resource Disposer" daemon [_thread_blocked, id=10724, stack(0x15360000,0x153b0000)]
+  0x1477b800 JavaThread "Prism Font Disposer" daemon [_thread_blocked, id=8676, stack(0x151b0000,0x15200000)]
+  0x1474fc00 JavaThread "JFXMedia Player EventQueueThread" daemon [_thread_blocked, id=2104, stack(0x145b0000,0x14600000)]
+  0x13fb9400 JavaThread "JavaFX-Launcher" [_thread_blocked, id=7208, stack(0x14340000,0x14390000)]
+  0x13f45400 JavaThread "Thread-2" daemon [_thread_in_native, id=5316, stack(0x142f0000,0x14340000)]
+=>0x13ef7400 JavaThread "JavaFX Application Thread" [_thread_in_native, id=4344, stack(0x14260000,0x142b0000)]
+  0x13efb400 JavaThread "Thread-1" daemon [_thread_blocked, id=17444, stack(0x14210000,0x14260000)]
+  0x13ed6c00 JavaThread "QuantumRenderer-0" daemon [_thread_blocked, id=15332, stack(0x13d80000,0x13dd0000)]
+  0x02a49800 JavaThread "Service Thread" daemon [_thread_blocked, id=16844, stack(0x137a0000,0x137f0000)]
+  0x02a22000 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=2064, stack(0x13750000,0x137a0000)]
+  0x02a20800 JavaThread "Attach Listener" daemon [_thread_blocked, id=21588, stack(0x13700000,0x13750000)]
+  0x02a1f400 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2556, stack(0x136b0000,0x13700000)]
+  0x02a15400 JavaThread "Finalizer" daemon [_thread_blocked, id=18356, stack(0x13660000,0x136b0000)]
+  0x02a10400 JavaThread "Reference Handler" daemon [_thread_blocked, id=18424, stack(0x13610000,0x13660000)]
+  0x003c9c00 JavaThread "main" [_thread_blocked, id=17032, stack(0x00900000,0x00950000)]
+
+Other Threads:
+  0x02a0e000 VMThread [stack: 0x135c0000,0x13610000] [id=13496]
+  0x02a4b400 WatcherThread [stack: 0x13d30000,0x13d80000] [id=6884]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ def new generation   total 4928K, used 1575K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K,  29% used [0x02c00000, 0x02d44d48, 0x03050000)
+  from space 512K,  53% used [0x03050000, 0x03095090, 0x030d0000)
+  to   space 512K,   0% used [0x030d0000, 0x030d0000, 0x03150000)
+ tenured generation   total 10944K, used 7145K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  65% used [0x08150000, 0x0884a600, 0x0884a600, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+
+Card table byte_map: [0x02af0000,0x02b80000] byte_map_base: 0x02ada000
+
+Polling page: 0x003f0000
+
+CodeCache: size=32768Kb used=2941Kb max_used=2941Kb free=29826Kb
+ bounds [0x00970000, 0x00c50000, 0x02970000]
+ total_blobs=2057 nmethods=1650 adapters=338
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 176.497 Thread 0x02a22000 1648             java.util.ArrayList::iterator (10 bytes)
+Event: 176.497 Thread 0x02a22000 nmethod 1648 0x00c4b448 code [0x00c4b540, 0x00c4b620]
+Event: 177.003 Thread 0x02a22000 1649  s!         com.sun.prism.impl.Disposer::disposeUnreachables (78 bytes)
+Event: 177.004 Thread 0x02a22000 nmethod 1649 0x00c4b688 code [0x00c4b840, 0x00c4bf18]
+Event: 177.767 Thread 0x02a22000 1650             java.lang.Thread::getContextClassLoader (32 bytes)
+Event: 177.767 Thread 0x02a22000 nmethod 1650 0x00c4c848 code [0x00c4c970, 0x00c4cb34]
+Event: 177.769 Thread 0x02a22000 1651  s          java.lang.Thread::nextThreadNum (10 bytes)
+Event: 177.769 Thread 0x02a22000 nmethod 1651 0x00c4cd48 code [0x00c4ce40, 0x00c4d000]
+Event: 177.772 Thread 0x02a22000 1652             java.lang.Thread::init (11 bytes)
+Event: 177.773 Thread 0x02a22000 nmethod 1652 0x00c4d088 code [0x00c4d180, 0x00c4d23c]
+
+GC Heap History (10 events):
+Event: 157.976 GC heap before
+{Heap before GC invocations=25 (full 0):
+ def new generation   total 4928K, used 4678K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K, 100% used [0x02c00000, 0x03050000, 0x03050000)
+  from space 512K,  51% used [0x030d0000, 0x03111980, 0x03150000)
+  to   space 512K,   0% used [0x03050000, 0x03050000, 0x030d0000)
+ tenured generation   total 10944K, used 6987K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  63% used [0x08150000, 0x08822ec8, 0x08823000, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+Event: 157.979 GC heap after
+Heap after GC invocations=26 (full 0):
+ def new generation   total 4928K, used 237K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K,   0% used [0x02c00000, 0x02c00000, 0x03050000)
+  from space 512K,  46% used [0x03050000, 0x0308b4a8, 0x030d0000)
+  to   space 512K,   0% used [0x030d0000, 0x030d0000, 0x03150000)
+ tenured generation   total 10944K, used 7049K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  64% used [0x08150000, 0x088327c8, 0x08832800, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+}
+Event: 162.669 GC heap before
+{Heap before GC invocations=26 (full 0):
+ def new generation   total 4928K, used 4653K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K, 100% used [0x02c00000, 0x03050000, 0x03050000)
+  from space 512K,  46% used [0x03050000, 0x0308b4a8, 0x030d0000)
+  to   space 512K,   0% used [0x030d0000, 0x030d0000, 0x03150000)
+ tenured generation   total 10944K, used 7049K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  64% used [0x08150000, 0x088327c8, 0x08832800, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+Event: 162.672 GC heap after
+Heap after GC invocations=27 (full 0):
+ def new generation   total 4928K, used 267K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K,   0% used [0x02c00000, 0x02c00000, 0x03050000)
+  from space 512K,  52% used [0x030d0000, 0x03112c78, 0x03150000)
+  to   space 512K,   0% used [0x03050000, 0x03050000, 0x030d0000)
+ tenured generation   total 10944K, used 7049K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  64% used [0x08150000, 0x088327c8, 0x08832800, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+}
+Event: 166.476 GC heap before
+{Heap before GC invocations=27 (full 0):
+ def new generation   total 4928K, used 4683K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K, 100% used [0x02c00000, 0x03050000, 0x03050000)
+  from space 512K,  52% used [0x030d0000, 0x03112c78, 0x03150000)
+  to   space 512K,   0% used [0x03050000, 0x03050000, 0x030d0000)
+ tenured generation   total 10944K, used 7049K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  64% used [0x08150000, 0x088327c8, 0x08832800, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+Event: 166.480 GC heap after
+Heap after GC invocations=28 (full 0):
+ def new generation   total 4928K, used 290K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K,   0% used [0x02c00000, 0x02c00000, 0x03050000)
+  from space 512K,  56% used [0x03050000, 0x03098ad0, 0x030d0000)
+  to   space 512K,   0% used [0x030d0000, 0x030d0000, 0x03150000)
+ tenured generation   total 10944K, used 7079K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  64% used [0x08150000, 0x08839c50, 0x08839e00, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+}
+Event: 171.380 GC heap before
+{Heap before GC invocations=28 (full 0):
+ def new generation   total 4928K, used 4706K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K, 100% used [0x02c00000, 0x03050000, 0x03050000)
+  from space 512K,  56% used [0x03050000, 0x03098ad0, 0x030d0000)
+  to   space 512K,   0% used [0x030d0000, 0x030d0000, 0x03150000)
+ tenured generation   total 10944K, used 7079K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  64% used [0x08150000, 0x08839c50, 0x08839e00, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+Event: 171.383 GC heap after
+Heap after GC invocations=29 (full 0):
+ def new generation   total 4928K, used 270K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K,   0% used [0x02c00000, 0x02c00000, 0x03050000)
+  from space 512K,  52% used [0x030d0000, 0x031138d0, 0x03150000)
+  to   space 512K,   0% used [0x03050000, 0x03050000, 0x030d0000)
+ tenured generation   total 10944K, used 7124K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  65% used [0x08150000, 0x088453b8, 0x08845400, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+}
+Event: 176.386 GC heap before
+{Heap before GC invocations=29 (full 0):
+ def new generation   total 4928K, used 4686K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K, 100% used [0x02c00000, 0x03050000, 0x03050000)
+  from space 512K,  52% used [0x030d0000, 0x031138d0, 0x03150000)
+  to   space 512K,   0% used [0x03050000, 0x03050000, 0x030d0000)
+ tenured generation   total 10944K, used 7124K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  65% used [0x08150000, 0x088453b8, 0x08845400, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+Event: 176.389 GC heap after
+Heap after GC invocations=30 (full 0):
+ def new generation   total 4928K, used 276K [0x02c00000, 0x03150000, 0x08150000)
+  eden space 4416K,   0% used [0x02c00000, 0x02c00000, 0x03050000)
+  from space 512K,  53% used [0x03050000, 0x03095090, 0x030d0000)
+  to   space 512K,   0% used [0x030d0000, 0x030d0000, 0x03150000)
+ tenured generation   total 10944K, used 7145K [0x08150000, 0x08c00000, 0x12c00000)
+   the space 10944K,  65% used [0x08150000, 0x0884a600, 0x0884a600, 0x08c00000)
+ Metaspace       used 7402K, capacity 9286K, committed 9344K, reserved 9600K
+}
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 177.755 Thread 0x13ef7400 Implicit null exception at 0x00b9cd16 to 0x00b9d4c9
+Event: 177.755 Thread 0x13ef7400 Exception <a 'java/lang/NullPointerException'> (0x02d2f670) thrown at [C:\re\workspace\8-2-build-windows-i586-cygwin\jdk8u25\1677\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 604]
+Event: 177.755 Thread 0x13ef7400 Implicit null exception at 0x00b9e9d6 to 0x00b9f1d1
+Event: 177.755 Thread 0x13ef7400 Exception <a 'java/lang/NullPointerException'> (0x02d2f820) thrown at [C:\re\workspace\8-2-build-windows-i586-cygwin\jdk8u25\1677\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 604]
+Event: 177.755 Thread 0x13ef7400 Implicit null exception at 0x00b9e9d6 to 0x00b9f1d1
+Event: 177.755 Thread 0x13ef7400 Exception <a 'java/lang/NullPointerException'> (0x02d2f9d0) thrown at [C:\re\workspace\8-2-build-windows-i586-cygwin\jdk8u25\1677\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 604]
+Event: 177.755 Thread 0x13ef7400 Implicit null exception at 0x00ba0716 to 0x00ba0f11
+Event: 177.755 Thread 0x13ef7400 Exception <a 'java/lang/NullPointerException'> (0x02d2fb80) thrown at [C:\re\workspace\8-2-build-windows-i586-cygwin\jdk8u25\1677\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 604]
+Event: 177.755 Thread 0x13ef7400 Implicit null exception at 0x00ba0716 to 0x00ba0f11
+Event: 177.755 Thread 0x13ef7400 Exception <a 'java/lang/NullPointerException'> (0x02d2fd30) thrown at [C:\re\workspace\8-2-build-windows-i586-cygwin\jdk8u25\1677\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 604]
+
+Events (10 events):
+Event: 177.768 Thread 0x161fa000 Thread added: 0x161fa000
+Event: 177.768 Thread 0x161fa000 Thread exited: 0x161fa000
+Event: 177.769 Thread 0x161fa000 Thread added: 0x161fa000
+Event: 177.769 Thread 0x161fa000 Thread exited: 0x161fa000
+Event: 177.769 Thread 0x161fa000 Thread added: 0x161fa000
+Event: 177.769 Thread 0x161fa000 Thread exited: 0x161fa000
+Event: 177.779 Thread 0x161fcc00 Thread added: 0x161fcc00
+Event: 177.779 Thread 0x161fcc00 Thread exited: 0x161fcc00
+Event: 177.779 Thread 0x161fd000 Thread added: 0x161fd000
+Event: 177.779 Thread 0x161fd000 Thread exited: 0x161fd000
+
+
+Dynamic libraries:
+0x00400000 - 0x00430000 	C:\Program Files\Java\jre1.8.0_25\bin\javaw.exe
+0x7c900000 - 0x7c9b2000 	C:\WINDOWS\system32\ntdll.dll
+0x7c800000 - 0x7c8f6000 	C:\WINDOWS\system32\kernel32.dll
+0x77dd0000 - 0x77e6b000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x77e70000 - 0x77f03000 	C:\WINDOWS\system32\RPCRT4.dll
+0x77fe0000 - 0x77ff1000 	C:\WINDOWS\system32\Secur32.dll
+0x7e410000 - 0x7e4a1000 	C:\WINDOWS\system32\USER32.dll
+0x77f10000 - 0x77f59000 	C:\WINDOWS\system32\GDI32.dll
+0x773d0000 - 0x774d3000 	C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.6028_x-ww_61e65202\COMCTL32.dll
+0x77c10000 - 0x77c68000 	C:\WINDOWS\system32\msvcrt.dll
+0x77f60000 - 0x77fd6000 	C:\WINDOWS\system32\SHLWAPI.dll
+0x76390000 - 0x763ad000 	C:\WINDOWS\system32\IMM32.DLL
+0x78aa0000 - 0x78b5f000 	C:\Program Files\Java\jre1.8.0_25\bin\msvcr100.dll
+0x6d150000 - 0x6d4f4000 	C:\Program Files\Java\jre1.8.0_25\bin\client\jvm.dll
+0x71ad0000 - 0x71ad9000 	C:\WINDOWS\system32\WSOCK32.dll
+0x71ab0000 - 0x71ac7000 	C:\WINDOWS\system32\WS2_32.dll
+0x71aa0000 - 0x71aa8000 	C:\WINDOWS\system32\WS2HELP.dll
+0x76b40000 - 0x76b6d000 	C:\WINDOWS\system32\WINMM.dll
+0x76bf0000 - 0x76bfb000 	C:\WINDOWS\system32\PSAPI.DLL
+0x6ef70000 - 0x6ef7c000 	C:\Program Files\Java\jre1.8.0_25\bin\verify.dll
+0x6d9d0000 - 0x6d9f1000 	C:\Program Files\Java\jre1.8.0_25\bin\java.dll
+0x6f000000 - 0x6f013000 	C:\Program Files\Java\jre1.8.0_25\bin\zip.dll
+0x7c9c0000 - 0x7d1d7000 	C:\WINDOWS\system32\SHELL32.dll
+0x769c0000 - 0x76a74000 	C:\WINDOWS\system32\USERENV.dll
+0x6ede0000 - 0x6ee05000 	C:\Program Files\Java\jre1.8.0_25\bin\prism_d3d.dll
+0x4fdd0000 - 0x4ff76000 	C:\WINDOWS\system32\d3d9.dll
+0x6d990000 - 0x6d996000 	C:\WINDOWS\system32\d3d8thk.dll
+0x77c00000 - 0x77c08000 	C:\WINDOWS\system32\VERSION.dll
+0x66000000 - 0x66092000 	C:\Program Files\AlienGUIse\WBlind.dll
+0x5ad70000 - 0x5ada8000 	C:\WINDOWS\system32\UXTHEME.DLL
+0x76380000 - 0x76385000 	C:\WINDOWS\system32\msimg32.dll
+0x66600000 - 0x66617000 	C:\Program Files\AlienGUIse\wbhelp.dll
+0x6d820000 - 0x6d856000 	C:\Program Files\Java\jre1.8.0_25\bin\glass.dll
+0x763b0000 - 0x763f9000 	C:\WINDOWS\system32\COMDLG32.dll
+0x774e0000 - 0x7761e000 	C:\WINDOWS\system32\ole32.dll
+0x77120000 - 0x771ab000 	C:\WINDOWS\system32\OLEAUT32.dll
+0x74720000 - 0x7476c000 	C:\WINDOWS\system32\MSCTF.dll
+0x755c0000 - 0x755ee000 	C:\WINDOWS\system32\msctfime.ime
+0x6da60000 - 0x6da71000 	C:\Program Files\Java\jre1.8.0_25\bin\javafx_font.dll
+0x6ed60000 - 0x6ed75000 	C:\Program Files\Java\jre1.8.0_25\bin\net.dll
+0x6ed80000 - 0x6ed8f000 	C:\Program Files\Java\jre1.8.0_25\bin\nio.dll
+0x6d860000 - 0x6d8c6000 	C:\Program Files\Java\jre1.8.0_25\bin\glib-lite.dll
+0x6d8d0000 - 0x6d94c000 	C:\Program Files\Java\jre1.8.0_25\bin\gstreamer-lite.dll
+0x73f10000 - 0x73f6c000 	C:\WINDOWS\system32\DSOUND.dll
+0x6db90000 - 0x6dbaf000 	C:\Program Files\Java\jre1.8.0_25\bin\jfxmedia.dll
+0x6d7f0000 - 0x6d815000 	C:\Program Files\Java\jre1.8.0_25\bin\fxplugins.dll
+0x76c30000 - 0x76c5e000 	C:\WINDOWS\system32\WINTRUST.dll
+0x77a80000 - 0x77b17000 	C:\WINDOWS\system32\CRYPT32.dll
+0x77b20000 - 0x77b32000 	C:\WINDOWS\system32\MSASN1.dll
+0x76c90000 - 0x76cb9000 	C:\WINDOWS\system32\IMAGEHLP.dll
+0x72d20000 - 0x72d29000 	C:\WINDOWS\system32\wdmaud.drv
+0x72d10000 - 0x72d18000 	C:\WINDOWS\system32\msacm32.drv
+0x77be0000 - 0x77bf5000 	C:\WINDOWS\system32\MSACM32.dll
+0x77bd0000 - 0x77bd7000 	C:\WINDOWS\system32\midimap.dll
+0x73ee0000 - 0x73ee4000 	C:\WINDOWS\system32\KsUser.dll
+0x76fd0000 - 0x7704f000 	C:\WINDOWS\system32\CLBCATQ.DLL
+0x77050000 - 0x77115000 	C:\WINDOWS\system32\COMRes.dll
+0x14ef0000 - 0x14f27000 	C:\WINDOWS\system32\qasf.dll
+0x736b0000 - 0x736b7000 	C:\WINDOWS\system32\msdmo.dll
+0x74810000 - 0x7497e000 	C:\WINDOWS\system32\quartz.dll
+0x3d520000 - 0x3d5b2000 	C:\WINDOWS\system32\l3codeca.acm
+0x6da80000 - 0x6daed000 	C:\Program Files\Java\jre1.8.0_25\bin\javafx_font_t2k.dll
+0x6edd0000 - 0x6edde000 	C:\Program Files\Java\jre1.8.0_25\bin\prism_common.dll
+0x71a50000 - 0x71a8f000 	C:\WINDOWS\system32\mswsock.dll
+0x662b0000 - 0x66308000 	C:\WINDOWS\system32\hnetcfg.dll
+0x71a90000 - 0x71a98000 	C:\WINDOWS\System32\wshtcpip.dll
+0x59a60000 - 0x59b01000 	C:\WINDOWS\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 
+java_command: GameGUI
+java_class_path (initial): C:\Documents and Settings\Administrator\git\Jalapongo\Jalapongo2\bin
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+CLASSPATH=.;C:\Program Files\Java\jre6\lib\ext\QTJava.zip
+PATH=C:/Program Files/Java/jre1.8.0_25/bin/client;C:/Program Files/Java/jre1.8.0_25/bin;C:/Program Files/Java/jre1.8.0_25/lib/i386;C:\Documents and Settings\All Users\Application Data\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\Internet Explorer;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2011a\runtime\win32;C:\Program Files\MATLAB\R2011a\bin;C:\Program Files\Common Files\HP\Digital Imaging\bin;C:\Program Files\HP\Digital Imaging\bin\;C:\Program Files\HP\Digital Imaging\bin\Qt\Qt 4.3.3;;C:\Program Files\eclipse;
+USERNAME=Administrator
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 23 Stepping 10, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows XP Build 2600 Service Pack 3
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, tsc
+
+Memory: 4k page, physical 2858708k(783096k free), swap 4791824k(2315572k free)
+
+vm_info: Java HotSpot(TM) Client VM (25.25-b02) for windows-x86 JRE (1.8.0_25-b18), built on Oct  7 2014 14:31:05 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Mon Apr 13 15:52:25 2015
+elapsed time: 177 seconds (0d 0h 2m 57s)
+
