@@ -1,52 +1,36 @@
-/*import*/
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.io.IOException;
+//Imports
+import java.io.BufferedReader; // Imports the BufferedReader
+import java.io.InputStreamReader; // Imports the InputStreamReader
+import java.io.PrintWriter; // Inputs the PrintWriter
+import java.net.Socket; // Inputs the Socket
+import java.net.UnknownHostException; // Inputs the UnknownHostException
+import java.io.IOException; // Imports the IOException
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.application.Platform; // Imports Platform
+import javafx.beans.value.ChangeListener; // Imports ChangeListener
+import javafx.beans.value.ObservableValue; // Imports ObservableValue
+import javafx.geometry.Insets; // Imports Insets
+import javafx.scene.control.Label; // Imports Label
+import javafx.scene.paint.Color; // Imports Color
 
+/**
+ * @author Mike, Leslie
+ *
+ */
 public class Client extends Thread{
-	private BufferedReader in;
-	private PrintWriter out;
-	private static int port;
-	private static String ipAddress;
-	public static String name;
-	TextField textfield = new TextField();
-	TextArea textarea = new TextArea();
-	public Circle circle1 = new Circle(25);
-	public Circle circle2 = new Circle(25);
-	public Circle circle3 = new Circle(25);
-	public Circle circle4 = new Circle(25);
-	public CheckBox readyCB1 = new CheckBox();
-	public CheckBox readyCB2 = new CheckBox();
-	public CheckBox readyCB3 = new CheckBox();
-	public CheckBox readyCB4 = new CheckBox();
-	public static BorderPane nameBP1 = new BorderPane();
-	public static BorderPane nameBP2 = new BorderPane();
-	public static BorderPane nameBP3 = new BorderPane();
-	public static BorderPane nameBP4 = new BorderPane();
-	public int pos = 2;
-	public int k = 0;
-	public String[] names;
+	private BufferedReader in; //Creates a BufferedReader to get info from the host
+	private PrintWriter out; // Creates a printWriter to send messages to the host
+	private static int port; // Creates an global integer for the port
+	private static String ipAddress; // Creates a global string for the IP address
+	private static String name; // Creates a global string for the name
+	private int k = 0; // Creates a global integer to keep track of position
+	public String[] names; // Creates a global string array to keep track of names
 
 	/*Construct client*/
 	public Client(int portN, String IP,String uName) {
-		port = portN;
-		ipAddress = IP;
-		name = uName;
+		port = portN; // Sets the global port number to the inputed number
+		ipAddress = IP; // Sets the global IP address to the inputed IP address
+		name = uName; // Sets the global name to the inputed name
 	}
 
 	//connect to server and enter processing loop
@@ -60,264 +44,232 @@ public class Client extends Thread{
 			//Submit name and get verification that it is accepted
 			while(true){
 				String line = in.readLine(); // Reads the message sent from the host
-				System.out.println(line);
 				if(line.startsWith("SUBMITNAME")){ // If the message sent from the host starts with SUBMITNAME proceed
 					out.println(name); // Sends the clients name to the host
 				}
-				else if (line.startsWith("NAMEACCEPTED ")){ // TODO Do we need this
-					//textfield.setDisable(false);
-					//textarea.setDisable(false);
+				else if (line.startsWith("NAMEACCEPTED ")){
+					String lights = line.substring(line.indexOf(":") + 1, line.length()); // Reads the message from the host
+					String[] lightsA = lights.split(","); // Creates an array from the string
 
-					String lights = line.substring(line.indexOf(":") + 1, line.length());
-					String[] lightsA = lights.split(",");
-					System.out.println(lightsA);
-
-					if(lightsA[0].equals("1")){
-						GameGUI.circle1.setFill(Color.LIME);
+					// Turn on the respective ready lights
+					if(lightsA[0].equals("1")){ // If player 1 is ready
+						GameGUI.circle1.setFill(Color.LIME); // Set the light to LIME
 					}
-					if(lightsA[1].equals("1")){
-						GameGUI.circle2.setFill(Color.LIME);
+					if(lightsA[1].equals("1")){ // If player 2 is ready
+						GameGUI.circle2.setFill(Color.LIME); // Set the light to LIME
 					}
-					if(lightsA[2].equals("1")){
-						GameGUI.circle3.setFill(Color.LIME);
+					if(lightsA[2].equals("1")){ // If player 3 is ready
+						GameGUI.circle3.setFill(Color.LIME); // Set the light to LIME
 					}
-					if(lightsA[3].equals("1")){
-						GameGUI.circle4.setFill(Color.LIME);
+					if(lightsA[3].equals("1")){ // If player 4 is ready
+						GameGUI.circle4.setFill(Color.LIME); // Set the light to LIME
 					}
-
-
 				}
 				else if (line.startsWith("MESSAGE ")){ // If the message sent from the host starts with MESSAGE proceed
-					//String namesL = line.toString().substring(line.indexOf("[") + 1, line.length() - 1); // Creates a string of names from the list sent by the host
-					System.out.println(line);
-					String namesL = line.substring(line.indexOf(":") + 1, line.length());
-					String[] namesA = namesL.split(", ");
-					int x = namesL.length() - namesL.replace(",", "").length() + 1;
+					String namesL = line.substring(line.indexOf(":") + 1, line.length()); // Creates a string of all the names from the host
+					String[] namesA = namesL.split(", "); // Creates an array from the name string
+					int x = namesL.length() - namesL.replace(",", "").length() + 1; // Creates an integer to determine how many players are connected
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.nameLRQ.setText(namesL); //Updates the clients GUI
-							GameGUI.namesGPRQ.getChildren().clear();
-
-							System.out.println(namesL);
-
+							GameGUI.namesGPRQ.getChildren().clear(); //Clears the Grid Pane
 							for(int i = k; i < x; i++){
 								switch(i + 1){
 								case 1:
-									Label nameL1 = new Label(namesA[0]);
-									circle1.setFill(Color.DARKGREEN);
-									readyCB1.selectedProperty().addListener(new ChangeListener<Boolean>(){
-
-										public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-											if (t1) {
-												circle1.setFill(Color.LIME);
-
-											} else {
-												circle1.setFill(Color.DARKGREEN);
-											}
-										}
-
-									});
-									circle1.setStroke(Color.BLACK);
-									circle1.setStrokeWidth(2);
-									nameBP1.setLeft(nameL1);
-									nameBP1.setRight(GameGUI.circle1);
-									if(nameL1.toString().substring(nameL1.toString().indexOf("'") + 1, nameL1.toString().length() - 1).equals(name)){
-										nameBP1.setCenter(readyCB1);
-									}
-									nameBP1.setPrefWidth(700 / 2);
+									Label nameL1 = new Label(namesA[0]); // Adds the hosts name to the first label
+									GameGUI.nameBP1.setLeft(nameL1); // Sets the label to the left side of the border pane
+									GameGUI.nameBP1.setRight(GameGUI.circle1); // Sets the circle to the right side of the border pane
+									GameGUI.nameBP1.setPrefWidth(700 / 2); // Set the preferred width
 									nameL1.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 											"-fx-font-weight: bold;" +  // Sets the font to bold
 											"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-									//		"-fx-border-color: Black"); // Sets the border to black
-									nameBP1.setStyle("-fx-border-color: Black");
-									nameBP1.setPadding(new Insets(10));
-									k++;
+									GameGUI.nameBP1.setStyle("-fx-border-color: Black"); // Set the border to black
+									GameGUI.nameBP1.setPadding(new Insets(10)); // Adds padding to the border pane
+									k++; // Adds 1 to k
 									break;
 								case 2:
-									Label nameL2 = new Label(namesA[1]);
-									circle2.setFill(Color.DARKGREEN);
-									readyCB2.selectedProperty().addListener(new ChangeListener<Boolean>(){
+									Label nameL2 = new Label(namesA[1]); // Adds the second players name to the label
+									GameGUI.nameBP2.setLeft(nameL2); // Set the label to the left of the border pane
+									GameGUI.nameBP2.setRight(GameGUI.circle2); // Set the circle to the right of the border pane
+									if(nameL2.toString().substring(nameL2.toString().indexOf("'") + 1, nameL2.toString().length() - 1).equals(name)){ //If the name of the client is equal to the current name on the list 
+										GameGUI.nameBP2.setCenter(GameGUI.readyCB2); // Set the check box to the center of the border pane
+										GameGUI.readyCB2.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Adds a listener to the check box
 
-										public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-											if (t1) {
-												circle2.setFill(Color.LIME);
-												out.println("2A");
+											public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+												if (t1) { // If the user pressed the check box
+													out.println("2A"); // Output "2A"
 
-											} else {
-												circle2.setFill(Color.DARKGREEN);
-												out.println("2B");
+												} else { // If the user unchecks the check box
+													out.println("2B"); // Output "2B"
+												}
 											}
-										}
 
-									});
-									circle2.setStroke(Color.BLACK);
-									circle2.setStrokeWidth(2);
-									nameBP2.setLeft(nameL2);
-									nameBP2.setRight(GameGUI.circle2);
-									if(nameL2.toString().substring(nameL2.toString().indexOf("'") + 1, nameL2.toString().length() - 1).equals(name)){
-										nameBP2.setCenter(readyCB2);
+										});
 									}
-									nameBP2.setPrefWidth(700 / 2);
+									GameGUI.nameBP2.setPrefWidth(700 / 2); // Set the preferred width
 									nameL2.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 											"-fx-font-weight: bold;" +  // Sets the font to bold
 											"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-									//		"-fx-border-color: Black"); // Sets the border to black
-									nameBP2.setStyle("-fx-border-color: Black");
-									nameBP2.setPadding(new Insets(10));
-									k++;
+									GameGUI.nameBP2.setStyle("-fx-border-color: Black"); // set the border to black
+									GameGUI.nameBP2.setPadding(new Insets(10)); // set the padding
+									k++; // add 1 to k
 									break;
 								case 3:
-									Label nameL3 = new Label(namesA[2]);
-									circle3.setFill(Color.DARKGREEN);
-									readyCB3.selectedProperty().addListener(new ChangeListener<Boolean>(){
+									Label nameL3 = new Label(namesA[2]); // Adds the third name to the label
+									GameGUI.readyCB3.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Add an action listener to the check box
 
 										public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-											if (t1) {
-												circle3.setFill(Color.LIME);
-												out.println("3A");
-
-											} else {
-												circle3.setFill(Color.DARKGREEN);
-												out.println("3B");
+											if (t1) { // If the user checks the check box
+												out.println("3A"); // sends a message to the host
+											} else { // If the user unchecks the check box
+												out.println("3B"); // sends a message to the host
 											}
 										}
 
 									});
-									circle3.setStroke(Color.BLACK);
-									circle3.setStrokeWidth(2);
-									nameBP3.setLeft(nameL3);
-									nameBP3.setRight(GameGUI.circle3);
-									if(nameL3.toString().substring(nameL3.toString().indexOf("'") + 1, nameL3.toString().length() - 1).equals(name)){
-										nameBP3.setCenter(readyCB3);
+									GameGUI.nameBP3.setLeft(nameL3); // Adds the label to the left side of the border pane
+									GameGUI.nameBP3.setRight(GameGUI.circle3); // Adds the circle to the right side of the border pane
+									if(nameL3.toString().substring(nameL3.toString().indexOf("'") + 1, nameL3.toString().length() - 1).equals(name)){ // If the clients name equal the current name
+										GameGUI.nameBP3.setCenter(GameGUI.readyCB3); // add the check box
+										GameGUI.readyCB3.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Add an action listener to the check box
+
+											public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+												if (t1) { // If the user checks the check box
+													out.println("3A"); // sends a message to the host
+												} else { // If the user unchecks the check box
+													out.println("3B"); // sends a message to the host
+												}
+											}
+
+										});
 									}
-									nameBP3.setPrefWidth(700 / 2);
+									GameGUI.nameBP3.setPrefWidth(700 / 2); // Set the preferred width
 									nameL3.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 											"-fx-font-weight: bold;" +  // Sets the font to bold
 											"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-									//		"-fx-border-color: Black"); // Sets the border to black
-									nameBP3.setStyle("-fx-border-color: Black");
-									nameBP3.setPadding(new Insets(10));
-									k++;
+									GameGUI.nameBP3.setStyle("-fx-border-color: Black"); // Set the border to black
+									GameGUI.nameBP3.setPadding(new Insets(10)); // Adds padding to the border pane
+									k++; // Adds 1 to the value of k
 									break;
 								case 4:
-									Label nameL4 = new Label(namesA[3]);
-									circle4.setFill(Color.DARKGREEN);
-									readyCB4.selectedProperty().addListener(new ChangeListener<Boolean>(){
+									Label nameL4 = new Label(namesA[3]); // Adds the last players name to the label =
+									GameGUI.readyCB4.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Adds a listener to the check box
 
 										public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-											if (t1) {
-												//circle4.setFill(Color.LIME);
-												out.println("4A");
-
-											} else {
-												//circle4.setFill(Color.DARKGREEN);
-												out.println("4B");
+											if (t1) { // If the user checks the check box
+												out.println("4A"); // Sends a message to the host
+											} else { // If the user unchecks the check box
+												out.println("4B"); // Sends a message to the host
 											}
 										}
-
 									});
-									circle4.setStroke(Color.BLACK);
-									circle4.setStrokeWidth(2);
-									nameBP4.setLeft(nameL4);
-									nameBP4.setRight(GameGUI.circle4);
-									if(nameL4.toString().substring(nameL4.toString().indexOf("'") + 1, nameL4.toString().length() - 1).equals(name)){
-										nameBP4.setCenter(readyCB4);
+									
+									GameGUI.nameBP4.setLeft(nameL4); // Set the name to the left side of the border pane
+									GameGUI.nameBP4.setRight(GameGUI.circle4); // Set the circle to the right side of the border pane
+									if(nameL4.toString().substring(nameL4.toString().indexOf("'") + 1, nameL4.toString().length() - 1).equals(name)){ //If the clients name is equal to the current name 
+										GameGUI.nameBP4.setCenter(GameGUI.readyCB4); // Add teh check box to the center of the border pane
+										GameGUI.readyCB4.selectedProperty().addListener(new ChangeListener<Boolean>(){ // Adds a listener to the check box
+
+											public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+												if (t1) { // If the user checks the check box
+													out.println("4A"); // Sends a message to the host
+												} else { // If the user unchecks the check box
+													out.println("4B"); // Sends a message to the host
+												}
+											}
+										});
 									}
-									nameBP4.setPrefWidth(700 / 2);
+									GameGUI.nameBP4.setPrefWidth(700 / 2); // set the preferred width
 									nameL4.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
 											"-fx-font-weight: bold;" +  // Sets the font to bold
 											"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-									//		"-fx-border-color: Black"); // Sets the border to black
-									nameBP4.setStyle("-fx-border-color: Black");
-									nameBP4.setPadding(new Insets(10));
-									k++;
+									GameGUI.nameBP4.setStyle("-fx-border-color: Black"); // adds a Black border to the border pane
+									GameGUI.nameBP4.setPadding(new Insets(10)); // Adds padding to the border pane
+									k++; // Adds one to the value of k
 									break;
 								}
 							}
+							// Adds the BorderPanes based off of the amount of players
 							switch(x){
 							case 2:
-								GameGUI.namesGPRQ.add(nameBP1, 0, 0);
-								GameGUI.namesGPRQ.add(nameBP2, 0, 1);
+								GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // Adds player 1
+								GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1); // Adds player 2
 								break;
 							case 3:
-								GameGUI.namesGPRQ.add(nameBP1, 0, 0);
-								GameGUI.namesGPRQ.add(nameBP2, 0, 1);
-								GameGUI.namesGPRQ.add(nameBP3, 0, 2);
+								GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // Adds player 1
+								GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1); // Adds player 2
+								GameGUI.namesGPRQ.add(GameGUI.nameBP3, 0, 2); // Adds player 3
 								break;
 							case 4:
-								GameGUI.namesGPRQ.add(nameBP1, 0, 0);
-								GameGUI.namesGPRQ.add(nameBP2, 0, 1);
-								GameGUI.namesGPRQ.add(nameBP3, 0, 2);
-								GameGUI.namesGPRQ.add(nameBP4, 0, 3);
+								GameGUI.namesGPRQ.add(GameGUI.nameBP1, 0, 0); // Adds player 1
+								GameGUI.namesGPRQ.add(GameGUI.nameBP2, 0, 1); // Adds player 2
+								GameGUI.namesGPRQ.add(GameGUI.nameBP3, 0, 2); // Adds player 3
+								GameGUI.namesGPRQ.add(GameGUI.nameBP4, 0, 3); // Adds player 4
 								break;
 							}
-							names = namesA;
+							names = namesA; // Update the names list
 						}
 					});
 				}
-				else if(line.startsWith("1A")){
+				else if(line.startsWith("1A")){ // If the host sent "1A"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle1.setFill(Color.LIME);
-							System.out.println(line);
+							GameGUI.circle1.setFill(Color.LIME); // Change the first circle to LIME
 						}
 					});
 				}
-				else if(line.startsWith("1B")){
+				else if(line.startsWith("1B")){ // If the host sent "1B"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle1.setFill(Color.DARKGREEN);
+							GameGUI.circle1.setFill(Color.DARKGREEN); // Change the first circle to DARKGREEN
 						}
 					});
 				}
-				else if(line.startsWith("2A")){
+				else if(line.startsWith("2A")){ // If the host sent "2A"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle2.setFill(Color.LIME);
-							System.out.println(line.toString());
+							GameGUI.circle2.setFill(Color.LIME); // Change the second circle to LIME
 						}
 					});
 				}
-				else if(line.startsWith("2B")){
+				else if(line.startsWith("2B")){ // If the host sent "2B"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle2.setFill(Color.DARKGREEN);
-							System.out.println(line.toString());
+							GameGUI.circle2.setFill(Color.DARKGREEN); // Change the second circle to DARKGREEN
 						}
 					});
 				}
-				else if(line.startsWith("3A")){
+				else if(line.startsWith("3A")){ // If the host sent "3A"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle3.setFill(Color.LIME);
+							GameGUI.circle3.setFill(Color.LIME); // Change the third circle to LIME
 						}
 					});
 				}
-				else if(line.startsWith("3B")){
+				else if(line.startsWith("3B")){ // If the host sent "3B"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle3.setFill(Color.DARKGREEN);
+							GameGUI.circle3.setFill(Color.DARKGREEN); // Change the third circle to DARKGREEN
 						}
 					});
 				}
-				else if(line.startsWith("4A")){
+				else if(line.startsWith("4A")){ // If the host sent "4A"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle4.setFill(Color.LIME);
+							GameGUI.circle4.setFill(Color.LIME); // Change the fourth circle to LIME
 						}
 					});
 				}
-				else if(line.startsWith("4B")){
+				else if(line.startsWith("4B")){ // If the host sent "4B"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.circle4.setFill(Color.DARKGREEN);
+							GameGUI.circle4.setFill(Color.DARKGREEN); // Change the fourth circle to DARKGEEN
 						}
 					});
 				}
-				else if(line.startsWith("CHANGE")){
+				else if(line.startsWith("CHANGE")){ // If the host sent "Change"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.gameStart();
+							GameGUI.gameStart(); // Calls the gameStart method from GameGUI
 						}
 					});
 				}
@@ -331,6 +283,6 @@ public class Client extends Thread{
 
 	// Runs the Thread
 	public void run(){
-		connect(); // Calls the connect mehtod
+		connect(); // Calls the connect method
 	}
 }//end Client
