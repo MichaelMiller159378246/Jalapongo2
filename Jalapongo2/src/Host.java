@@ -22,7 +22,7 @@ import javafx.scene.paint.Color; // Imports Color
 
 // Host class is used to launch the server so others can connect
 /**
- * @author Mike, Leslie
+ * @author Mike
  *
  */
 public class Host extends Thread{
