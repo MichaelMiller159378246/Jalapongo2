@@ -99,7 +99,10 @@ public class GameScreen {
 	Rectangle rect8 = new Rectangle(rectH, rectW); //690, 10
 	
 	//create shields 
-	static Rectangle shield1, shield2, shield3, shield4;
+	static Rectangle shield1;
+	static Rectangle shield2;
+	static Rectangle shield3;
+	static Rectangle shield4;
 		
 	public GameScreen() {
 		
@@ -155,15 +158,15 @@ public class GameScreen {
 }
 	
 	public void checkCollisionWithshield(Ball ball){
-		if ( (ball.getYLoc() + ball.getSize() > shield1.getY())
+ 		if ( (ball.getYLoc() + ball.getSize() > shield1.getY())
 				&& (ball.getYLoc() < shield1.getY() + shield1.getHeight()) ){
-			if ( ball.getXLoc() < (shield1.getWidth()) &&
-					(ball.getXSpeed() < 0) ) {
-				ball.reverseX();
-				shield1.setX(-900);
+ 			if ( ball.getXLoc() < (shield1.getWidth()) &&
+ 					(ball.getXSpeed() < 0) ) {
+ 				ball.reverseX();
+ 				shield1.setX(-900);
 				shield1.setY(-900);
 	            gamePane.getChildren().removeAll(shield1);
-				//System.out.println("shield 1 hit");
+				System.out.println("shield 1 hit");
 			}
 		}
 		
@@ -175,7 +178,7 @@ public class GameScreen {
 				shield2.setX(-900);
 				shield2.setY(-900);
 	            gamePane.getChildren().removeAll(shield2);
-				//System.out.println("shield 2 hit");
+				System.out.println("shield 2 hit");
 
 			}
 		}
@@ -188,10 +191,9 @@ public class GameScreen {
 				shield3.setX(-900);
 				shield3.setY(-900);
 	            gamePane.getChildren().removeAll(shield3);
-				//System.out.println("shield 3 hit");
+				System.out.println("shield 3 hit");
 			}
 		}
-	
 	
 		if ( (ball.getXLoc() + ball.getSize() > shield4.getX())
 				&& (ball.getXLoc() < shield4.getX() + shield4.getWidth()) ){
@@ -201,9 +203,20 @@ public class GameScreen {
 				shield4.setX(-900);
 				shield4.setY(-900);
 	            gamePane.getChildren().removeAll(shield4);
-				//System.out.println("shield 4 hit");
+				System.out.println("shield 4 hit");
 			}
 		}	
+	}
+	
+	private void CheckCollisionWithShields(){
+		try{checkCollisionWithshield(mainBall);}catch(Exception e){}
+		try{checkCollisionWithshield(ball1);}catch(Exception e){}
+		try{checkCollisionWithshield(ball2);}catch(Exception e){}
+		try{checkCollisionWithshield(ball3);}catch(Exception e){}
+		try{checkCollisionWithshield(ball4);}catch(Exception e){}
+		try{checkCollisionWithshield(ball5);}catch(Exception e){}
+		try{checkCollisionWithshield(ball6);}catch(Exception e){}
+		try{checkCollisionWithshield(ball7);}catch(Exception e){}		
 	}
 	
 	public static void createShield(Paddle paddle){
@@ -594,15 +607,6 @@ public class GameScreen {
 		try{checkCollisionWith4(ball5);}catch(Exception e){}  
 		try{checkCollisionWith4(ball6);}catch(Exception e){}  
 		try{checkCollisionWith4(ball7);}catch(Exception e){}  
-		
-		try{checkCollisionWithshield(mainBall);}catch(Exception e){}  
-		try{checkCollisionWithshield(ball1);}catch(Exception e){}
-		try{checkCollisionWithshield(ball2);}catch(Exception e){}
-		try{checkCollisionWithshield(ball3);}catch(Exception e){}
-		try{checkCollisionWithshield(ball4);}catch(Exception e){}
-		try{checkCollisionWithshield(ball5);}catch(Exception e){}
-		try{checkCollisionWithshield(ball6);}catch(Exception e){}
-		try{checkCollisionWithshield(ball7);}catch(Exception e){}
 	}
 	
 	// ------The following check the collision with the players paddles--------------
@@ -873,6 +877,7 @@ public class GameScreen {
 			        @Override
 			        public void run() {
 			        	moveAllBalls();
+			        //paddle and wall checks
 			        try{checkReverse(mainBall);}catch(InterruptedException e) {e.printStackTrace();}
 			        try{checkReverse(ball1);}catch(Exception e){}
 			        try{checkReverse(ball2);}catch(Exception e){}
@@ -881,7 +886,10 @@ public class GameScreen {
 			        try{checkReverse(ball5);}catch(Exception e){}
 			        try{checkReverse(ball6);}catch(Exception e){}
 			        try{checkReverse(ball7);}catch(Exception e){}  
+			        //power up checks
 			        try{checkCollisionWithPowerUp();}catch(Exception e){}
+					//shield checks
+			        try{CheckCollisionWithShields();}catch(Exception e){}
 			        //TODO variable AI
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);
