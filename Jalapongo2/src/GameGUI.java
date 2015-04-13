@@ -76,7 +76,7 @@ public class GameGUI extends Application {
 	public static ComboBox<Integer> livesCoB;
 	public static ComboBox AICB = new ComboBox<Integer>();
 	
-	
+	private Thread clientThread;
 	
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
@@ -457,11 +457,11 @@ public class GameGUI extends Application {
 
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
-//		disconnectRQB.setOnAction(new EventHandler<ActionEvent>() {
-//	        public void handle(ActionEvent event) {
-//			Client.stop();
-//	        }
-//		});
+		disconnectRQB.setOnAction(new EventHandler<ActionEvent>() {
+	        public void handle(ActionEvent event) {
+	        	clientThread.stop();
+       }
+		});
 		//Added by Jon on March 10
 		//Launches the game screen from the "Start" button under:
 		//Play -> Host -> Start Hosting -> Start
@@ -549,8 +549,8 @@ public class GameGUI extends Application {
 	
 	//method to transfer values to client class
 	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName, Button startB){
-		Thread Client = new Thread(new Client(portNumber,IP,uName));
-		Client.start();
+		clientThread = new Thread(new Client(portNumber,IP,uName));
+		clientThread.start();
 		startB.setVisible(false);
 		primaryStage.setScene(scene);
 	}
