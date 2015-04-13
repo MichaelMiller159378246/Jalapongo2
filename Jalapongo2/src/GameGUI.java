@@ -1,6 +1,7 @@
  // Imports
 import java.net.URL;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.application.Application; // Imports Application
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -99,22 +100,58 @@ public class GameGUI extends Application {
 		//*******************************************************************************
 		// Start Screen GUI Menu
 
+
+
 		// Construct GUI Objects
+
 		BorderPane startSMBP = new BorderPane(); //Creates a BorderPane
+
 		VBox buttonSMVB = new VBox(); // Creates a VBox to house the buttons
 
+		HBox labelSMHB = new HBox(); //Creates a HBox to hold title
+
+
+		//Insert title image
+
+		Image title = new Image("jalapongo.png");
+
+		ImageView imageTitle = new ImageView();
+
+		imageTitle.setImage(title);
+
+
 		// Controls
+
 		Button playBSM = new Button("Play"); // Creates a play button
+
 		Button optionsBSM = new Button("Options"); // creates a options button
+
 		Button quitBSM = new Button("Quit"); // Creates a quit button
 
+
+		//add label to HBox 
+
+		labelSMHB.getChildren().addAll(imageTitle);
+
+		labelSMHB.setAlignment(Pos.CENTER);
+
+
 		//Alters VBox properties
+
 		buttonSMVB.getChildren().addAll(playBSM, optionsBSM, quitBSM); //Adds the buttons to the VBox
+
 		buttonSMVB.setSpacing(50); // Set the spacing between the buttons to 50
+
 		buttonSMVB.setAlignment(Pos.CENTER); // Sets the alignment of the VBox to the center
 
+
+		startSMBP.setTop(labelSMHB);
+
 		startSMBP.setCenter(buttonSMVB); // Adds the VBox to the center of the BorderPane
+
 		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH); // Creates the scene
+
+
 
 		//*******************************************************************************
 
