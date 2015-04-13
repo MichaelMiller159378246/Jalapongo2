@@ -16,16 +16,15 @@ import javafx.scene.shape.*;
  * @version 1.0
  * @created 02-Mar-2015 3:19:46 PM
  * 
- * 
  *  flip => 1
- *  multiBall => 2
- *  addLives => 3
- *  shield => 4
- *  largePaddle => 5
- *  smallPaddle => 6
- *  slowSpeed => 7
- *  addSpeed => 8
- *  stall => 9
+ *  addLives => 2
+ *  shield => 3
+ *  largePaddle => 4
+ *  smallPaddle => 5
+ *  slowSpeed => 6
+ *  addSpeed => 7
+ *  stall => 8
+ *  multiBall => 9
  */
 
 public class PowerUps {
@@ -228,7 +227,6 @@ public class PowerUps {
 		  ActionListener taskPerformer = new ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				// TODO Auto-generated method stub
 				paddle.setControls(1);
 			}
 		  };
