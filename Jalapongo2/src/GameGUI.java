@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections; // Imports FXCollections
 import javafx.collections.ObservableList; // Imports ObservableList
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler; // Imports EventHandlers
 import javafx.geometry.Insets; // Imports Insets
 import javafx.geometry.Pos; // Imports POS
@@ -456,6 +457,11 @@ public class GameGUI extends Application {
 
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
+//		disconnectRQB.setOnAction(new EventHandler<ActionEvent>() {
+//	        public void handle(ActionEvent event) {
+//			Client.stop();
+//	        }
+//		});
 		//Added by Jon on March 10
 		//Launches the game screen from the "Start" button under:
 		//Play -> Host -> Start Hosting -> Start
