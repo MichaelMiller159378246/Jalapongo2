@@ -158,54 +158,56 @@ public class GameScreen {
 }
 	
 	public void checkCollisionWithshield(Ball ball){
- 		if ( (ball.getYLoc() + ball.getSize() > shield1.getY())
-				&& (ball.getYLoc() < shield1.getY() + shield1.getHeight()) ){
- 			if ( ball.getXLoc() < (shield1.getWidth()) &&
+		//System.out.println("in method");
+		//bottom
+ 		if ( (ball.getYLoc() + ball.getSize() > shield2.getY())
+				&& (ball.getYLoc() < shield2.getY() + shield2.getHeight()) ){
+ 			if ( ball.getXLoc() < (shield2.getWidth()) &&
  					(ball.getXSpeed() < 0) ) {
- 				ball.reverseX();
- 				shield1.setX(-900);
-				shield1.setY(-900);
-	            gamePane.getChildren().removeAll(shield1);
-				System.out.println("shield 1 hit");
-			}
-		}
-		
-		if ( (ball.getXLoc() + ball.getSize() > shield2.getX()) 
-				&& (ball.getXLoc() < shield2.getX() + shield2.getWidth()) ){
-			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + shield2.getHeight()))) &&
-					(ball.getYSpeed() > 0) ) {
-				ball.reverseY();
-				shield2.setX(-900);
+ 				ball.reverseY();
+ 				shield2.setX(-900);
 				shield2.setY(-900);
-	            gamePane.getChildren().removeAll(shield2);
-				System.out.println("shield 2 hit");
-
+	            try{gamePane.getChildren().removeAll(shield2);}catch(Exception e){}
+				//System.out.println("shield 1 hit");
 			}
 		}
-
-		if ( (ball.getYLoc() + ball.getSize() > shield3.getY()) 
-				&& (ball.getYLoc() < shield3.getY() + shield3.getHeight()) ){
-			if ( ball.getXLoc() > (paneWH - (ball.getSize() + shield3.getWidth())) &&
-					(ball.getXSpeed() > 0) ) {
+		//left side?????
+		/*if ( (ball.getXLoc() + ball.getSize() > shield3.getX()) 
+				&& (ball.getXLoc() < shield3.getX() + shield3.getWidth()) ){
+			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + shield3.getHeight()))) &&
+					(ball.getYSpeed() > 0) ) {
 				ball.reverseX();
 				shield3.setX(-900);
 				shield3.setY(-900);
-	            gamePane.getChildren().removeAll(shield3);
-				System.out.println("shield 3 hit");
+	            try{gamePane.getChildren().removeAll(shield3);}catch(Exception e){}
+				System.out.println("shield 2 hit");
+
 			}
-		}
-	
-		if ( (ball.getXLoc() + ball.getSize() > shield4.getX())
-				&& (ball.getXLoc() < shield4.getX() + shield4.getWidth()) ){
-			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
-					(ball.getYSpeed() < 0) ) {
+		}*/
+		//top
+		if ( (ball.getYLoc() + ball.getSize() > shield4.getY()) 
+				&& (ball.getYLoc() < shield4.getY() + shield4.getHeight()) ){
+			if ( ball.getXLoc() > (paneWH - (ball.getSize() + shield4.getWidth())) &&
+					(ball.getXSpeed() > 0) ) {
 				ball.reverseY();
 				shield4.setX(-900);
 				shield4.setY(-900);
-	            gamePane.getChildren().removeAll(shield4);
+	            try{gamePane.getChildren().removeAll(shield4);}catch(Exception e){}
+				//System.out.println("shield 3 hit");
+			}
+		}
+		// right side????
+	/*	if ( (ball.getXLoc() + ball.getSize() > shield3.getX())
+				&& (ball.getXLoc() < shield3.getX() + shield3.getWidth()) ){
+			if ( ball.getYLoc() < (paddle3.getPaddle().getHeight()) &&
+					(ball.getYSpeed() < 0) ) {
+				ball.reverseX();
+				shield3.setX(-900);
+				shield3.setY(-900);
+	            try{gamePane.getChildren().removeAll(shield3);}catch(Exception e){}
 				System.out.println("shield 4 hit");
 			}
-		}	
+		}	*/
 	}
 	
 	private void CheckCollisionWithShields(){
