@@ -2,6 +2,7 @@
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections; // Imports FXCollections
@@ -29,6 +30,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font; // Imports Font
 import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
+import javafx.stage.WindowEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.TableView;
@@ -431,6 +433,13 @@ public class GameGUI extends Application {
 		});
 
 
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 		//Choice Menu Scene Events
 		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses host the scene changes to the host menu scene 
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene)); // If the user presses join the scene changes to the join menu scene 
@@ -458,7 +467,9 @@ public class GameGUI extends Application {
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
 		disconnectRQB.setOnAction(new EventHandler<ActionEvent>() {
-	        public void handle(ActionEvent event) {
+	      
+			@SuppressWarnings("deprecation")
+			public void handle(ActionEvent event) {
 	        	clientThread.stop();
        }
 		});
