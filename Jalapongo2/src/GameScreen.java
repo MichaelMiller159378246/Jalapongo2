@@ -775,6 +775,28 @@ public class GameScreen {
 	}
 	
 	/**
+	 * @author Jonathan Hemingway
+	 * 
+	 */
+	private void checkBallSpeed() {
+		int xSpeed = mainBall.getXSpeed();
+		int ySpeed = mainBall.getYSpeed();
+		int speedTotal = Math.abs(xSpeed) + Math.abs(ySpeed);
+		
+		if (speedTotal < 8) {
+			if (ySpeed < 0)
+				mainBall.setYSpeed(ySpeed - 1);
+			else
+				mainBall.setYSpeed(ySpeed + 1);
+			
+			if (xSpeed < 0)
+				mainBall.setXSpeed(xSpeed - 1);
+			else
+				mainBall.setXSpeed(xSpeed + 1);
+		}
+	}
+	
+	/**
 	 * @author Dalton L'Heureux
 	 * @param ball
 	 */
@@ -949,6 +971,7 @@ public class GameScreen {
 			        try{checkCollisionWithPowerUp();}catch(Exception e){}
 			        try{checkCollisionWithShields();}catch(Exception e){}
 			        //TODO variable AI
+			          checkBallSpeed();
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);
 			          player3.moveAI(mainBall);
