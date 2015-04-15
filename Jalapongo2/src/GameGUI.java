@@ -100,17 +100,35 @@ public class GameGUI extends Application {
 		// Construct GUI Objects
 		BorderPane startSMBP = new BorderPane(); //Creates a BorderPane
 		VBox buttonSMVB = new VBox(); // Creates a VBox to house the buttons
-
+		HBox titleSMHB = new HBox();//Creates HBox to hold title
+		
 		// Controls
 		Button playBSM = new Button("Play"); // Creates a play button
+		playBSM.setMaxWidth(300);
+		playBSM.setFont(new Font(24));
 		Button optionsBSM = new Button("Options"); // creates a options button
+		optionsBSM.setMaxWidth(300);
+		optionsBSM.setFont(new Font(24));
 		Button quitBSM = new Button("Quit"); // Creates a quit button
-
+		quitBSM.setMaxWidth(300);
+		quitBSM.setFont(new Font(24));
+		//Text
+		Text title = new Text();
+		title.setFont(new Font(50));
+		title.setText("Jalapoñgo");
+		title.setFill(Color.GREEN);
+		
+		//add title to HBox
+		titleSMHB.getChildren().addAll(title);
+		titleSMHB.setAlignment(Pos.CENTER);
+		
 		//Alters VBox properties
 		buttonSMVB.getChildren().addAll(playBSM, optionsBSM, quitBSM); //Adds the buttons to the VBox
 		buttonSMVB.setSpacing(50); // Set the spacing between the buttons to 50
 		buttonSMVB.setAlignment(Pos.CENTER); // Sets the alignment of the VBox to the center
-
+		
+		
+		startSMBP.setTop(titleSMHB);
 		startSMBP.setCenter(buttonSMVB); // Adds the VBox to the center of the BorderPane
 		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH); // Creates the scene
 
@@ -259,7 +277,7 @@ public class GameGUI extends Application {
 				+ "                            ");
 		powerUpsText.setFont(new Font(24));
 		fastCB = new CheckBox("Fast Ball       ");
-		shieldCB = new CheckBox("Sheild           ");
+		shieldCB = new CheckBox("Shield           ");
 		livesCB = new CheckBox("Extra Lives    "); 
 		bigCB = new CheckBox("Big Paddle    ");
 		slowCB = new CheckBox("Slow Ball      ");

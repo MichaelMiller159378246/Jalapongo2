@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
+import javafx.scene.text.Font;
 
 public class PongButton extends Button {
 
@@ -16,11 +16,11 @@ public class PongButton extends Button {
 				//button.setMinSize(200, 100);
 				//button.setPrefSize(200, 100);
 				//button.setMaxSize(200, 100);
-				//button.setBorder(new Border(new BorderStroke(null,
-				//		null,
-				//		new CornerRadii(10),
-				//		new BorderWidths(5),
-				//		null)));
+			//button.setBorder(new Border(new BorderStroke(null,
+			//			null,
+			//			new CornerRadii(10),
+			//			new BorderWidths(5),
+			//			null)));
 		}
 
 }
