@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 /**
- * @author Mike
+ * @author Dalton L'Heureux
  * @version 1.0
  * @created 02-Mar-2015 3:19:43 PM
  */
@@ -41,11 +41,11 @@ public class Ball {
 	}
 
 	public int setStartLoc(){
-		return (int)(Math.random()*301 + 200);
+		return (int)(Math.random()*50 + 325);
 	}
 	
 	public int setStartSpeed(){
-		return (int)(Math.random()*3 + 5);
+		return (int)(Math.random()*2 + 6);
 	}
 
 	public Paddle getPaddleLastHit(){

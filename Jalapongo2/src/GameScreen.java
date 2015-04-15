@@ -185,59 +185,58 @@ public class GameScreen {
 		//movePaddleOnKeyPress(gameScene, player3, paddle3);
 		//movePaddleOnKeyPress(gameScene, player4, paddle4);		
 }
-	
-	public void checkCollisionWithshield(Ball ball){
-		if ( (ball.getYLoc() + ball.getSize() > shield1.getY())
-				&& (ball.getYLoc() < shield1.getY() + shield1.getHeight()) ){
-			if ( ball.getXLoc() < (shield1.getWidth()) &&
-					(ball.getXSpeed() < 0) ) {
-				ball.reverseX();
-				shield1.setX(-900);
-				shield1.setY(-900);
-	            gamePane.getChildren().removeAll(shield1);
-				//System.out.println("shield 1 hit");
-			}
+	/**
+	 * @author Dalton L'Heureux
+	 * @param ball
+	 */
+	public void checkCollisionWithShield23(Ball ball){
+		if (ball.getXLoc() + ball.getSize() > shield3.getX() &&
+				ball.getXLoc() + ball.getSize() < shield3.getX() + shield3.getWidth()){
+			ball.reverseX();
+			shield3.setX(-900);
+			shield3.setY(-900);
+            gamePane.getChildren().removeAll(shield3);
+			//System.out.println("shield 2 hit");
 		}
 		
-		if ( (ball.getXLoc() + ball.getSize() > shield2.getX()) 
-				&& (ball.getXLoc() < shield2.getX() + shield2.getWidth()) ){
-			if ( (ball.getYLoc() > (paneWH - (ball.getSize() + shield2.getHeight()))) &&
-					(ball.getYSpeed() > 0) ) {
-				ball.reverseY();
-				shield2.setX(-900);
-				shield2.setY(-900);
-	            gamePane.getChildren().removeAll(shield2);
-				//System.out.println("shield 2 hit");
-
-			}
+		if ((ball.getYLoc() + ball.getSize() > shield2.getY()) &&
+				ball.getYLoc() + ball.getSize() < shield2.getY() + shield2.getHeight()){
+			ball.reverseY();
+			shield2.setX(-900);
+			shield2.setY(-900);
+            gamePane.getChildren().removeAll(shield2);
+			//System.out.println("shield 3 hit");
 		}
-
-		if ( (ball.getYLoc() + ball.getSize() > shield3.getY()) 
-				&& (ball.getYLoc() < shield3.getY() + shield3.getHeight()) ){
-			if ( ball.getXLoc() > (paneWH - (ball.getSize() + shield3.getWidth())) &&
-					(ball.getXSpeed() > 0) ) {
-				ball.reverseX();
-				shield3.setX(-900);
-				shield3.setY(-900);
-	            gamePane.getChildren().removeAll(shield3);
-				//System.out.println("shield 3 hit");
-			}
-		}
-	
-	
-		if ( (ball.getXLoc() + ball.getSize() > shield4.getX())
-				&& (ball.getXLoc() < shield4.getX() + shield4.getWidth()) ){
-			if ( ball.getYLoc() < (paddle2.getPaddle().getHeight()) &&
-					(ball.getYSpeed() < 0) ) {
-				ball.reverseY();
-				shield4.setX(-900);
-				shield4.setY(-900);
-	            gamePane.getChildren().removeAll(shield4);
-				//System.out.println("shield 4 hit");
-			}
-		}	
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 * @param ball
+	 */
+	public void checkCollisionWithShield14(Ball ball){
+		if (ball.getXLoc() < shield1.getX() + shield1.getWidth() && 
+				ball.getXLoc() > shield1.getX()){
+			ball.reverseX();
+			shield1.setX(-900);
+			shield1.setY(-900);
+            gamePane.getChildren().removeAll(shield1);
+			//System.out.println("shield 4 hit");
+		}
+		
+		if (ball.getYLoc() < shield4.getY() + shield4.getHeight() && 
+				ball.getYLoc() > shield4.getY()){
+			ball.reverseY();
+			shield4.setX(-900);
+			shield4.setY(-900);
+            gamePane.getChildren().removeAll(shield4);
+			//System.out.println("shield 1 hit");
+		}
+	}
+	
+	/**
+	 * @author Dalton L'Heureux
+	 * @param paddle
+	 */
 	public static void createShield(Paddle paddle){
 		if(paddle.getPos() == 1){
            try {
@@ -281,6 +280,9 @@ public class GameScreen {
 		}
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 */
 	@SuppressWarnings("unchecked")
 	public static void addBall(){
 		if(newBallCounter%8 == 0){
@@ -342,6 +344,9 @@ public class GameScreen {
 		newBallCounter++;
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 * */
 	private void generatePowerUp(){
 		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.shieldCB.isSelected()||GameGUI.bigCB.isSelected()||
 				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()||
@@ -389,6 +394,10 @@ public class GameScreen {
 		puPlayer.play();
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 * @param powerup
+	 * */
 	public static void powerUpHit(PowerUps powerUp){
 		int type = powerUp.getType();
 		/*  flip => 1
@@ -626,15 +635,6 @@ public class GameScreen {
 		try{checkCollisionWith4(ball5);}catch(Exception e){}  
 		try{checkCollisionWith4(ball6);}catch(Exception e){}  
 		try{checkCollisionWith4(ball7);}catch(Exception e){}  
-		
-		try{checkCollisionWithshield(mainBall);}catch(Exception e){}  
-		try{checkCollisionWithshield(ball1);}catch(Exception e){}
-		try{checkCollisionWithshield(ball2);}catch(Exception e){}
-		try{checkCollisionWithshield(ball3);}catch(Exception e){}
-		try{checkCollisionWithshield(ball4);}catch(Exception e){}
-		try{checkCollisionWithshield(ball5);}catch(Exception e){}
-		try{checkCollisionWithshield(ball6);}catch(Exception e){}
-		try{checkCollisionWithshield(ball7);}catch(Exception e){}
 	}
 	
 	// ------The following check the collision with the players paddles--------------
@@ -703,7 +703,7 @@ public class GameScreen {
 						&& (ball.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) ){
 					ball.reverseX();
 					//System.out.println("2 reverse");
-					ball.setYSpeed(ball.getYSpeed() - 1);
+					ball.setYSpeed(ball.getXSpeed() - 1);
 					}
 				}
 				if(ball.getXSpeed() >= 0){
@@ -711,7 +711,7 @@ public class GameScreen {
 						&& (ball.getXLoc() > paddle2.getPaddle().getX()) ){
 					ball.reverseX();
 					//System.out.println("2 reverse");
-					ball.setYSpeed(ball.getYSpeed() - 1);
+					ball.setYSpeed(ball.getXSpeed() - 1);
 					}
 				}
 			}
@@ -774,6 +774,10 @@ public class GameScreen {
 			}
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 * @param ball
+	 */
 	private void checkBallHitPowerUp(Ball ball){
         try {
 			if (   ball.getXLoc() >= powerUp1.getPowerUp().getX() && ball.getXLoc() <= powerUp1.getPowerUp().getX() + powerUp1.getSize() 
@@ -854,6 +858,9 @@ public class GameScreen {
 		} catch (Exception e){}
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 */
 	private void checkCollisionWithPowerUp() {
 		checkBallHitPowerUp(mainBall);
 		checkBallHitPowerUp(ball1);
@@ -865,6 +872,32 @@ public class GameScreen {
 		checkBallHitPowerUp(ball7);
 	}
 	
+	/**
+	 * @author Dalton L'Heureux
+	 */
+	private void checkCollisionWithShields(){
+		try{checkCollisionWithShield23(mainBall);}catch(Exception e){}  
+		try{checkCollisionWithShield23(ball1);}catch(Exception e){}
+		try{checkCollisionWithShield23(ball2);}catch(Exception e){}
+		try{checkCollisionWithShield23(ball3);}catch(Exception e){}
+		try{checkCollisionWithShield23(ball4);}catch(Exception e){}
+		try{checkCollisionWithShield23(ball5);}catch(Exception e){}
+		try{checkCollisionWithShield23(ball6);}catch(Exception e){}
+		try{checkCollisionWithShield23(ball7);}catch(Exception e){}
+		
+		try{checkCollisionWithShield14(mainBall);}catch(Exception e){}  
+		try{checkCollisionWithShield14(ball1);}catch(Exception e){}
+		try{checkCollisionWithShield14(ball2);}catch(Exception e){}
+		try{checkCollisionWithShield14(ball3);}catch(Exception e){}
+		try{checkCollisionWithShield14(ball4);}catch(Exception e){}
+		try{checkCollisionWithShield14(ball5);}catch(Exception e){}
+		try{checkCollisionWithShield14(ball6);}catch(Exception e){}
+		try{checkCollisionWithShield14(ball7);}catch(Exception e){}
+	}
+	
+	/**
+	 * @author Dalton L'Heureux
+	 */
 	public void moveAllBalls(){
 		try{
 			mainBall.moveBall();	
@@ -914,6 +947,7 @@ public class GameScreen {
 			        try{checkReverse(ball6);}catch(Exception e){}
 			        try{checkReverse(ball7);}catch(Exception e){}  
 			        try{checkCollisionWithPowerUp();}catch(Exception e){}
+			        try{checkCollisionWithShields();}catch(Exception e){}
 			        //TODO variable AI
 			          player1.moveAI(mainBall);
 			          //player2.moveAI(mainBall);
