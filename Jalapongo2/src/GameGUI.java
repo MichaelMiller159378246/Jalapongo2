@@ -205,10 +205,38 @@ public class GameGUI extends Application {
 		choiceBP.setBottom(backBCS);
 
 		//*******************************************************************************		
-			//Help Menu
-				BorderPane helpBP = new BorderPane();
-				
-				Scene helpScene = new Scene(helpBP,sceneWH,sceneWH);
+		//Help Menu
+		//create GUI components
+		BorderPane helpBP = new BorderPane();
+		BorderPane htpBP = new BorderPane();
+		VBox helpVB = new VBox();//to hold first help screen buttons
+		Scene helpScene = new Scene(helpBP,sceneWH,sceneWH);
+		Scene howToPlayScene = new Scene(htpBP,sceneWH,sceneWH);
+		
+		//create buttons
+		Button howToPlayBHM = new Button("How to Play");
+		Button rulesBHM = new Button("Rules of the Game");
+		Button controlsBHM = new Button("Controls");
+		Button hostBHM = new Button("Host a game");
+		Button backBHM = new Button("Back");
+		Button joinBHM = new Button("Join a game");
+		
+		//Text howToPlayTitleText = new Text("How To Play:\n");
+		/*Text howToPlayInfoText = new Text("The objective of Jalapoñgo is to be the last player with lives remaining.\n"
+				+ "Every player begins the game with five lives."
+				+ "To avoid losing lives you must navigate your paddle so that the ball does not hit the wall behind "
+				+ "your paddle.");
+		//Text controlsTitleText = new Text("    Controls:");
+		//Text controlsInfoText = new Text("    To control your paddle use the left and right arrow keys.\n"
+				+ "Controls may be reversed if you hit a reverse controls power-up.\n"
+				+ "If controls are reversed you must use the left arrow key to move right, and the right arrow key to move left until the power-up is disabled");
+		*/
+		//add components to initial help screen
+		helpVB.getChildren().addAll(howToPlayBHM,rulesBHM,hostBHM,joinBHM,backBHM);
+		helpVB.setAlignment(Pos.CENTER);
+		helpVB.setSpacing(50);
+		helpBP.setCenter(helpVB);
+		
 		//*******************************************************************************	
 		
 		//Host Menu GUI
@@ -438,7 +466,7 @@ public class GameGUI extends Application {
 		//Options Menu Scene Events
 		backBOS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
 		//toggle music
-
+		
 		musicCB.selectedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -448,13 +476,15 @@ public class GameGUI extends Application {
 					songPlayer.stop();	
 			}
 		});
-
+		
 
 		//Choice Menu Scene Events
 		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses host the scene changes to the host menu scene 
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene)); // If the user presses join the scene changes to the join menu scene 
 		backBCS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
-
+		helpBCS.setOnMouseClicked(e -> primaryStage.setScene(helpScene));//If the user press help the screen changes to the help menu scene
+		//Help Menu Scene Events
+		
 		//Join Menu Scene Events
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses back the scene changes to the choice menu scene 
 		joinGameJS.setOnMouseClicked(e -> client(primaryStage, readyQS,Integer.parseInt(portTFJS.getText()),ipTF.getText(),nameTFJS.getText(), startRQB)); // If the user presses join then the client method is called 
