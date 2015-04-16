@@ -111,6 +111,7 @@ public class GameGUI extends Application {
 		Button quitBSM = new Button("Quit"); // Creates a quit button
 		quitBSM.setMaxWidth(300);
 		quitBSM.setFont(new Font(24));
+		Button helpBSM = new Button("Help");
 		
 		//Text
 		Text title = new Text();
@@ -120,17 +121,19 @@ public class GameGUI extends Application {
 		
 		
 		//Alters VBox properties
-		buttonSMVB.getChildren().addAll(title,playBSM, optionsBSM, quitBSM); //Adds the buttons to the VBox
+		buttonSMVB.getChildren().addAll(title,playBSM, optionsBSM, quitBSM,helpBSM); //Adds the items to the VBox
 		buttonSMVB.setSpacing(50); // Set the spacing between the items to 50
 		buttonSMVB.setAlignment(Pos.CENTER); // Sets the alignment of the VBox to the center
-		
-		
 		
 		startSMBP.setCenter(buttonSMVB); // Adds the VBox to the center of the BorderPane
 		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH); // Creates the scene
 
-		//*******************************************************************************
-
+		//*******************************************************************************	
+			//Help Menu
+			BorderPane helpBP = new BorderPane();
+			
+			Scene helpScene = new Scene(helpBP,sceneWH,sceneWH);
+		//*******************************************************************************	
 		//Music
 		String song = "pongSong.mp3";
 
