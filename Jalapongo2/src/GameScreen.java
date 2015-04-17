@@ -123,6 +123,10 @@ public class GameScreen {
 		shield3.setY(-900);
 		shield4.setX(-900);
 		shield4.setY(-900);
+		shield1.setFill(Color.CYAN);
+		shield2.setFill(Color.CYAN);
+		shield3.setFill(Color.CYAN);
+		shield4.setFill(Color.CYAN);
 
 		this.numberPlayers = numberPlayers;
 
@@ -262,7 +266,7 @@ public class GameScreen {
 			// 	gamePane.getChildren().removeAll(shield1);
 			//} catch (Exception e){}
 			//shield1 = new Rectangle(10, paneWH);
-			shield1.setFill(Color.CYAN);
+			//shield1.setFill(Color.CYAN);
 			shield1.setX(0);
 			shield1.setY(0);
 			//gamePane.getChildren().addAll(shield1);
@@ -272,7 +276,7 @@ public class GameScreen {
 			//	gamePane.getChildren().removeAll(shield2);
 			//} catch (Exception e){}
 			//shield2 = new Rectangle(paneWH, 10);
-			shield2.setFill(Color.CYAN);
+			//shield2.setFill(Color.CYAN);
 			shield2.setX(0);
 			shield2.setY(690);
 			//gamePane.getChildren().addAll(shield2);
@@ -282,7 +286,7 @@ public class GameScreen {
 			//	gamePane.getChildren().removeAll(shield3);
 			//} catch (Exception e){}
 			//shield3 = new Rectangle(10, paneWH);
-			shield3.setFill(Color.CYAN);
+			//shield3.setFill(Color.CYAN);
 			shield3.setX(690);
 			shield3.setY(0);
 			//gamePane.getChildren().addAll(shield3);
@@ -292,7 +296,7 @@ public class GameScreen {
 			//	gamePane.getChildren().removeAll(shield4);
 			//} catch (Exception e){}
 			//shield4 = new Rectangle(paneWH, 10);
-			shield4.setFill(Color.CYAN);
+			//shield4.setFill(Color.CYAN);
 			shield4.setX(0);
 			shield4.setY(0);
 			//gamePane.getChildren().addAll(shield4);
