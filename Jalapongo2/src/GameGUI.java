@@ -153,22 +153,20 @@ public class GameGUI extends Application {
 
 
 		//Create checkboxes
-		CheckBox soundfxCB = new CheckBox("Sound Effects");
+
 		CheckBox musicCB = new CheckBox("Music");
 
 		//Create buttons
 		Button backBOS = new Button("Back");
 		backBOS.setFont(new Font(25));
 		//Add checkboxes to VBox
-		optionsVBox.getChildren().addAll(musicCB,soundfxCB);
+		optionsVBox.getChildren().addAll(musicCB);
 		optionsVBox.setAlignment(Pos.CENTER);
 		optionsVBox.setSpacing(50);
 
 		//Preset check box for music and sound effects
 		musicCB.setIndeterminate(false);
 		musicCB.setSelected(false);
-		soundfxCB.setIndeterminate(false);
-		soundfxCB.setSelected(true);
 
 
 		//Add button to VBox
