@@ -127,6 +127,10 @@ public class GameScreen {
 		shield2.setFill(Color.CYAN);
 		shield3.setFill(Color.CYAN);
 		shield4.setFill(Color.CYAN);
+		gamePane.getChildren().add(shield1);
+		gamePane.getChildren().add(shield2);
+		gamePane.getChildren().add(shield3);
+		gamePane.getChildren().add(shield4);
 
 		this.numberPlayers = numberPlayers;
 
