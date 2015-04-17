@@ -40,8 +40,10 @@ public class Host extends Thread{
 	private static int readyState3 = 0; // Creates an integer to indicate if the player is ready
 	private static int readyState4 = 0; // Creates an integer to indicate if the player is ready
 	private static String[] namesA = {null, null, null, null}; // Creates a private string array to hold all the names
+	private static int refresh = 1;
+	private static int update = 0;
 
-
+	
 	/**
 	 * @returns sum of players ready
 	 */
@@ -54,12 +56,12 @@ public class Host extends Thread{
 
 		startB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
 			public void handle(MouseEvent me) { // Creates a handler
-				if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){ // If all users are ready
-					GameGUI.gameStart(namesA[0], namesA[1], namesA[2], namesA[3]);// Start the game
-					output = "CHANGE"; // Change the output message to "CHANGE"
-				}else if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){ // If the host is the only person playing
-					GameGUI.gameStart(namesA[0], namesA[1], namesA[2], namesA[3]); // Start the game
-					output = "CHANGE"; // Change the output message to "CHANGE"
+				if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){ // If the host is the only person playing
+					GameGUI.gameStartSolo(namesA[0], namesA[1], namesA[2], namesA[3], getPlayerCount()); // Start the game
+					//output = "CHANGE" + ":" + GameGUI.globalG.getEverything(); // Change the output message to "CHANGE"
+				} else if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){ // If all users are ready
+					GameGUI.gameStart(namesA[0], namesA[1], namesA[2], namesA[3], getPlayerCount());// Start the game
+					output = "CHANGE" + ":" + GameGUI.globalG.getEverything(); // Change the output message to "CHANGE"
 				}
 				for (PrintWriter writer : writers){ // Adds writer to the types of writes
 					writer.println( output); // Sends a message to all players
@@ -301,13 +303,37 @@ public class Host extends Thread{
 						output = "4B"; // Change the output to "4B"
 						readyState4 = 0; // Change the ready state to 0
 					}
-
+					else if(input.startsWith("OK")){
+						if(refresh!=Integer.parseInt(GameGUI.AICB.getValue().toString()) - 1){
+							String test = input.substring(input.indexOf(":") + 1);
+							System.out.println(input);
+							switch(test){
+							case "2L": update = 1;
+							case "2R": update = -1;
+							default: update = 0;
+							}
+							//System.out.println(refresh + " " + Integer.parseInt(GameGUI.AICB.getValue().toString()));
+							refresh++;
+							output = null;
+						}
+						else{
+							GameScreen.paddle2Move = update;
+							GameGUI.updateGame();
+							Thread.sleep(50);
+							GameScreen.paddle2Move = 0;
+							refresh = 1;
+							output = "REFRESH" + ":" + GameGUI.globalG.getEverything();
+						}
+					}
 					for (PrintWriter writer : writers){ // Adds writer to the types of writes
 						writer.println( output); // Sends to all clients
 					}
 				}
 			} catch (IOException e){
 				System.out.println("ERROR 101: Error connecting with user"); // If there is an error connecting to the user display the error message 
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} finally { // If the user disconnects proceed
 				if (name != null){ // If the name is not blank
 					names.remove(name); // Remove the name from the list

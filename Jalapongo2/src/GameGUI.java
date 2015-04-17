@@ -43,7 +43,7 @@ import java.net.URL;
 public class GameGUI extends Application {
 
 	private static Stage globalS;
-	private static GameScreen globalG;
+	public static GameScreen globalG;
 	private static Scene sbScene;
 	private static int sceneWH = 700; // Int used to control screen size
 	public static Label nameLRQ; // Public label so the host class can edit the data
@@ -129,6 +129,7 @@ public class GameGUI extends Application {
 		Scene startMScene = new Scene(startSMBP, sceneWH,sceneWH); // Creates the scene
 
 		//*******************************************************************************	
+		
 		//Music
 		String song = "pongSong.mp3";
 
@@ -597,12 +598,27 @@ public class GameGUI extends Application {
 	 * @param name4 - String, transfers the players name
 	 * Starts the game
 	 */
-	public static void gameStart(String name1, String name2, String name3, String name4){
-		GameScreen game = new GameScreen(name1, name2, name3, name4); // Creates a new game object
+	public static void gameStart(String name1, String name2, String name3, String name4, int numberPlayers){
+		GameScreen game = new GameScreen(name1, name2, name3, name4, numberPlayers); // Creates a new game object
+		globalG = game;
+		globalS.setScene(game.getGameScene(globalS, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
+		//game.continuousUpdate();; // Calls the continuousUpdate method
+	}
+	
+	public static void gameStartSolo(String name1, String name2, String name3, String name4, int numberPlayers){
+		GameScreen game = new GameScreen(name1, name2, name3, name4, numberPlayers); // Creates a new game object
 		globalS.setScene(game.getGameScene(globalS, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 		game.continuousUpdate();; // Calls the continuousUpdate method
 	}
 	
+	public static void updateGame(){
+		globalG.Update();
+	}
+	
+	public static void clientUpdate(){
+		
+	}
+		
 	//method to transfer values to client class
 	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName, Button startB){
 		clientThread = new Thread(new Client(portNumber,IP,uName));

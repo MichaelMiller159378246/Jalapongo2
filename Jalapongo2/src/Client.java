@@ -19,13 +19,14 @@ import javafx.scene.paint.Color; // Imports Color
  */
 public class Client extends Thread{
 	private BufferedReader in; //Creates a BufferedReader to get info from the host
-	private PrintWriter out; // Creates a printWriter to send messages to the host
+	public static PrintWriter out; // Creates a printWriter to send messages to the host
 	private static int port; // Creates an global integer for the port
 	private static String ipAddress; // Creates a global string for the IP address
 	private static String name; // Creates a global string for the name
 	private int k = 0; // Creates a global integer to keep track of position
 	public String[] names = {null, null, null, null}; // Creates a global string array to keep track of names
-
+	public static String output = null;
+	
 	/*Construct client*/
 	public Client(int portN, String IP,String uName) {
 		port = portN; // Sets the global port number to the inputed number
@@ -272,7 +273,24 @@ public class Client extends Thread{
 				else if(line.startsWith("CHANGE")){ // If the host sent "Change"
 					Platform.runLater(new Runnable() { // Runs when it gets the chance
 						public void run() { //Runs
-							GameGUI.gameStart(names[0], names[1], names[2], names[3]); // Calls the gameStart method from GameGUI
+							String input =  line.substring(line.indexOf(":") + 1, line.length());
+							System.out.println(line.toString());
+							String[] ball = input.split(",");
+							System.out.println(ball[1]);
+							GameGUI.gameStart(names[0], names[1], names[2], names[3], k); // Calls the gameStart method from GameGUI
+							GameGUI.globalG.setEverything(Integer.parseInt(ball[0]), Integer.parseInt(ball[1]), Double.parseDouble(ball[2]), Double.parseDouble(ball[3]), Double.parseDouble(ball[4]), Double.parseDouble(ball[5]), Double.parseDouble(ball[6]), Double.parseDouble(ball[7]), Double.parseDouble(ball[8]), Double.parseDouble(ball[9]), Integer.parseInt(ball[10]), Integer.parseInt(ball[11]), Integer.parseInt(ball[12]), Integer.parseInt(ball[13]), Double.parseDouble(ball[14]), Double.parseDouble(ball[15]), Double.parseDouble(ball[16]), Double.parseDouble(ball[17]), Double.parseDouble(ball[18]), Double.parseDouble(ball[19]), Integer.parseInt(ball[20]), Double.parseDouble(ball[21]), Double.parseDouble(ball[22]), Integer.parseInt(ball[23]), Double.parseDouble(ball[24]), Double.parseDouble(ball[25]), Integer.parseInt(ball[26]), Double.parseDouble(ball[27]), Double.parseDouble(ball[28]), Integer.parseInt(ball[29]), Double.parseDouble(ball[30]), Double.parseDouble(ball[31]), Integer.parseInt(ball[32]), Double.parseDouble(ball[33]), Double.parseDouble(ball[34]), Double.parseDouble(ball[35]), Double.parseDouble(ball[36]), Double.parseDouble(ball[37]), Double.parseDouble(ball[38]), Double.parseDouble(ball[39]), Double.parseDouble(ball[40]), Double.parseDouble(ball[41]), Double.parseDouble(ball[42]), Double.parseDouble(ball[43]), Double.parseDouble(ball[44]));
+							out.println("OK");
+						}
+					});
+				}
+				else if(line.startsWith("REFRESH")){
+					Platform.runLater(new Runnable() { // Runs when it gets the chance
+						public void run() { //Runs
+					String input =  line.substring(line.indexOf(":") + 1, line.length());
+					//System.out.println(line.toString());
+					String[] ball = input.split(",");
+					GameGUI.globalG.setEverything(Integer.parseInt(ball[0]), Integer.parseInt(ball[1]), Double.parseDouble(ball[2]), Double.parseDouble(ball[3]), Double.parseDouble(ball[4]), Double.parseDouble(ball[5]), Double.parseDouble(ball[6]), Double.parseDouble(ball[7]), Double.parseDouble(ball[8]), Double.parseDouble(ball[9]), Integer.parseInt(ball[10]), Integer.parseInt(ball[11]), Integer.parseInt(ball[12]), Integer.parseInt(ball[13]), Double.parseDouble(ball[14]), Double.parseDouble(ball[15]), Double.parseDouble(ball[16]), Double.parseDouble(ball[17]), Double.parseDouble(ball[18]), Double.parseDouble(ball[19]), Integer.parseInt(ball[20]), Double.parseDouble(ball[21]), Double.parseDouble(ball[22]), Integer.parseInt(ball[23]), Double.parseDouble(ball[24]), Double.parseDouble(ball[25]), Integer.parseInt(ball[26]), Double.parseDouble(ball[27]), Double.parseDouble(ball[28]), Integer.parseInt(ball[29]), Double.parseDouble(ball[30]), Double.parseDouble(ball[31]), Integer.parseInt(ball[32]), Double.parseDouble(ball[33]), Double.parseDouble(ball[34]), Double.parseDouble(ball[35]), Double.parseDouble(ball[36]), Double.parseDouble(ball[37]), Double.parseDouble(ball[38]), Double.parseDouble(ball[39]), Double.parseDouble(ball[40]), Double.parseDouble(ball[41]), Double.parseDouble(ball[42]), Double.parseDouble(ball[43]), Double.parseDouble(ball[44]));
+					out.println("OK" + " :" + output);
 						}
 					});
 				}
