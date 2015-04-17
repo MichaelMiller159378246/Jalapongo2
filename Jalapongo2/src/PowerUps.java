@@ -35,11 +35,49 @@ public class PowerUps {
 			
 	private Random generator = new Random(System.currentTimeMillis());
 	
+	public void setPowerUp(){
+		powerUp.setX(generator.nextDouble()*500+100); //Upper Left Corner
+		powerUp.setY(generator.nextDouble()*500+100); //Upper Left Corner
+	}
+	
+	public void setType(int tempType){
+		type = tempType;
+		switch (type){
+		case 1:
+				powerUp.setFill(Color.RED); //flip
+				break;
+		case 2:
+				powerUp.setFill(Color.ORANGE); //addlives
+				break;
+		case 3:
+				powerUp.setFill(Color.PURPLE); //shield
+				break;
+		case 4:
+				powerUp.setFill(Color.PINK); //largePaddle
+				break;
+		case 5:
+				powerUp.setFill(Color.YELLOW); //smallPaddle
+				break;
+		case 6:
+				powerUp.setFill(Color.BLUE); //slow
+				break;
+		case 7:
+				powerUp.setFill(Color.GREEN); //fast
+				break;
+		case 8:
+				powerUp.setFill(Color.CYAN); //stall
+				break;
+		case 9:
+				powerUp.setFill(Color.BROWN); //multiball
+				break;
+	}
+	}
+	
 	public PowerUps(){
 		int flag = 1;
 		powerUp = new Rectangle(size, size);
-			powerUp.setX(generator.nextDouble()*500+100); //Upper Left Corner
-			powerUp.setY(generator.nextDouble()*500+100); //Upper Left Corner
+			powerUp.setX(9999); //Upper Left Corner
+			powerUp.setY(9999); //Upper Left Corner
 		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.shieldCB.isSelected()||GameGUI.bigCB.isSelected()||
 				GameGUI.smallCB.isSelected()||GameGUI.fastCB.isSelected()||GameGUI.slowCB.isSelected()||GameGUI.stallCB.isSelected()||
 				GameGUI.multiCB.isSelected()){	
