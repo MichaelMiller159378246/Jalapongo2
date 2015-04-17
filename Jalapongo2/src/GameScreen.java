@@ -892,7 +892,7 @@ public class GameScreen {
 		int ySpeed = mainBall.getYSpeed();
 		int speedTotal = Math.abs(xSpeed) + Math.abs(ySpeed);
 
-		if (speedTotal < 8) {
+		if (speedTotal < minBallSpeed) {
 			if (ySpeed < 0)
 				mainBall.setYSpeed(ySpeed - 1);
 			else
