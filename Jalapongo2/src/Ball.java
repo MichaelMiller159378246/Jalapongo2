@@ -36,6 +36,12 @@ public class Ball {
 		randomizeDirection();
 	}
 	
+	public Ball(){
+		ball = new Rectangle(size, size);
+		ball.setX(setStartLoc());
+		ball.setY(setStartLoc());
+	}
+	
 	public int getID(){
 		return this.id;
 	}
