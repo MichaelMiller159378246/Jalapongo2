@@ -124,7 +124,7 @@ public class GameScreen {
 		shield4.setX(-900);
 		shield4.setY(-900);
 		shield1.setFill(Color.CYAN);
-		shield2.setFill(Color.CYAN);// dkfja;sdj
+		shield2.setFill(Color.CYAN);
 		shield3.setFill(Color.CYAN);
 		shield4.setFill(Color.CYAN);
 		gamePane.getChildren().add(shield1);
