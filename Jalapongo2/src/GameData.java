@@ -14,22 +14,32 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
  
-public class GameData extends Application {
+public class GameData {
  
+	private String player1Time,
+				   player2Time,
+				   player3Time,
+				   player4Time;
+	
     private TableView<PlayerData> table = new TableView<PlayerData>();
-    private final ObservableList<PlayerData> data =
-        FXCollections.observableArrayList(
-            new PlayerData("Player 1 ", "1:23", "I made up those times"),
-            new PlayerData("Player 2", "2:47", "I made up those times"),
-            new PlayerData("Player 3", "0:32", "I made up those times"),
-            new PlayerData("Player 4", "3:44", "I made up those times")
-        );
-   
-    public static void main(String[] args) {
-        launch(args);
+    private final ObservableList<PlayerData> data;
+    
+    public GameData(GameScreen gameScreen, Stage primaryStage) {
+    	player1Time = gameScreen.getP1Time();
+    	player2Time = gameScreen.getP2Time();
+    	player3Time = gameScreen.getP3Time();
+    	player4Time = gameScreen.getP4Time();
+
+    	data = FXCollections.observableArrayList(
+    	                new PlayerData("Player 1", player1Time, "We can add a stat here"),
+    	                new PlayerData("Player 2", player2Time, "All we have to do is"),
+    	                new PlayerData("Player 3", player3Time, "Create another stat"),
+    	                new PlayerData("Player 4", player4Time, "And then make a getter")
+    	            );
+    	start(primaryStage);
     }
  
-    @Override
+    //@Override
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
         stage.setTitle("Table View Sample");

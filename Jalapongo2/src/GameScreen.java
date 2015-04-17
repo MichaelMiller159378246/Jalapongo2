@@ -1191,6 +1191,7 @@ public class GameScreen {
 			int timeSeconds = secondsElapsed % 60; //Game time seconds
 			System.out.printf("Player %d wins!%n",checkWin());
 			primaryStage.setScene(summaryScene);
+			new GameData(this, primaryStage);
 			running = false;
 
 			//Code to add game stats to summary screen
