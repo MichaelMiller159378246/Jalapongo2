@@ -2,6 +2,7 @@
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections; // Imports FXCollections
@@ -29,6 +30,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font; // Imports Font
 import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
+import javafx.stage.WindowEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.TableView;
@@ -457,6 +459,17 @@ public class GameGUI extends Application {
 		Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH); // Creates the scene
 
 	
+		//Causes the Red exit button to terminate the program
+		//This Allows the port to close
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+
+
 		//*******************************************************************************
 		//Events
 		//Start Menu Scene Events
