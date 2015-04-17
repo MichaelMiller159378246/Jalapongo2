@@ -460,9 +460,11 @@ public class GameScreen {
 			break;
 		case 6: 
 			PowerUps.subSpeed(powerUp.getTriggerBall());
+			setMinBallSpeed(-1);
 			break;
 		case 7: 
 			PowerUps.addSpeed(powerUp.getTriggerBall());
+			setMinBallSpeed(1);
 			break;
 		case 8: 
 			PowerUps.stall(powerUp.getTriggerBall());
@@ -875,6 +877,16 @@ public class GameScreen {
 	 * @author Jonathan Hemingway
 	 * 
 	 */
+	
+	private static int minBallSpeed = 10;
+	
+	public static void setMinBallSpeed(int signedInt) {
+		if (signedInt < 0)
+			minBallSpeed -= 2;
+		else
+			minBallSpeed += 2;
+	}
+	
 	private void checkBallSpeed() {
 		int xSpeed = mainBall.getXSpeed();
 		int ySpeed = mainBall.getYSpeed();
