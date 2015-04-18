@@ -1239,6 +1239,7 @@ public class GameScreen {
 				try{checkReverse(ball6);}catch(Exception e){}
 				try{checkReverse(ball7);}catch(Exception e){}  
 				try{checkCollisionWithPowerUp();}catch(Exception e){}
+				try{checkCollisionWithShields();}catch(Exception e){}
 				//TODO variable AI
 				//player2.moveAI(mainBall);
 				if(numberPlayers < 2){
