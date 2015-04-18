@@ -460,9 +460,11 @@ public class GameScreen {
 			break;
 		case 6: 
 			PowerUps.subSpeed(powerUp.getTriggerBall());
+			setMinBallSpeed(-1);
 			break;
 		case 7: 
 			PowerUps.addSpeed(powerUp.getTriggerBall());
+			setMinBallSpeed(1);
 			break;
 		case 8: 
 			PowerUps.stall(powerUp.getTriggerBall());
@@ -875,12 +877,22 @@ public class GameScreen {
 	 * @author Jonathan Hemingway
 	 * 
 	 */
+	
+	private static int minBallSpeed = 10;
+	
+	public static void setMinBallSpeed(int signedInt) {
+		if (signedInt < 0)
+			minBallSpeed -= 2;
+		else
+			minBallSpeed += 2;
+	}
+	
 	private void checkBallSpeed() {
 		int xSpeed = mainBall.getXSpeed();
 		int ySpeed = mainBall.getYSpeed();
 		int speedTotal = Math.abs(xSpeed) + Math.abs(ySpeed);
 
-		if (speedTotal < 8) {
+		if (speedTotal < minBallSpeed) {
 			if (ySpeed < 0)
 				mainBall.setYSpeed(ySpeed - 1);
 			else
@@ -1179,6 +1191,7 @@ public class GameScreen {
 			int timeSeconds = secondsElapsed % 60; //Game time seconds
 			System.out.printf("Player %d wins!%n",checkWin());
 			primaryStage.setScene(summaryScene);
+			new GameData(this, primaryStage);
 			running = false;
 
 			//Code to add game stats to summary screen

@@ -2,6 +2,7 @@
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections; // Imports FXCollections
@@ -29,6 +30,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font; // Imports Font
 import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
+import javafx.stage.WindowEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.TableView;
@@ -116,7 +118,7 @@ public class GameGUI extends Application {
 		//Text
 		Text title = new Text();
 		title.setFont(new Font(50));
-		title.setText("JalapoÃ±go");
+		title.setText("Jalapoñgo");
 		title.setFill(Color.GREEN);
 		
 		
@@ -151,22 +153,20 @@ public class GameGUI extends Application {
 
 
 		//Create checkboxes
-		CheckBox soundfxCB = new CheckBox("Sound Effects");
+
 		CheckBox musicCB = new CheckBox("Music");
 
 		//Create buttons
 		Button backBOS = new Button("Back");
 		backBOS.setFont(new Font(25));
 		//Add checkboxes to VBox
-		optionsVBox.getChildren().addAll(musicCB,soundfxCB);
+		optionsVBox.getChildren().addAll(musicCB);
 		optionsVBox.setAlignment(Pos.CENTER);
 		optionsVBox.setSpacing(50);
 
 		//Preset check box for music and sound effects
 		musicCB.setIndeterminate(false);
 		musicCB.setSelected(false);
-		soundfxCB.setIndeterminate(false);
-		soundfxCB.setSelected(true);
 
 
 		//Add button to VBox
@@ -457,6 +457,17 @@ public class GameGUI extends Application {
 		Scene readyQS = new Scene(readyQBP, sceneWH,sceneWH); // Creates the scene
 
 	
+		//Causes the Red exit button to terminate the program
+		//This Allows the port to close
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+
+
 		//*******************************************************************************
 		//Events
 		//Start Menu Scene Events
