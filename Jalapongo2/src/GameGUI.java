@@ -256,6 +256,13 @@ public class GameGUI extends Application {
 						+ "If controls are reversed you must use the left arrow key to move right, and the right arrow key to move left.\n\n"
 						+ "Reversed controls will remain until the power-up is disabled\n\n");
 				
+				Text powerupsTitleText = new Text("Power-ups:\n");
+				powerupsTitleText.setFont(new Font(20));
+				powerupsTitleText.setUnderline(true);
+				
+				Text powerupsInfoText = new Text("A power-up can be identified by it's color.\n"
+						+ "Multi-ball:");
+				
 				//add text for how to play help screen to VBox
 				howToPlayHMVB.getChildren().addAll(howToPlayTitleText,howToPlayInfoText,controlsTitleText,controlsInfoText,backHTPHMB);
 				howToPlayHMVB.setAlignment(Pos.CENTER);
