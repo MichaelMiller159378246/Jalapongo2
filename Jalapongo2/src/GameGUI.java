@@ -118,7 +118,7 @@ public class GameGUI extends Application {
 		//Text
 		Text title = new Text();
 		title.setFont(new Font(50));
-		title.setText("Jalapo�go");
+		title.setText("Jalapo�go");
 		title.setFill(Color.GREEN);
 		
 		
@@ -207,36 +207,119 @@ public class GameGUI extends Application {
 
 		//*******************************************************************************		
 		//Help Menu
-		//create GUI components
-		BorderPane helpBP = new BorderPane();
-		BorderPane htpBP = new BorderPane();
-		VBox helpVB = new VBox();//to hold first help screen buttons
-		Scene helpScene = new Scene(helpBP,sceneWH,sceneWH);
-		Scene howToPlayScene = new Scene(htpBP,sceneWH,sceneWH);
-		
-		//create buttons
-		Button howToPlayBHM = new Button("How to Play");
-		Button rulesBHM = new Button("Rules of the Game");
-		Button controlsBHM = new Button("Controls");
-		Button hostBHM = new Button("Host a game");
-		Button backBHM = new Button("Back");
-		Button joinBHM = new Button("Join a game");
-		
-		//Text howToPlayTitleText = new Text("How To Play:\n");
-		/*Text howToPlayInfoText = new Text("The objective of Jalapoñgo is to be the last player with lives remaining.\n"
-				+ "Every player begins the game with five lives."
-				+ "To avoid losing lives you must navigate your paddle so that the ball does not hit the wall behind "
-				+ "your paddle.");
-		//Text controlsTitleText = new Text("    Controls:");
-		//Text controlsInfoText = new Text("    To control your paddle use the left and right arrow keys.\n"
-				+ "Controls may be reversed if you hit a reverse controls power-up.\n"
-				+ "If controls are reversed you must use the left arrow key to move right, and the right arrow key to move left until the power-up is disabled");
-		*/
-		//add components to initial help screen
-		helpVB.getChildren().addAll(howToPlayBHM,rulesBHM,hostBHM,joinBHM,backBHM);
-		helpVB.setAlignment(Pos.CENTER);
-		helpVB.setSpacing(50);
-		helpBP.setCenter(helpVB);
+		//create GUI objects
+				BorderPane bpHM = new BorderPane();
+				BorderPane bpHowToPlayHM = new BorderPane();
+				BorderPane bpJoinGameHM = new BorderPane();
+				BorderPane bpHostGameHM = new BorderPane();
+				
+				VBox initialHMVB = new VBox();
+				VBox howToPlayHMVB = new VBox();
+				VBox joinGameHMVB = new VBox();
+				VBox hostGameHMVB = new VBox();
+				
+				//create buttons for initial help screen
+				Button howToPlayHMB = new Button("How to Play");
+				Button joinGameHMB = new Button("Join a Game");
+				Button hostGameHMB = new Button("Host a Game");
+				Button backIHMB = new Button("Back");
+				Button backHTPHMB = new Button("Back");
+				Button backJGHMB = new Button("Back");
+				Button backHGHMB = new Button("Back");
+				
+				//add buttons for initial help screen to VBox
+				initialHMVB.getChildren().addAll(howToPlayHMB,joinGameHMB,hostGameHMB,backIHMB);
+				initialHMVB.setAlignment(Pos.CENTER);
+				initialHMVB.setSpacing(30);
+				
+				//add VBox to initial border pane
+				bpHM.setCenter(initialHMVB);
+				
+				//Make text about how to play
+				Text howToPlayTitleText = new Text("How To Play:\n");
+				howToPlayTitleText.setFont(new Font(30));
+				howToPlayTitleText.setUnderline(true);
+				
+				Text howToPlayInfoText = new Text("The objective of Jalapoñgo is to be the last player with lives remaining.\n\n"
+						+ "Every player begins the game with five lives.\n\n"
+						+ "To avoid losing lives you must navigate your paddle so that the ball does not hit the wall behind "
+						+ "your paddle.\n\n"
+						+ "When a player reaches 0 lives, their paddle will take up their side of the screen "
+						+ "and they will be out.\n\n");
+				
+				Text controlsTitleText = new Text("Controls:\n");
+				controlsTitleText.setFont(new Font(20));
+				controlsTitleText.setUnderline(true);
+				
+				Text controlsInfoText = new Text("To control your paddle use the left and right arrow keys.\n\n"
+						+ "Controls may be reversed if you hit a reverse controls power-up.\n\n"
+						+ "If controls are reversed you must use the left arrow key to move right, and the right arrow key to move left.\n\n"
+						+ "Reversed controls will remain until the power-up is disabled\n\n");
+				
+				//add text for how to play help screen to VBox
+				howToPlayHMVB.getChildren().addAll(howToPlayTitleText,howToPlayInfoText,controlsTitleText,controlsInfoText,backHTPHMB);
+				howToPlayHMVB.setAlignment(Pos.CENTER);
+				
+				//add VBox to how to play border pane
+				bpHowToPlayHM.setCenter(howToPlayHMVB);
+				
+				//Make text about how to join a game
+				Text joinGameTitleText = new Text("Join a Game:\n");
+				joinGameTitleText.setFont(new Font(30));
+				joinGameTitleText.setUnderline(true);
+				
+				Text joinGameInfoText = new Text("To join a game selected by another user requires the port number"
+						+ "and the IP address of the host's server.\n\n"
+						+ "Once these have been obtained from the host enter the values into their respective fields.\n\n"
+						+ "Enter a username of your choice (up to 10 characters).\n\n"
+						+ "Clicking on join game will take you to the ready screen.\n\n"
+						+ "There you will see a list of the users connected to the server.\n\n"
+						+ "Toggle the checkbox next to the username you entered when you are ready to play.\n\n"
+						+ "The indicator light next to your username will change colors.\n\n"
+						+ "The host will be notified when all players are ready to begin.\n\n"
+						+ "The game will start when the host selects start game.\n\n"
+						+ "Exiting the screen at any time during this process will disconnect you from the server.\n\n");
+				
+				//add items to join game VBox
+				joinGameHMVB.getChildren().addAll(joinGameTitleText,joinGameInfoText,backJGHMB);
+				joinGameHMVB.setAlignment(Pos.CENTER);
+				
+				//add join game VBox to border pane
+				bpJoinGameHM.setCenter(joinGameHMVB);
+				
+				//Make text about how to host a game
+				Text hostGameTitleText = new Text("Host a Game:\n");
+				hostGameTitleText.setFont(new Font(30));
+				hostGameTitleText.setUnderline(true);
+				
+				Text hostGameInfoText = new Text("To host a game first enter your desired username (up to 10 characters).\n\n"
+						+ "Next either select or randomize a 4 digit port number.\n\n"
+						+ "Make note of the port number as this is how players will connect to your game.\n\n"
+						+ "Select the desired number of AI's (computer players)\n\n"
+						+ "Note: if you want to play a single player game of Jalapongo select 3 AI's.\n\n"
+						+ "Otherwise, select the number of AI's based on the number of players expected to join your server.\n\n");
+				
+				Text hostOptionsTitleText = new Text("Host Options:\n");
+				hostOptionsTitleText.setFont(new Font(20));
+				hostOptionsTitleText.setUnderline(true);
+				
+				Text hostOptionsInfoText = new Text("As a host you can adjust game parameters in the options menu\n\n"
+						+ "Changing the number of lives will adjust how many lives each player starts with.\n\n"
+						+ "Toggling a power-up on or off will determine whether that power-up is generated.\n\n");
+				
+				//add items to host game VBox
+				hostGameHMVB.getChildren().addAll(hostGameTitleText,hostGameInfoText,hostOptionsTitleText,hostOptionsInfoText,backHGHMB);
+				hostGameHMVB.setAlignment(Pos.CENTER);
+				
+				//add host game VBox to border pane
+				bpHostGameHM.setCenter(hostGameHMVB);
+				
+				//create scenes
+				Scene sceneIHM = new Scene(bpHM, sceneWH,sceneWH);
+				Scene sceneHTPHM = new Scene(bpHowToPlayHM,sceneWH,sceneWH);
+				Scene sceneJGHM = new Scene(bpJoinGameHM,sceneWH,sceneWH);
+				Scene sceneHGHM = new Scene(bpHostGameHM,sceneWH,sceneWH);
+
 		
 		//*******************************************************************************	
 		
@@ -494,8 +577,16 @@ public class GameGUI extends Application {
 		hostBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses host the scene changes to the host menu scene 
 		playBCS.setOnMouseClicked(e -> primaryStage.setScene(jsScene)); // If the user presses join the scene changes to the join menu scene 
 		backBCS.setOnMouseClicked(e -> primaryStage.setScene(startMScene)); // If the user presses back the scene changes to the start menu scene 
-		helpBCS.setOnMouseClicked(e -> primaryStage.setScene(helpScene));//If the user press help the screen changes to the help menu scene
+		helpBCS.setOnMouseClicked(e -> primaryStage.setScene(sceneIHM));//If the user press help the screen changes to the help menu scene
+		
 		//Help Menu Scene Events
+		backIHMB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); //on press takes user back to choice screen
+		howToPlayHMB.setOnMouseClicked(e -> primaryStage.setScene(sceneHTPHM));//on press takes user to how to play help menu
+		backHTPHMB.setOnMouseClicked(e -> primaryStage.setScene(sceneIHM));//on press takes user back to initial help menu
+		joinGameHMB.setOnMouseClicked(e -> primaryStage.setScene(sceneJGHM));//on press takes user to join game help menu
+		backJGHMB.setOnMouseClicked(e -> primaryStage.setScene(sceneIHM));//on press takes user back to initial help menu
+		hostGameHMB.setOnMouseClicked(e -> primaryStage.setScene(sceneHGHM));//on press takes user to host game help menu
+		backHGHMB.setOnMouseClicked(e -> primaryStage.setScene(sceneIHM));//on press takes user back to initial help menu
 		
 		//Join Menu Scene Events
 		backJS.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses back the scene changes to the choice menu scene 
@@ -538,7 +629,7 @@ public class GameGUI extends Application {
 				);*/
 		//*******************************************************************************
 		//Scoreboard GUI
-		//TODO add text fields for each player, make column width fixed, center button,
+		
 		//construct GUI objects
 		BorderPane sbBP = new BorderPane();
 		final VBox vbTableSB = new VBox();
