@@ -25,7 +25,16 @@ public class GameData {
 				   player2Name,
 				   player3Name,
 				   player4Name;
-				   
+	
+	private String firstPlaceTime,
+				   firstPlaceName,
+				   secondPlaceTime,
+				   secondPlaceName,
+				   thirdPlaceTime,
+				   thirdPlaceName,
+				   fourthPlaceTime,
+				   fourthPlaceName;
+	
     private TableView<PlayerData> table = new TableView<PlayerData>();
     private final ObservableList<PlayerData> data;
     
@@ -39,6 +48,25 @@ public class GameData {
     	player4Time = gameScreen.getP4Time();
     	player4Name = gameScreen.getP4Name();
     	
+    	//determine first place data
+    	int winner = gameScreen.checkWin();
+    	
+    	if(winner == 4){
+    		firstPlaceName = player4Name;
+    		firstPlaceTime = "Winner";
+    	}
+    	else if(winner == 3){
+    		firstPlaceName = player3Name;
+    		firstPlaceTime = "Winner";
+    	}
+    	else if(winner == 2){
+    		firstPlaceName = player2Name;
+    		firstPlaceTime = "Winner";
+    	}
+    	else if (winner == 1){
+    		firstPlaceName = player1Name;
+    		firstPlaceTime = "Winner";
+    	}
     	
     	data = FXCollections.observableArrayList(
     	                new PlayerData(player1Name, player1Time, "We can add a stat here"),
