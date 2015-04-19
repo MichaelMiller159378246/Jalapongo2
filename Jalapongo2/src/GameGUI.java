@@ -260,11 +260,21 @@ public class GameGUI extends Application {
 				powerupsTitleText.setFont(new Font(20));
 				powerupsTitleText.setUnderline(true);
 				
-				Text powerupsInfoText = new Text("A power-up can be identified by it's color.\n"
-						+ "Multi-ball:");
+				Text powerupsInfoText = new Text("A power-up can be identified by its color.\n"
+						+ "Power-ups are applied to the player who hit the ball last before collision with the power-up.\n"
+						+ "Flip: changes controls - color = RED\n"
+						+ "Add Lives: adds a live to the player - color = ORANGE\n"
+						+ "Shield: adds a shield behind player - color = PURPLE\n"
+						+ "Large Paddle: makes paddle larger - color =  PINK\n"
+						+ "Small Paddle makes paddle smaller - color = YELLOW\n: "
+						+ "Slow Ball: makes ball move slower - color = BLUE\n"
+						+ "Fast Ball: makes ball move faster - color = GREEN\n"
+						+ "Stall: prevents paddle movement for a certain amount of time - color = CYAN \n"
+						+ "Multi-Ball: adds a random number of balls to game - color = BROWN \n");
+				
 				
 				//add text for how to play help screen to VBox
-				howToPlayHMVB.getChildren().addAll(howToPlayTitleText,howToPlayInfoText,controlsTitleText,controlsInfoText,backHTPHMB);
+				howToPlayHMVB.getChildren().addAll(howToPlayTitleText,howToPlayInfoText,controlsTitleText,controlsInfoText,powerupsTitleText,powerupsInfoText,backHTPHMB);
 				howToPlayHMVB.setAlignment(Pos.CENTER);
 				
 				//add VBox to how to play border pane
