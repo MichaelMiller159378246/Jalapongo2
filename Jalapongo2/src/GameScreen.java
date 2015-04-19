@@ -1224,6 +1224,26 @@ public class GameScreen {
 	public String getP4Time() {
 		return player1Time;
 	}
+	
+	//player 1 name
+	public String getP1Name(){
+		return player1Name;
+	}
+	
+	//player 2 name
+	public String getP2Name(){
+		return player2Name;
+	}
+		
+	//player 3 name
+	public String getP3Name(){
+		return player3Name;
+	}	
+	
+	//player 4 name
+	public String getP4Name(){
+		return player4Name;
+	}	
 
 	public void Update() {
 		Platform.runLater(new Runnable() { // Runs when it gets the chance

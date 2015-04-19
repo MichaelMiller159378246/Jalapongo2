@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
  
 public class GameData {
@@ -19,22 +20,31 @@ public class GameData {
 	private String player1Time,
 				   player2Time,
 				   player3Time,
-				   player4Time;
-	
+				   player4Time, 
+				   player1Name,
+				   player2Name,
+				   player3Name,
+				   player4Name;
+				   
     private TableView<PlayerData> table = new TableView<PlayerData>();
     private final ObservableList<PlayerData> data;
     
     public GameData(GameScreen gameScreen, Stage primaryStage) {
     	player1Time = gameScreen.getP1Time();
+    	player1Name = gameScreen.getP1Name();
     	player2Time = gameScreen.getP2Time();
+    	player2Name = gameScreen.getP2Name();
     	player3Time = gameScreen.getP3Time();
+    	player3Name = gameScreen.getP3Name();
     	player4Time = gameScreen.getP4Time();
-
+    	player4Name = gameScreen.getP4Name();
+    	
+    	
     	data = FXCollections.observableArrayList(
-    	                new PlayerData("Player 1", player1Time, "We can add a stat here"),
-    	                new PlayerData("Player 2", player2Time, "All we have to do is"),
-    	                new PlayerData("Player 3", player3Time, "Create another stat"),
-    	                new PlayerData("Player 4", player4Time, "And then make a getter")
+    	                new PlayerData(player1Name, player1Time, "We can add a stat here"),
+    	                new PlayerData(player2Name, player2Time, "All we have to do is"),
+    	                new PlayerData(player3Name, player3Time, "Create another stat"),
+    	                new PlayerData(player4Name, player4Time, "And then make a getter")
     	            );
     	start(primaryStage);
     }
@@ -46,9 +56,10 @@ public class GameData {
         stage.setWidth(450);
         stage.setHeight(500);
  
-        final Label label = new Label("Address Book");
+        final Label label = new Label("Scoreboard");
         label.setFont(new Font("Arial", 20));
- 
+        label.setTextAlignment(TextAlignment.CENTER);
+        
         table.setEditable(true);
  
         TableColumn playerCol = new TableColumn("Player");
