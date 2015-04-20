@@ -634,6 +634,7 @@ public class GameScreen {
 			//System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
 				//Thread.sleep(200);
@@ -651,6 +652,7 @@ public class GameScreen {
 			//System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
 				//Thread.sleep(200);
@@ -668,6 +670,7 @@ public class GameScreen {
 			//System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
 				//Thread.sleep(200);
@@ -685,6 +688,7 @@ public class GameScreen {
 			//System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
 				//Thread.sleep(200);
