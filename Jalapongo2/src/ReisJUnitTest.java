@@ -31,8 +31,8 @@ public class ReisJUnitTest {
 	}
 
 	@Test
-	//test user story 2
+	//test user story 
 	public void test1() {
-		assertTrue(GameGUI.shieldCB.isSelected());
+		
 	}
 }
