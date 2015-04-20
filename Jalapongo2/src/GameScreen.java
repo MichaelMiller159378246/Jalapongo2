@@ -638,8 +638,8 @@ public class GameScreen {
 				ball.restart();
 				Thread.sleep(200);
 			}else{
-				ball.setXLoc(-999);
-				ball.setYLoc(-999);
+				ball.setXLoc(345);
+				ball.setYLoc(345);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
 				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
@@ -655,8 +655,8 @@ public class GameScreen {
 				ball.restart();
 				Thread.sleep(200);
 			}else{
-				ball.setXLoc(-999);
-				ball.setYLoc(-999);
+				ball.setXLoc(345);
+				ball.setYLoc(345);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
 				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
@@ -672,8 +672,8 @@ public class GameScreen {
 				ball.restart();
 				Thread.sleep(200);
 			}else{
-				ball.setXLoc(-999);
-				ball.setYLoc(-999);
+				ball.setXLoc(345);
+				ball.setYLoc(345);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
 				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
@@ -689,8 +689,8 @@ public class GameScreen {
 				ball.restart();
 				Thread.sleep(200);
 			}else{
-				ball.setXLoc(-999);
-				ball.setYLoc(-999);
+				ball.setXLoc(345);
+				ball.setYLoc(345);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
 				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
