@@ -32,7 +32,7 @@ public class ReisJUnitTest {
 
 	@Test
 	//test user story 
-	public void test1() {
+	public void test1(){
 		
 	}
 }
