@@ -878,13 +878,13 @@ public class GameScreen {
 	 * 
 	 */
 	
-	private static int minBallSpeed = 10;
+	private static int minBallSpeed = 11;
 	
 	public static void setMinBallSpeed(int signedInt) {
 		if (signedInt < 0)
-			minBallSpeed -= 2;
+			minBallSpeed -= 1;
 		else
-			minBallSpeed += 2;
+			minBallSpeed += 3;
 	}
 	
 	private void checkBallSpeed() {

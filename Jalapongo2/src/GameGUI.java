@@ -132,7 +132,7 @@ public class GameGUI extends Application {
 		//Text
 		Text title = new Text();
 		title.setFont(new Font(50));
-		title.setText("Jalapo�go");
+		title.setText("Jalapo\u00F1go");
 		title.setFill(Color.GREEN);
 		
 		
@@ -201,33 +201,23 @@ public class GameGUI extends Application {
 		//construct GUI objects
 		BorderPane choiceBP = new BorderPane();
 		VBox choiceVBox = new VBox();
-		HBox choiceHBox = new HBox();
 		Scene choiceScene = new Scene(choiceBP, sceneWH,sceneWH);
 
 		//Buttons
 		Button playBCS = new Button("Join");
-		playBCS.setMaxWidth(300);
-		playBCS.setFont(new Font(24));
 		Button hostBCS = new Button("Host");
-		hostBCS.setMaxWidth(300);
-		hostBCS.setFont(new Font(24));
 		Button backBCS = new Button("Back");
-		backBCS.setMaxWidth(300);
-		backBCS.setFont(new Font(24));
 		Button helpBCS = new Button("Help");
-		helpBCS.setMaxWidth(300);
-		helpBCS.setFont(new Font(24));
 		
 		//Set Join/Host buttons in center of VBox
-		choiceVBox.getChildren().addAll(playBCS, hostBCS,helpBCS,backBCS);
+		choiceVBox.getChildren().addAll(playBCS, hostBCS,helpBCS);
 		choiceVBox.setSpacing(50);
 		choiceVBox.setAlignment(Pos.CENTER);
-		
-		
-		
+
 		//Add VBox to BorderPane
 		choiceBP.setCenter(choiceVBox);
-		
+		//Put Back button at bottom left
+		choiceBP.setBottom(backBCS);
 
 		//*******************************************************************************		
 		//Help Menu

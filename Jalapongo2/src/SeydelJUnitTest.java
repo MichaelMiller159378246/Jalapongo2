@@ -30,7 +30,7 @@ public class SeydelJUnitTest {
 		System.out.println("tearDown:Test complete\n\n");
 	}
 
-	@Test
+/*	@Test
 	//	Test case 3 (host choose # of AIs)
 	public void test() {
 		GameGUI game = new GameGUI();
@@ -52,6 +52,6 @@ public class SeydelJUnitTest {
 		game.readyCB1.fire();
 		assertTrue(readyCB1.getFill()== LIME);
 				
-	}
+	}*/
 		
 }
