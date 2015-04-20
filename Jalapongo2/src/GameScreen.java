@@ -154,8 +154,8 @@ public class GameScreen {
 			name4 = "AI";
 		}
 
-		player1Name = name1;
-		player2Name = name2;
+		player1Name = name2;
+		player2Name = name1;
 		player3Name = name3;
 		player4Name = name4;
 
