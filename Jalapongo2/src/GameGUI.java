@@ -94,6 +94,10 @@ public class GameGUI extends Application {
 	
 	private Thread clientThread;
 	
+	/**
+	 * @author Nick, Dalton, Mike, Jon, Leslie
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
 
