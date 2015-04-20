@@ -459,12 +459,12 @@ public class GameScreen {
 			PowerUps.smallPaddle(powerUp.getTriggerBall());
 			break;
 		case 6: 
-			PowerUps.subSpeed(powerUp.getTriggerBall());
 			setMinBallSpeed(-1);
+			PowerUps.subSpeed(powerUp.getTriggerBall());
 			break;
 		case 7: 
-			PowerUps.addSpeed(powerUp.getTriggerBall());
 			setMinBallSpeed(1);
+			PowerUps.addSpeed(powerUp.getTriggerBall());
 			break;
 		case 8: 
 			PowerUps.stall(powerUp.getTriggerBall());
@@ -636,7 +636,7 @@ public class GameScreen {
 			ball.setPaddleLastHit(null);
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -653,7 +653,7 @@ public class GameScreen {
 			ball.setPaddleLastHit(null);
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -670,7 +670,7 @@ public class GameScreen {
 			ball.setPaddleLastHit(null);
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -687,7 +687,7 @@ public class GameScreen {
 			ball.setPaddleLastHit(null);
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
