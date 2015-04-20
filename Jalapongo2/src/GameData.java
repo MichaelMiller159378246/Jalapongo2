@@ -53,19 +53,19 @@ public class GameData {
     	
     	if(winner == 4){
     		firstPlaceName = player4Name;
-    		firstPlaceTime = "Winner";
+    		player4Time = "Winner";
     	}
     	else if(winner == 3){
     		firstPlaceName = player3Name;
-    		firstPlaceTime = "Winner";
+    		player3Time = "Winner";
     	}
     	else if(winner == 2){
     		firstPlaceName = player2Name;
-    		firstPlaceTime = "Winner";
+    		player2Time = "Winner";
     	}
     	else if (winner == 1){
     		firstPlaceName = player1Name;
-    		firstPlaceTime = "Winner";
+    		player1Time = "Winner";
     	}
     	
     	data = FXCollections.observableArrayList(
