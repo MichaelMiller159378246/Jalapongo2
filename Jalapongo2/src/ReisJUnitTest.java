@@ -12,7 +12,7 @@ public class ReisJUnitTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.out.println("Beginning tests:\n");
+		System.out.println("Beginning tests");
 	}
 
 	@AfterClass
@@ -22,16 +22,17 @@ public class ReisJUnitTest {
 
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("Starting a test:");
+		System.out.println("Starting a test");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("Ending a test:");
+		System.out.println("Ending a test");
 	}
 
 	@Test
-	public void test() {
-		
+	//test user story 2
+	public void test1() {
+		assertTrue(GameGUI.shieldCB.isSelected());
 	}
 }
