@@ -1,4 +1,6 @@
  // Imports
+import static org.junit.Assert.*;
+
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
@@ -40,6 +42,12 @@ import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.scene.text.TextAlignment;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import java.net.URL;
 
 public class GameGUI extends Application {
@@ -74,6 +82,7 @@ public class GameGUI extends Application {
 	public static CheckBox flipCB;
 	public static CheckBox stallCB;
 	public static CheckBox multiCB;
+	public static CheckBox musicCB;
 
 	public static ComboBox<Integer> livesCoB;
 	public static ComboBox AICB = new ComboBox<Integer>();
@@ -154,7 +163,7 @@ public class GameGUI extends Application {
 
 		//Create checkboxes
 
-		CheckBox musicCB = new CheckBox("Music");
+		musicCB = new CheckBox("Music");
 
 		//Create buttons
 		Button backBOS = new Button("Back");
@@ -583,10 +592,10 @@ public class GameGUI extends Application {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if (musicCB.isSelected()==true)
-					songPlayer.play();
+					songPlayer.play(); 
 				else
 					songPlayer.stop();	
-			}
+			}			
 		});
 		
 
