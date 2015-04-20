@@ -1222,7 +1222,7 @@ public class GameScreen {
 
 	//player 4 time
 	public String getP4Time() {
-		return player1Time;
+		return player4Time;
 	}
 	
 	//player 1 name
