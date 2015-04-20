@@ -41,4 +41,17 @@ public class SeydelJUnitTest {
 		assertEquals(AICB.getValue(), 3);
 				
 	}
+	
+	@Test
+	//	Test case 6 (host choose # of AIs)
+	public void test() {
+		GameGUI game = new GameGUI();
+		game.playBSM.fire();
+		game.hostBCS.fire();
+		game.startHostingHO.fire();
+		game.readyCB1.fire();
+		assertTrue(readyCB1.getFill()== LIME);
+				
+	}
+		
 }
