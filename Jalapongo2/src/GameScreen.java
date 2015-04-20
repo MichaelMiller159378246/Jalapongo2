@@ -165,25 +165,25 @@ public class GameScreen {
 
 
 		//Add Lives Text
-		player1L.setX(0); 			player1L.setY(paneWH/2);
+		player1L.setX(-10); 			player1L.setY(paneWH/2);
 		player1L.setRotate(90);
 		player1L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player1L.setFill(Color.BLUE);
 		player1L.setId("fancytext");
 
 
-		player2L.setX(paneWH/2); 	player2L.setY(paneWH-50);
+		player2L.setX(paneWH/2-75); 	player2L.setY(paneWH-50);
 		player2L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player2L.setFill(Color.GREEN);
 		player2L.setId("fancytext");
 
-		player3L.setX(paneWH-100); 	player3L.setY(paneWH/2);
+		player3L.setX(paneWH-110); 	player3L.setY(paneWH/2);
 		player3L.setRotate(270);
 		player3L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player3L.setFill(Color.RED);
 		player3L.setId("fancytext");
 
-		player4L.setX(paneWH/2); 	player4L.setY(50);
+		player4L.setX(paneWH/2-75); 	player4L.setY(50);
 		player4L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player4L.setFill(Color.YELLOW);
 		player4L.setId("fancytext");
