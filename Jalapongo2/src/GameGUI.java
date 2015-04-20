@@ -85,9 +85,9 @@ public class GameGUI extends Application {
 	public static CheckBox musicCB;
 	
 	//For junit tests
-	static Button optionsHO;
-	static Button playBSM;
-	static Button hostBCS;
+	public static Button optionsHO;
+	public static Button playBSM;
+	public static Button hostBCS;
 
 	public static ComboBox<Integer> livesCoB;
 	public static ComboBox AICB = new ComboBox<Integer>();

@@ -81,7 +81,7 @@ public class Ball {
 		}
 		ball.setY(ball.getY() + ySpeed);	
 		if(ySpeed == 0){
-			ySpeed = ySpeed + 1;
+			ySpeed = ySpeed + 2;
 		}
 	}
 
