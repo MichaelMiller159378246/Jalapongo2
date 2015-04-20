@@ -132,7 +132,7 @@ public class GameGUI extends Application {
 		//Text
 		Text title = new Text();
 		title.setFont(new Font(50));
-		title.setText("Jalapogo");
+		title.setText("Jalapo\u00F1go");
 		title.setFill(Color.GREEN);
 		
 		
