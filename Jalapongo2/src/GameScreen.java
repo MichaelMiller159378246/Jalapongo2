@@ -1068,7 +1068,7 @@ public class GameScreen {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							moveAllBalls();
+							try{moveAllBalls();}catch(Exception e){}
 							try{checkReverse(mainBall);}catch(InterruptedException e) {e.printStackTrace();}
 							try{checkReverse(ball1);}catch(Exception e){}
 							try{checkReverse(ball2);}catch(Exception e){}
