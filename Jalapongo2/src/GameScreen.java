@@ -113,6 +113,14 @@ public class GameScreen {
 	public GameScreen(){
 
 	}
+	/**
+	 * @author Whole team added elements
+	 * @param name1
+	 * @param name2
+	 * @param name3
+	 * @param name4
+	 * @param numberPlayers
+	 */
 	public GameScreen(String name1, String name2, String name3, String name4, int numberPlayers) {
 
 		shield1.setX(-900);
@@ -165,25 +173,25 @@ public class GameScreen {
 
 
 		//Add Lives Text
-		player1L.setX(10); 			player1L.setY(paneWH/2);
+		player1L.setX(-10); 			player1L.setY(paneWH/2);
 		player1L.setRotate(90);
 		player1L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player1L.setFill(Color.BLUE);
 		player1L.setId("fancytext");
 
 
-		player2L.setX(paneWH/2); 	player2L.setY(paneWH-50);
+		player2L.setX(paneWH/2-75); 	player2L.setY(paneWH-50);
 		player2L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player2L.setFill(Color.GREEN);
 		player2L.setId("fancytext");
 
-		player3L.setX(paneWH-90); 	player3L.setY(paneWH/2);
+		player3L.setX(paneWH-110); 	player3L.setY(paneWH/2);
 		player3L.setRotate(270);
 		player3L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player3L.setFill(Color.RED);
 		player3L.setId("fancytext");
 
-		player4L.setX(paneWH/2); 	player4L.setY(50);
+		player4L.setX(paneWH/2-75); 	player4L.setY(50);
 		player4L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player4L.setFill(Color.YELLOW);
 		player4L.setId("fancytext");
@@ -459,12 +467,12 @@ public class GameScreen {
 			PowerUps.smallPaddle(powerUp.getTriggerBall());
 			break;
 		case 6: 
-			PowerUps.subSpeed(powerUp.getTriggerBall());
 			setMinBallSpeed(-1);
+			PowerUps.subSpeed(powerUp.getTriggerBall());
 			break;
 		case 7: 
-			PowerUps.addSpeed(powerUp.getTriggerBall());
 			setMinBallSpeed(1);
+			PowerUps.addSpeed(powerUp.getTriggerBall());
 			break;
 		case 8: 
 			PowerUps.stall(powerUp.getTriggerBall());
@@ -634,9 +642,10 @@ public class GameScreen {
 			//System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -651,9 +660,10 @@ public class GameScreen {
 			//System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -668,9 +678,10 @@ public class GameScreen {
 			//System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -685,9 +696,10 @@ public class GameScreen {
 			//System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
 			ball.setPaddleLastHit(null);
+			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				Thread.sleep(200);
+				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(345);
 				ball.setYLoc(345);
@@ -740,6 +752,10 @@ public class GameScreen {
 
 	//If ball collides with paddle1, reverse x direction
 
+	/**
+	 * @author Nick Seydel
+	 * @return Returns the winner
+	 */
 	public int checkWin(){
 		if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle3.getLives() < 1){
 			//player 4 wins 
