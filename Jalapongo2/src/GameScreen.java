@@ -165,7 +165,7 @@ public class GameScreen {
 
 
 		//Add Lives Text
-		player1L.setX(10); 			player1L.setY(paneWH/2);
+		player1L.setX(0); 			player1L.setY(paneWH/2);
 		player1L.setRotate(90);
 		player1L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player1L.setFill(Color.BLUE);
@@ -177,7 +177,7 @@ public class GameScreen {
 		player2L.setFill(Color.GREEN);
 		player2L.setId("fancytext");
 
-		player3L.setX(paneWH-90); 	player3L.setY(paneWH/2);
+		player3L.setX(paneWH-100); 	player3L.setY(paneWH/2);
 		player3L.setRotate(270);
 		player3L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		player3L.setFill(Color.RED);
