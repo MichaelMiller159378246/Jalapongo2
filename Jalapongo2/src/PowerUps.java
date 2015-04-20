@@ -241,15 +241,15 @@ public class PowerUps {
 
 	public static void subSpeed(Ball ball){ //set ball speed lower
 		if(ball.getXSpeed() >= 0){
-			ball.setXSpeed((int)ball.getXSpeed() - 1);
+			ball.setXSpeed((int)ball.getXSpeed() - 3);
 		}else{
-			ball.setXSpeed((int)ball.getXSpeed() + 1);
+			ball.setXSpeed((int)ball.getXSpeed() + 3);
 		}
 		
 		if(ball.getYSpeed() >= 0){
-			ball.setYSpeed((int)ball.getYSpeed() - 1);
+			ball.setYSpeed((int)ball.getYSpeed() - 3);
 		}else{
-			ball.setYSpeed((int)ball.getYSpeed() + 1);
+			ball.setYSpeed((int)ball.getYSpeed() + 3);
 		}	
 		//System.out.println("slower ball");
 	}
