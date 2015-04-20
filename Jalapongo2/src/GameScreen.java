@@ -113,6 +113,14 @@ public class GameScreen {
 	public GameScreen(){
 
 	}
+	/**
+	 * @author Whole team added elements
+	 * @param name1
+	 * @param name2
+	 * @param name3
+	 * @param name4
+	 * @param numberPlayers
+	 */
 	public GameScreen(String name1, String name2, String name3, String name4, int numberPlayers) {
 
 		shield1.setX(-900);
@@ -740,6 +748,10 @@ public class GameScreen {
 
 	//If ball collides with paddle1, reverse x direction
 
+	/**
+	 * @author Nick Seydel
+	 * @return Returns the winner
+	 */
 	public int checkWin(){
 		if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle3.getLives() < 1){
 			//player 4 wins 
