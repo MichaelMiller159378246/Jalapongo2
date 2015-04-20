@@ -123,14 +123,14 @@ public class GameGUI extends Application {
 		
 		// Controls
 		Button playBSM = new Button("Play"); // Creates a play button
-		playBSM.setMaxWidth(300);
-		playBSM.setFont(new Font(24));
+			playBSM.setMaxWidth(300);
+			playBSM.setFont(new Font(24));
 		Button optionsBSM = new Button("Options"); // creates a options button
-		optionsBSM.setMaxWidth(300);
-		optionsBSM.setFont(new Font(24));
+			optionsBSM.setMaxWidth(300);
+			optionsBSM.setFont(new Font(24));
 		Button quitBSM = new Button("Quit"); // Creates a quit button
-		quitBSM.setMaxWidth(300);
-		quitBSM.setFont(new Font(24));
+			quitBSM.setMaxWidth(300);
+			quitBSM.setFont(new Font(24));
 		
 		
 		//Text
@@ -176,9 +176,10 @@ public class GameGUI extends Application {
 
 		//Create buttons
 		Button backBOS = new Button("Back");
-		backBOS.setFont(new Font(25));
+			backBOS.setFont(new Font(24));
+			backBOS.setMaxWidth(100);
 		//Add checkboxes to VBox
-		optionsVBox.getChildren().addAll(musicCB);
+		optionsVBox.getChildren().addAll(musicCB,backBOS);
 		optionsVBox.setAlignment(Pos.CENTER);
 		optionsVBox.setSpacing(50);
 
@@ -186,18 +187,8 @@ public class GameGUI extends Application {
 		musicCB.setIndeterminate(false);
 		musicCB.setSelected(false);
 
-
-		//Add button to VBox
-		optionsHBox.getChildren().addAll(backBOS);
-		optionsHBox.setAlignment(Pos.CENTER);
-
-
-
 		//Set VBox in BorderPane
 		optionsBP.setCenter(optionsVBox);
-
-		//Set HBox in BorderPane
-		optionsBP.setBottom(backBOS);
 
 		//*******************************************************************************
 
@@ -208,21 +199,28 @@ public class GameGUI extends Application {
 		Scene choiceScene = new Scene(choiceBP, sceneWH,sceneWH);
 
 		//Buttons
+
 		Button playBCS = new Button("Join");
+			playBCS.setMaxWidth(300);
+			playBCS.setFont(new Font(24));
 		Button hostBCS = new Button("Host");
+		 	hostBCS.setMaxWidth(300);
+			hostBCS.setFont(new Font(24));
 		Button backBCS = new Button("Back");
+			backBCS.setMaxWidth(300);
+			backBCS.setFont(new Font(24));
 		Button helpBCS = new Button("Help");
-		
+			helpBCS.setMaxWidth(300);
+			helpBCS.setFont(new Font(24));
+
 		//Set Join/Host buttons in center of VBox
-		choiceVBox.getChildren().addAll(playBCS, hostBCS,helpBCS);
+		choiceVBox.getChildren().addAll(playBCS, hostBCS,helpBCS,backBCS);
 		choiceVBox.setSpacing(50);
 		choiceVBox.setAlignment(Pos.CENTER);
 
 		//Add VBox to BorderPane
 		choiceBP.setCenter(choiceVBox);
-		//Put Back button at bottom left
-		choiceBP.setBottom(backBCS);
-
+		
 		//*******************************************************************************		
 		//Help Menu
 		//create GUI objects
@@ -236,14 +234,29 @@ public class GameGUI extends Application {
 				VBox joinGameHMVB = new VBox();
 				VBox hostGameHMVB = new VBox();
 				
-				//create buttons for initial help screen
-				Button howToPlayHMB = new Button("How to Play");
-				Button joinGameHMB = new Button("Join a Game");
-				Button hostGameHMB = new Button("Host a Game");
-				Button backIHMB = new Button("Back");
-				Button backHTPHMB = new Button("Back");
-				Button backJGHMB = new Button("Back");
-				Button backHGHMB = new Button("Back");
+			//create buttons for initial help screen
+			Button howToPlayHMB = new Button("How to Play");
+				howToPlayHMB.setMaxWidth(300);
+				howToPlayHMB.setFont(new Font(24));
+			Button joinGameHMB = new Button("Join a Game");
+				joinGameHMB.setMaxWidth(300);
+				joinGameHMB.setFont(new Font(24));
+			Button hostGameHMB = new Button("Host a Game");
+				hostGameHMB.setMaxWidth(300);
+				hostGameHMB.setFont(new Font(24));
+			Button backIHMB = new Button("Back");
+				backIHMB.setMaxWidth(300);
+				backIHMB.setFont(new Font(24));
+			Button backHTPHMB = new Button("Back");
+				backHTPHMB.setMaxWidth(300);
+				backHTPHMB.setFont(new Font(24));
+			Button backJGHMB = new Button("Back");
+				backJGHMB.setMaxWidth(300);
+				backJGHMB.setFont(new Font(24));
+			Button backHGHMB = new Button("Back");
+				backHGHMB.setMaxWidth(300);
+				backHGHMB.setFont(new Font(24));
+
 				
 				//add buttons for initial help screen to VBox
 				initialHMVB.getChildren().addAll(howToPlayHMB,joinGameHMB,hostGameHMB,backIHMB);
@@ -385,12 +398,14 @@ public class GameGUI extends Application {
 		AICB.getItems().addAll(0, 1, 2, 3);
 		AICB.setValue(3);
 		Button backHO = new Button("Back");
+			backHO.setFont(new Font(24));
+			backHO.setMaxWidth(150);
 		Button optionsHO = new Button("Options");
-		optionsHO.setFont(new Font(24));
-		optionsHO.setMaxWidth(300);
+			optionsHO.setFont(new Font(24));
+			optionsHO.setMaxWidth(300);
 		Button startHostingHO = new Button("Start Hosting");
-		startHostingHO.setFont(new Font(24));
-		startHostingHO.setMaxWidth(300);
+			startHostingHO.setFont(new Font(24));
+			startHostingHO.setMaxWidth(300);
 		Button randomBHS = new Button ("Randomize");
 
 		hbName.getChildren().addAll(nameText, nameTF);
@@ -405,13 +420,12 @@ public class GameGUI extends Application {
 		hbAI.setAlignment(Pos.CENTER);
 		hbAI.setSpacing(75);
 
-		vbHOS.getChildren().addAll(hbName, hbPort, hbAI, optionsHO, startHostingHO);
+		vbHOS.getChildren().addAll(hbName, hbPort, hbAI, optionsHO, startHostingHO,backHO);
 		vbHOS.setAlignment(Pos.CENTER);
 		vbHOS.setSpacing(50);
 
 		bpHOS.setCenter(vbHOS);
-		bpHOS.setBottom(backHO);
-
+		
 		Scene sceneHOS = new Scene(bpHOS, sceneWH,sceneWH);
 
 		//*******************************************************************************
@@ -506,9 +520,11 @@ public class GameGUI extends Application {
 
 		// Make Buttons	
 		Button backJS = new Button("Back");
+			backJS.setFont(new Font(24));
+			backJS.setMaxWidth(150);
 		Button joinGameJS = new Button("Join Game");
-		joinGameJS.setFont(new Font(24));
-		joinGameJS.setMaxWidth(300);
+			joinGameJS.setFont(new Font(24));
+			joinGameJS.setMaxWidth(300);
 
 		hbNameJS.getChildren().addAll(nameTextJS, nameTFJS);
 		hbNameJS.setAlignment(Pos.CENTER);
@@ -522,14 +538,12 @@ public class GameGUI extends Application {
 		hbIP.setAlignment(Pos.CENTER);
 		hbIP.setSpacing(75);
 
-		vbJS.getChildren().addAll(hbNameJS, hbPortJS,hbIP,joinGameJS);
+		vbJS.getChildren().addAll(hbNameJS, hbPortJS,hbIP,joinGameJS,backJS);
 		vbJS.setAlignment(Pos.CENTER);
 		vbJS.setSpacing(50);
 
 		jsBP.setCenter(vbJS);
-		jsBP.setBottom(backJS);
-
-
+	
 		Scene jsScene = new Scene(jsBP, sceneWH,sceneWH);
 		//*******************************************************************************		
 		//Ready Screen GUI
@@ -561,7 +575,7 @@ public class GameGUI extends Application {
 		nameLRQ = new Label(); //Creates a label;
 		//Button startRQB = new Button("Start"); // Creates a start button
 		Button disconnectRQB = new Button("Disconnect"); // Creates a disconnect button
-
+			
 		// Alters BorderPane properties
 		lowerRQBP.setRight(startRQB); // Sets the button to the right side of the BorderPane
 		lowerRQBP.setLeft(disconnectRQB); // Sets the button to the left side of the BorderPane
