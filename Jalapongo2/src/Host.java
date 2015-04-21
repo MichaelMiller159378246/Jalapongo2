@@ -58,7 +58,6 @@ public class Host extends Thread{
 			public void handle(MouseEvent me) { // Creates a handler
 				if(Integer.parseInt(GameGUI.AICB.getValue().toString()) == 3){ // If the host is the only person playing
 					GameGUI.gameStartSolo(namesA[0], namesA[1], namesA[2], namesA[3], getPlayerCount()); // Start the game
-					//output = "CHANGE" + ":" + GameGUI.globalG.getEverything(); // Change the output message to "CHANGE"
 				} else if(getPlayerCount() == 4 - Integer.parseInt(GameGUI.AICB.getValue().toString())){ // If all users are ready
 					GameGUI.gameStart(namesA[0], namesA[1], namesA[2], namesA[3], getPlayerCount());// Start the game
 					output = "CHANGE" + ":" + GameGUI.globalG.getEverything(); // Change the output message to "CHANGE"
@@ -305,18 +304,17 @@ public class Host extends Thread{
 					}
 					else if(input.startsWith("OK")){
 						System.out.println(refresh + " " + input.toString()  + " Out of " + (4 - Integer.parseInt(GameGUI.AICB.getValue().toString())));
-						//System.out.println(refresh + " Out of " + (4 - Integer.parseInt(GameGUI.AICB.getValue().toString())));
+						
 						if(refresh < (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))){
-							//System.out.println(refresh + " " + Integer.parseInt(GameGUI.AICB.getValue().toString()));
+							
 							refresh++;
 							output = null;
-							//System.out.println(refresh + " " + Integer.parseInt(GameGUI.AICB.getValue().toString()));
+							
 							if(refresh >= (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))){
 								//GameScreen.paddle2Move = update;
 								GameGUI.updateGame();
 								Thread.sleep(40);
-								//Thread.sleep(70 - (10 * (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))));
-								//GameScreen.paddle2Move = 0;
+								
 								refresh = 1;
 								output = "REFRESH" + ":" + GameGUI.globalG.getEverything();
 						}

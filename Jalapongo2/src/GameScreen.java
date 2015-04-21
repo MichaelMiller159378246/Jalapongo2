@@ -468,7 +468,7 @@ public class GameScreen {
 							case UP:  	paddle.paddleMove(-1); break;
 							case DOWN: 	paddle.paddleMove(1); break;
 							}
-						}//if
+						}
 
 						//Sets up the paddle movement for players 2 and 4
 						else {
@@ -486,7 +486,7 @@ public class GameScreen {
 							case UP:  	paddle.paddleMove(1); break;
 							case DOWN: 	paddle.paddleMove(-1); break;
 							}
-						}//if
+						}
 
 						//Sets up the paddle movement for players 2 and 4
 						else {
@@ -503,7 +503,7 @@ public class GameScreen {
 							case UP:  	paddle.paddleMove(0); break;
 							case DOWN: 	paddle.paddleMove(0); break;
 							}
-						}//if
+						}
 
 						//Sets up the paddle movement for players 2 and 4
 						else {
@@ -527,16 +527,14 @@ public class GameScreen {
 					if (player.getPaddle().getLives() > 0) {
 						if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
 							switch (event.getCode()) {
-							//case UP:  	if (minY) paddle.paddleMove(-1);
 							case UP:  	paddle.paddleMove(-1); break;
 							case DOWN: 	paddle.paddleMove(1); break;
 							}
-						}//if
+						}
 
 						//Sets up the paddle movement for players 2 and 4
 						else {
 							switch (event.getCode()) {
-							//case LEFT:  paddle.paddleMove(-1); break;
 							case LEFT: 	Client.output = "2L"; break;
 							case RIGHT: Client.output = "2R"; break;
 							}
@@ -546,7 +544,6 @@ public class GameScreen {
 					if (player.getPaddle().getLives() > 0) {
 						if ((paddle.getPos() == 1) || (paddle.getPos() == 3)) {
 							switch (event.getCode()) {
-							//case UP:  	if (minY) paddle.paddleMove(-1);
 							case UP:  	paddle.paddleMove(1); break;
 							case DOWN: 	paddle.paddleMove(-1); break;
 							}
@@ -610,25 +607,21 @@ public class GameScreen {
 		//Life Lost if Ball Passes Player's Paddle and hits their wall
 		if (x < 0 && ball.getXSpeed() < 0) {
 			player1.getPaddle().scoredOn();
-			//System.out.println("Player 1 Was Scored On");
 			playerOut(player1);
 			ball.setPaddleLastHit(null);
 			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(-9999);
 				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
 		if (y > (paneWH - 20) && ball.getYSpeed() > 0) {
 			player2.getPaddle().scoredOn();
-			//System.out.println("Player 2 Was Scored On");
 			playerOut(player2);
 			ball.setPaddleLastHit(null);
 			minBallSpeed = 11;
@@ -640,43 +633,36 @@ public class GameScreen {
 				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
 		if (x > (paneWH - 20) && ball.getXSpeed() > 0) {
 			player3.getPaddle().scoredOn();
-			//System.out.println("Player 3 Was Scored On");
 			playerOut(player3);
 			ball.setPaddleLastHit(null);
 			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(-9999);
 				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
 		if (y < 0 && ball.getYSpeed() < 0) {
 			player4.getPaddle().scoredOn();
-			//System.out.println("Player 4 Was Scored On");
 			playerOut(player4);
 			ball.setPaddleLastHit(null);
 			minBallSpeed = 11;
 			if(ball.getID() == 8){
 				ball.restart();
-				//Thread.sleep(200);
 			}else{
 				ball.setXLoc(-9999);
 				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
@@ -755,12 +741,11 @@ public class GameScreen {
 					(ball.getXSpeed() < 0) ) {
 				ball.reverseX();
 				ball.setPaddleLastHit(paddle1);
-				//System.out.println("1 hit");
+
 				if(ball.getYSpeed() <= 0){
 					if((ball.getYLoc() + ball.getSize() > paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
 							&& (ball.getYLoc() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()) ){
 						ball.reverseY();
-						//System.out.println("2 reverse");
 						ball.setXSpeed(ball.getXSpeed() - 1);
 					}
 				}
@@ -768,7 +753,6 @@ public class GameScreen {
 					if((ball.getYLoc() + ball.getSize() < paddle1.getPaddle().getY() + paddle1.getPaddle().getHeight()/2) 
 							&& (ball.getYLoc() > paddle1.getPaddle().getY()) ){
 						ball.reverseY();
-						//System.out.println("3 reverse");
 						ball.setXSpeed(ball.getXSpeed() - 1);
 					}
 				}
@@ -783,12 +767,10 @@ public class GameScreen {
 					(ball.getYSpeed() > 0) ) {
 				ball.reverseY();
 				ball.setPaddleLastHit(paddle2);
-				//System.out.println("2 hit");
 				if(ball.getXSpeed() <= 0){
 					if((ball.getXLoc() + ball.getSize() > paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
 							&& (ball.getXLoc() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()) ){
 						ball.reverseX();
-						//System.out.println("2 reverse");
 						ball.setYSpeed(ball.getXSpeed() - 1);
 					}
 				}
@@ -796,7 +778,6 @@ public class GameScreen {
 					if((ball.getXLoc() + ball.getSize() < paddle2.getPaddle().getX() + paddle2.getPaddle().getWidth()/2) 
 							&& (ball.getXLoc() > paddle2.getPaddle().getX()) ){
 						ball.reverseX();
-						//System.out.println("2 reverse");
 						ball.setYSpeed(ball.getXSpeed() - 1);
 					}
 				}
@@ -811,12 +792,10 @@ public class GameScreen {
 					(ball.getXSpeed() > 0) ) {
 				ball.reverseX();
 				ball.setPaddleLastHit(paddle3);
-				//System.out.println("3 hit");
 				if(ball.getYSpeed() <= 0){
 					if((ball.getYLoc() + ball.getSize() > paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
 							&& (ball.getYLoc() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()) ){
 						ball.reverseY();
-						//System.out.println("3 reverse");
 						ball.setXSpeed(ball.getXSpeed() + 1);
 					}
 				}
@@ -824,7 +803,6 @@ public class GameScreen {
 					if((ball.getYLoc() + ball.getSize() < paddle3.getPaddle().getY() + paddle3.getPaddle().getHeight()/2) 
 							&& (ball.getYLoc() > paddle3.getPaddle().getY()) ){
 						ball.reverseY();
-						//System.out.println("3 reverse");
 						ball.setXSpeed(ball.getXSpeed() + 1);
 					}
 				}
@@ -839,12 +817,11 @@ public class GameScreen {
 					(ball.getYSpeed() < 0) ) {
 				ball.reverseY();
 				ball.setPaddleLastHit(paddle4);
-				//System.out.println("4 hit");
 				if(ball.getXSpeed() <= 0){
 					if((ball.getXLoc() + ball.getSize() > paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
 							&& (ball.getXLoc() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()) ){
 						ball.reverseX();
-						//System.out.println("4 reverse");
+
 						if (Math.abs(ball.getYSpeed()) > 2)
 							ball.setYSpeed(ball.getYSpeed() + 1);
 					}
@@ -853,7 +830,7 @@ public class GameScreen {
 					if((ball.getXLoc() + ball.getSize() < paddle4.getPaddle().getX() + paddle4.getPaddle().getWidth()/2) 
 							&& (ball.getXLoc() > paddle4.getPaddle().getX()) ){
 						ball.reverseX();
-						//System.out.println("4 reverse");
+
 						ball.setYSpeed(ball.getYSpeed() + 1);
 					}
 				}
@@ -1069,7 +1046,6 @@ public class GameScreen {
 							//TODO variable AI
 							checkBallSpeed();
 							player1.moveAI(mainBall);
-							//player2.moveAI(mainBall);
 							player3.moveAI(mainBall);
 							player4.moveAI(mainBall);
 							player1L.setText(player3Name + ": " + paddle1.getLives() + " Lives");
@@ -1236,7 +1212,7 @@ public class GameScreen {
 		Platform.runLater(new Runnable() { // Runs when it gets the chance
 			public void run() { //Runs
 				moveAllBalls();
-				//gamePane.getChildren().removeAll(powerUp1.getPowerUp());
+
 				try{checkReverse(mainBall);}catch(InterruptedException e) {e.printStackTrace();}
 				try{checkReverse(ball1);}catch(Exception e){}
 				try{checkReverse(ball2);}catch(Exception e){}
@@ -1248,7 +1224,7 @@ public class GameScreen {
 				try{checkCollisionWithPowerUp();}catch(Exception e){}
 				try{checkCollisionWithShields();}catch(Exception e){}
 				//TODO variable AI
-				//player2.moveAI(mainBall);
+
 				if(numberPlayers < 2){
 					player4.moveAI(mainBall);
 				}else if (paddle2Move == 1){
@@ -1274,7 +1250,7 @@ public class GameScreen {
 					generatePowerUp();
 					i++;
 				}
-				//gamePane.getChildren().add(powerUp1.getPowerUp());
+
 				count++;
 			}
 		});
