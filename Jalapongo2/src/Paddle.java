@@ -5,11 +5,18 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
-//Added by Leslie
 /**
  * @author Dalton L'Heureux, Nick
  * @version 1.0
  * @created 02-Mar-2015 3:19:45 PM
+ * 
+ * This class creates a paddle object which is the usable object for every player and AI. Each paddle has a 
+ * set of attributes that can be modified dynamically by powerups and events occurring during the game. Modifiable 
+ * attributes are:
+ * lives
+ * control
+ * PaddleLocX (position dependent)
+ * PaddleLocY (position dependent)
  */
 public class Paddle {
 
