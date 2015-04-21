@@ -862,7 +862,10 @@ public class GameScreen {
 
 	/**
 	 * @author Jonathan Hemingway
+	 * @param Signed integer indicating increase or decrease
 	 * 
+	 * This method is used to manage the speed of the ball to keep the game more interesting.
+	 * It prevents the ball from moving too slowly
 	 */
 	
 	private static int minBallSpeed = 11;
@@ -1112,6 +1115,14 @@ public class GameScreen {
 		return max;
 	}
 
+	/**
+	 * @author Jonathan
+	 * @param player
+	 * 
+	 * Performs the tasks which need to execute when a player gets out, including playing a
+	 * sound, calculating the amount of time the player was in, removing the players paddle
+	 * from the screen, and filling in the players side with a wall.
+	 */
 	//If a player runs out of lives, make their paddle fill the whole side
 	private void playerOut(Player player) {
 		if (player.getPaddle().getLives() < 1) {
