@@ -716,19 +716,19 @@ public class GameScreen {
 	public int checkWin(){
 		if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle3.getLives() < 1){
 			//player 4 wins 
-			return 4;
+			return 2;
 		}
 		else if(paddle1.getLives() < 1 && paddle2.getLives() < 1 && paddle4.getLives() < 1){
 			//player 3 wins 
-			return 3;
+			return 4;
 		}
 		else if(paddle1.getLives() < 1 && paddle3.getLives() < 1 && paddle4.getLives() < 1){
 			//player 2 wins 
-			return 2;
+			return 1;
 		}
 		else if(paddle2.getLives() < 1 && paddle3.getLives() < 1 && paddle4.getLives() < 1){
 			//player 1 wins 
-			return 1;
+			return 3;
 		}
 		else return 0;
 
