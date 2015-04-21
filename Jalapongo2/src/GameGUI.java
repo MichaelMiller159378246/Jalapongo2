@@ -441,11 +441,7 @@ public class GameGUI extends Application {
 		livesCoB.setValue(5);
 
 		Button okaybt = new Button("Okay");
-		okaybt.setFont(new Font(24));
-		//okaybt.setMaxWidth(300);
-		Button cancelbt = new Button("Cancel");
-		cancelbt.setFont(new Font(24));
-		//cancelbt.setMaxWidth(300);
+		okaybt.setFont(new Font(24));	
 
 		fastCB.setSelected(true);
 		shieldCB.setSelected(true);
@@ -460,7 +456,7 @@ public class GameGUI extends Application {
 		liveshb.getChildren().addAll(livesText, livesCoB);
 		liveshb.setAlignment(Pos.CENTER);
 
-		bottomhb.getChildren().addAll(okaybt, cancelbt);
+		bottomhb.getChildren().addAll(okaybt);
 		bottomhb.setAlignment(Pos.CENTER);
 		bottomhb.setSpacing(25);
 
