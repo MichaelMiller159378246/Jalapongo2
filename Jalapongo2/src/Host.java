@@ -311,7 +311,6 @@ public class Host extends Thread{
 							output = null;
 							
 							if(refresh >= (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))){
-								//GameScreen.paddle2Move = update;
 								GameGUI.updateGame();
 								Thread.sleep(40);
 								
@@ -320,10 +319,8 @@ public class Host extends Thread{
 						}
 					}
 					else{
-						//GameScreen.paddle2Move = update;
 						GameGUI.updateGame();
 						Thread.sleep(50);
-						//GameScreen.paddle2Move = 0;
 						refresh = 1;
 						output = "REFRESH" + ":" + GameGUI.globalG.getEverything();
 					}
