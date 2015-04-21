@@ -223,9 +223,14 @@ public class GameScreen {
 		movePaddleOnKeyPress(gameScene, player2, paddle2);
 		
 	}
+	
 	/**
 	 * @author Dalton L'Heureux
 	 * @param ball
+	 * 
+	 * This method is used to check if a ball has hit an active shield. The Method
+	 * only check collisions with shields 2 and 3. If a ball hits a shield the direction of the ball is reversed and the
+	 * shield is deactivated (moved off screen) 
 	 */
 	public void checkCollisionWithShield23(Ball ball){
 		if (ball.getXLoc() + ball.getSize() > shield3.getX() &&
@@ -246,6 +251,10 @@ public class GameScreen {
 	/**
 	 * @author Dalton L'Heureux
 	 * @param ball
+	 * 
+	 * This method is used to check if a ball has hit an active shield. The Method
+	 * only check collisions with shields 1 and 4. If a ball hits a shield the direction of the ball is reversed and the
+	 * shield is deactivated (moved off screen) 
 	 */
 	public void checkCollisionWithShield14(Ball ball){
 		if (ball.getXLoc() < shield1.getX() + shield1.getWidth() && 
@@ -266,6 +275,10 @@ public class GameScreen {
 	/**
 	 * @author Dalton L'Heureux
 	 * @param paddle
+	 * 
+	 * This method is called by the shield power up to activate a shield for the player who hit the ball last.
+	 * All shields are created at the start of program launch so the method only needs to move the shields into 
+	 * the correct position.
 	 */
 	public static void createShield(Paddle paddle){
 		if(paddle.getPos() == 1){
@@ -288,6 +301,10 @@ public class GameScreen {
 
 	/**
 	 * @author Dalton L'Heureux
+	 * 
+	 * This method is called by the multiball powerup and is used to add a ball to the current game. The new ball
+	 * acts the same as the main ball except it is not reset when it scores on a player and the AI do not follow the ball.
+	 * There is a limit of 8 active balls at any given time.
 	 */
 	@SuppressWarnings("unchecked")
 	public static void addBall(){
@@ -352,6 +369,9 @@ public class GameScreen {
 
 	/**
 	 * @author Dalton L'Heureux
+	 * 
+	 * This method creates a power up and adds it to the game screen. There is a limit of 5 active power ups at any
+	 * given time. The type of power up created is determined within the constructor of the power up itself.
 	 * */
 	private void generatePowerUp(){
 		if(GameGUI.flipCB.isSelected()||GameGUI.livesCB.isSelected()||GameGUI.shieldCB.isSelected()||GameGUI.bigCB.isSelected()||
@@ -408,19 +428,23 @@ public class GameScreen {
 	/**
 	 * @author Dalton L'Heureux
 	 * @param powerup
-	 * */
+	 * 
+	 * This method is called when a ball hits a power up and is used to call the correct power up method
+	 * based on the power up's type:
+	 * powerup => type ID#
+	 * 	 flip => 1
+		 addLives => 2
+		 shield => 3
+		 largePaddle => 4
+		 smallPaddle => 5
+		 slowSpeed => 6
+		 addSpeed => 7
+		 stall => 8
+		 multiBall => 9
+	 */
 	public static void powerUpHit(PowerUps powerUp){
 		int type = powerUp.getType();
-		/*  flip => 1
-		 *  addLives => 2
-		 *  shield => 3
-		 *  largePaddle => 4
-		 *  smallPaddle => 5
-		 *  slowSpeed => 6
-		 *  addSpeed => 7
-		 *  stall => 8
-		 *  multiBall => 9
-		 */
+
 		switch (type){
 		case 1: 
 			PowerUps.flip(powerUp.getTriggerBall());
@@ -872,6 +896,8 @@ public class GameScreen {
 	/**
 	 * @author Dalton L'Heureux
 	 * @param ball
+	 * 
+	 * This method is used to check if a ball hit a power up. if a power up is hit the move power up off screen method is called.
 	 */
 	private void checkBallHitPowerUp(Ball ball){
 		try {
@@ -955,6 +981,8 @@ public class GameScreen {
 
 	/**
 	 * @author Dalton L'Heureux
+	 * 
+	 * This method is used with the main thread to continuously check if any ball hit any active power up. 
 	 */
 	private void checkCollisionWithPowerUp() {
 		checkBallHitPowerUp(mainBall);
@@ -969,6 +997,10 @@ public class GameScreen {
 
 	/**
 	 * @author Dalton L'Heureux
+	 * 
+	 * This method is used within the main thread to continuously check if any ball has hit any of the active shield. The Method
+	 * only check collisions with shields 2 and 3. If a ball hits a shield the direction of the ball is reversed and the
+	 * shield is deactivated (moved off screen) 
 	 */
 	private void checkCollisionWithShields(){
 		try{checkCollisionWithShield23(mainBall);}catch(Exception e){}  
@@ -992,6 +1024,8 @@ public class GameScreen {
 
 	/**
 	 * @author Dalton L'Heureux
+	 * 
+	 * This method is used within the main thread to continuously move all the active balls
 	 */
 	public void moveAllBalls(){
 		try{
