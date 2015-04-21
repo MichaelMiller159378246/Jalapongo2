@@ -101,6 +101,8 @@ public class GameGUI extends Application {
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
 
+		//Indicator lights for if user is ready
+		//Starts Dark green if user is not ready
 		circle1.setFill(Color.DARKGREEN);
 		circle1.setStroke(Color.BLACK);
 		circle1.setStrokeWidth(2);
@@ -164,14 +166,9 @@ public class GameGUI extends Application {
 		//Options Menu
 		BorderPane optionsBP = new BorderPane();
 		VBox optionsVBox = new VBox();
-		HBox optionsHBox = new HBox();
 		Scene optionsScene = new Scene(optionsBP,sceneWH,sceneWH);
-		//songPlayer.play();
 
-
-
-		//Create checkboxes
-
+		//Create checkbox for music
 		musicCB = new CheckBox("Music");
 
 		//Create buttons
@@ -183,7 +180,7 @@ public class GameGUI extends Application {
 		optionsVBox.setAlignment(Pos.CENTER);
 		optionsVBox.setSpacing(50);
 
-		//Preset check box for music and sound effects
+		//Preset check box for music as unchecked
 		musicCB.setIndeterminate(false);
 		musicCB.setSelected(false);
 
@@ -668,7 +665,6 @@ public class GameGUI extends Application {
 		GameScreen game = new GameScreen(name1, name2, name3, name4, numberPlayers); // Creates a new game object
 		globalG = game;
 		globalS.setScene(game.getGameScene(globalS, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
-		//game.continuousUpdate();; // Calls the continuousUpdate method
 	}
 	
 	public static void gameStartSolo(String name1, String name2, String name3, String name4, int numberPlayers){
