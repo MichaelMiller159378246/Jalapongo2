@@ -41,7 +41,7 @@ public class Host extends Thread{
 	private static int readyState4 = 0; // Creates an integer to indicate if the player is ready
 	private static String[] namesA = {null, null, null, null}; // Creates a private string array to hold all the names
 	private static int refresh = 1;
-	private static int update = 0;
+
 
 
 	/**

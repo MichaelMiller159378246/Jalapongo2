@@ -1,13 +1,8 @@
 import java.awt.event.ActionListener;
-import java.time.LocalTime;
-import java.util.Collection;
 import java.util.Random;
 
 import javax.swing.Timer;
 
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
