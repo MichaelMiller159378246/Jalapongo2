@@ -67,10 +67,10 @@ public class GameData {
     	}
     	
     	data = FXCollections.observableArrayList(
-    	                new PlayerData(player1Name, player1Time, "We can add a stat here"),
-    	                new PlayerData(player2Name, player2Time, "All we have to do is"),
-    	                new PlayerData(player3Name, player3Time, "Create another stat"),
-    	                new PlayerData(player4Name, player4Time, "And then make a getter")
+    	                new PlayerData(player1Name, player1Time),
+    	                new PlayerData(player2Name, player2Time),
+    	                new PlayerData(player3Name, player3Time),
+    	                new PlayerData(player4Name, player4Time)
     	            );
     	start(primaryStage);
     }
@@ -98,13 +98,8 @@ public class GameData {
         timeOutCol.setCellValueFactory(
                 new PropertyValueFactory<PlayerData, String>("timeOut"));
  
-        TableColumn somethingElseCol = new TableColumn("Something Else");
-        somethingElseCol.setMinWidth(200);
-        somethingElseCol.setCellValueFactory(
-                new PropertyValueFactory<PlayerData, String>("somethingElse"));
- 
         table.setItems(data);
-        table.getColumns().addAll(playerCol, timeOutCol, somethingElseCol);
+        table.getColumns().addAll(playerCol, timeOutCol);
  
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
@@ -121,12 +116,10 @@ public class GameData {
  
         private final SimpleStringProperty name;
         private final SimpleStringProperty timeOut;
-        private final SimpleStringProperty somethingElse;
  
-        private PlayerData(String name, String timeOut, String somethingElse) {
+        private PlayerData(String name, String timeOut) {
         	this.name = new SimpleStringProperty(name);
         	this.timeOut = new SimpleStringProperty(timeOut);
-        	this.somethingElse = new SimpleStringProperty(somethingElse);
         }
         
         public String getName() {
@@ -136,10 +129,7 @@ public class GameData {
         public String getTimeOut() {
         	return timeOut.get();
         }
-        
-        public String getSomethingElse() {
-        	return somethingElse.get();
-        }
+
     }
 
 } 
