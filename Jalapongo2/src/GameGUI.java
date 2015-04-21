@@ -649,44 +649,8 @@ public class GameGUI extends Application {
 		//Play -> Host -> Start Hosting -> Start
 		//GameScreen game = new GameScreen(); // Creates a GameScreen object
 		//startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene(primaryStage, sbScene))); // If the user presses start the scene changes to the scene gathered by the getGameScene method
-		//scoreboard variables
-		final TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
-		//*******************************************************************************
-		//Scoreboard GUI
 		
-		//construct GUI objects
-		BorderPane sbBP = new BorderPane();
-		final VBox vbTableSB = new VBox();
-		HBox hbContinueSB = new HBox();
-
-		//display scoreboard title
-		final Label summary = new Label("Game Summary");
-		summary.setFont(new Font("Arial",25));
-		summary.setTextAlignment(TextAlignment.CENTER);
-		scoreboard.setEditable(true);
-
-		//create columns for scoreboard
-		TableColumn players = new TableColumn("Players");
-		TableColumn time = new TableColumn("Time Defeated");
-		TableColumn powerups = new TableColumn("# of powerups used");
-
-		scoreboard.getColumns().addAll(players,time,powerups);
-
-		//add title and table to VBox
-		vbTableSB.setSpacing(10);
-		vbTableSB.setPadding(new Insets(10,0,0,10));
-		vbTableSB.getChildren().addAll(summary,scoreboard);
-
-		//Create continue button
-		Button sbContinueB = new Button("Continue");
-
-		//add button to HBox
-		hbContinueSB.getChildren().addAll(sbContinueB);
-
-		sbBP.setCenter(vbTableSB);
-		sbBP.setBottom(hbContinueSB);
-
-		sbScene = new Scene(sbBP,sceneWH,sceneWH);
+		
 		//*******************************************************************************
 		
 		// Alter stage properties

@@ -80,7 +80,7 @@ public class GameData {
     //@Override
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
-        stage.setTitle("Table View Sample");
+        stage.setTitle("Scoreboard");
         stage.setWidth(450);
         stage.setHeight(500);
  
