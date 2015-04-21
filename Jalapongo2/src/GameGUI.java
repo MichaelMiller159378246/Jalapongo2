@@ -136,7 +136,7 @@ public class GameGUI extends Application {
 		//Text
 		Text title = new Text();
 		title.setFont(new Font(50));
-		title.setText("Jalapo\u00F1go");
+		title.setText("Jalapo\u00F1go"); //This weird code makes the spanish n
 		title.setFill(Color.GREEN);
 		
 		
@@ -271,7 +271,7 @@ public class GameGUI extends Application {
 				howToPlayTitleText.setFont(new Font(30));
 				howToPlayTitleText.setUnderline(true);
 				
-				Text howToPlayInfoText = new Text("The objective of Jalapoñgo is to be the last player with lives remaining.\n\n"
+				Text howToPlayInfoText = new Text("The objective of Jalapo\u00F1go is to be the last player with lives remaining.\n\n"
 						+ "Every player begins the game with five lives.\n\n"
 						+ "To avoid losing lives you must navigate your paddle so that the ball does not hit the wall behind "
 						+ "your paddle.\n\n"
