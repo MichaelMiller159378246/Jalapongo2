@@ -1,14 +1,10 @@
  // Imports
-import static org.junit.Assert.*;
-
 import java.net.URL;
 
 import javafx.application.Application; // Imports Application
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections; // Imports FXCollections
-import javafx.collections.ObservableList; // Imports ObservableList
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler; // Imports EventHandlers
 import javafx.geometry.Insets; // Imports Insets
@@ -19,8 +15,6 @@ import javafx.scene.control.CheckBox; // Imports CheckBox
 import javafx.scene.control.ComboBox; // Imports ComboBox
 import javafx.scene.control.Label; // Imports Label
 import javafx.scene.control.TextField; // Imports TextField
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent; // Imports MouseEvent
 import javafx.scene.layout.BorderPane; // Imports BorderPane
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox; // Imports HBox
@@ -33,22 +27,7 @@ import javafx.scene.text.Font; // Imports Font
 import javafx.scene.text.Text; // Imports Text
 import javafx.stage.Stage; // Imports Stage
 import javafx.stage.WindowEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.Group;
-import javafx.scene.control.Label;
-import javafx.geometry.Insets;
-import javafx.scene.text.TextAlignment;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import java.net.URL;
 
 public class GameGUI extends Application {
 
