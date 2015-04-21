@@ -1094,7 +1094,7 @@ public class GameScreen {
 				int player1Elapsed = player1Lost - startTime;
 				int player1Minutes = player1Elapsed / 60; //Minutes in game
 				int player1Seconds = player1Elapsed % 60; //Seconds in game
-				player1Time = new String(String.format("%s:%02d",player1Minutes, player1Seconds));
+				player3Time = new String(String.format("%s:%02d",player1Minutes, player1Seconds));
 			}
 			else if (player.getPos() == 3) {
 				gamePane.getChildren().remove(paddle3.getPaddle());
@@ -1105,7 +1105,7 @@ public class GameScreen {
 				int player3Elapsed = player3Lost - startTime;
 				int player3Minutes = player3Elapsed / 60; //Minutes in game
 				int player3Seconds = player3Elapsed % 60; //Seconds in game
-				player3Time = new String(String.format("%s:%02d",player3Minutes, player3Seconds));
+				player4Time = new String(String.format("%s:%02d",player3Minutes, player3Seconds));
 			}
 			else if (player.getPos() == 2) {
 				gamePane.getChildren().remove(paddle2.getPaddle());
@@ -1116,7 +1116,7 @@ public class GameScreen {
 				int player2Elapsed = player2Lost - startTime;
 				int player2Minutes = player2Elapsed / 60; //Minutes in game
 				int player2Seconds = player2Elapsed % 60; //Seconds in game
-				player2Time = new String(String.format("%s:%02d",player2Minutes, player2Seconds));
+				player1Time = new String(String.format("%s:%02d",player2Minutes, player2Seconds));
 			}
 			else {
 				gamePane.getChildren().remove(paddle4.getPaddle());
@@ -1127,7 +1127,7 @@ public class GameScreen {
 				int player4Elapsed = player4Lost - startTime;
 				int player4Minutes = player4Elapsed / 60; //Minutes in game
 				int player4Seconds = player4Elapsed % 60; //Seconds in game
-				player4Time = new String(String.format("%s:%02d",player4Minutes, player4Seconds));
+				player2Time = new String(String.format("%s:%02d",player4Minutes, player4Seconds));
 			}
 			System.out.println("Player " + player.getPos() + " is out");
 		}
