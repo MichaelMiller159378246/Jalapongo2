@@ -221,11 +221,7 @@ public class GameScreen {
 
 		//Moves the paddles, can only used one at a time
 		movePaddleOnKeyPress(gameScene, player2, paddle2);
-		//movePaddleOnKeyPress(gameScene, player1, paddle1);
-		//if(numberPlayers == 2){
-		//	movePaddleOnKeyPress(gameScene, player3, paddle3);
-		//}
-		//movePaddleOnKeyPress(gameScene, player4, paddle4);		
+		
 	}
 	/**
 	 * @author Dalton L'Heureux
@@ -237,8 +233,6 @@ public class GameScreen {
 			ball.reverseX();
 			shield3.setX(-900);
 			shield3.setY(-900);
-			//gamePane.getChildren().removeAll(shield3);
-			//System.out.println("shield 2 hit");
 		}
 
 		if ((ball.getYLoc() + ball.getSize() > shield2.getY()) &&
@@ -246,8 +240,6 @@ public class GameScreen {
 			ball.reverseY();
 			shield2.setX(-900);
 			shield2.setY(-900);
-			//gamePane.getChildren().removeAll(shield2);
-			//System.out.println("shield 3 hit");
 		}
 	}
 
@@ -261,8 +253,6 @@ public class GameScreen {
 			ball.reverseX();
 			shield1.setX(-900);
 			shield1.setY(-900);
-			//gamePane.getChildren().removeAll(shield1);
-			//System.out.println("shield 4 hit");
 		}
 
 		if (ball.getYLoc() < shield4.getY() + shield4.getHeight() && 
@@ -270,8 +260,6 @@ public class GameScreen {
 			ball.reverseY();
 			shield4.setX(-900);
 			shield4.setY(-900);
-			//gamePane.getChildren().removeAll(shield4);
-			//System.out.println("shield 1 hit");
 		}
 	}
 
@@ -281,44 +269,20 @@ public class GameScreen {
 	 */
 	public static void createShield(Paddle paddle){
 		if(paddle.getPos() == 1){
-			//try {
-			// 	gamePane.getChildren().removeAll(shield1);
-			//} catch (Exception e){}
-			//shield1 = new Rectangle(10, paneWH);
-			//shield1.setFill(Color.CYAN);
 			shield1.setX(0);
 			shield1.setY(0);
-			//gamePane.getChildren().addAll(shield1);
 		}
 		if(paddle.getPos() == 2){
-			//try {
-			//	gamePane.getChildren().removeAll(shield2);
-			//} catch (Exception e){}
-			//shield2 = new Rectangle(paneWH, 10);
-			//shield2.setFill(Color.CYAN);
 			shield2.setX(0);
 			shield2.setY(690);
-			//gamePane.getChildren().addAll(shield2);
 		}
 		if(paddle.getPos() == 3){
-			//try {
-			//	gamePane.getChildren().removeAll(shield3);
-			//} catch (Exception e){}
-			//shield3 = new Rectangle(10, paneWH);
-			//shield3.setFill(Color.CYAN);
 			shield3.setX(690);
 			shield3.setY(0);
-			//gamePane.getChildren().addAll(shield3);
 		}
 		if(paddle.getPos() == 4){
-			//try {
-			//	gamePane.getChildren().removeAll(shield4);
-			//} catch (Exception e){}
-			//shield4 = new Rectangle(paneWH, 10);
-			//shield4.setFill(Color.CYAN);
 			shield4.setX(0);
 			shield4.setY(0);
-			//gamePane.getChildren().addAll(shield4);
 		}
 	}
 
