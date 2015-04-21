@@ -60,7 +60,7 @@ public class GameScreen {
 
 	//Ball
 	static Ball mainBall = new Ball(8); //main ball id # is 8
-	static Ball ball1, ball2, ball3, ball4, ball5, ball6, ball7;
+	static Ball ball1 = new Ball(), ball2 = new Ball(), ball3 = new Ball(), ball4 = new Ball(), ball5 = new Ball(), ball6 = new Ball(), ball7 = new Ball();
 	static int newBallCounter = 1;
 
 	//Sound Effects
@@ -139,6 +139,13 @@ public class GameScreen {
 		gamePane.getChildren().add(shield2);
 		gamePane.getChildren().add(shield3);
 		gamePane.getChildren().add(shield4);
+		gamePane.getChildren().add(ball1.getBall());
+		gamePane.getChildren().add(ball2.getBall());
+		gamePane.getChildren().add(ball3.getBall());
+		gamePane.getChildren().add(ball4.getBall());
+		gamePane.getChildren().add(ball5.getBall());
+		gamePane.getChildren().add(ball6.getBall());
+		gamePane.getChildren().add(ball7.getBall());
 
 		this.numberPlayers = numberPlayers;
 
@@ -154,8 +161,8 @@ public class GameScreen {
 			name4 = "AI";
 		}
 
-		player1Name = name2;
-		player2Name = name1;
+		player1Name = name1;
+		player2Name = name2;
 		player3Name = name3;
 		player4Name = name4;
 
@@ -373,7 +380,7 @@ public class GameScreen {
 			try {
 				gamePane.getChildren().removeAll(mainBall.getBall());
 			} catch (Exception e){}
-			mainBall = new Ball(7);
+			mainBall = new Ball(8);
 			gamePane.getChildren().addAll(mainBall.getBall());
 		}
 		newBallCounter++;
@@ -647,11 +654,11 @@ public class GameScreen {
 				ball.restart();
 				//Thread.sleep(200);
 			}else{
-				ball.setXLoc(345);
-				ball.setYLoc(345);
+				ball.setXLoc(-9999);
+				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
+				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
@@ -665,11 +672,11 @@ public class GameScreen {
 				ball.restart();
 				//Thread.sleep(200);
 			}else{
-				ball.setXLoc(345);
-				ball.setYLoc(345);
+				ball.setXLoc(-9999);
+				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
+				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
@@ -683,11 +690,11 @@ public class GameScreen {
 				ball.restart();
 				//Thread.sleep(200);
 			}else{
-				ball.setXLoc(345);
-				ball.setYLoc(345);
+				ball.setXLoc(-9999);
+				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
+				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
@@ -701,11 +708,11 @@ public class GameScreen {
 				ball.restart();
 				//Thread.sleep(200);
 			}else{
-				ball.setXLoc(345);
-				ball.setYLoc(345);
+				ball.setXLoc(-9999);
+				ball.setYLoc(-9999);
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
-				try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
+				//try{gamePane.getChildren().remove(ball.getBall());}catch(Exception e){}
 			}
 			endGame();
 		}
@@ -1310,15 +1317,22 @@ public class GameScreen {
 	}
 
 	public String getEverything(){
-		return mainBall.getXLoc() + "," + mainBall.getYLoc() + "," + paddle1.getPaddle().getX() + "," + paddle1.getPaddle().getY() + "," + paddle2.getPaddle().getX() + "," + paddle2.getPaddle().getY() + "," + paddle3.getPaddle().getX() + "," + paddle3.getPaddle().getY() + "," + paddle4.getPaddle().getX() + "," + paddle4.getPaddle().getY() + "," + paddle1.getLives() + "," + paddle2.getLives() + "," + paddle3.getLives() + "," + paddle4.getLives() + "," + rect5.getWidth() + "," + rect2.getWidth() + "," + rect3.getHeight() + "," + rect8.getHeight() + "," + powerUp1.getPowerUp().getX() + "," + powerUp1.getPowerUp().getY() + "," + powerUp1.getType() + "," + powerUp2.getPowerUp().getX() + "," + powerUp2.getPowerUp().getY() + "," + powerUp2.getType() + "," + powerUp3.getPowerUp().getX() + "," + powerUp3.getPowerUp().getY() + "," + powerUp3.getType() + "," + powerUp4.getPowerUp().getX() + "," + powerUp4.getPowerUp().getY() + "," + powerUp4.getType() + "," + powerUp5.getPowerUp().getX() + "," + powerUp5.getPowerUp().getY() + "," + powerUp5.getType() + "," + paddle1.getPaddle().getHeight() + "," + paddle2.getPaddle().getWidth() + "," + paddle3.getPaddle().getHeight() + "," + paddle4.getPaddle().getWidth() + "," + shield1.getX() + "," + shield1.getY() + "," + shield2.getX() + "," + shield2.getY() + "," + shield3.getX() + "," + shield3.getY() + "," + shield4.getX() + "," + shield4.getY(); 
+		return mainBall.getXLoc() + "," + mainBall.getYLoc() + "," + paddle1.getPaddle().getX() + "," + paddle1.getPaddle().getY() + "," + paddle2.getPaddle().getX() + "," + paddle2.getPaddle().getY() + "," + paddle3.getPaddle().getX() + "," + paddle3.getPaddle().getY() + "," + paddle4.getPaddle().getX() + "," + paddle4.getPaddle().getY() + "," + paddle1.getLives() + "," + paddle2.getLives() + "," + paddle3.getLives() + "," + paddle4.getLives() + "," + rect5.getWidth() + "," + rect2.getWidth() + "," + rect3.getHeight() + "," + rect8.getHeight() + "," + powerUp1.getPowerUp().getX() + "," + powerUp1.getPowerUp().getY() + "," + powerUp1.getType() + "," + powerUp2.getPowerUp().getX() + "," + powerUp2.getPowerUp().getY() + "," + powerUp2.getType() + "," + powerUp3.getPowerUp().getX() + "," + powerUp3.getPowerUp().getY() + "," + powerUp3.getType() + "," + powerUp4.getPowerUp().getX() + "," + powerUp4.getPowerUp().getY() + "," + powerUp4.getType() + "," + powerUp5.getPowerUp().getX() + "," + powerUp5.getPowerUp().getY() + "," + powerUp5.getType() + "," + paddle1.getPaddle().getHeight() + "," + paddle2.getPaddle().getWidth() + "," + paddle3.getPaddle().getHeight() + "," + paddle4.getPaddle().getWidth() + "," + shield1.getX() + "," + shield1.getY() + "," + shield2.getX() + "," + shield2.getY() + "," + shield3.getX() + "," + shield3.getY() + "," + shield4.getX() + "," + shield4.getY() + "," + ball1.getXLoc() + "," + ball1.getYLoc() + "," + ball2.getXLoc() + "," + ball2.getYLoc() + "," + ball3.getXLoc() + "," + ball3.getYLoc() + "," + ball4.getXLoc() + "," + ball4.getYLoc() + "," + ball5.getXLoc() + "," + ball5.getYLoc() + "," + ball6.getXLoc() + "," + ball6.getYLoc() + "," + ball7.getXLoc() + "," + ball7.getYLoc(); 
 	}
 
-	public void setEverything(int mainBallX, int mainBallY, double paddle1X, double paddle1Y, double paddle2X, double paddle2Y, double paddle3X, double paddle3Y, double paddle4X, double paddle4Y, int player1Lives, int player2Lives, int player3Lives, int player4Lives, Double player1Rect, Double player2Rect, Double player3Rect, Double player4Rect, Double powerUp1X, Double powerUp1Y, int powerUp1Type, Double powerUp2X, Double powerUp2Y, int powerUp2Type, Double powerUp3X, Double powerUp3Y, int powerUp3Type, Double powerUp4X, Double powerUp4Y, int powerUp4Type, Double powerUp5X, Double powerUp5Y, int powerUp5Type, double paddle1Height, double paddle2Width, double paddle3Height, double paddle4Width, double shield1X, double shield1Y, double shield2X, double shield2Y, double shield3X, double shield3Y, double shield4X, double shield4Y){
+	public void setEverything(int mainBallX, int mainBallY, double paddle1X, double paddle1Y, double paddle2X, double paddle2Y, double paddle3X, double paddle3Y, double paddle4X, double paddle4Y, int player1Lives, int player2Lives, int player3Lives, int player4Lives, Double player1Rect, Double player2Rect, Double player3Rect, Double player4Rect, Double powerUp1X, Double powerUp1Y, int powerUp1Type, Double powerUp2X, Double powerUp2Y, int powerUp2Type, Double powerUp3X, Double powerUp3Y, int powerUp3Type, Double powerUp4X, Double powerUp4Y, int powerUp4Type, Double powerUp5X, Double powerUp5Y, int powerUp5Type, double paddle1Height, double paddle2Width, double paddle3Height, double paddle4Width, double shield1X, double shield1Y, double shield2X, double shield2Y, double shield3X, double shield3Y, double shield4X, double shield4Y, double ball1X, double ball1Y, double ball2X, double ball2Y, double ball3X, double ball3Y, double ball4X, double ball4Y, double ball5X, double ball5Y, double ball6X, double ball6Y, double ball7X, double ball7Y){
 		gamePane.getChildren().removeAll(powerUp1.getPowerUp());
 		gamePane.getChildren().removeAll(powerUp2.getPowerUp());
 		gamePane.getChildren().removeAll(powerUp3.getPowerUp());
 		gamePane.getChildren().removeAll(powerUp4.getPowerUp());
 		gamePane.getChildren().removeAll(powerUp5.getPowerUp());
+		gamePane.getChildren().removeAll(ball1.getBall());
+		gamePane.getChildren().removeAll(ball2.getBall());
+		gamePane.getChildren().removeAll(ball3.getBall());
+		gamePane.getChildren().removeAll(ball4.getBall());
+		gamePane.getChildren().removeAll(ball5.getBall());
+		gamePane.getChildren().removeAll(ball6.getBall());
+		gamePane.getChildren().removeAll(ball7.getBall());
 		gamePane.getChildren().removeAll(shield1);
 		gamePane.getChildren().removeAll(shield2);
 		gamePane.getChildren().removeAll(shield3);
@@ -1368,6 +1382,20 @@ public class GameScreen {
 		shield3.setY(shield3Y);
 		shield4.setX(shield4X);
 		shield4.setY(shield4Y);
+		ball1.getBall().setX(ball1X);
+		ball1.getBall().setY(ball1Y);
+		ball2.getBall().setX(ball2X);
+		ball2.getBall().setY(ball2Y);
+		ball3.getBall().setX(ball3X);
+		ball3.getBall().setY(ball3Y);
+		ball4.getBall().setX(ball4X);
+		ball4.getBall().setY(ball4Y);
+		ball5.getBall().setX(ball5X);
+		ball5.getBall().setY(ball5Y);
+		ball6.getBall().setX(ball6X);
+		ball6.getBall().setY(ball6Y);
+		ball7.getBall().setX(ball7X);
+		ball7.getBall().setY(ball7Y);
 
 		gamePane.getChildren().add(powerUp1.getPowerUp());
 		gamePane.getChildren().add(powerUp2.getPowerUp());
@@ -1378,6 +1406,13 @@ public class GameScreen {
 		gamePane.getChildren().addAll(shield2);
 		gamePane.getChildren().addAll(shield3);
 		gamePane.getChildren().addAll(shield4);
+		gamePane.getChildren().addAll(ball1.getBall());
+		gamePane.getChildren().addAll(ball2.getBall());
+		gamePane.getChildren().addAll(ball3.getBall());
+		gamePane.getChildren().addAll(ball4.getBall());
+		gamePane.getChildren().addAll(ball5.getBall());
+		gamePane.getChildren().addAll(ball6.getBall());
+		gamePane.getChildren().addAll(ball7.getBall());		
 
 	}
 }

@@ -314,7 +314,7 @@ public class Host extends Thread{
 							if(refresh >= (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))){
 								//GameScreen.paddle2Move = update;
 								GameGUI.updateGame();
-								Thread.sleep(50);
+								Thread.sleep(40);
 								//Thread.sleep(70 - (10 * (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))));
 								//GameScreen.paddle2Move = 0;
 								refresh = 1;
