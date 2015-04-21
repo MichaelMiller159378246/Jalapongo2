@@ -290,7 +290,7 @@ public class Client extends Thread{
 					//System.out.println(line.toString());
 					String[] ball = input.split(",");
 					GameGUI.globalG.setEverything(Integer.parseInt(ball[0]), Integer.parseInt(ball[1]), Double.parseDouble(ball[2]), Double.parseDouble(ball[3]), Double.parseDouble(ball[4]), Double.parseDouble(ball[5]), Double.parseDouble(ball[6]), Double.parseDouble(ball[7]), Double.parseDouble(ball[8]), Double.parseDouble(ball[9]), Integer.parseInt(ball[10]), Integer.parseInt(ball[11]), Integer.parseInt(ball[12]), Integer.parseInt(ball[13]), Double.parseDouble(ball[14]), Double.parseDouble(ball[15]), Double.parseDouble(ball[16]), Double.parseDouble(ball[17]), Double.parseDouble(ball[18]), Double.parseDouble(ball[19]), Integer.parseInt(ball[20]), Double.parseDouble(ball[21]), Double.parseDouble(ball[22]), Integer.parseInt(ball[23]), Double.parseDouble(ball[24]), Double.parseDouble(ball[25]), Integer.parseInt(ball[26]), Double.parseDouble(ball[27]), Double.parseDouble(ball[28]), Integer.parseInt(ball[29]), Double.parseDouble(ball[30]), Double.parseDouble(ball[31]), Integer.parseInt(ball[32]), Double.parseDouble(ball[33]), Double.parseDouble(ball[34]), Double.parseDouble(ball[35]), Double.parseDouble(ball[36]), Double.parseDouble(ball[37]), Double.parseDouble(ball[38]), Double.parseDouble(ball[39]), Double.parseDouble(ball[40]), Double.parseDouble(ball[41]), Double.parseDouble(ball[42]), Double.parseDouble(ball[43]), Double.parseDouble(ball[44]));
-					out.println("OK" + " :" + output);
+					out.println("OK" + " " + name);
 						}
 					});
 				}
