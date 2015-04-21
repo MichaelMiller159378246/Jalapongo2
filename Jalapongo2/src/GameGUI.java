@@ -455,11 +455,7 @@ public class GameGUI extends Application {
 		livesCoB.setValue(5);
 
 		Button okaybt = new Button("Okay");
-		okaybt.setFont(new Font(24));
-		//okaybt.setMaxWidth(300);
-		Button cancelbt = new Button("Cancel");
-		cancelbt.setFont(new Font(24));
-		//cancelbt.setMaxWidth(300);
+		okaybt.setFont(new Font(24));	
 
 		fastCB.setSelected(true);
 		shieldCB.setSelected(true);
@@ -474,7 +470,7 @@ public class GameGUI extends Application {
 		liveshb.getChildren().addAll(livesText, livesCoB);
 		liveshb.setAlignment(Pos.CENTER);
 
-		bottomhb.getChildren().addAll(okaybt, cancelbt);
+		bottomhb.getChildren().addAll(okaybt);
 		bottomhb.setAlignment(Pos.CENTER);
 		bottomhb.setSpacing(25);
 
@@ -553,27 +549,13 @@ public class GameGUI extends Application {
 		BorderPane lowerRQBP = new BorderPane(); // Creates a BorderPane
 
 		namesGPRQ = new GridPane();
-		//CheckBox readyCB = new CheckBox();
-		//BorderPane nameBP = new BorderPane();
-		//Label nameL = new Label(nameTF.getText());
-		//nameBP.setLeft(nameL);
-		//nameBP.setRight(readyCB);
-		//nameBP.setPrefWidth(sceneWH / 2);
-		//nameL.setStyle("-fx-font-size: 22px;" + // Sets the font size of the label to 22 pixels
-		//		"-fx-font-weight: bold;" +  // Sets the font to bold
-		//		"-fx-text-stroke: 5;");  // Sets the stroke of the font to 5
-		//		"-fx-border-color: Black"); // Sets the border to black
-		//nameBP.setStyle("-fx-border-color: Black");
-		//nameBP.setPadding(new Insets(10));
-		//namesGPRQ.add(nameBP, 0, 0);
 		namesGPRQ.setPadding(new Insets(10));
 		namesGPRQ.setVgap(20);
 		namesGPRQ.setPrefWidth(sceneWH / 2);
-		//nameRQVB.setPadding(new Insets(10));
+;
 
 		// Creates controls
 		nameLRQ = new Label(); //Creates a label;
-		//Button startRQB = new Button("Start"); // Creates a start button
 		Button disconnectRQB = new Button("Disconnect"); // Creates a disconnect button
 			
 		// Alters BorderPane properties
@@ -654,7 +636,6 @@ public class GameGUI extends Application {
 
 		//Host Options Menu Events
 		okaybt.setOnMouseClicked(e -> primaryStage.setScene(sceneHOS)); // If the user presses okay the scene changes to the host menu scene 
-		//livesCoB.valueProperty().bind(GameScreen.paddle1.lives);; 
 
 		// Ready Screen Menu Events
 		disconnectRQB.setOnMouseClicked(e -> primaryStage.setScene(choiceScene)); // If the user presses disconnect the scene changes to the choice menu scene 
@@ -670,12 +651,6 @@ public class GameGUI extends Application {
 		//startRQB.setOnMouseClicked(e -> primaryStage.setScene(game.getGameScene(primaryStage, sbScene))); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 		//scoreboard variables
 		final TableView<ScoreboardData> scoreboard = new TableView<ScoreboardData>();
-		/*final ObservableList<ScoreboardData> data = FXCollections.observableArrayList(
-				new ScoreboardData("Player1",game.getP1Time()),
-				new ScoreboardData("Player2",game.getP2Time()),
-				new ScoreboardData("Player3",game.getP3Time()),
-				new ScoreboardData("Player4",game.getP4Time())
-				);*/
 		//*******************************************************************************
 		//Scoreboard GUI
 		
@@ -713,24 +688,6 @@ public class GameGUI extends Application {
 
 		sbScene = new Scene(sbBP,sceneWH,sceneWH);
 		//*******************************************************************************
-		
-		startRQB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
-			public void handle(MouseEvent me) { // Creates a handler
-				if(Host.getPlayerCount() == 4 - Integer.parseInt(AICB.getValue().toString())){
-					//Paddle.setLives(livesCoB.getValue());
-					//GameScreen game = new GameScreen(); // Creates a GameScreen object
-					//globalG = game;
-					//primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
-					//game.continuousUpdate();; // Calls the continuousUpdate method
-				}else if(Integer.parseInt(AICB.getValue().toString()) == 3){
-					//Paddle.setLives(livesCoB.getValue());
-					//GameScreen game = new GameScreen(); // Creates a GameScreen object
-					//primaryStage.setScene(game.getGameScene(primaryStage, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
-					//game.continuousUpdate();; // Calls the continuousUpdate method
-				}
-			}
-		});
-		
 		
 		// Alter stage properties
 		primaryStage.setScene(startMScene); //Sets the scene of the stage
