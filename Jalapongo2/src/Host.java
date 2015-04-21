@@ -43,7 +43,7 @@ public class Host extends Thread{
 	private static int refresh = 1;
 	private static int update = 0;
 
-	
+
 	/**
 	 * @returns sum of players ready
 	 */
@@ -304,54 +304,59 @@ public class Host extends Thread{
 						readyState4 = 0; // Change the ready state to 0
 					}
 					else if(input.startsWith("OK")){
-						if(refresh!=Integer.parseInt(GameGUI.AICB.getValue().toString()) - 1){
-							String test = input.substring(input.indexOf(":") + 1);
-							System.out.println(input);
-							switch(test){
-							case "2L": update = 1;
-							case "2R": update = -1;
-							default: update = 0;
-							}
+						System.out.println(refresh + " " + input.toString()  + " Out of " + (4 - Integer.parseInt(GameGUI.AICB.getValue().toString())));
+						//System.out.println(refresh + " Out of " + (4 - Integer.parseInt(GameGUI.AICB.getValue().toString())));
+						if(refresh < (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))){
 							//System.out.println(refresh + " " + Integer.parseInt(GameGUI.AICB.getValue().toString()));
 							refresh++;
 							output = null;
-						}
-						else{
-							GameScreen.paddle2Move = update;
-							GameGUI.updateGame();
-							Thread.sleep(50);
-							GameScreen.paddle2Move = 0;
-							refresh = 1;
-							output = "REFRESH" + ":" + GameGUI.globalG.getEverything();
+							//System.out.println(refresh + " " + Integer.parseInt(GameGUI.AICB.getValue().toString()));
+							if(refresh >= (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))){
+								//GameScreen.paddle2Move = update;
+								GameGUI.updateGame();
+								Thread.sleep(40);
+								//Thread.sleep(70 - (10 * (4 - Integer.parseInt(GameGUI.AICB.getValue().toString()))));
+								//GameScreen.paddle2Move = 0;
+								refresh = 1;
+								output = "REFRESH" + ":" + GameGUI.globalG.getEverything();
 						}
 					}
-					for (PrintWriter writer : writers){ // Adds writer to the types of writes
-						writer.println( output); // Sends to all clients
+					else{
+						//GameScreen.paddle2Move = update;
+						GameGUI.updateGame();
+						Thread.sleep(50);
+						//GameScreen.paddle2Move = 0;
+						refresh = 1;
+						output = "REFRESH" + ":" + GameGUI.globalG.getEverything();
 					}
 				}
-			} catch (IOException e){
-				System.out.println("ERROR 101: Error connecting with user"); // If there is an error connecting to the user display the error message 
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally { // If the user disconnects proceed
-				if (name != null){ // If the name is not blank
-					names.remove(name); // Remove the name from the list
+				for (PrintWriter writer : writers){ // Adds writer to the types of writes
+					writer.println( output); // Sends to all clients
 				}
-				if (out != null){ // If the output to the client is not blank
-					writers.remove(out); // Remove the output
-				}
-				try{ // Try to close the server
-					socket.close(); // Closes the server connection
-				} catch(IOException e){
-					System.out.println("ERROR 102: Error disconnecting user"); // If there is an error disconnecting the user
-				}
+			}
+		} catch (IOException e){
+			System.out.println("ERROR 101: Error connecting with user"); // If there is an error connecting to the user display the error message 
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { // If the user disconnects proceed
+			if (name != null){ // If the name is not blank
+				names.remove(name); // Remove the name from the list
+			}
+			if (out != null){ // If the output to the client is not blank
+				writers.remove(out); // Remove the output
+			}
+			try{ // Try to close the server
+				socket.close(); // Closes the server connection
+			} catch(IOException e){
+				System.out.println("ERROR 102: Error disconnecting user"); // If there is an error disconnecting the user
 			}
 		}
 	}
+}
 
-	// Runs the server
-	public void run(){
-		launchServer(port); // Starts the process
-	}
+// Runs the server
+public void run(){
+	launchServer(port); // Starts the process
+}
 }
