@@ -37,15 +37,18 @@ public class lheureuxJUnitTest extends GameGUI{
 	public void powerUpSelectionTest() {
 		//user story 2 toggling power ups ????????
 		GameGUI game = new GameGUI();
-		game.playBSM.fire();
-		game.hostBCS.fire();
-		game.optionsHO.fire();
+		try{game.playBSM.fire();}catch(Exception e){}
+		try{game.hostBCS.fire();}catch(Exception e){}
+		try{game.optionsHO.fire();}catch(Exception e){}
+		
 		if(fastCB.isSelected()){
 			System.out.println("fast ball selected on start");
 		}else{
 			fail("fast ball isnt slected on start");
 		}
-		game.fastCB.fire();
+		
+		try{game.fastCB.fire();}catch(Exception e){}
+		
 		if(fastCB.isSelected()){
 			fail("fast ball is selected after first click");
 		}else{

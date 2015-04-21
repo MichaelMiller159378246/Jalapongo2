@@ -9,6 +9,14 @@ import javafx.scene.shape.Rectangle;
  * @author Dalton L'Heureux
  * @version 1.0
  * @created 02-Mar-2015 3:19:43 PM
+ * 
+ * This class creates a ball object which is the an intractable object during the game. Each ball has a ID #,
+ * 8 being the mainball of the game. All addition balls are given ID #'s between 1-7 and do not reset upon scoring 
+ * on a player. Each ball has a set of attributes that can be modified dynamically by powerups and events occurring
+ * during the game. Modifiable attributes are:
+ * paddleLastHit => used to give powerups to the correct player
+ * xSpeed
+ * ySpeed
  */
 public class Ball {
 	//Jon commented on ball 

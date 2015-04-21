@@ -2,6 +2,10 @@
  * @author Dalton L'Heureux
  * @version 1.0
  * @created 02-Mar-2015 3:19:45 PM
+ * 
+ * The player class creates an object to represent each player in a game. When a player is created a paddle 
+ * is created and assigned to that player. The player is also given a position on the game screen and a name
+ * so the user can identify there position on the game screen.
  */
 public class Player{
 
