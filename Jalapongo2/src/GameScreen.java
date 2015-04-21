@@ -18,6 +18,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
+/**
+ * @author Nick, Dalton, Jon, Mike, Leslie
+ *
+ */
 public class GameScreen {
 
 	private int numberPlayers = 1;
@@ -113,7 +117,7 @@ public class GameScreen {
 
 	}
 	/**
-	 * @author Whole team added elements
+	 * @author Nick, Dalton, Jon, Mike, Leslie
 	 * @param name1
 	 * @param name2
 	 * @param name3
