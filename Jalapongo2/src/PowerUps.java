@@ -16,6 +16,10 @@ import javafx.scene.shape.*;
  * @version 1.0
  * @created 02-Mar-2015 3:19:46 PM
  * 
+ * The PowerUps class is used to create power up objects. Each power up is created with a random type in a random location.
+ * The possible power up types are as follows:
+ * 
+ * power up type => power up type ID #
  *  flip => 1
  *  addLives => 2
  *  shield => 3
@@ -25,6 +29,8 @@ import javafx.scene.shape.*;
  *  addSpeed => 7
  *  stall => 8
  *  multiBall => 9
+ *  
+ *  This class also contains methods to be called when a power up of a given type is activated.
  */
 
 public class PowerUps {
