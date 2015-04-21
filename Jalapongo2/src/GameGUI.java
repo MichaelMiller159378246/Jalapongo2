@@ -243,7 +243,7 @@ public class GameGUI extends Application {
 				bpHM.setCenter(initialHMVB);
 				
 				//Make text about how to play
-				Text howToPlayTitleText = new Text("How To Play:\n");
+				Text howToPlayTitleText = new Text("How To Play:");
 				howToPlayTitleText.setFont(new Font(30));
 				howToPlayTitleText.setUnderline(true);
 				
@@ -254,7 +254,7 @@ public class GameGUI extends Application {
 						+ "When a player reaches 0 lives, their paddle will take up their side of the screen "
 						+ "and they will be out.\n\n");
 				
-				Text controlsTitleText = new Text("Controls:\n");
+				Text controlsTitleText = new Text("Controls:");
 				controlsTitleText.setFont(new Font(20));
 				controlsTitleText.setUnderline(true);
 				
@@ -263,7 +263,7 @@ public class GameGUI extends Application {
 						+ "If controls are reversed you must use the left arrow key to move right, and the right arrow key to move left.\n\n"
 						+ "Reversed controls will remain until the power-up is disabled\n\n");
 				
-				Text powerupsTitleText = new Text("Power-ups:\n");
+				Text powerupsTitleText = new Text("Power-ups:");
 				powerupsTitleText.setFont(new Font(20));
 				powerupsTitleText.setUnderline(true);
 				
@@ -273,7 +273,7 @@ public class GameGUI extends Application {
 						+ "Add Lives: adds a live to the player - color = ORANGE\n"
 						+ "Shield: adds a shield behind player - color = PURPLE\n"
 						+ "Large Paddle: makes paddle larger - color =  PINK\n"
-						+ "Small Paddle makes paddle smaller - color = YELLOW\n: "
+						+ "Small Paddle makes paddle smaller - color = YELLOW\n"
 						+ "Slow Ball: makes ball move slower - color = BLUE\n"
 						+ "Fast Ball: makes ball move faster - color = GREEN\n"
 						+ "Stall: prevents paddle movement for a certain amount of time - color = CYAN \n"
@@ -288,7 +288,7 @@ public class GameGUI extends Application {
 				bpHowToPlayHM.setCenter(howToPlayHMVB);
 				
 				//Make text about how to join a game
-				Text joinGameTitleText = new Text("Join a Game:\n");
+				Text joinGameTitleText = new Text("Join a Game:");
 				joinGameTitleText.setFont(new Font(30));
 				joinGameTitleText.setUnderline(true);
 				
@@ -312,7 +312,7 @@ public class GameGUI extends Application {
 				bpJoinGameHM.setCenter(joinGameHMVB);
 				
 				//Make text about how to host a game
-				Text hostGameTitleText = new Text("Host a Game:\n");
+				Text hostGameTitleText = new Text("Host a Game:");
 				hostGameTitleText.setFont(new Font(30));
 				hostGameTitleText.setUnderline(true);
 				
@@ -323,7 +323,7 @@ public class GameGUI extends Application {
 						+ "Note: if you want to play a single player game of Jalapongo select 3 AI's.\n\n"
 						+ "Otherwise, select the number of AI's based on the number of players expected to join your server.\n\n");
 				
-				Text hostOptionsTitleText = new Text("Host Options:\n");
+				Text hostOptionsTitleText = new Text("Host Options:");
 				hostOptionsTitleText.setFont(new Font(20));
 				hostOptionsTitleText.setUnderline(true);
 				
