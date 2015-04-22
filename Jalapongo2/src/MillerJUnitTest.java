@@ -1,4 +1,6 @@
 import static org.junit.Assert.assertTrue;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -6,47 +8,62 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+public class MillerJUnitTest extends Application{
 
+	// Used this web page as a guide
+	// http://stackoverflow.com/questions/18429422/basic-junit-test-for-javafx-8
 
-public class MillerJUnitTest extends Application implements Runnable{
-	
-	
+	// Before the entire class
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		System.out.println("setUpBeforeClass: Preparing to run unit test(s)...\n");
+	public static void initJFX() {
+		String[] args = null; // Sets the String[] args to null
+		
+		Thread t = new Thread("JavaFX Init Thread") { // Creates a new thread
+            @Override
+            public void run() { // Run method within thread
+            	main(args);// Calls the main function of this class
+            }
+        };
+        t.start(); // Starts the thread
+        try {
+			Thread.sleep(10000); // Thread sleeps for 10 seconds allowing the host to change the music
+		} catch (InterruptedException e) {
+			System.out.println("There was an error trying to sleep"); // Displays Error
+		}
 	}
 
+	// After the class is done
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		System.out.println("tearDownAfterClass:Exiting unit tests...\n");
 	}
 
+	// Before Each Test
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("setUp:Starting a test\n");
 	}
 
+	// After Each Test
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("tearDown:Test complete\n\n");
 	}
 
+	// Tests to see if the music is selected
 	@Test
-	public void musicTest() {
-		// Was unable to get it to pass this part as the JUnit is unable to run while GUI is running
-		assertTrue(GameGUI.musicCB.isSelected());
+	public void musicTest() throws InterruptedException {
+		assertTrue(GameGUI.musicCB.isSelected()); // Tests to see the value of the music check box
+	}
+
+	public static void main(String[] args){
+		MillerJUnitTest.launch(args);// Launches the class basically calling the start method
 	}
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		GameGUI game = new GameGUI();
-		game.start(arg0);
+		new GameGUI(arg0); // Launches the GUI
 	}
 
-	@Override
-	public void run() {
-		GameGUI.launch();
-	}
+
 }
