@@ -52,6 +52,11 @@ public class Host extends Thread{
 	}
 
 	// Constructor
+	/**
+	 * @param port - Port to open on, ranging from a 1 digit number to a 5 digit number
+	 * @param name - Name of the player, must be within 10 characters
+	 * @param startB - Button, used to start the program
+	 */
 	public Host(int port, String name, Button startB){			
 
 		startB.setOnMousePressed(new EventHandler<MouseEvent>() { // When the user presses start the game continuously runs
@@ -110,6 +115,9 @@ public class Host extends Thread{
 	}
 
 	// Method to launch the server
+	/**
+	 * @param port- Port to open on, ranging from a 1 digit number to a 5 digit number
+	 */
 	public static void launchServer(int port){
 		try {
 			listener = new ServerSocket(port); // Try's to create a listener using the inputed port
@@ -130,6 +138,10 @@ public class Host extends Thread{
 	}
 
 	//  Method used to broadcast to the clients
+	/**
+	 * @author Mike
+	 *
+	 */
 	private static class Handler extends Thread{
 		// Declare Variables
 		private String name; // String for all the names

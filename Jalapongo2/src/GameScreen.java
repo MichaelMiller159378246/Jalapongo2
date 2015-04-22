@@ -866,7 +866,10 @@ public class GameScreen {
 
 	/**
 	 * @author Jonathan Hemingway
+	 * @param Signed integer indicating increase or decrease
 	 * 
+	 * This method is used to manage the speed of the ball to keep the game more interesting.
+	 * It prevents the ball from moving too slowly
 	 */
 	
 	private static int minBallSpeed = 11;
@@ -1116,6 +1119,14 @@ public class GameScreen {
 		return max;
 	}
 
+	/**
+	 * @author Jonathan
+	 * @param player
+	 * 
+	 * Performs the tasks which need to execute when a player gets out, including playing a
+	 * sound, calculating the amount of time the player was in, removing the players paddle
+	 * from the screen, and filling in the players side with a wall.
+	 */
 	//If a player runs out of lives, make their paddle fill the whole side
 	private void playerOut(Player player) {
 		if (player.getPaddle().getLives() < 1) {
@@ -1293,10 +1304,74 @@ public class GameScreen {
 		});
 	}
 
+	/**
+	 * @return - Returns all the data needed to update the gui
+	 */
 	public String getEverything(){
 		return mainBall.getXLoc() + "," + mainBall.getYLoc() + "," + paddle1.getPaddle().getX() + "," + paddle1.getPaddle().getY() + "," + paddle2.getPaddle().getX() + "," + paddle2.getPaddle().getY() + "," + paddle3.getPaddle().getX() + "," + paddle3.getPaddle().getY() + "," + paddle4.getPaddle().getX() + "," + paddle4.getPaddle().getY() + "," + paddle1.getLives() + "," + paddle2.getLives() + "," + paddle3.getLives() + "," + paddle4.getLives() + "," + rect5.getWidth() + "," + rect2.getWidth() + "," + rect3.getHeight() + "," + rect8.getHeight() + "," + powerUp1.getPowerUp().getX() + "," + powerUp1.getPowerUp().getY() + "," + powerUp1.getType() + "," + powerUp2.getPowerUp().getX() + "," + powerUp2.getPowerUp().getY() + "," + powerUp2.getType() + "," + powerUp3.getPowerUp().getX() + "," + powerUp3.getPowerUp().getY() + "," + powerUp3.getType() + "," + powerUp4.getPowerUp().getX() + "," + powerUp4.getPowerUp().getY() + "," + powerUp4.getType() + "," + powerUp5.getPowerUp().getX() + "," + powerUp5.getPowerUp().getY() + "," + powerUp5.getType() + "," + paddle1.getPaddle().getHeight() + "," + paddle2.getPaddle().getWidth() + "," + paddle3.getPaddle().getHeight() + "," + paddle4.getPaddle().getWidth() + "," + shield1.getX() + "," + shield1.getY() + "," + shield2.getX() + "," + shield2.getY() + "," + shield3.getX() + "," + shield3.getY() + "," + shield4.getX() + "," + shield4.getY() + "," + ball1.getXLoc() + "," + ball1.getYLoc() + "," + ball2.getXLoc() + "," + ball2.getYLoc() + "," + ball3.getXLoc() + "," + ball3.getYLoc() + "," + ball4.getXLoc() + "," + ball4.getYLoc() + "," + ball5.getXLoc() + "," + ball5.getYLoc() + "," + ball6.getXLoc() + "," + ball6.getYLoc() + "," + ball7.getXLoc() + "," + ball7.getYLoc(); 
 	}
 
+	/**
+	 * @param mainBallX - X position for the main ball
+	 * @param mainBallY - Y position for the main ball
+	 * @param paddle1X - X position for the first paddle
+	 * @param paddle1Y - Y position for the first paddle
+	 * @param paddle2X - X position for the second paddle
+	 * @param paddle2Y - Y position for the second paddle
+	 * @param paddle3X - X position for the third paddle
+	 * @param paddle3Y - Y position for the third paddle
+	 * @param paddle4X - X position for the fourth paddle
+	 * @param paddle4Y - Y position for the fourth paddle
+	 * @param player1Lives - Number of player 1's lives
+	 * @param player2Lives - Number of player 2's lives
+	 * @param player3Lives - Number of player 3's lives
+	 * @param player4Lives - Number of player 4's lives
+	 * @param player1Rect - Length of rectangle
+	 * @param player2Rect - Length of rectangle
+	 * @param player3Rect - Length of rectangle
+	 * @param player4Rect - Length of rectangle
+	 * @param powerUp1X - X Location of the first power up
+	 * @param powerUp1Y - Y Location of the first power up
+	 * @param powerUp1Type - Integer to explain the type
+	 * @param powerUp2X - X Location of the second power up
+	 * @param powerUp2Y - Y Location of the second power up
+	 * @param powerUp2Type - Integer to explain the type
+	 * @param powerUp3X - X Location of the third power up
+	 * @param powerUp3Y - Y Location of the third power up
+	 * @param powerUp3Type - Integer to explain the type
+	 * @param powerUp4X - X Location of the fourth power up
+	 * @param powerUp4Y - Y Location of the fourth power up
+	 * @param powerUp4Type - Integer to explain the type
+	 * @param powerUp5X - X Location of the fifth power up
+	 * @param powerUp5Y - Y Location of the fifth power up
+	 * @param powerUp5Type - Integer to explain the type
+	 * @param paddle1Height - Height of the paddle
+	 * @param paddle2Width - Height of the paddle
+	 * @param paddle3Height - Height of the paddle
+	 * @param paddle4Width - Height of the paddle
+	 * @param shield1X - X Location of the first shield
+	 * @param shield1Y - Y location of the first shield
+	 * @param shield2X - X Location of the second shield
+	 * @param shield2Y - Y location of the second shield
+	 * @param shield3X - X Location of the third shield
+	 * @param shield3Y - Y location of the third shield
+	 * @param shield4X - X Location of the fourth shield
+	 * @param shield4Y - Y location of the fourth shield
+	 * @param ball1X - X location of the first ball
+	 * @param ball1Y - Y location of the first ball
+	 * @param ball2X - X location of the second ball
+	 * @param ball2Y - Y location of the second ball
+	 * @param ball3X - X location of the third ball
+	 * @param ball3Y - Y location of the third ball
+	 * @param ball4X - X location of the fourth ball
+	 * @param ball4Y - Y location of the fourth ball
+	 * @param ball5X - X location of the fifth ball
+	 * @param ball5Y - Y location of the fifth ball
+	 * @param ball6X - X location of the sixth ball
+	 * @param ball6Y - Y location of the sixth ball
+	 * @param ball7X - X location of the seventh ball
+	 * @param ball7Y - Y location of the seventh ball
+	 */
 	public void setEverything(int mainBallX, int mainBallY, double paddle1X, double paddle1Y, double paddle2X, double paddle2Y, double paddle3X, double paddle3Y, double paddle4X, double paddle4Y, int player1Lives, int player2Lives, int player3Lives, int player4Lives, Double player1Rect, Double player2Rect, Double player3Rect, Double player4Rect, Double powerUp1X, Double powerUp1Y, int powerUp1Type, Double powerUp2X, Double powerUp2Y, int powerUp2Type, Double powerUp3X, Double powerUp3Y, int powerUp3Type, Double powerUp4X, Double powerUp4Y, int powerUp4Type, Double powerUp5X, Double powerUp5Y, int powerUp5Type, double paddle1Height, double paddle2Width, double paddle3Height, double paddle4Width, double shield1X, double shield1Y, double shield2X, double shield2Y, double shield3X, double shield3Y, double shield4X, double shield4Y, double ball1X, double ball1Y, double ball2X, double ball2Y, double ball3X, double ball3Y, double ball4X, double ball4Y, double ball5X, double ball5Y, double ball6X, double ball6Y, double ball7X, double ball7Y){
 		gamePane.getChildren().removeAll(powerUp1.getPowerUp());
 		gamePane.getChildren().removeAll(powerUp2.getPowerUp());
