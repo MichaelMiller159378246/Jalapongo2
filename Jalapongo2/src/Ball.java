@@ -31,7 +31,7 @@ public class Ball {
 	String bounce = "Bounce.wav";
 	URL resource = getClass().getResource(bounce);
 	Media media = new Media(resource.toString());
-
+	private MediaPlayer bouncePlayer = new MediaPlayer(media);	
 
 
 	public Ball(int id){
@@ -127,14 +127,14 @@ public class Ball {
 
 	public void reverseX() {
 		xSpeed = -xSpeed;
-		MediaPlayer bouncePlayer = new MediaPlayer(media);	
+		//MediaPlayer bouncePlayer = new MediaPlayer(media);	
 		bouncePlayer.play();
 
 	}
 
 	public void reverseY() {
 		ySpeed = -ySpeed;
-		MediaPlayer bouncePlayer = new MediaPlayer(media);	
+		//MediaPlayer bouncePlayer = new MediaPlayer(media);	
 		bouncePlayer.play();
 
 	}
