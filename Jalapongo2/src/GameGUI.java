@@ -74,6 +74,25 @@ public class GameGUI extends Application {
 	private Thread clientThread;
 	
 	/**
+	 * Constructor
+	 */
+	public GameGUI(){
+		
+	}
+	
+	/**
+	 * @param primaryStage - Used to set the stage of the program
+	 * This just displays the GUI
+	 */
+	public GameGUI(Stage primaryStage){
+		try {
+			start(primaryStage);
+		} catch (Exception e) {
+			System.out.println("Error Creating Stage");
+		}
+	}
+	
+	/**
 	 * @author Nick, Dalton, Mike, Jon, Leslie
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 * Starts the code
