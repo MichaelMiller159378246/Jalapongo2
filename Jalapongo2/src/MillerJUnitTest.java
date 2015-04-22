@@ -10,6 +10,8 @@ import org.junit.Test;
 
 public class MillerJUnitTest extends Application{
 
+	// Used this web page as a guide
+	// http://stackoverflow.com/questions/18429422/basic-junit-test-for-javafx-8
 
 	// Before the entire class
 	@BeforeClass
