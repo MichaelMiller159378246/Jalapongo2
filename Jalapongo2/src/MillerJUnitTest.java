@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,15 +18,15 @@ public class MillerJUnitTest extends Application{
 	@BeforeClass
 	public static void initJFX() {
 		String[] args = null; // Sets the String[] args to null
-		
+
 		Thread t = new Thread("JavaFX Init Thread") { // Creates a new thread
-            @Override
-            public void run() { // Run method within thread
-            	main(args);// Calls the main function of this class
-            }
-        };
-        t.start(); // Starts the thread
-        try {
+			@Override
+			public void run() { // Run method within thread
+				main(args);// Calls the main function of this class
+			}
+		};
+		t.start(); // Starts the thread
+		try {
 			Thread.sleep(10000); // Thread sleeps for 10 seconds allowing the host to change the music
 		} catch (InterruptedException e) {
 			System.out.println("There was an error trying to sleep"); // Displays Error
@@ -52,8 +53,14 @@ public class MillerJUnitTest extends Application{
 
 	// Tests to see if the music is selected
 	@Test
-	public void musicTest() throws InterruptedException {
+	public void musicTestTrue() throws InterruptedException {
 		assertTrue(GameGUI.musicCB.isSelected()); // Tests to see the value of the music check box
+	}
+
+	// Tests to see if the music is not selected
+	@Test
+	public void musicTestFalse() throws InterruptedException {
+		assertFalse(GameGUI.musicCB.isSelected()); // Tests to see the value of the music check box
 	}
 
 	public static void main(String[] args){
