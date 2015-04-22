@@ -169,7 +169,7 @@ public class GameScreen {
 		player3Name = name3;
 		player4Name = name4;
 
-
+		//Labels for when the game has started
 		player1L = new Text(player3Name + ": " + paddle2.getLives() + " Lives");
 		player2L = new Text(player1Name + ": " + paddle2.getLives() + " Lives");
 		player3L = new Text(player4Name + ": " + paddle2.getLives() + " Lives");
@@ -182,7 +182,7 @@ public class GameScreen {
 		gamePane.getChildren().add(powerUp1.getPowerUp());
 
 
-		//Add Lives Text
+		//Add Lives and player name Text
 		player1L.setX(-10); 			player1L.setY(paneWH/2);
 		player1L.setRotate(90);
 		player1L.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
