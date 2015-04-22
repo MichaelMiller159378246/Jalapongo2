@@ -28,6 +28,11 @@ public class Client extends Thread{
 	public static String output = null;
 	
 	/*Construct client*/
+	/**
+	 * @param portN - Port to connect to, number can be between 1 and 5 digits long
+	 * @param IP - IP address to connect to
+	 * @param uName - String for the users name
+	 */
 	public Client(int portN, String IP,String uName) {
 		port = portN; // Sets the global port number to the inputed number
 		ipAddress = IP; // Sets the global IP address to the inputed IP address
