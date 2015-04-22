@@ -76,6 +76,7 @@ public class GameGUI extends Application {
 	/**
 	 * @author Nick, Dalton, Mike, Jon, Leslie
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 * Starts the code
 	 */
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
@@ -638,7 +639,7 @@ public class GameGUI extends Application {
 	 * @param name2 - String, transfers the players name
 	 * @param name3 - String, transfers the players name
 	 * @param name4 - String, transfers the players name
-	 * Starts the game
+	 * Starts the game for multiplayer
 	 */
 	public static void gameStart(String name1, String name2, String name3, String name4, int numberPlayers){
 		GameScreen game = new GameScreen(name1, name2, name3, name4, numberPlayers); // Creates a new game object
@@ -646,21 +647,37 @@ public class GameGUI extends Application {
 		globalS.setScene(game.getGameScene(globalS, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 	}
 	
+	/**
+	 * @param name1 - Player 1's name
+	 * @param name2 - Player 2's name 
+	 * @param name3 - Player 3's name
+	 * @param name4 - Player 4's name
+	 * @param numberPlayers - Number of players to connect
+	 * This method starts the game for single play use only
+	 */
 	public static void gameStartSolo(String name1, String name2, String name3, String name4, int numberPlayers){
 		GameScreen game = new GameScreen(name1, name2, name3, name4, numberPlayers); // Creates a new game object
 		globalS.setScene(game.getGameScene(globalS, sbScene)); // If the user presses start the scene changes to the scene gathered by the getGameScene method
 		game.continuousUpdate();; // Calls the continuousUpdate method
 	}
 	
+	/**
+	 * Author Mike
+	 * Updates the game in the gui
+	 */
 	public static void updateGame(){
 		globalG.Update();
 	}
-	
-	public static void clientUpdate(){
-		
-	}
 		
 	//method to transfer values to client class
+	/**
+	 * @param primaryStage - Stage used for the game
+	 * @param scene - Scene used to transfer to
+	 * @param portNumber - Port number to access
+	 * @param IP - IP to connect to
+	 * @param uName - Name of the User
+	 * @param startB - Button to start the game
+	 */
 	public void client(Stage primaryStage, Scene scene, int portNumber, String IP, String uName, Button startB){
 		clientThread = new Thread(new Client(portNumber,IP,uName));
 		clientThread.start();
@@ -669,6 +686,13 @@ public class GameGUI extends Application {
 	}
 
 	// Method to launch the host class
+	/**
+	 * @param primaryStage - Stage used for the game
+	 * @param scene - Scene used to transfer to
+	 * @param hostName - Name of the host
+	 * @param port - Port used for server
+	 * @param startB - Button to start the game
+	 */
 	public void host(Stage primaryStage, Scene scene, String hostName, int port, Button startB){ //TODO improve this method for multiplayer
 		nameLRQ.setText("[" + hostName + "]"); // Adds the hosts name to the label
 		Thread Host = new Thread(new Host(port, hostName, startB)); // Creates a thread
